@@ -1,12 +1,14 @@
 # appve-minem
-Repositorio oficial APP Vehículos Eléctricos MINEM
+> Repositorio oficial APP Vehículos Eléctricos MINEM
 
+```sh
 | - back-end
 	| - api
 	| - webapp
 	| - administrador
-| - fron-end
+| - front-end
 | - app
 	| - android
 	| - ios
 | - data-base
+```
