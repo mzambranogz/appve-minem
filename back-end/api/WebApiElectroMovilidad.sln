@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiElectroMovilidad", "WebApiElectroMovilidad\WebApiElectroMovilidad.csproj", "{8A344E70-9659-4CDE-9304-7204BC94A178}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos.minem.gob.pe", "Datos.minem.gob.pe\Datos.minem.gob.pe.csproj", "{9927794F-C3E3-4E7B-953F-08347786AA4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidad.minem.gob.pe", "Entidad.minem.gob.pe\Entidad.minem.gob.pe.csproj", "{FB2A2442-F7EB-4935-9F85-90E4AA011C77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util.minem.gob.pe", "Util.minem.gob.pe\Util.minem.gob.pe.csproj", "{B4F38664-F996-4EED-B019-4BA216584489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica.minem.gob.pe", "Logica.minem.gob.pe\Logica.minem.gob.pe.csproj", "{A9FCF538-5305-40C5-B3B8-D650A8DF5190}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A344E70-9659-4CDE-9304-7204BC94A178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A344E70-9659-4CDE-9304-7204BC94A178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A344E70-9659-4CDE-9304-7204BC94A178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A344E70-9659-4CDE-9304-7204BC94A178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9927794F-C3E3-4E7B-953F-08347786AA4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9927794F-C3E3-4E7B-953F-08347786AA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9927794F-C3E3-4E7B-953F-08347786AA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9927794F-C3E3-4E7B-953F-08347786AA4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB2A2442-F7EB-4935-9F85-90E4AA011C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB2A2442-F7EB-4935-9F85-90E4AA011C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB2A2442-F7EB-4935-9F85-90E4AA011C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB2A2442-F7EB-4935-9F85-90E4AA011C77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4F38664-F996-4EED-B019-4BA216584489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4F38664-F996-4EED-B019-4BA216584489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4F38664-F996-4EED-B019-4BA216584489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4F38664-F996-4EED-B019-4BA216584489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9FCF538-5305-40C5-B3B8-D650A8DF5190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9FCF538-5305-40C5-B3B8-D650A8DF5190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9FCF538-5305-40C5-B3B8-D650A8DF5190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9FCF538-5305-40C5-B3B8-D650A8DF5190}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
