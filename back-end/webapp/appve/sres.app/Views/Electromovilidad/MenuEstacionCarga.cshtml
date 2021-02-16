@@ -1,0 +1,21 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Estación de carga";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_menu_estacioncarga.js")"></script>
+}
+
+<div class="container">
+    <div class="row mt-4">
+        <a href="@Url.Action("registro-estacion-de-carga","Electromovilidad")" class="btn btn-primary">Nueva estación</a>
+    </div>
+    <div class="row">
+        <div><span>No hay estaciones de carga registradas</span></div>
+    </div>
+    
+</div>

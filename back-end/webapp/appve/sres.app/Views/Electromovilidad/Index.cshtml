@@ -1,0 +1,28 @@
+﻿@using sres.app.Models
+@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Menú principal";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-lg-6 col-md-6 col-sm-12" style="border: 2px solid #0094ff; padding: 10px;">
+            <a href="@Url.Action("inicio-electromovilidad", "Electromovilidad")">Usuario transporte público</a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12" style="border: 2px solid #0094ff; padding: 10px;">
+            <a href="@Url.Action("usuario-vehiculo-convencional", "Electromovilidad")">Usuario vehículo convencional</a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12" style="border: 2px solid #0094ff; padding: 10px;">
+            <a href="@Url.Action("UsuarioComprarEvaluacion", "Electromovilidad")">Usuario comprador: evaluación vehículo convencional vs. vehículo eléctrico</a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12" style="border: 2px solid #0094ff; padding: 10px;">
+            <a href="@Url.Action("menu-estacion-carga", "Electromovilidad")">Estación de carga</a>
+        </div>
+    </div>    
+</div>

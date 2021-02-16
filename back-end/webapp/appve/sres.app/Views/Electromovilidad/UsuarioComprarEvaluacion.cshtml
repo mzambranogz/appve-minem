@@ -1,0 +1,199 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Usuario comprar evaluación";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_usuariocomprarevaluacion.js")"></script>
+}
+
+<div class="container mt-5">
+    <div id="vehiculo-convencional">
+        <div class="row">
+            <label>Tipo de transporte convencional</label>&nbsp;&nbsp;
+            <select id="tipo-transporte-convencional"></select>
+        </div>
+        <div class="row">
+            <label>¿Usa más de un tipo de combustible?</label>&nbsp;
+            <input id="rad-si" type="radio" name="rad-usa" />Si&nbsp;
+            <input id="rad-no" type="radio" name="rad-usa" />No
+        </div>
+        <div class="row">
+            <label>Meses al año que usa este transporte</label>&nbsp;&nbsp;
+            <select id="meses-transporte-convencional">
+                <option value="0">seleccione</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <div class="row">
+            <label>¿Compra con financiamiento?</label>&nbsp;
+            <input id="rad-si-financiamiento-conv" type="radio" name="rad-finan" />Si&nbsp;
+            <input id="rad-no-financiamiento-conv" type="radio" name="rad-finan" />No
+        </div>
+        <div id="mensaje-inicio"></div>
+        <div class="row">
+            <button id="btnComienza" class="btn btn-primary">Comienza</button>
+        </div>
+        <hr />
+        <div id="seccion-calculo-convencional" class="d-none">
+            <div class="row">
+                <label>Tipo de combustible 1 usado a bordo</label>&nbsp;&nbsp;
+                <select id="tipo-combustible-1"></select>
+            </div>
+            <div class="row">
+                <label>Tipo de combustible 2 usado a bordo</label>&nbsp;&nbsp;
+                <select id="tipo-combustible-2"></select>
+            </div>
+            <div class="row">
+                <label>Gasto promedio semanal combustible 1</label>&nbsp;&nbsp;
+                <input type="text" id="gatos-1" />
+            </div>
+            <div class="row">
+                <label>Gasto promedio semanal combustible 2</label>&nbsp;&nbsp;
+                <input type="text" id="gatos-2" />
+            </div>
+            <div class="row">
+                <label>Gsto promedio anual promedio mantenimiento</label>&nbsp;&nbsp;
+                <input type="text" id="gasto-promedio-convencional" />
+            </div>
+            <div class="row">
+                <label>Gasto anual por seguro vehicular</label>&nbsp;&nbsp;
+                <input type="text" id="gasto-anual-seguro-convencional" />
+            </div>
+            <div class="row">
+                <label>kilometros recorrido en una semana</label>&nbsp;&nbsp;
+                <input type="text" id="kilometros-recorrido-convencional" />
+            </div>
+
+            <div id="seccion-financiamiento-convencional" class="d-none">
+                <div class="row">
+                    <label>Costo del vehículo</label>&nbsp;&nbsp;
+                    <input type="text" id="costo-vehiculo" />
+                </div>
+                <div class="row">
+                    <label>Interés del financiamiento</label>&nbsp;&nbsp;
+                    <input type="text" id="interes-financiamiento" />
+                </div>
+                <div class="row">
+                    <label>Años de préstamo</label>&nbsp;&nbsp;
+                    <input type="text" id="anio-prestamo" />
+                </div>
+                <div class="row">
+                    <label>% de la cuota inicial (si aplica)</label>&nbsp;&nbsp;
+                    <input type="text" id="porcentaje-cuota" />
+                </div>
+            </div>
+
+            <div class="row">
+                <button id="btnSiguienteConv" class="btn btn-primary">Siguiente</button>
+            </div>
+        </div>        
+    </div>
+
+
+
+    <div id="vehiculo-electrico">
+        <div class="row">
+            <label>Tipo de transporte eléctrico</label>&nbsp;&nbsp;
+            <select id="tipo-transporte-electrico"></select>
+        </div>
+        <div class="row">
+            <label>Modelo de vehículo eléctrico</label>&nbsp;&nbsp;
+            <select id="modelo-vehiculo-electrico"></select>
+        </div>
+        <div class="row">
+            <label>Horas usadas en semana típica</label>&nbsp;&nbsp;
+            <select id="horas-usadas"></select>
+        </div>
+        <div class="row">
+            <label>Meses al año que usa este transporte</label>&nbsp;&nbsp;
+            <select id="meses-transporte-electrico">
+                <option value="0">seleccione</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <div class="row">
+            <label>¿Compra con financiamiento?</label>&nbsp;
+            <input id="rad-si-financiamiento-elec" type="radio" name="rad-finan" />Si&nbsp;
+            <input id="rad-no-financiamiento-elec" type="radio" name="rad-finan" />No
+        </div>
+        <div id="mensaje-inicio"></div>
+        <div class="row">
+            <button id="btnSiguienteElec" class="btn btn-primary">Comienza</button>
+        </div>
+        <hr />
+
+        <div id="seccion-calculo-electrico" class="d-none">
+            <div class="row">
+                <label>Gsto promedio anual promedio mantenimiento</label>&nbsp;&nbsp;
+                <input type="text" id="gasto-promedio-electrico" />
+            </div>
+            <div class="row">
+                <label>Gasto anual por seguro vehicular</label>&nbsp;&nbsp;
+                <input type="text" id="gasto-anual-seguro-electrico" />
+            </div>
+            <div class="row">
+                <label>Rendimiento promedio</label>
+                <input type="text" id="rendimiento-promedio" />
+            </div>
+            <div class="row">
+                <label>Tipo de tarifa eléctrica</label>&nbsp;&nbsp;
+                <select id="tipo-tarifa-electrica"></select>
+            </div>
+            <div class="row">
+                <label>kilometros recorrido en una semana</label>&nbsp;&nbsp;
+                <input type="text" id="kilometros-recorrido-convencional" />
+            </div>
+
+            <div id="seccion-financiamiento-convencional" class="d-none">
+                <div class="row">
+                    <label>Costo del vehículo</label>&nbsp;&nbsp;
+                    <input type="text" id="costo-vehiculo" />
+                </div>
+                <div class="row">
+                    <label>Interés del financiamiento</label>&nbsp;&nbsp;
+                    <input type="text" id="interes-financiamiento" />
+                </div>
+                <div class="row">
+                    <label>Años de préstamo</label>&nbsp;&nbsp;
+                    <input type="text" id="anio-prestamo" />
+                </div>
+                <div class="row">
+                    <label>% de la cuota inicial (si aplica)</label>&nbsp;&nbsp;
+                    <input type="text" id="porcentaje-cuota" />
+                </div>
+            </div>
+
+            <div class="row">
+                <button id="btnSiguienteCal" class="btn btn-primary">Calcular</button>
+            </div>
+        </div>
+
+    </div> 
+</div>
+

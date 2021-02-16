@@ -1,0 +1,469 @@
+11/01/2021 21:31:55: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:31:55: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:31:55: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:31:55: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:31:55: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:31:55: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:31:55: [Método: Boolean VerificarCorreo(System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 317] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:02: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:02: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:02: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:02: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:02: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:02: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:02: [Método: Boolean VerificarCorreo(System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 317] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:17: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:17: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:17: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:17: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:17: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:17: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:32:17: [Método: Boolean VerificarCorreo(System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 317] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:34:06: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:34:06: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:34:06: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:34:06: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:34:06: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:34:06: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:34:06: [Método: Boolean VerificarCorreo(System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 317] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:40:27: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:40:27: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:40:27: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:40:27: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:40:27: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:40:27: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:40:27: [Método: Boolean VerificarCorreo(System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 317] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:21: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:21: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:21: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:21: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:21: [Método: Boolean VerificarCorreo(System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 317] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:44: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:44: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:44: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:44: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:45:44: [Método: Boolean VerificarCorreo(System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 317] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'SISSELLO.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:49:34: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'ELECTROMOV.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:49:34: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'ELECTROMOV.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:49:34: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'ELECTROMOV.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:49:34: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'ELECTROMOV.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:49:34: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'ELECTROMOV.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:49:34: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'ELECTROMOV.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 21:49:34: [Método: Boolean VerificarCorreo(System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 317] - ORA-06550: línea 1, columna 7:
+PLS-00201: el identificador 'ELECTROMOV.PKG_ELECTROMOV_ADMIN' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:04:45: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:04:45: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:04:45: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:04:45: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:04:45: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 190] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:05:57: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:05:57: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:05:57: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:05:57: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:05:57: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:05:57: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:05:57: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_PRC_GUARDA_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+11/01/2021 22:09:56: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:09:56: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:09:56: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:09:56: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:09:56: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:09:56: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:09:56: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:12:24: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:12:24: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:12:24: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:12:24: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:12:24: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:12:24: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:12:24: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:15:57: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:15:57: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:15:57: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:15:57: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:15:57: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:15:57: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:15:57: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:29: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:29: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:29: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:29: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:29: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:29: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:29: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:58: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:58: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:58: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:58: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:58: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:58: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:16:58: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:18:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:18:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:18:43: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:18:43: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:18:43: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:18:43: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:18:43: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C0025166) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:23:52: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:23:52: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:23:52: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:23:52: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:23:52: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:23:52: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:23:52: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:24:08: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:24:08: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:24:08: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:24:08: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:24:08: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:24:08: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:24:08: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:26:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:26:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:26:36: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:26:36: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:26:36: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:26:36: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1
+11/01/2021 22:26:36: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-00001: restricción única (ELECTROMOVILIDAD.SYS_C0025167) violada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 18
+ORA-06512: en línea 1

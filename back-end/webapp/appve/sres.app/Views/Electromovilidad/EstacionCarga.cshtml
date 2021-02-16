@@ -1,0 +1,183 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Estación de carga";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_estacioncarga.js")"></script>
+}
+
+<div class="container mt-4">
+    <div id="seccion-empresa">
+        <div class="row">
+            <div class="col-12">
+                <label>Número de ruc:</label>
+                <div><input type="text" id="txt-ruc" class="form-control" /></div>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Razón social:</label>
+                <div><input type="text" id="txt-razon-social" class="form-control" /></div>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Correo electrónico:</label>
+                <div><input type="text" id="txt-correo" class="form-control" /></div>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Teléfono:</label>
+                <div><input type="text" id="txt-telefono" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <label>Dirección:</label>
+                <div><input type="text" id="txt-direccion" class="form-control" /></div>
+            </div>
+            <div class="col-2">
+                <div>&nbsp;</div>
+                <button class="btn btn-primary w-100" id="btnDireccion">Situa tu dirección</button>
+            </div>
+        </div>
+    </div>
+    <div id="seccion-estacion">
+        <div class="row">
+            <div class="col-12">
+                <label>Descripción de la estación de carga:</label>
+                <div><textarea id="txt-descripcion" class="form-control" rows="4"></textarea></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Modelo:</label>
+                <div><input type="text" id="txt-modelo" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Marca:</label>
+                <div><input type="text" id="txt-marca" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Fotos (0 de 5):</label>
+                <div><input type="file" id="file-foto" class="form-control" multiple="multiple" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Potencia:</label>
+                <div><input type="text" id="txt-potencia" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Modo de carga:</label>
+                <div><input type="text" id="txt-modo-carga" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Tipo de cargador:</label>
+                <div><input type="text" id="txt-tipo-cargador" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Tipo de conectores:</label>
+                <div><input type="text" id="txt-tipo-conector" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Cantidad conectores:</label>
+                <div><input type="text" id="txt-cantidad-conector" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Horario desde:</label>
+                <div><input type="time" id="txt-hora-desde" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Horario hasta:</label>
+                <div><input type="time" id="txt-hora-hasta" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Tarifa del servicio:</label>
+                <div><input type="text" id="txt-tarifa" class="form-control" /></div>
+            </div>
+        </div>
+        @*<div class="row">
+            <div class="col-12">
+                <label>Cumplimiento de protocolo:</label>
+                <div><input type="file" id="f-protocolo" class="form-control" /></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Certificado de fabricante:</label>
+                <div><input type="file" id="f-certificado" class="form-control" /></div>
+            </div>
+        </div>*@
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group text-left">
+                    <label class="estilo-01" for="fle-protocolo">Cumplimiento de protocolo:<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-info-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                        <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-protocolo" placeholder="Subir documentos" required>
+                        <input class="d-none fil-file-control" type="file" id="fle-protocolo" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                        <div class="input-group-append">
+                            <label class="input-group-text cursor-pointer estilo-01" for="fle-protocolo"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-end" id="view-protocolo">
+                <label class="estilo-01">&nbsp;</label>
+                <div class="alert alert-secondary p-1 d-flex w-100">
+                    <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group text-left">
+                    <label class="estilo-01" for="fle-certificado">Certificado de fabricante:<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-info-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                        <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-certificado" placeholder="Subir documentos" required>
+                        <input class="d-none fil-file-control" type="file" id="fle-certificado" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                        <div class="input-group-append">
+                            <label class="input-group-text cursor-pointer estilo-01" for="fle-certificado"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-end" id="view-certificado">
+                <label class="estilo-01">&nbsp;</label>
+                <div class="alert alert-secondary p-1 d-flex w-100">
+                    <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" id="btnGuardar" >Guardar</button>
+    </div>
+</div>
