@@ -1,0 +1,264 @@
+12/01/2021 08:18:58: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 08:18:58: [Método: System.Collections.Generic.List`1[sres.be.RolBE] ListarBusquedaRol(sres.be.RolBE, Oracle.DataAccess.Client.OracleConnection), Línea: 90] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_ROL' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 12:58:11: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: Boolean MoveNext(), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:11: [Método: System.Collections.Generic.List`1[sres.be.TipoVehiculoConvencionalBE] ListarBusquedaTipoVehiculoConvencional(sres.be.TipoVehiculoConvencionalBE, Oracle.DataAccess.Client.OracleConnection), Línea: 30] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: Boolean MoveNext(), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:48: [Método: System.Collections.Generic.List`1[sres.be.TipoVehiculoConvencionalBE] ListarBusquedaTipoVehiculoConvencional(sres.be.TipoVehiculoConvencionalBE, Oracle.DataAccess.Client.OracleConnection), Línea: 30] - ORA-00904: "PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: Boolean MoveNext(), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 12:58:52: [Método: System.Collections.Generic.List`1[sres.be.TipoVehiculoConvencionalBE] ListarBusquedaTipoVehiculoConvencional(sres.be.TipoVehiculoConvencionalBE, Oracle.DataAccess.Client.OracleConnection), Línea: 30] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: Boolean MoveNext(), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 13:00:07: [Método: System.Collections.Generic.List`1[sres.be.TipoVehiculoConvencionalBE] ListarBusquedaTipoVehiculoConvencional(sres.be.TipoVehiculoConvencionalBE, Oracle.DataAccess.Client.OracleConnection), Línea: 30] - ORA-00904: "R"."PI_ID_TIPO_VEHICULO_CONV": identificador no válido
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 173
+ORA-06512: en línea 1
+12/01/2021 18:37:59: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:37:59: [Método: System.Collections.Generic.List`1[sres.be.TipoVehiculoElectricoBE] ListarBusquedaTipoVehiculoElectrico(sres.be.TipoVehiculoElectricoBE, Oracle.DataAccess.Client.OracleConnection), Línea: 30] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+12/01/2021 18:40:59: [Método: System.Collections.Generic.List`1[sres.be.TipoVehiculoElectricoBE] ListarBusquedaTipoVehiculoElectrico(sres.be.TipoVehiculoElectricoBE, Oracle.DataAccess.Client.OracleConnection), Línea: 30] - ORA-06550: línea 1, columna 53:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_VEH_ELEC' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
