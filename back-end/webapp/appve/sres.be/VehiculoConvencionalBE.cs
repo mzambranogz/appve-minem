@@ -25,6 +25,7 @@ namespace sres.be
         public decimal PRECIO_COMBUSTIBLE_VC { get; set; }
         public decimal KILOMETRO_SEMANAL_VC { get; set; }
         public decimal RENDIMIENTO_VC { get; set; }
+        public decimal MANTENIMIENTO_VC { get; set; }
         public List<ServicioPublicoBE> LISTA_SERVICIO_PUBLICO { get; set; }
     }
 }

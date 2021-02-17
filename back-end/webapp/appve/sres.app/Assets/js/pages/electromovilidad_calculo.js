@@ -101,7 +101,8 @@ $(document).ready(() => {
     $('#tipo-incentivo').on('change', (e) => cambiarTI());
     $('#forma-incentivo').on('change', (e) => cambiarFI());
     $('#anio_evaluacion').on('change', (e) => cambiarAnio());
-    $('#cbo-departamento-cvc').on('change', (e) => cambiarDepartamentoVC());
+    $('#cbo-departamento-cvc').on('change', (e) => cambiarDepartamentoCVC());
+    $('#cbo-departamento-vc').on('change', (e) => cambiarDepartamentoVC());
 });
 
 var configuracion = () => {
@@ -199,6 +200,7 @@ var regresar2 = () => {
 var siguiente2 = () => {
     let tv = $('#tipo-vehiculo-vc').val() > 0 ? true : false;
     let tc = $('#tipo-combustible-vc').val() > 0 ? true : false;
+    let dp = $('#cbo-departamento-vc').val() > 0 ? true : false;
     let rendimiento = $('#rendimiento-vc').val() >= 0 ? true : false;
     let precio_comb = $('#precio-combustible-vc').val() >= 0 ? true : false;
     let porc_comb = $('#porc-anual-combustible-vc').val() >= 0 ? true : false;
@@ -208,7 +210,7 @@ var siguiente2 = () => {
     let gasto_comb = $('#rad-gcs-si-vc').prop('checked') ? $('#seguro-vc').val() >= 0 ? true : false : true;
     let kilometros = $('#kilometro-sem-vc').val() >= 0 ? true : false;
     let meses = $('#meses-vc').val() > 0 ? true : false;
-    if (!(tv && tc && rendimiento && precio_comb && porc_comb && factor_emision && mantenimiento && seguro && gasto_comb && kilometros && meses))  {alert('Debe completar todos los campos'); return;}
+    if (!(tv && tc && dp && rendimiento && precio_comb && porc_comb && factor_emision && mantenimiento && seguro && gasto_comb && kilometros && meses))  {alert('Debe completar todos los campos'); return;}
     
     $('#seccion-03').addClass('d-none');
     if ($('#rad-e2-si').prop('checked')) $('#seccion-04').removeClass('d-none');
@@ -226,6 +228,7 @@ var regresar3 = () => {
 var siguiente3 = () => {
     let tv = $('#tipo-vehiculo-cvc').val() > 0 ? true : false;
     let tc = $('#tipo-combustible-cvc').val() > 0 ? true : false;
+    let dp = $('#cbo-departamento-cvc').val() > 0 ? true : false;
     let rendimiento = $('#rendimiento-cvc').val() >= 0 ? true : false;
     let precio_comb = $('#precio-combustible-cvc').val() >= 0 ? true : false;
     let porc_comb = $('#porc-anual-combustible-cvc').val() >= 0 ? true : false;
@@ -238,7 +241,7 @@ var siguiente3 = () => {
     let financiamiento = $('#tipo-compra-cvc').val() == 2 ? costo_vehiculo : $('#tipo-compra-cvc').val() == 1 ? $('#tasa-interes-cvc').val() >= 0 && $('#anio-credito-cvc').val() > 0 && $('#cuota-inicial-cvc').val() >= 0 ? true : false : false;
     let seguro = $('#rad-sv-si-cvc').prop('checked') ? $('#seguro-cvc').val() >= 0 ? true : false : true;
 
-    if (!(tv && tc && rendimiento && precio_comb && porc_comb && factor_emision && gasto_comb && kilometros && meses && costo_vehiculo && tipo_compra && financiamiento && seguro))  {alert('Debe completar todos los campos'); return;}
+    if (!(tv && tc && dp && rendimiento && precio_comb && porc_comb && factor_emision && gasto_comb && kilometros && meses && costo_vehiculo && tipo_compra && financiamiento && seguro))  {alert('Debe completar todos los campos'); return;}
 
     $('#seccion-04').addClass('d-none');
     if ($('#rad-e3-si').prop('checked')) $('#seccion-05').removeClass('d-none');
@@ -372,6 +375,7 @@ var cambiarTipoCompraCVE = () => {
 }
 
 var evaluarTipoVehTipoCombVC = () => {
+    cambiarDepartamentoVC();
     if ($('#tipo-vehiculo-vc').val() == 0 || $('#tipo-combustible-vc').val() == 0) return;
     let tipovehiculo = $('#tipo-vehiculo-vc').val();
     let tipocombustible = $('#tipo-combustible-vc').val();
@@ -384,11 +388,11 @@ var evaluarTipoVehTipoCombVC = () => {
             $('#unidad-rend-vc').html(j.RENDIMIENTO.UNIDAD);
             rendimiento_vc = parseFloat(j.RENDIMIENTO.FACTOR);           
         }
-        if (j.PRECIO_COMBUSTIBLE != null){
-            $('#precio-combustible-vc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
-            $('#precio-comb-vc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
-            precio_combustible_vc = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
-        }
+        //if (j.PRECIO_COMBUSTIBLE != null){
+        //    $('#precio-combustible-vc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
+        //    $('#precio-comb-vc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
+        //    precio_combustible_vc = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
+        //}
         if (j.FACTOR_EMISION != null){
             $('#factor-emision-vc').val(j.FACTOR_EMISION.FACTOR);
             factor_emision_vc = parseFloat(j.FACTOR_EMISION.FACTOR);           
@@ -398,7 +402,7 @@ var evaluarTipoVehTipoCombVC = () => {
 }
 
 var evaluarTipoVehTipoCombCVC = () => {
-    cambiarDepartamentoVC();
+    cambiarDepartamentoCVC();
     if ($('#tipo-vehiculo-cvc').val() == 0 || $('#tipo-combustible-cvc').val() == 0) return;
     let tipovehiculo = $('#tipo-vehiculo-cvc').val();
     let tipocombustible = $('#tipo-combustible-cvc').val();    
@@ -595,7 +599,7 @@ var validarOcultar = () => {
     $('#valor-inc-unico').parent().addClass('d-none');
 }
 
-var cambiarDepartamentoVC = () => {
+var cambiarDepartamentoCVC = () => {
     let dep = $('#cbo-departamento-cvc').val();
     let tipo_veh = $('#tipo-vehiculo-cvc').val();
     let tipo_comb = $('#tipo-combustible-cvc').val();
@@ -607,6 +611,23 @@ var cambiarDepartamentoVC = () => {
         if (j.PRECIO_COMBUSTIBLE != null){
             $('#precio-combustible-cvc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
             $('#precio-comb-cvc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
+            precio_combustible_cvc = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
+        }
+    });
+}
+
+var cambiarDepartamentoVC = () => {
+    let dep = $('#cbo-departamento-vc').val();
+    let tipo_veh = $('#tipo-vehiculo-vc').val();
+    let tipo_comb = $('#tipo-combustible-vc').val();
+    if (dep == 0 || tipo_veh == 0 || tipo_comb == 0) { $('#precio-combustible-vc').val(0); return; }
+
+    let url = `${baseUrl}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
+    fetch(url).then(r => r.json()).then(j => {
+        if (j == null) return;
+        if (j.PRECIO_COMBUSTIBLE != null){
+            $('#precio-combustible-vc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
+            $('#precio-comb-vc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
             precio_combustible_vc = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
         }
     });
@@ -671,6 +692,7 @@ var cargarListas = ([listaTipoTransporte, listaTipoCombustible, listaTipoVehicul
 
     let opcionesdp = urlConsultarDepartamento.length == 0 ? '' : urlConsultarDepartamento.map(x => `<option value="${x.ID_DEPARTAMENTO}">${x.NOMBRE}</option>`).join('');
     $(`#cbo-departamento`).html(`${option}${opcionesdp}`);
+    $(`#cbo-departamento-vc`).html(`${option}${opcionesdp}`);
     $(`#cbo-departamento-cvc`).html(`${option}${opcionesdp}`);
 
     let meses = `<option value="0">seleccione</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>`;
@@ -714,69 +736,82 @@ var validar = (id) => {
 var evaluar = () => {
     let data_vc = {};
     let data_ve = {};
-    let p1 = '0';
+    let p1 = $('#rad-e1-si').prop('checked') ? '1' : '0';
     let p2 = $('#rad-e2-si').prop('checked') ? '1' : '0';
     let p3 = $('#rad-e3-si').prop('checked') ? '1' : '0';
     let p_seguro_vc = $('#rad-sv-si-cvc').prop('checked') ? '1' : '0';
-    let p_gasto_combustible = $('#rad-gcs-si-cvc').prop('checked') ? '1' : '0';
-    if ($('#rad-e2-si').prop('checked')) {
-        let costo_vehiculo_vc = parseFloat($('#costo-veh-cvc').val());
-        let meses_uso_vc = $('#meses-cvc').val();
-        let porc_aumento_comb_vc = $('#porc-anual-combustible-cvc').val() / 100;
-        let tipo_compra_vc = $('#tipo-compra-cvc').val();
-        let porc_cuota_inicial_vc = 0, tasa_interes_vc = 0, anio_credito_vc = 0;
+    let p_gasto_combustible = p2 == '1' ? $('#rad-gcs-si-cvc').prop('checked') ? '1' : '0' : p1 == '1' ? $('#rad-gcs-si-vc').prop('checked') ? '1' : '0' : '0';
+    let costo_vehiculo_vc = 0, meses_uso_vc = 0, porc_aumento_comb_vc = 0, tipo_compra_vc = 0;
+    let porc_cuota_inicial_vc = 0, tasa_interes_vc = 0, anio_credito_vc = 0, seguro_vc = 0;
+    let gasto_combustible_vc = 0, precio_combustible_vc = 0, kilometro_semanal_vc = 0, rendimiento_vc = 0, mantenimiento_vc = 0;
+    let lista_servicio_publico = [];
+    if (p2 == '1') {
+        costo_vehiculo_vc = parseFloat($('#costo-veh-cvc').val());
+        meses_uso_vc = $('#meses-cvc').val();
+        porc_aumento_comb_vc = $('#porc-anual-combustible-cvc').val() / 100;
+        tipo_compra_vc = $('#tipo-compra-cvc').val();
         if (tipo_compra_vc == 1){
             porc_cuota_inicial_vc = parseFloat($('#cuota-inicial-cvc').val())/100; 
             tasa_interes_vc = parseFloat($('#tasa-interes-cvc').val())/100;
             anio_credito_vc = $('#anio-credito-cvc').val();
         }
-        let seguro_vc = 0;
         if (p_seguro_vc == '1') seguro_vc = $('#seguro-cvc').val();
-        let gasto_combustible_vc = 0, precio_combustible_vc = 0, kilometro_semanal_vc = 0, rendimiento_vc = 0;
         if (p_gasto_combustible == '1') gasto_combustible_vc = $('#gasto-cvc').val();
         else {
             precio_combustible_vc = $('#precio-combustible-cvc').val();
             kilometro_semanal_vc = $('#kilometro-sem-cvc').val();
             rendimiento_vc = $('#rendimiento-cvc').val();
+        }                
+    } else if (p1 == '1') {
+        meses_uso_vc = $('#meses-vc').val();
+        porc_aumento_comb_vc = $('#porc-anual-combustible-vc').val() / 100;
+        seguro_vc = $('#seguro-vc').val();
+        if (p_gasto_combustible == '1') gasto_combustible_vc = $('#gasto-vc').val();
+        else {
+            precio_combustible_vc = $('#precio-combustible-vc').val();
+            kilometro_semanal_vc = $('#kilometro-sem-vc').val();
+            rendimiento_vc = $('#rendimiento-vc').val();
         }
-        let lista_servicio_publico = [];
-        if (p3 == '1'){
-            if ($('#servicio-01').val() > 0){
-                let r = {
-                    COSTO_MOVILIDAD: $('#costo-movilidad-01').val(),
-                    MESES_USO: $('#costo-movilidad-01').val(),
-                }
-                lista_servicio_publico.push(r);
-            }
-            if ($('#servicio-02').val() > 0){
-                let r = {
-                    COSTO_MOVILIDAD: $('#costo-movilidad-02').val(),
-                    MESES_USO: $('#costo-movilidad-02').val(),
-                }
-                lista_servicio_publico.push(r);
-            }
-            if ($('#servicio-03').val() > 0){
-                let r = {
-                    COSTO_MOVILIDAD: $('#costo-movilidad-03').val(),
-                    MESES_USO: $('#costo-movilidad-03').val(),
-                }
-                lista_servicio_publico.push(r);
-            }
-            if ($('#servicio-04').val() > 0){
-                let r = {
-                    COSTO_MOVILIDAD: $('#costo-movilidad-04').val(),
-                    MESES_USO: $('#costo-movilidad-04').val(),
-                }
-                lista_servicio_publico.push(r);
-            }
-        }        
-
-        data_vc = { 
-            P1: p1, P2: p2, P3: p3, COSTO_VEHICULO_VC: costo_vehiculo_vc, MESES_USO_VC: meses_uso_vc, PORC_AUMENTO_COMBUSTIBLE_VC: porc_aumento_comb_vc, TIPO_COMPRA_VC: tipo_compra_vc,
-            PORC_CUOTA_INICIAL_VC: porc_cuota_inicial_vc, TASA_INTERES_VC: tasa_interes_vc, ANIO_CREDITO_VC: anio_credito_vc, P_SEGURO_VC: p_seguro_vc, SEGURO_VC: seguro_vc, P_GASTO_COMBUSTIBLE: p_gasto_combustible,
-            GASTO_COMBUSTIBLE_VC: gasto_combustible_vc, PRECIO_COMBUSTIBLE_VC: precio_combustible_vc, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, RENDIMIENTO_VC: rendimiento_vc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
-        };
+        mantenimiento_vc = $('#mantenimiento-vc').val();
     }
+
+    if (p3 == '1'){
+        if ($('#servicio-01').val() > 0){
+            let r = {
+                COSTO_MOVILIDAD: $('#costo-movilidad-01').val(),
+                MESES_USO: $('#meses-01').val(),
+            }
+            lista_servicio_publico.push(r);
+        }
+        if ($('#servicio-02').val() > 0){
+            let r = {
+                COSTO_MOVILIDAD: $('#costo-movilidad-02').val(),
+                MESES_USO: $('#meses-02').val(),
+            }
+            lista_servicio_publico.push(r);
+        }
+        if ($('#servicio-03').val() > 0){
+            let r = {
+                COSTO_MOVILIDAD: $('#costo-movilidad-03').val(),
+                MESES_USO: $('#meses-03').val(),
+            }
+            lista_servicio_publico.push(r);
+        }
+        if ($('#servicio-04').val() > 0){
+            let r = {
+                COSTO_MOVILIDAD: $('#costo-movilidad-04').val(),
+                MESES_USO: $('#meses-04').val(),
+            }
+            lista_servicio_publico.push(r);
+        }
+    }
+
+    data_vc = { 
+        P1: p1, P2: p2, P3: p3, COSTO_VEHICULO_VC: costo_vehiculo_vc, MESES_USO_VC: meses_uso_vc, PORC_AUMENTO_COMBUSTIBLE_VC: porc_aumento_comb_vc, TIPO_COMPRA_VC: tipo_compra_vc,
+        PORC_CUOTA_INICIAL_VC: porc_cuota_inicial_vc, TASA_INTERES_VC: tasa_interes_vc, ANIO_CREDITO_VC: anio_credito_vc, P_SEGURO_VC: p_seguro_vc, SEGURO_VC: seguro_vc, P_GASTO_COMBUSTIBLE: p_gasto_combustible,
+        GASTO_COMBUSTIBLE_VC: gasto_combustible_vc, PRECIO_COMBUSTIBLE_VC: precio_combustible_vc, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, RENDIMIENTO_VC: rendimiento_vc, MANTENIMIENTO_VC: mantenimiento_vc,
+        LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
+    };
 
     //Vehiculo electrico
     let p_incentivo = $('#rad-inc-si-ve').prop('checked') ? '1' : '0';

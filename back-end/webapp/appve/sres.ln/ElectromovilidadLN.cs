@@ -152,14 +152,25 @@ namespace sres.ln
                 }
 
                 //Seguro Nominal VC
-                if (entidad.P_SEGURO_VC == "1")
+                if (entidad.P2 == "1")
+                {
+                    if (entidad.P_SEGURO_VC == "1")
+                    {
+                        for (int i = 0; i < 15; i++)
+                        {
+                            if (i == 0) arrSeguroNominalVC[i] = entidad.SEGURO_VC;
+                            else arrSeguroNominalVC[i] = arrSeguroNominalVC[i - 1] * (1 + ipc);
+                        }
+                    }
+                }
+                else if (entidad.P1 == "1")
                 {
                     for (int i = 0; i < 15; i++)
                     {
                         if (i == 0) arrSeguroNominalVC[i] = entidad.SEGURO_VC;
                         else arrSeguroNominalVC[i] = arrSeguroNominalVC[i - 1] * (1 + ipc);
                     }
-                }
+                }                
 
                 //Seguro Neto VC
                 for (var i = 0; i < 15; i++)
@@ -175,23 +186,26 @@ namespace sres.ln
                 }
 
                 //Energia (Electricidad y combustible) Nominal VC
-                if (entidad.P_GASTO_COMBUSTIBLE == "1")
+                if (entidad.P2 == "1" || entidad.P1 == "1")
                 {
-                    for (int i = 0; i < 15; i++)
+                    if (entidad.P_GASTO_COMBUSTIBLE == "1")
                     {
-                        if (i == 0) arrEnergiaNominalVC[i] = entidad.GASTO_COMBUSTIBLE_VC * 4 * entidad.MESES_USO_VC;
-                        else arrEnergiaNominalVC[i] = arrEnergiaNominalVC[i - 1] * (1 + ipc) * (1 + reduccion_eficiencia_motor) * (1 + entidad.PORC_AUMENTO_COMBUSTIBLE_VC);
+                        for (int i = 0; i < 15; i++)
+                        {
+                            if (i == 0) arrEnergiaNominalVC[i] = entidad.GASTO_COMBUSTIBLE_VC * 4 * entidad.MESES_USO_VC;
+                            else arrEnergiaNominalVC[i] = arrEnergiaNominalVC[i - 1] * (1 + ipc) * (1 + reduccion_eficiencia_motor) * (1 + entidad.PORC_AUMENTO_COMBUSTIBLE_VC);
+                        }
                     }
-                }
-                else
-                {
-                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
-                    for (int i = 0; i < 15; i++)
+                    else
                     {
-                        if (i == 0) arrEnergiaNominalVC[i] = (km_anual / entidad.RENDIMIENTO_VC) * entidad.PRECIO_COMBUSTIBLE_VC;
-                        else arrEnergiaNominalVC[i] = arrEnergiaNominalVC[i - 1] * (1 + ipc) * (1 + reduccion_eficiencia_motor) * (1 + entidad.PORC_AUMENTO_COMBUSTIBLE_VC);
+                        decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                        for (int i = 0; i < 15; i++)
+                        {
+                            if (i == 0) arrEnergiaNominalVC[i] = (km_anual / entidad.RENDIMIENTO_VC) * entidad.PRECIO_COMBUSTIBLE_VC;
+                            else arrEnergiaNominalVC[i] = arrEnergiaNominalVC[i - 1] * (1 + ipc) * (1 + reduccion_eficiencia_motor) * (1 + entidad.PORC_AUMENTO_COMBUSTIBLE_VC);
+                        }
                     }
-                }
+                }                
 
                 //Energia (Electricidad y combustible) Neto VC
                 for (var i = 0; i < 15; i++)
@@ -207,14 +221,27 @@ namespace sres.ln
                 }
 
                 //Mantenimiento continuo Nominal VC
-                decimal mantenim_20kmvc = entidad.COSTO_VEHICULO_VC * porc_20kmvc;
-                decimal mantenim_100kmvc = entidad.COSTO_VEHICULO_VC * porc_100kmvc;
-                for (int i = 0; i < 15; i++)
+                if (entidad.P2 == "1")
                 {
-                    if (i == 0) arrManteContinuoNominalVC[i] = mantenim_20kmvc;
-                    else if (i == 1) arrManteContinuoNominalVC[i] = mantenim_100kmvc;
-                    else arrManteContinuoNominalVC[i] = arrManteContinuoNominalVC[i - 1] * (1 + ipc);
+                    decimal mantenim_20kmvc = entidad.COSTO_VEHICULO_VC * porc_20kmvc;
+                    decimal mantenim_100kmvc = entidad.COSTO_VEHICULO_VC * porc_100kmvc;
+                    for (int i = 0; i < 15; i++)
+                    {
+                        if (i == 0) arrManteContinuoNominalVC[i] = mantenim_20kmvc;
+                        else if (i == 1) arrManteContinuoNominalVC[i] = mantenim_100kmvc;
+                        else arrManteContinuoNominalVC[i] = arrManteContinuoNominalVC[i - 1] * (1 + ipc);
+                    }
                 }
+                else if (entidad.P1 == "1")
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        if (i == 0) arrManteContinuoNominalVC[i] = entidad.MANTENIMIENTO_VC;
+                        else if (i == 1) arrManteContinuoNominalVC[i] = entidad.MANTENIMIENTO_VC;
+                        else arrManteContinuoNominalVC[i] = arrManteContinuoNominalVC[i - 1] * (1 + ipc);
+                    }
+                }
+                
 
                 //Mantenimiento continuo Neto VC
                 for (var i = 0; i < 15; i++)
@@ -230,24 +257,27 @@ namespace sres.ln
                 }
 
                 //Depreciacion vehiculo VC
-                for (var i = 0; i < 15; i++)
+                if (entidad.P2 == "1")
                 {
-                    if (i == 0) depreciacionVC[i] = entidad.COSTO_VEHICULO_VC;
-                    else if (i == 1) depreciacionVC[i] = depreciacionVC[i - 1] * dep02;
-                    else if (i == 2) depreciacionVC[i] = depreciacionVC[i - 1] * dep03;
-                    else if (i == 3) depreciacionVC[i] = depreciacionVC[i - 1] * dep04;
-                    else if (i == 4) depreciacionVC[i] = depreciacionVC[i - 1] * dep05;
-                    else if (i == 5) depreciacionVC[i] = depreciacionVC[i - 1] * dep06;
-                    else if (i == 6) depreciacionVC[i] = depreciacionVC[i - 1] * dep07;
-                    else if (i == 7) depreciacionVC[i] = depreciacionVC[i - 1] * dep08;
-                    else if (i == 8) depreciacionVC[i] = depreciacionVC[i - 1] * dep09;
-                    else if (i == 9) depreciacionVC[i] = depreciacionVC[i - 1] * dep10;
-                    else if (i == 10) depreciacionVC[i] = depreciacionVC[i - 1] * dep11;
-                    else if (i == 11) depreciacionVC[i] = depreciacionVC[i - 1] * dep12;
-                    else if (i == 12) depreciacionVC[i] = depreciacionVC[i - 1] * dep13;
-                    else if (i == 13) depreciacionVC[i] = depreciacionVC[i - 1] * dep14;
-                    else if (i == 14) depreciacionVC[i] = depreciacionVC[i - 1] * dep15;
-                }
+                    for (var i = 0; i < 15; i++)
+                    {
+                        if (i == 0) depreciacionVC[i] = entidad.COSTO_VEHICULO_VC;
+                        else if (i == 1) depreciacionVC[i] = depreciacionVC[i - 1] * dep02;
+                        else if (i == 2) depreciacionVC[i] = depreciacionVC[i - 1] * dep03;
+                        else if (i == 3) depreciacionVC[i] = depreciacionVC[i - 1] * dep04;
+                        else if (i == 4) depreciacionVC[i] = depreciacionVC[i - 1] * dep05;
+                        else if (i == 5) depreciacionVC[i] = depreciacionVC[i - 1] * dep06;
+                        else if (i == 6) depreciacionVC[i] = depreciacionVC[i - 1] * dep07;
+                        else if (i == 7) depreciacionVC[i] = depreciacionVC[i - 1] * dep08;
+                        else if (i == 8) depreciacionVC[i] = depreciacionVC[i - 1] * dep09;
+                        else if (i == 9) depreciacionVC[i] = depreciacionVC[i - 1] * dep10;
+                        else if (i == 10) depreciacionVC[i] = depreciacionVC[i - 1] * dep11;
+                        else if (i == 11) depreciacionVC[i] = depreciacionVC[i - 1] * dep12;
+                        else if (i == 12) depreciacionVC[i] = depreciacionVC[i - 1] * dep13;
+                        else if (i == 13) depreciacionVC[i] = depreciacionVC[i - 1] * dep14;
+                        else if (i == 14) depreciacionVC[i] = depreciacionVC[i - 1] * dep15;
+                    }
+                }                
 
                 //Reventa Nominal VC
                 arrReventaNominalVC[14] = depreciacionVC[14];
@@ -259,11 +289,14 @@ namespace sres.ln
                 arrReventaAcumuladoVC[14] = arrReventaNetoVC[14];
 
                 //Mantenimiento extraordinario Nominal VC
-                for (var i = 7; i < 15; i++)
+                if (entidad.P2 == "1" || entidad.P1 == "1")
                 {
-                    if (i == 7) arrManteExtraoNominalVC[i] = mante_extraordinario;
-                    else arrManteExtraoNominalVC[i] = arrManteExtraoNominalVC[i - 1] * (1 + ipc);
-                }
+                    for (var i = 7; i < 15; i++)
+                    {
+                        if (i == 7) arrManteExtraoNominalVC[i] = mante_extraordinario;
+                        else arrManteExtraoNominalVC[i] = arrManteExtraoNominalVC[i - 1] * (1 + ipc);
+                    }
+                }                    
 
                 //Mantenimiento extraordinario Neto VC
                 for (var i = 7; i < 15; i++)
