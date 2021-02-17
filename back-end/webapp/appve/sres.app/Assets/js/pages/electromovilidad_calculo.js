@@ -1,4 +1,7 @@
-﻿var rendimiento_vc = 0, precio_combustible_vc = 0, factor_emision_vc = 0, rendimiento_cvc = 0, precio_combustible_cvc = 0, factor_emision_cvc = 0, precio_vehiculo_cvc = 0;
+﻿var Lista_convencional, Lista_electrico;
+
+
+var rendimiento_vc = 0, precio_combustible_vc = 0, factor_emision_vc = 0, rendimiento_cvc = 0, precio_combustible_cvc = 0, factor_emision_cvc = 0, precio_vehiculo_cvc = 0;
 var rendimiento_ve = 0, capacidad_bateria = 0, precio_cargador = 0, costo_instalacion = 0, tarifa_electricidad = 0, precio_vehiculo_ve;
 var ipcc = 0.03, tasa_descuento = 0.05, reduccion_eficiencia_motor = 0.03;
 var depreciacionVC = new Array(15);
@@ -709,6 +712,140 @@ var validar = (id) => {
 }
 
 var evaluar = () => {
+    let data_vc = {};
+    let data_ve = {};
+    let p1 = '0';
+    let p2 = $('#rad-e2-si').prop('checked') ? '1' : '0';
+    let p3 = $('#rad-e3-si').prop('checked') ? '1' : '0';
+    let p_seguro_vc = $('#rad-sv-si-cvc').prop('checked') ? '1' : '0';
+    let p_gasto_combustible = $('#rad-gcs-si-cvc').prop('checked') ? '1' : '0';
+    if ($('#rad-e2-si').prop('checked')) {
+        let costo_vehiculo_vc = parseFloat($('#costo-veh-cvc').val());
+        let meses_uso_vc = $('#meses-cvc').val();
+        let porc_aumento_comb_vc = $('#porc-anual-combustible-cvc').val() / 100;
+        let tipo_compra_vc = $('#tipo-compra-cvc').val();
+        let porc_cuota_inicial_vc = 0, tasa_interes_vc = 0, anio_credito_vc = 0;
+        if (tipo_compra_vc == 1){
+            porc_cuota_inicial_vc = parseFloat($('#cuota-inicial-cvc').val())/100; 
+            tasa_interes_vc = parseFloat($('#tasa-interes-cvc').val())/100;
+            anio_credito_vc = $('#anio-credito-cvc').val();
+        }
+        let seguro_vc = 0;
+        if (p_seguro_vc == '1') seguro_vc = $('#seguro-cvc').val();
+        let gasto_combustible_vc = 0, precio_combustible_vc = 0, kilometro_semanal_vc = 0, rendimiento_vc = 0;
+        if (p_gasto_combustible == '1') gasto_combustible_vc = $('#gasto-cvc').val();
+        else {
+            precio_combustible_vc = $('#precio-combustible-cvc').val();
+            kilometro_semanal_vc = $('#kilometro-sem-cvc').val();
+            rendimiento_vc = $('#rendimiento-cvc').val();
+        }
+        let lista_servicio_publico = [];
+        if (p3 == '1'){
+            if ($('#servicio-01').val() > 0){
+                let r = {
+                    COSTO_MOVILIDAD: $('#costo-movilidad-01').val(),
+                    MESES_USO: $('#costo-movilidad-01').val(),
+                }
+                lista_servicio_publico.push(r);
+            }
+            if ($('#servicio-02').val() > 0){
+                let r = {
+                    COSTO_MOVILIDAD: $('#costo-movilidad-02').val(),
+                    MESES_USO: $('#costo-movilidad-02').val(),
+                }
+                lista_servicio_publico.push(r);
+            }
+            if ($('#servicio-03').val() > 0){
+                let r = {
+                    COSTO_MOVILIDAD: $('#costo-movilidad-03').val(),
+                    MESES_USO: $('#costo-movilidad-03').val(),
+                }
+                lista_servicio_publico.push(r);
+            }
+            if ($('#servicio-04').val() > 0){
+                let r = {
+                    COSTO_MOVILIDAD: $('#costo-movilidad-04').val(),
+                    MESES_USO: $('#costo-movilidad-04').val(),
+                }
+                lista_servicio_publico.push(r);
+            }
+        }        
+
+        data_vc = { 
+            P1: p1, P2: p2, P3: p3, COSTO_VEHICULO_VC: costo_vehiculo_vc, MESES_USO_VC: meses_uso_vc, PORC_AUMENTO_COMBUSTIBLE_VC: porc_aumento_comb_vc, TIPO_COMPRA_VC: tipo_compra_vc,
+            PORC_CUOTA_INICIAL_VC: porc_cuota_inicial_vc, TASA_INTERES_VC: tasa_interes_vc, ANIO_CREDITO_VC: anio_credito_vc, P_SEGURO_VC: p_seguro_vc, SEGURO_VC: seguro_vc, P_GASTO_COMBUSTIBLE: p_gasto_combustible,
+            GASTO_COMBUSTIBLE_VC: gasto_combustible_vc, PRECIO_COMBUSTIBLE_VC: precio_combustible_vc, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, RENDIMIENTO_VC: rendimiento_vc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
+        };
+    }
+
+    //Vehiculo electrico
+    let p_incentivo = $('#rad-inc-si-ve').prop('checked') ? '1' : '0';
+    let p_seguro_ve = $('#rad-sv-si-ve').prop('checked') ? '1' : '0';
+    let costo_vehiculo_ve = parseFloat($('#costo-veh-ve').val());
+    let tipo_incentivo = 0, horizonte = 0, cuota_incentivo_anual = 0, forma_incentivo = 0, porcentaje_incentivo = 0, incentivo_unico = 0;
+    if (p_incentivo == '1'){
+        tipo_incentivo = $('#tipo-incentivo').val();
+        if (tipo_incentivo == 1){
+            horizonte = $('#horizonte').val();
+            cuota_incentivo_anual = $('#cuota-inc-anual').val();
+        } else if (tipo_incentivo == 2) {
+            forma_incentivo = $('#forma-incentivo').val();
+            if (forma_incentivo == 1) {
+                porcentaje_incentivo = $('#porcentaje-inc').val() / 100;
+            } else if (forma_incentivo == 2){
+                incentivo_unico = $('#valor-inc-unico').val();
+            }
+        }
+    }
+    let tipo_compra_ve = $('#tipo-compra-ve').val();
+    let porc_cuota_inicial_ve = 0, tasa_interes_ve = 0, anio_credito_ve = 0;
+    if (tipo_compra_ve == 1){
+        porc_cuota_inicial_ve = parseFloat($('#cuota-inicial-ve').val())/100; 
+        tasa_interes_ve = parseFloat($('#tasa-interes-ve').val())/100;
+        anio_credito_ve = $('#anio-credito-ve').val();
+    }
+    let seguro_ve = 0;
+    if (p_seguro_ve == '1') seguro_ve = $('#seguro-ve').val();
+    let porcentaje_anual_ve = $('#porc-aual-ve').val() / 100;
+    let km_semanal_ve = $('#kilometro-sem-ve').val();
+    let meses_ve = $('#meses-ve').val();
+    let rendimiento_ve = $('#rendimiento-ve').val();
+    let tarifa_ve = $('#tarifa-ve').val();
+    let precio_cargador = parseFloat($('#precio-cargador').val());
+    let costo_instalacion = parseFloat($('#costo-instalacion').val());
+
+    data_ve = { 
+        P_INCENTIVO: p_incentivo, P_SEGURO_VE: p_seguro_ve, COSTO_VEHICULO_VE: costo_vehiculo_ve, TIPO_INCENTIVO_VE: tipo_incentivo, HORIZONTE: horizonte, CUOTA_INCENTIVO_ANUAL: cuota_incentivo_anual,
+        FORMA_INCENTIVO_VE: forma_incentivo, PORCENTAJE_INCENTIVO: porcentaje_incentivo, INCENTIVO_UNICO: incentivo_unico, TIPO_COMPRA_VE: tipo_compra_ve, PORC_CUOTA_INICIAL_VE: porc_cuota_inicial_ve, TASA_INTERES_VE: tasa_interes_ve,
+        ANIO_CREDITO_VE: anio_credito_ve, SEGURO_VE: seguro_ve, PORCENTAJE_ANUAL_VE: porcentaje_anual_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve, TARIFA_VE: tarifa_ve,
+        PRECIO_CARGADOR: precio_cargador, COSTO_INSTALACION: costo_instalacion,
+    };
+
+    //Calculo
+    let urlvc = `${baseUrl}api/calculo/calcularvehiculoconvencional`;
+    let datavc = data_vc;
+    let initvc = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datavc) };
+
+    let urlve = `${baseUrl}api/calculo/calcularvehiculoelectrico`;
+    let datave = data_ve;
+    let initve = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datave) };
+
+    Promise.all([
+        fetch(urlvc, initvc),
+        fetch(urlve, initve),
+    ])
+    .then(r => Promise.all(r.map(v => v.json())))
+    .then(cargarVCVE);
+
+}
+
+var cargarVCVE = ([listaVC, listaVE]) => {
+    Lista_convencional = listaVC;
+    Lista_electrico = listaVE;
+    cambiarAnio();
+}
+
+var evaluar1 = () => {
     //
     if ($('#rad-e2-si').prop('checked')) {
         let cuota_inicial = 0;
@@ -732,7 +869,7 @@ var evaluar = () => {
         arrInversionInicialVCNominal[0] = cuota_inicial;
 
         //Seguro
-        if ($('#rad-sv-si-cvc').prop('checked')){
+        if ($('#rad-sv-si-cvc').prop('checked')) {
             for (var i = 0; i < 15; i++) {
                 if (i == 0) arrSeguroVCNominal[i] = $('#seguro-cvc').val();
                 else arrSeguroVCNominal[i] = arrSeguroVCNominal[i-1] * (1 + ipcc);
@@ -1183,7 +1320,7 @@ var valores = (arrNeto) => {
     }
 }
 
-var cambiarAnio = () => {
+var cambiarAnio1 = () => {
     let anio = $('#anio_evaluacion').val() - 1;
     //vehiculo convencional
     $('#eva-cuota-inicial-vc').html(arrInversionInicialVCAcumulado[anio] == null || arrInversionInicialVCAcumulado[anio] == "" || arrInversionInicialVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrInversionInicialVCAcumulado[anio]));
@@ -1205,6 +1342,43 @@ var cambiarAnio = () => {
     $('#eva-mante-continuo-ve').html(arrManteContinuoVEAcumulado[anio] == null || arrManteContinuoVEAcumulado[anio] == "" || arrManteContinuoVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrManteContinuoVEAcumulado[anio]));
     $('#eva-carga-instalacion-ve').html(arrCargaInstalacionVEAcumulado[anio] == null || arrCargaInstalacionVEAcumulado[anio] == "" || arrCargaInstalacionVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrCargaInstalacionVEAcumulado[anio]));
     $('#eva-reventa-ve').html(arrReventaVEAcumulado[anio] == null || arrReventaVEAcumulado[anio] == "" || arrReventaVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrReventaVEAcumulado[anio]));
+}
+
+var cambiarAnio = () => {
+    cambiarAnioVC();
+    cambiarAnioVE();
+}
+
+var cambiarAnioVC = () => {
+    let anio = $('#anio_evaluacion').val() - 1;
+    //vehiculo convencional
+    $('#eva-cuota-inicial-vc').html(formatoMiles(Lista_convencional[anio].CUOTA_INICIAL));
+    $('#eva-incentivo-vc').html(formatoMiles(Lista_convencional[anio].INCENTIVO_ECONOMICO));
+    $('#eva-recambio-vc').html(formatoMiles(Lista_convencional[anio].RECAMBIO_BATERIA));
+    $('#eva-seguro-vc').html(formatoMiles(Lista_convencional[anio].SEGURO));
+    $('#eva-energia-vc').html(formatoMiles(Lista_convencional[anio].ENERGIA));
+    $('#eva-mante-continuo-vc').html(formatoMiles(Lista_convencional[anio].MANTENIMIENTO_CONTINUO));
+    $('#eva-carga-financiera-vc').html(formatoMiles(Lista_convencional[anio].CARGA_FINANCIERA));
+    $('#eva-carga-instalacion-vc').html(formatoMiles(Lista_convencional[anio].CARGA_INSTALACION));
+    $('#eva-reventa-vc').html(formatoMiles(Lista_convencional[anio].REVENTA_VEHICULO));
+    $('#eva-transporte-vc').html(formatoMiles(Lista_convencional[anio].OTROS_TRANSPORTES));    
+    $('#eva-mante-extraordinario-vc').html(formatoMiles(Lista_convencional[anio].MANTENIMIENTO_EXTRAORDINARIO));    
+}
+
+var cambiarAnioVE = () => {
+    let anio = $('#anio_evaluacion').val() - 1;
+    //vehiculo electrico
+    $('#eva-cuota-inicial-ve').html(formatoMiles(Lista_electrico[anio].CUOTA_INICIAL));
+    $('#eva-incentivo-ve').html(formatoMiles(Lista_electrico[anio].INCENTIVO_ECONOMICO));
+    $('#eva-recambio-ve').html(formatoMiles(Lista_electrico[anio].RECAMBIO_BATERIA));
+    $('#eva-seguro-ve').html(formatoMiles(Lista_electrico[anio].SEGURO));
+    $('#eva-energia-ve').html(formatoMiles(Lista_electrico[anio].ENERGIA));
+    $('#eva-mante-continuo-ve').html(formatoMiles(Lista_electrico[anio].MANTENIMIENTO_CONTINUO));
+    $('#eva-carga-financiera-ve').html(formatoMiles(Lista_electrico[anio].CARGA_FINANCIERA));
+    $('#eva-carga-instalacion-ve').html(formatoMiles(Lista_electrico[anio].CARGA_INSTALACION));
+    $('#eva-reventa-ve').html(formatoMiles(Lista_electrico[anio].REVENTA_VEHICULO));
+    $('#eva-transporte-ve').html(formatoMiles(Lista_electrico[anio].OTROS_TRANSPORTES));    
+    $('#eva-mante-extraordinario-ve').html(formatoMiles(Lista_electrico[anio].MANTENIMIENTO_EXTRAORDINARIO));    
 }
 
 var formatoMiles = (n) => {

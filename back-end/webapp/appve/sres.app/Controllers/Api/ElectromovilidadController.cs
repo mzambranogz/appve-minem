@@ -43,7 +43,6 @@ namespace sres.app.Controllers.Api
         {
             ElectromovilidadBE obj = new ElectromovilidadBE();
             obj.RENDIMIENTO = elecLN.ListaFactor2P(1, 1, 2, tipovehiculo, tipocombustible);
-            //obj.PRECIO_COMBUSTIBLE = elecLN.ListaFactor2P(2, 1, 2, tipovehiculo, tipocombustible);
             obj.FACTOR_EMISION = elecLN.ListaFactor2P(3, 1, 2, tipovehiculo, tipocombustible);
             obj.PRECIO_VEHICULO = elecLN.ListaFactor2P(4, 1, 2, tipovehiculo, tipocombustible);
             return obj;
@@ -75,6 +74,24 @@ namespace sres.app.Controllers.Api
             ElectromovilidadBE obj = new ElectromovilidadBE();
             obj.PRECIO_COMBUSTIBLE = elecLN.ListaFactor3P(2, 1, 2, 7, valor1, valor2, valor3);
             return obj;
+        }
+
+        [Route("calcularvehiculoconvencional")]
+        [HttpPost]
+        public List<EscenarioConvencionalBE> CalcularVC(VehiculoConvencionalBE entidad)
+        {
+            List<EscenarioConvencionalBE> lista = new List<EscenarioConvencionalBE>();
+            lista = elecLN.CalcularVC(entidad);
+            return lista;
+        }
+
+        [Route("calcularvehiculoelectrico")]
+        [HttpPost]
+        public List<EscenarioElectromovilidadBE> CalcularVE(VehiculoElectricoBE entidad)
+        {
+            List<EscenarioElectromovilidadBE> lista = new List<EscenarioElectromovilidadBE>();
+            lista = elecLN.CalcularVE(entidad);
+            return lista;
         }
     }
 }

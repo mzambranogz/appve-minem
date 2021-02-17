@@ -51,6 +51,8 @@
     <Compile Include="DepartamentoBE.cs" />
     <Compile Include="DocumentoBE.cs" />
     <Compile Include="ElectromovilidadBE.cs" />
+    <Compile Include="EscenarioConvencionalBE.cs" />
+    <Compile Include="EscenarioElectromovilidadBE.cs" />
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="EstacionCargaBE.cs" />
     <Compile Include="FactorAuxBE.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="UsuarioBE.cs" />
     <Compile Include="UsuarioTransportePublicoBE.cs" />
     <Compile Include="VehiculoConvencionalBE.cs" />
+    <Compile Include="VehiculoElectricoBE.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sres.ut\sres.ut.csproj">
