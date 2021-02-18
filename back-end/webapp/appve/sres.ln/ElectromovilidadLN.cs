@@ -348,7 +348,7 @@ namespace sres.ln
                     ec.MANTENIMIENTO_CONTINUO = arrManteContinuoAcumuladoVC[i];
                     ec.CARGA_FINANCIERA = arrCargaFinancieraAcumuladoVC[i];
                     ec.CARGA_INSTALACION = 0;
-                    ec.REVENTA_VEHICULO = arrReventaAcumuladoVC[i];
+                    ec.REVENTA_VEHICULO = arrReventaAcumuladoVC[i] * -1;
                     ec.OTROS_TRANSPORTES = arrServicioPublicoAcumuladoVC[i];
                     ec.MANTENIMIENTO_EXTRAORDINARIO = arrManteExtraoAcumuladoVC[i];
                     ec.TOTAL = arrInversionInicialAcumuladoVC[i] + arrSeguroAcumuladoVC[i] + arrEnergiaAcumuladoVC[i] + arrManteContinuoAcumuladoVC[i] + arrCargaFinancieraAcumuladoVC[i] - arrReventaAcumuladoVC[i] + arrServicioPublicoAcumuladoVC[i] + arrManteExtraoAcumuladoVC[i];
@@ -623,17 +623,17 @@ namespace sres.ln
                 {
                     EscenarioElectromovilidadBE ec = new EscenarioElectromovilidadBE();
                     ec.CUOTA_INICIAL = arrInversionInicialAcumuladoVE[i];
-                    ec.INCENTIVO_ECONOMICO = arrIncentivoAcumuladoVE[i];
+                    ec.INCENTIVO_ECONOMICO = arrIncentivoAcumuladoVE[i] * -1;
                     ec.RECAMBIO_BATERIA = arrRecambioAcumuladoVE[i];
                     ec.SEGURO = arrSeguroAcumuladoVE[i];
                     ec.ENERGIA = arrEnergiaAcumuladoVE[i];
                     ec.MANTENIMIENTO_CONTINUO = arrManteContinuoAcumuladoVE[i];
                     ec.CARGA_FINANCIERA = arrCargaFinancieraAcumuladoVE[i];
                     ec.CARGA_INSTALACION = arrCargaInstalacionAcumuladoVE[i];
-                    ec.REVENTA_VEHICULO = arrReventaAcumuladoVE[i];
+                    ec.REVENTA_VEHICULO = arrReventaAcumuladoVE[i] * -1;
                     ec.OTROS_TRANSPORTES = 0;
                     ec.MANTENIMIENTO_EXTRAORDINARIO = 0;
-                    ec.TOTAL = arrInversionInicialAcumuladoVE[i] + arrSeguroAcumuladoVE[i] + arrEnergiaAcumuladoVE[i] + arrManteContinuoAcumuladoVE[i] + arrCargaFinancieraAcumuladoVE[i] + arrCargaInstalacionAcumuladoVE[i] - arrReventaAcumuladoVE[i] - arrIncentivoAcumuladoVE[i];
+                    ec.TOTAL = arrInversionInicialAcumuladoVE[i] + arrSeguroAcumuladoVE[i] + arrEnergiaAcumuladoVE[i] + arrManteContinuoAcumuladoVE[i] + arrCargaFinancieraAcumuladoVE[i] + arrCargaInstalacionAcumuladoVE[i] + arrRecambioAcumuladoVE[i] - arrReventaAcumuladoVE[i] - arrIncentivoAcumuladoVE[i];
                     lista.Add(ec);
                 }
             }

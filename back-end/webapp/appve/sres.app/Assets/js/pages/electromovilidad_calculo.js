@@ -878,6 +878,7 @@ var cargarVCVE = ([listaVC, listaVE]) => {
     Lista_convencional = listaVC;
     Lista_electrico = listaVE;
     cambiarAnio();
+    grafico_costo();
 }
 
 var evaluar1 = () => {
@@ -1382,6 +1383,7 @@ var cambiarAnio1 = () => {
 var cambiarAnio = () => {
     cambiarAnioVC();
     cambiarAnioVE();
+    grafico_costo_por_anio();
 }
 
 var cambiarAnioVC = () => {
@@ -1398,6 +1400,7 @@ var cambiarAnioVC = () => {
     $('#eva-reventa-vc').html(formatoMiles(Lista_convencional[anio].REVENTA_VEHICULO));
     $('#eva-transporte-vc').html(formatoMiles(Lista_convencional[anio].OTROS_TRANSPORTES));    
     $('#eva-mante-extraordinario-vc').html(formatoMiles(Lista_convencional[anio].MANTENIMIENTO_EXTRAORDINARIO));    
+    $('#eva-total-vc').html(formatoMiles(Lista_convencional[anio].TOTAL)); 
 }
 
 var cambiarAnioVE = () => {
@@ -1413,10 +1416,78 @@ var cambiarAnioVE = () => {
     $('#eva-carga-instalacion-ve').html(formatoMiles(Lista_electrico[anio].CARGA_INSTALACION));
     $('#eva-reventa-ve').html(formatoMiles(Lista_electrico[anio].REVENTA_VEHICULO));
     $('#eva-transporte-ve').html(formatoMiles(Lista_electrico[anio].OTROS_TRANSPORTES));    
-    $('#eva-mante-extraordinario-ve').html(formatoMiles(Lista_electrico[anio].MANTENIMIENTO_EXTRAORDINARIO));    
+    $('#eva-mante-extraordinario-ve').html(formatoMiles(Lista_electrico[anio].MANTENIMIENTO_EXTRAORDINARIO));   
+    $('#eva-total-ve').html(formatoMiles(Lista_electrico[anio].TOTAL)); 
 }
 
 var formatoMiles = (n) => {
     var m = n * 1;
     return m.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+}
+
+var grafico_costo = () => {
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Horizonte de evaluación (en años)');
+        data.addColumn('number', 'Escenario movilidad eléctrica');
+        data.addColumn('number', 'Escenario línea base');
+
+        data.addRows([
+          [1, Math.round(Lista_electrico[0].TOTAL * 100)/100, Math.round(Lista_convencional[0].TOTAL * 100)/100],
+          [2, Lista_electrico[1].TOTAL, Lista_convencional[1].TOTAL],
+          [3, Lista_electrico[2].TOTAL, Lista_convencional[2].TOTAL],
+          [4, Lista_electrico[3].TOTAL, Lista_convencional[3].TOTAL],
+          [5, Lista_electrico[4].TOTAL, Lista_convencional[4].TOTAL],
+          [6, Lista_electrico[5].TOTAL, Lista_convencional[5].TOTAL],
+          [7, Lista_electrico[6].TOTAL, Lista_convencional[6].TOTAL],
+          [8, Lista_electrico[7].TOTAL, Lista_convencional[7].TOTAL],
+          [9, Lista_electrico[8].TOTAL, Lista_convencional[8].TOTAL],
+          [10, Lista_electrico[9].TOTAL, Lista_convencional[9].TOTAL],
+          [11, Lista_electrico[10].TOTAL, Lista_convencional[10].TOTAL],
+          [12, Lista_electrico[11].TOTAL, Lista_convencional[11].TOTAL],
+          [13, Lista_electrico[12].TOTAL, Lista_convencional[12].TOTAL],
+          [14, Lista_electrico[13].TOTAL, Lista_convencional[13].TOTAL],
+          [15, Math.round(Lista_electrico[14].TOTAL * 100)/100, Math.round(Lista_convencional[14].TOTAL * 100)/100]
+        ]);
+
+        var options = {
+            chart: {
+                title: 'Electrificación de flota - TCO',
+                //subtitle: 'in millions of dollars (USD)'
+            },
+            width: 900,
+            height: 500,
+            legend: { position: 'top', maxLines: 3 },
+            vAxis: {format: 'decimal'},            
+        };
+
+        var chart = new google.charts.Line(document.getElementById('linechart_material'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+    google.charts.setOnLoadCallback(drawChart);
+}
+
+var grafico_costo_por_anio = () => {   
+    let i = $('#anio_evaluacion').val() - 1;
+    function drawChartC() {
+        var data = google.visualization.arrayToDataTable([
+            ['Genre', 'Mantenimiento extraordinario', 'Otros transportes', 'Reventa vehículo', 'Equipo carga e instalación',
+             'Carga financiera', 'Mantenimiento continuo', 'Energía (electricidad o combustible)', 'Seguro', 'Recambio de batería', 'Incentivo económico', 'Cuota inicial', { role: 'annotation' }],
+            ['Escenario movilidad convencional', Lista_convencional[i].MANTENIMIENTO_EXTRAORDINARIO, Lista_convencional[i].OTROS_TRANSPORTES, Lista_convencional[i].REVENTA_VEHICULO, Lista_convencional[i].CARGA_INSTALACION, Lista_convencional[i].CARGA_FINANCIERA, Lista_convencional[i].MANTENIMIENTO_CONTINUO, Lista_convencional[i].ENERGIA, Lista_convencional[i].SEGURO, Lista_convencional[i].RECAMBIO_BATERIA, Lista_convencional[i].INCENTIVO_ECONOMICO, Lista_convencional[i].CUOTA_INICIAL, ''],
+            ['Escenario electromovilidad', Lista_electrico[i].MANTENIMIENTO_EXTRAORDINARIO, Lista_electrico[i].OTROS_TRANSPORTES, Lista_electrico[i].REVENTA_VEHICULO, Lista_electrico[i].CARGA_INSTALACION, Lista_electrico[i].CARGA_FINANCIERA, Lista_electrico[i].MANTENIMIENTO_CONTINUO, Lista_electrico[i].ENERGIA, Lista_electrico[i].SEGURO, Lista_electrico[i].RECAMBIO_BATERIA, Lista_electrico[i].INCENTIVO_ECONOMICO, Lista_electrico[i].CUOTA_INICIAL, '']
+        ]);
+
+        var options = {
+            title: 'Comparación TCO',
+            width: 900,
+            height: 800,
+            tooltip: { isHtml: true },
+            bar: { groupWidth: '75%' },
+            isStacked: true,
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChartC);
 }
