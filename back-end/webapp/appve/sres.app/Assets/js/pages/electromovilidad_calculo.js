@@ -1,5 +1,8 @@
-﻿var Lista_convencional, Lista_electrico;
-
+﻿var Lista_convencional, Lista_electrico, Lista_leyenda, Lista_consumo_energ_vc, Lista_consumo_energ_ve, Lista_emision_vc, Lista_emision_ve;
+var factor_emision_01 = 0, rendimiento_01, rendimiento_pasajero_01 = 0;
+var factor_emision_02 = 0, rendimiento_02, rendimiento_pasajero_02 = 0;
+var factor_emision_03 = 0, rendimiento_03, rendimiento_pasajero_03 = 0;
+var factor_emision_04 = 0, rendimiento_04, rendimiento_pasajero_04 = 0;
 
 var rendimiento_vc = 0, precio_combustible_vc = 0, factor_emision_vc = 0, rendimiento_cvc = 0, precio_combustible_cvc = 0, factor_emision_cvc = 0, precio_vehiculo_cvc = 0;
 var rendimiento_ve = 0, capacidad_bateria = 0, precio_cargador = 0, costo_instalacion = 0, tarifa_electricidad = 0, precio_vehiculo_ve;
@@ -103,6 +106,10 @@ $(document).ready(() => {
     $('#anio_evaluacion').on('change', (e) => cambiarAnio());
     $('#cbo-departamento-cvc').on('change', (e) => cambiarDepartamentoCVC());
     $('#cbo-departamento-vc').on('change', (e) => cambiarDepartamentoVC());
+    $('#servicio-01').on('change', (e) => cambiarServicio01());
+    $('#servicio-02').on('change', (e) => cambiarServicio02());
+    $('#servicio-03').on('change', (e) => cambiarServicio03());
+    $('#servicio-04').on('change', (e) => cambiarServicio04());
 });
 
 var configuracion = () => {
@@ -633,6 +640,74 @@ var cambiarDepartamentoVC = () => {
     });
 }
 
+var cambiarServicio01 = () => {
+    if ($('#servicio-01').val() == 0) { factor_emision_01 = 0; rendimiento_01 = 0; rendimiento_pasajero_01 = 0; }
+    let url = `${baseUrl}api/calculo/obtenervalorserviciopublico?valor1=${$('#servicio-01').val()}`;
+    fetch(url).then(r => r.json()).then(j => {
+        if (j == null) return;
+        if (j.FACTOR_EMISION != null){
+            factor_emision_01 = parseFloat(j.FACTOR_EMISION.FACTOR);           
+        }
+        if (j.RENDIMIENTO != null){
+            rendimiento_01 = parseFloat(j.RENDIMIENTO.FACTOR);           
+        }
+        if (j.RENDIMIENTO_PASAJERO != null){
+            rendimiento_pasajero_01 = parseFloat(j.RENDIMIENTO_PASAJERO.FACTOR);           
+        }
+    });
+}
+
+var cambiarServicio02 = () => {
+    if ($('#servicio-02').val() == 0) { factor_emision_02 = 0; rendimiento_02 = 0; rendimiento_pasajero_02 = 0; }
+    let url = `${baseUrl}api/calculo/obtenervalorserviciopublico?valor1=${$('#servicio-02').val()}`;
+    fetch(url).then(r => r.json()).then(j => {
+        if (j == null) return;
+        if (j.FACTOR_EMISION != null){
+            factor_emision_02 = parseFloat(j.FACTOR_EMISION.FACTOR);           
+        }
+        if (j.RENDIMIENTO != null){
+            rendimiento_02 = parseFloat(j.RENDIMIENTO.FACTOR);           
+        }
+        if (j.RENDIMIENTO_PASAJERO != null){
+            rendimiento_pasajero_02 = parseFloat(j.RENDIMIENTO_PASAJERO.FACTOR);           
+        }
+    });
+}
+
+var cambiarServicio03 = () => {
+    if ($('#servicio-03').val() == 0) { factor_emision_03 = 0; rendimiento_03 = 0; rendimiento_pasajero_03 = 0; }
+    let url = `${baseUrl}api/calculo/obtenervalorserviciopublico?valor1=${$('#servicio-03').val()}`;
+    fetch(url).then(r => r.json()).then(j => {
+        if (j == null) return;
+        if (j.FACTOR_EMISION != null){
+            factor_emision_03 = parseFloat(j.FACTOR_EMISION.FACTOR);           
+        }
+        if (j.RENDIMIENTO != null){
+            rendimiento_03 = parseFloat(j.RENDIMIENTO.FACTOR);           
+        }
+        if (j.RENDIMIENTO_PASAJERO != null){
+            rendimiento_pasajero_03 = parseFloat(j.RENDIMIENTO_PASAJERO.FACTOR);           
+        }
+    });
+}
+
+var cambiarServicio04 = () => {
+    if ($('#servicio-04').val() == 0) { factor_emision_04 = 0; rendimiento_04 = 0; rendimiento_pasajero_04 = 0; }
+    let url = `${baseUrl}api/calculo/obtenervalorserviciopublico?valor1=${$('#servicio-04').val()}`;
+    fetch(url).then(r => r.json()).then(j => {
+        if (j == null) return;
+        if (j.FACTOR_EMISION != null){
+            factor_emision_04 = parseFloat(j.FACTOR_EMISION.FACTOR);           
+        }
+        if (j.RENDIMIENTO != null){
+            rendimiento_04 = parseFloat(j.RENDIMIENTO.FACTOR);           
+        }
+        if (j.RENDIMIENTO_PASAJERO != null){
+            rendimiento_pasajero_04 = parseFloat(j.RENDIMIENTO_PASAJERO.FACTOR);           
+        }
+    });
+}
+
 //=======================================
 
 var cargarComponentes = () => {
@@ -734,8 +809,9 @@ var validar = (id) => {
 }
 
 var evaluar = () => {
-    let data_vc = {};
-    let data_ve = {};
+    let data_vc = {}, data_ve = {}, data_ce_vc = {}, data_ce_ve = {}, data_l = {}, data_em_vc = {}, data_em_ve = {};
+
+    //vehiculo convencional costo
     let p1 = $('#rad-e1-si').prop('checked') ? '1' : '0';
     let p2 = $('#rad-e2-si').prop('checked') ? '1' : '0';
     let p3 = $('#rad-e3-si').prop('checked') ? '1' : '0';
@@ -744,11 +820,14 @@ var evaluar = () => {
     let costo_vehiculo_vc = 0, meses_uso_vc = 0, porc_aumento_comb_vc = 0, tipo_compra_vc = 0;
     let porc_cuota_inicial_vc = 0, tasa_interes_vc = 0, anio_credito_vc = 0, seguro_vc = 0;
     let gasto_combustible_vc = 0, precio_combustible_vc = 0, kilometro_semanal_vc = 0, rendimiento_vc = 0, mantenimiento_vc = 0;
+    let factor_emisionvc = 0, tipo_combustible_vc = 0;
     let lista_servicio_publico = [];
     if (p2 == '1') {
         costo_vehiculo_vc = parseFloat($('#costo-veh-cvc').val());
         meses_uso_vc = $('#meses-cvc').val();
         porc_aumento_comb_vc = $('#porc-anual-combustible-cvc').val() / 100;
+        factor_emisionvc = $('#factor-emision-cvc').val();
+        tipo_combustible_vc = $('#tipo-combustible-cvc').val();
         tipo_compra_vc = $('#tipo-compra-cvc').val();
         if (tipo_compra_vc == 1){
             porc_cuota_inicial_vc = parseFloat($('#cuota-inicial-cvc').val())/100; 
@@ -765,6 +844,8 @@ var evaluar = () => {
     } else if (p1 == '1') {
         meses_uso_vc = $('#meses-vc').val();
         porc_aumento_comb_vc = $('#porc-anual-combustible-vc').val() / 100;
+        factor_emisionvc = $('#factor-emision-vc').val();
+        tipo_combustible_vc = $('#tipo-combustible-vc').val();
         seguro_vc = $('#seguro-vc').val();
         if (p_gasto_combustible == '1') gasto_combustible_vc = $('#gasto-vc').val();
         else {
@@ -778,28 +859,36 @@ var evaluar = () => {
     if (p3 == '1'){
         if ($('#servicio-01').val() > 0){
             let r = {
+                ID_TIPO_TRANSPORTE: $('#tipo-transporte-01').val(),
                 COSTO_MOVILIDAD: $('#costo-movilidad-01').val(),
+                KILOMETRO_SEMANAL: $('#kilometros-01').val(),
                 MESES_USO: $('#meses-01').val(),
             }
             lista_servicio_publico.push(r);
         }
         if ($('#servicio-02').val() > 0){
             let r = {
+                ID_TIPO_TRANSPORTE: $('#tipo-transporte-02').val(),
                 COSTO_MOVILIDAD: $('#costo-movilidad-02').val(),
+                KILOMETRO_SEMANAL: $('#kilometros-02').val(),
                 MESES_USO: $('#meses-02').val(),
             }
             lista_servicio_publico.push(r);
         }
         if ($('#servicio-03').val() > 0){
             let r = {
+                ID_TIPO_TRANSPORTE: $('#tipo-transporte-03').val(),
                 COSTO_MOVILIDAD: $('#costo-movilidad-03').val(),
+                KILOMETRO_SEMANAL: $('#kilometros-03').val(),
                 MESES_USO: $('#meses-03').val(),
             }
             lista_servicio_publico.push(r);
         }
         if ($('#servicio-04').val() > 0){
             let r = {
+                ID_TIPO_TRANSPORTE: $('#tipo-transporte-04').val(),
                 COSTO_MOVILIDAD: $('#costo-movilidad-04').val(),
+                KILOMETRO_SEMANAL: $('#kilometros-04').val(),
                 MESES_USO: $('#meses-04').val(),
             }
             lista_servicio_publico.push(r);
@@ -813,7 +902,7 @@ var evaluar = () => {
         LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
     };
 
-    //Vehiculo electrico
+    //Vehiculo electrico costo
     let p_incentivo = $('#rad-inc-si-ve').prop('checked') ? '1' : '0';
     let p_seguro_ve = $('#rad-sv-si-ve').prop('checked') ? '1' : '0';
     let costo_vehiculo_ve = parseFloat($('#costo-veh-ve').val());
@@ -848,6 +937,7 @@ var evaluar = () => {
     let tarifa_ve = $('#tarifa-ve').val();
     let precio_cargador = parseFloat($('#precio-cargador').val());
     let costo_instalacion = parseFloat($('#costo-instalacion').val());
+    let capacidad_bateria_ve = $('#bateria-ve').val();
 
     data_ve = { 
         P_INCENTIVO: p_incentivo, P_SEGURO_VE: p_seguro_ve, COSTO_VEHICULO_VE: costo_vehiculo_ve, TIPO_INCENTIVO_VE: tipo_incentivo, HORIZONTE: horizonte, CUOTA_INCENTIVO_ANUAL: cuota_incentivo_anual,
@@ -855,6 +945,31 @@ var evaluar = () => {
         ANIO_CREDITO_VE: anio_credito_ve, SEGURO_VE: seguro_ve, PORCENTAJE_ANUAL_VE: porcentaje_anual_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve, TARIFA_VE: tarifa_ve,
         PRECIO_CARGADOR: precio_cargador, COSTO_INSTALACION: costo_instalacion,
     };
+
+    //Leyendas
+    data_l ={
+        LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
+    }
+
+    //Consumo energetivo convencional
+    data_ce_vc = {
+        P1: p1, P2: p2, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, MESES_USO_VC: meses_uso_vc, ID_TIPO_COMBUSTIBLE_VC: tipo_combustible_vc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
+    }
+
+    //Consumo energetivo electrico
+    data_ce_ve = {
+        KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
+    }
+
+    //Emisiones Convencional
+    data_em_vc = {
+        P1: p1, P2: p2, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, MESES_USO_VC: meses_uso_vc, FACTOR_EMISION_VC: factor_emisionvc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
+    }
+
+    //Emisiones Electrico
+    data_em_ve = {
+        CAPACIDAD_BATERIA_VE: capacidad_bateria_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
+    }
 
     //Calculo
     let urlvc = `${baseUrl}api/calculo/calcularvehiculoconvencional`;
@@ -865,18 +980,48 @@ var evaluar = () => {
     let datave = data_ve;
     let initve = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datave) };
 
+    let urll = `${baseUrl}api/calculo/obtenerleyendas`;
+    let datal = data_l;
+    let initl = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datal) };
+
+    let urlvcce = `${baseUrl}api/calculo/calcularconsumoenergeticoconvencional`;
+    let datavcce = data_ce_vc;
+    let initvcce = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datavcce) };
+
+    let urlvece = `${baseUrl}api/calculo/calcularconsumoenergeticoelectrico`;
+    let datavece = data_ce_ve;
+    let initvece = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datavece) };
+
+    let urlemvc = `${baseUrl}api/calculo/calcularemisionesconvencional`;
+    let dataemvc = data_em_vc;
+    let initemvc = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataemvc) };
+
+    let urlemve = `${baseUrl}api/calculo/calcularemisioneselectrico`;
+    let dataemve = data_em_ve;
+    let initemve = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataemve) };
+
     Promise.all([
         fetch(urlvc, initvc),
         fetch(urlve, initve),
+        fetch(urll, initl),
+        fetch(urlvcce, initvcce),
+        fetch(urlvece, initvece),
+        fetch(urlemvc, initemvc),
+        fetch(urlemve, initemve),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarVCVE);
 
 }
 
-var cargarVCVE = ([listaVC, listaVE]) => {
+var cargarVCVE = ([listaVC, listaVE, listaleyenda, listaVCCE, listaVECE, listaEMVC, listaEMVE]) => {
     Lista_convencional = listaVC;
     Lista_electrico = listaVE;
+    Lista_leyenda = listaleyenda;
+    Lista_consumo_energ_vc = listaVCCE;
+    Lista_consumo_energ_ve = listaVECE;
+    Lista_emision_vc = listaEMVC;
+    Lista_emision_ve = listaEMVE;
     cambiarAnio();
     grafico_costo();
 }
@@ -1384,6 +1529,9 @@ var cambiarAnio = () => {
     cambiarAnioVC();
     cambiarAnioVE();
     grafico_costo_por_anio();
+    grafico_consumo_energ();
+    grafico_consumo_energ_total();
+    grafico_emisiones();
 }
 
 var cambiarAnioVC = () => {
@@ -1490,4 +1638,103 @@ var grafico_costo_por_anio = () => {
         chart.draw(data, options);
     }
     google.charts.setOnLoadCallback(drawChartC);
+}
+
+var grafico_consumo_energ = () => {   
+    let i = $('#anio_evaluacion').val() - 1;
+    function drawChartCE() {
+        let arrNombre = [], arrConvencional = [], arrElectrico = [];
+        let tamanio = Lista_leyenda.length;
+        arrNombre.push('Genre');
+        for (var j = 0; j < tamanio; j++) {
+            arrNombre.push(Lista_leyenda[j].NOMBRE_TRANSPORTE);
+        }
+
+        arrConvencional.push('Escenario movilidad convencional');
+        if (1 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC);
+        if (2 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_1);
+        if (3 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_2);
+        if (4 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_3);
+        if (5 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_4);
+
+        arrElectrico.push('Escenario movilidad electromovilidad');
+        if (1 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE);
+        if (2 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_1);
+        if (3 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_2);
+        if (4 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_3);
+        if (5 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_4);
+
+        //var data = google.visualization.arrayToDataTable([
+        //    ['Genre', Lista_leyenda[0].NOMBRE_TRANSPORTE, Lista_leyenda[1].NOMBRE_TRANSPORTE, Lista_leyenda[2].NOMBRE_TRANSPORTE, Lista_leyenda[3].NOMBRE_TRANSPORTE, Lista_leyenda[4].NOMBRE_TRANSPORTE, { role: 'annotation' }],
+        //    ['Escenario movilidad convencional', Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_1, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_2, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_3, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_4, ''],
+        //    ['Escenario electromovilidad', Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_1, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_2, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_3, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_4, '']
+        //]);
+
+        var data = google.visualization.arrayToDataTable([
+            arrNombre,
+            arrConvencional,
+            arrElectrico
+        ]);
+
+        var options = {
+            title: 'Consumo Energético Total',
+            width: 900,
+            height: 800,
+            tooltip: { isHtml: true },
+            bar: { groupWidth: '75%' },
+            isStacked: true,
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById("consumo_energetico"));
+        chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChartCE);
+}
+
+var grafico_consumo_energ_total = () => {   
+    let i = $('#anio_evaluacion').val() - 1;
+    function drawChartCET() {
+        var data = google.visualization.arrayToDataTable([
+            ['Genre', 'Vehículo propio', 'Total servicios de transporte', { role: 'annotation' }],
+            ['Escenario movilidad convencional', Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC, Lista_consumo_energ_vc[i].TOTAL_PUBLICO, ''],
+            ['Escenario electromovilidad', Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE, Lista_consumo_energ_ve[i].TOTAL_PUBLICO, '']
+        ]);
+
+        var options = {
+            title: 'Consumo Energético Total',
+            width: 900,
+            height: 800,
+            tooltip: { isHtml: true },
+            bar: { groupWidth: '75%' },
+            isStacked: true,
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById("consumo_energetico_total"));
+        chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChartCET);
+}
+
+var grafico_emisiones = () => {   
+    let i = $('#anio_evaluacion').val() - 1;
+    function drawChartEM() {
+        var data = google.visualization.arrayToDataTable([
+            ['Genre', 'Fabricación de baterías', 'Operación del vehículo', 'Fabricación del vehículo', 'Servicios de transporte', { role: 'annotation' }],
+            ['Escenario movilidad convencional', Lista_emision_vc[i].FABRICACION_BATERIA_VC, Lista_emision_vc[i].OPERACION_VEHICULO_VC, Lista_emision_vc[i].FABRICACION_VEHICULO_VC, Lista_emision_vc[i].SERVICIO_TRANSPORTE, ''],
+            ['Escenario electromovilidad', Lista_emision_ve[i].FABRICACION_BATERIA_VE, Lista_emision_ve[i].OPERACION_VEHICULO_VE, Lista_emision_ve[i].FABRICACION_VEHICULO_VE, Lista_emision_ve[i].SERVICIO_TRANSPORTE, '']
+        ]);
+
+        var options = {
+            title: 'Emisiones GEI Totales',
+            width: 900,
+            height: 800,
+            tooltip: { isHtml: true },
+            bar: { groupWidth: '75%' },
+            isStacked: true,
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById("emisiones_totales"));
+        chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChartEM);
 }

@@ -644,5 +644,235 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<TransportePublicoBE> ObtenerLyendas(ConsumoEnergeticoConvencionalBE entidad)
+        {
+            List<TransportePublicoBE> listatp = new List<TransportePublicoBE>();
+            TipoTransporteLN tipoLN = new TipoTransporteLN();
+            try
+            {
+                int tamanio = entidad.LISTA_SERVICIO_PUBLICO.Count();
+                string[] arrNombre = new string[5];
+
+                arrNombre[0] = "Vehículo propio";
+                for (int i = 0; i < tamanio; i++)
+                {
+                    string nombre = tipoLN.getTipoTransporte(new TipoTransporteBE() { ID_TIPO_TRANSPORTE = entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE }).NOMBRE;
+                    arrNombre[i + 1] = nombre;
+                }
+
+                for (int i = 0; i < tamanio + 1; i++)
+                {
+                    TransportePublicoBE tp = new TransportePublicoBE();
+                    tp.NOMBRE_TRANSPORTE = arrNombre[i] == null ? "" : arrNombre[i];
+                    listatp.Add(tp);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return listatp;
+        }
+
+        public List<EscenarioConvencionalConsumoEnergBE> CalcularVCCE(ConsumoEnergeticoConvencionalBE entidad)
+        {
+            List<EscenarioConvencionalConsumoEnergBE> lista = new List<EscenarioConvencionalConsumoEnergBE>();
+            ElectromovilidadLN elecLN = new ElectromovilidadLN();
+            try
+            {
+                int tamanio = entidad.LISTA_SERVICIO_PUBLICO.Count();
+                decimal[] arrConsumoEnergetivoVC = new decimal[5];
+                decimal vehiculo_ce = 0;
+
+                if (entidad.P2 == "1" || entidad.P1 == "1") {
+                    decimal factor_rendimiento = elecLN.ListaFactor1P(17, 2, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                    vehiculo_ce = km_anual / factor_rendimiento;
+                }                
+
+                arrConsumoEnergetivoVC[0] = vehiculo_ce;
+                for (int i = 0; i < tamanio; i++)   
+                {
+                    decimal rendimiento_pasajero = elecLN.ListaFactor1P(16, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
+                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO / rendimiento_pasajero;
+                    arrConsumoEnergetivoVC[i+1] = consumo_energetico;
+                }
+
+                for (int i = 0; i < 15; i++)
+                {
+                    EscenarioConvencionalConsumoEnergBE ec = new EscenarioConvencionalConsumoEnergBE();
+                    ec.VEHICULO_PROPIO_VC = arrConsumoEnergetivoVC[0] * (i + 1);
+                    ec.SERVICIO_PUBLICO_1 = arrConsumoEnergetivoVC[1] * (i + 1);
+                    ec.SERVICIO_PUBLICO_2 = arrConsumoEnergetivoVC[2] * (i + 1);
+                    ec.SERVICIO_PUBLICO_3 = arrConsumoEnergetivoVC[3] * (i + 1);
+                    ec.SERVICIO_PUBLICO_4 = arrConsumoEnergetivoVC[4] * (i + 1);
+                    ec.TOTAL_PUBLICO = ec.SERVICIO_PUBLICO_1 + ec.SERVICIO_PUBLICO_2 + ec.SERVICIO_PUBLICO_3 + ec.SERVICIO_PUBLICO_4;
+                    lista.Add(ec);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<EscenarioElectricoConsumoEnergBE> CalcularVECE(ConsumoEnergeticoElectricoBE entidad)
+        {
+            List<EscenarioElectricoConsumoEnergBE> lista = new List<EscenarioElectricoConsumoEnergBE>();
+            try
+            {
+                decimal equivalenteenergetico = Convert.ToDecimal(AppSettings.Get<string>("dato.equivalenteenergetico"));
+
+                decimal[] arrConsumoEnergetivoVE = new decimal[5];
+
+                arrConsumoEnergetivoVE[0] = (((entidad.KILOMETRO_SEMANAL_VE * 52) * (entidad.MESES_USO_VE / 12)) / entidad.RENDIMIENTO_VE) * equivalenteenergetico;
+
+                for (int i = 0; i < 15; i++)
+                {
+                    EscenarioElectricoConsumoEnergBE ec = new EscenarioElectricoConsumoEnergBE();
+                    ec.VEHICULO_PROPIO_VE = arrConsumoEnergetivoVE[0] * (i + 1);
+                    ec.SERVICIO_PUBLICO_1 = arrConsumoEnergetivoVE[1] * (i + 1);
+                    ec.SERVICIO_PUBLICO_2 = arrConsumoEnergetivoVE[2] * (i + 1);
+                    ec.SERVICIO_PUBLICO_3 = arrConsumoEnergetivoVE[3] * (i + 1);
+                    ec.SERVICIO_PUBLICO_4 = arrConsumoEnergetivoVE[4] * (i + 1);
+                    ec.TOTAL_PUBLICO = ec.SERVICIO_PUBLICO_1 + ec.SERVICIO_PUBLICO_2 + ec.SERVICIO_PUBLICO_3 + ec.SERVICIO_PUBLICO_4;
+                    lista.Add(ec);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<EscenarioConvencionalEmisionesBE> CalcularEmisionesVC(EmisionesConvencionalBE entidad)
+        {
+            List<EscenarioConvencionalEmisionesBE> lista = new List<EscenarioConvencionalEmisionesBE>();
+            ElectromovilidadLN elecLN = new ElectromovilidadLN();
+            try
+            {
+                decimal fabricacion_bateria = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionbateria"));
+                decimal fabricacion_vehiculo = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionvehiculo"));
+
+                int tamanio = entidad.LISTA_SERVICIO_PUBLICO.Count();
+                decimal[] arrConsumoEnergetivoVC = new decimal[4];
+                decimal[] arrFactorEmisionVC = new decimal[4];
+                decimal[] arrFabricacionBateriaVC = new decimal[15];
+                decimal[] arrOperacionVehiculoVC = new decimal[15];
+                decimal[] arrFabricacionVehiculoVC = new decimal[15];
+                decimal[] arrServicioPublicoVC = new decimal[15];
+
+                if (entidad.P2 == "1")
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        arrFabricacionBateriaVC[i] = fabricacion_bateria;
+                    }
+
+                    for (int i = 0; i < 15; i++)
+                    {
+                        arrFabricacionVehiculoVC[i] = fabricacion_vehiculo;
+                    }
+                }                
+
+                for (int i = 0; i < tamanio; i++)
+                {
+                    arrFactorEmisionVC[i] = elecLN.ListaFactor1P(14, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
+                    decimal rendimiento_pasajero = elecLN.ListaFactor1P(16, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
+                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO / rendimiento_pasajero;
+                    arrConsumoEnergetivoVC[i] = consumo_energetico;
+                }
+
+                for (int i = 0; i < 15; i++)
+                {
+                    decimal tp1 = arrConsumoEnergetivoVC[0] * (i + 1) * arrFactorEmisionVC[0];
+                    decimal tp2 = arrConsumoEnergetivoVC[1] * (i + 1) * arrFactorEmisionVC[1];
+                    decimal tp3 = arrConsumoEnergetivoVC[2] * (i + 1) * arrFactorEmisionVC[2];
+                    decimal tp4 = arrConsumoEnergetivoVC[3] * (i + 1) * arrFactorEmisionVC[3];
+                    arrServicioPublicoVC[i] = tp1 + tp2 + tp3 + tp4;
+                }
+                
+                if (entidad.P2 == "1" || entidad.P1 == "1")
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        arrOperacionVehiculoVC[i] = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12) * entidad.FACTOR_EMISION_VC * (i + 1);
+                    }
+                }
+
+                for (int i = 0; i < 15; i++)
+                {
+                    EscenarioConvencionalEmisionesBE ec = new EscenarioConvencionalEmisionesBE();
+                    ec.FABRICACION_BATERIA_VC = arrFabricacionBateriaVC[i];
+                    ec.OPERACION_VEHICULO_VC = arrOperacionVehiculoVC[i];
+                    ec.FABRICACION_VEHICULO_VC = arrFabricacionVehiculoVC[i];
+                    ec.SERVICIO_TRANSPORTE = arrServicioPublicoVC[i];
+                    ec.TOTAL_VC = arrFabricacionBateriaVC[i] + arrOperacionVehiculoVC[i] + arrFabricacionVehiculoVC[i] + arrServicioPublicoVC[i];
+                    lista.Add(ec);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<EscenarioElectricoEmisionesBE> CalcularEmisionesVE(EmisionesElectricoBE entidad)
+        {
+            List<EscenarioElectricoEmisionesBE> lista = new List<EscenarioElectricoEmisionesBE>();
+            try
+            {
+                decimal fabricacion_bateria = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionbateria"));
+                decimal fabricacion_vehiculo = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionvehiculo"));
+                decimal factor_emision_consumo = Convert.ToDecimal(AppSettings.Get<string>("dato.factoremisionconsumo"));
+                decimal perdida_transmision_distribucion = Convert.ToDecimal(AppSettings.Get<string>("dato.perdidatransmisiondistribucion"));
+
+                decimal[] arrFabricacionBateriaVE = new decimal[15];
+                decimal[] arrOperacionVehiculoVE = new decimal[15];
+                decimal[] arrFabricacionVehiculoVE = new decimal[15];
+                decimal[] arrServicioPublicoVE = new decimal[15];
+
+                for (int i = 0; i < 15; i++)
+                {
+                    arrFabricacionBateriaVE[i] = fabricacion_bateria * entidad.CAPACIDAD_BATERIA_VE;
+                }
+
+                decimal operacion_vehiculo = (entidad.KILOMETRO_SEMANAL_VE * 52) * (entidad.MESES_USO_VE / 12) / entidad.RENDIMIENTO_VE * (factor_emision_consumo / (1 - perdida_transmision_distribucion));
+                for (int i = 0; i < 15; i++)
+                {
+                    arrOperacionVehiculoVE[i] = operacion_vehiculo * (i + 1);
+                }
+
+                for (int i = 0; i < 15; i++)
+                {
+                    arrFabricacionVehiculoVE[i] = fabricacion_vehiculo;
+                }
+
+                for (int i = 0; i < 15; i++)
+                {
+                    EscenarioElectricoEmisionesBE ec = new EscenarioElectricoEmisionesBE();
+                    ec.FABRICACION_BATERIA_VE = arrFabricacionBateriaVE[i];
+                    ec.OPERACION_VEHICULO_VE = arrOperacionVehiculoVE[i];
+                    ec.FABRICACION_VEHICULO_VE = arrFabricacionVehiculoVE[i];
+                    ec.SERVICIO_TRANSPORTE = arrServicioPublicoVE[i];
+                    ec.TOTAL_VE = arrFabricacionBateriaVE[i] + arrOperacionVehiculoVE[i] + arrFabricacionVehiculoVE[i] + arrServicioPublicoVE[i];
+                    lista.Add(ec);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }

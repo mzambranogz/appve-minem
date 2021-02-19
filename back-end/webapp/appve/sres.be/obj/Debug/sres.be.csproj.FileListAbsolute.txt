@@ -25,3 +25,12 @@ C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newt
 C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.dll
 C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.pdb
 C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.be.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.be.pdb
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.pdb
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.xml
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.pdb

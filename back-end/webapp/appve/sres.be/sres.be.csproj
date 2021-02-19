@@ -48,10 +48,18 @@
     <Compile Include="CargadorPotenciaBE.cs" />
     <Compile Include="CasoAuxBE.cs" />
     <Compile Include="CasoBE.cs" />
+    <Compile Include="ConsumoEnergeticoConvencionalBE.cs" />
+    <Compile Include="ConsumoEnergeticoElectricoBE.cs" />
     <Compile Include="DepartamentoBE.cs" />
     <Compile Include="DocumentoBE.cs" />
     <Compile Include="ElectromovilidadBE.cs" />
+    <Compile Include="EmisionesConvencionalBE.cs" />
+    <Compile Include="EmisionesElectricoBE.cs" />
+    <Compile Include="EscenarioConvencionalConsumoEnergBE.cs" />
     <Compile Include="EscenarioConvencionalBE.cs" />
+    <Compile Include="EscenarioConvencionalEmisionesBE.cs" />
+    <Compile Include="EscenarioElectricoConsumoEnergBE.cs" />
+    <Compile Include="EscenarioElectricoEmisionesBE.cs" />
     <Compile Include="EscenarioElectromovilidadBE.cs" />
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="EstacionCargaBE.cs" />
@@ -77,6 +85,7 @@
     <Compile Include="TipoVehiculoConvencionalBE.cs" />
     <Compile Include="ModeloVehiculoElectricoBE.cs" />
     <Compile Include="TipoVehiculoElectricoBE.cs" />
+    <Compile Include="TransportePublicoBE.cs" />
     <Compile Include="UsuarioAuxBE.cs" />
     <Compile Include="UsuarioBE.cs" />
     <Compile Include="UsuarioTransportePublicoBE.cs" />

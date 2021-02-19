@@ -93,5 +93,61 @@ namespace sres.app.Controllers.Api
             lista = elecLN.CalcularVE(entidad);
             return lista;
         }
+
+        [Route("obtenerleyendas")]
+        [HttpPost]
+        public List<TransportePublicoBE> ObtenerLeyenda(ConsumoEnergeticoConvencionalBE entidad)
+        {
+            List<TransportePublicoBE> lista = new List<TransportePublicoBE>();
+            lista = elecLN.ObtenerLyendas(entidad);
+            return lista;
+        }
+
+        [Route("calcularconsumoenergeticoconvencional")]
+        [HttpPost]
+        public List<EscenarioConvencionalConsumoEnergBE> CalcularVCCE(ConsumoEnergeticoConvencionalBE entidad)
+        {
+            List<EscenarioConvencionalConsumoEnergBE> lista = new List<EscenarioConvencionalConsumoEnergBE>();
+            lista = elecLN.CalcularVCCE(entidad);
+            return lista;
+        }
+
+        [Route("calcularconsumoenergeticoelectrico")]
+        [HttpPost]
+        public List<EscenarioElectricoConsumoEnergBE> CalcularVECE(ConsumoEnergeticoElectricoBE entidad)
+        {
+            List<EscenarioElectricoConsumoEnergBE> lista = new List<EscenarioElectricoConsumoEnergBE>();
+            lista = elecLN.CalcularVECE(entidad);
+            return lista;
+        }
+
+        [Route("calcularemisionesconvencional")]
+        [HttpPost]
+        public List<EscenarioConvencionalEmisionesBE> CalcularEmisionesConvencional(EmisionesConvencionalBE entidad)
+        {
+            List<EscenarioConvencionalEmisionesBE> lista = new List<EscenarioConvencionalEmisionesBE>();
+            lista = elecLN.CalcularEmisionesVC(entidad);
+            return lista;
+        }
+
+        [Route("calcularemisioneselectrico")]
+        [HttpPost]
+        public List<EscenarioElectricoEmisionesBE> CalcularEmisionesElectrico(EmisionesElectricoBE entidad)
+        {
+            List<EscenarioElectricoEmisionesBE> lista = new List<EscenarioElectricoEmisionesBE>();
+            lista = elecLN.CalcularEmisionesVE(entidad);
+            return lista;
+        }
+
+        [Route("obtenervalorserviciopublico")]
+        [HttpGet]
+        public ElectromovilidadBE ValoresServicioPublico(int valor1)
+        {
+            ElectromovilidadBE obj = new ElectromovilidadBE();
+            obj.FACTOR_EMISION = elecLN.ListaFactor1P(14, 8, valor1);
+            obj.RENDIMIENTO = elecLN.ListaFactor1P(15, 8, valor1);
+            obj.RENDIMIENTO_PASAJERO = elecLN.ListaFactor1P(16, 8, valor1);
+            return obj;
+        }
     }
 }

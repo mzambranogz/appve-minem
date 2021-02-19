@@ -40,3 +40,17 @@ C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\Newt
 C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\obj\Debug\sres.da.csprojResolveAssemblyReference.cache
 C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\obj\Debug\sres.da.dll
 C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\obj\Debug\sres.da.pdb
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\sres.da.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\sres.da.pdb
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\Dapper.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\Newtonsoft.Json.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\Oracle.DataAccess.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\sres.be.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\sres.ut.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\sres.be.pdb
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\sres.ut.pdb
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\Dapper.xml
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\bin\Debug\Newtonsoft.Json.xml
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\obj\Debug\sres.da.csprojResolveAssemblyReference.cache
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\obj\Debug\sres.da.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.da\obj\Debug\sres.da.pdb
