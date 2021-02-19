@@ -1,73 +1,9 @@
 ﻿var Lista_convencional, Lista_electrico, Lista_leyenda, Lista_consumo_energ_vc, Lista_consumo_energ_ve, Lista_emision_vc, Lista_emision_ve;
-var factor_emision_01 = 0, rendimiento_01, rendimiento_pasajero_01 = 0;
-var factor_emision_02 = 0, rendimiento_02, rendimiento_pasajero_02 = 0;
-var factor_emision_03 = 0, rendimiento_03, rendimiento_pasajero_03 = 0;
-var factor_emision_04 = 0, rendimiento_04, rendimiento_pasajero_04 = 0;
 
-var rendimiento_vc = 0, precio_combustible_vc = 0, factor_emision_vc = 0, rendimiento_cvc = 0, precio_combustible_cvc = 0, factor_emision_cvc = 0, precio_vehiculo_cvc = 0;
-var rendimiento_ve = 0, capacidad_bateria = 0, precio_cargador = 0, costo_instalacion = 0, tarifa_electricidad = 0, precio_vehiculo_ve;
-var ipcc = 0.03, tasa_descuento = 0.05, reduccion_eficiencia_motor = 0.03;
-var depreciacionVC = new Array(15);
-var depreciacionVE = new Array(15);
+var rendimiento_vc_g = 0, precio_combustible_vc_g = 0, factor_emision_vc = 0, rendimiento_cvc_g = 0, precio_combustible_cvc_g = 0, factor_emision_cvc_g = 0, precio_vehiculo_cvc_g = 0;
+var rendimiento_ve_g = 0, capacidad_bateria_g = 0, precio_cargador_g = 0, costo_instalacion_g = 0, precio_vehiculo_cvc_g = 0, precio_vehiculo_ve_g;
 
-//Vehiculo convencional
-var arrInversionInicialVCNominal = new Array(15);
-var arrCargaFinancieraVCNominal = new Array(15);
-var arrSeguroVCNominal = new Array(15);
-var arrEnergiaVCNominal = new Array(15);
-var arrManteContinuoVCNominal = new Array(15);
-var arrReventaVCNominal = new Array(15);
-var arrManteExtraoVCNominal = new Array(15);
-var arrServicioPublicoVCNominal = new Array(15);
-
-var arrInversionInicialVCNeto = new Array(15);
-var arrCargaFinancieraVCNeto = new Array(15);
-var arrSeguroVCNeto = new Array(15);
-var arrEnergiaVCNeto = new Array(15);
-var arrManteContinuoVCNeto = new Array(15);
-var arrReventaVCNeto = new Array(15);
-var arrManteExtraoVCNeto = new Array(15);
-var arrServicioPublicoVCNeto = new Array(15);
-
-var arrInversionInicialVCAcumulado = new Array(15);
-var arrCargaFinancieraVCAcumulado = new Array(15);
-var arrSeguroVCAcumulado = new Array(15);
-var arrEnergiaVCAcumulado = new Array(15);
-var arrManteContinuoVCAcumulado = new Array(15);
-var arrReventaVCAcumulado = new Array(15);
-var arrManteExtraoVCAcumulado = new Array(15);
-var arrServicioPublicoVCAcumulado = new Array(15);
-
-//vehiculo electrico
-var arrInversionInicialVENominal = new Array(15);
-var arrCargaFinancieraVENominal = new Array(15);
-var arrIncentivoVENominal = new Array(15);
-var arrSeguroVENominal = new Array(15);
-var arrRecambioVENominal = new Array(15);
-var arrEnergiaVENominal = new Array(15);
-var arrManteContinuoVENominal = new Array(15);
-var arrReventaVENominal = new Array(15);
-
-var arrInversionInicialVENeto = new Array(15);
-var arrCargaFinancieraVENeto = new Array(15);
-var arrIncentivoVENeto = new Array(15);
-var arrSeguroVENeto = new Array(15);
-var arrRecambioVENeto = new Array(15);
-var arrEnergiaVENeto = new Array(15);
-var arrManteContinuoVENeto = new Array(15);
-var arrReventaVENeto = new Array(15);
-
-var arrInversionInicialVEAcumulado = new Array(15);
-var arrCargaFinancieraVEAcumulado = new Array(15);
-var arrIncentivoVEAcumulado = new Array(15);
-var arrSeguroVEAcumulado = new Array(15);
-var arrRecambioVEAcumulado = new Array(15);
-var arrEnergiaVEAcumulado = new Array(15);
-var arrManteContinuoVEAcumulado = new Array(15);
-var arrCargaInstalacionVEAcumulado = new Array(15);
-var arrReventaVEAcumulado = new Array(15);
-
-$(document).ready(() => {  
+$(document).ready(() => {
     //configuracion();
     cargarComponentes();
     $('#btnMenu').on('click', (e) => comenzar());
@@ -106,10 +42,6 @@ $(document).ready(() => {
     $('#anio_evaluacion').on('change', (e) => cambiarAnio());
     $('#cbo-departamento-cvc').on('change', (e) => cambiarDepartamentoCVC());
     $('#cbo-departamento-vc').on('change', (e) => cambiarDepartamentoVC());
-    $('#servicio-01').on('change', (e) => cambiarServicio01());
-    $('#servicio-02').on('change', (e) => cambiarServicio02());
-    $('#servicio-03').on('change', (e) => cambiarServicio03());
-    $('#servicio-04').on('change', (e) => cambiarServicio04());
 });
 
 var configuracion = () => {
@@ -316,8 +248,8 @@ var cambiarCongVC = () => {
     if (v) $('#configuracion-vc').removeClass('d-none');
     else {
         $('#configuracion-vc').addClass('d-none');
-        $('#rendimiento-vc').val(rendimiento_vc);
-        $('#precio-combustible-vc').val(precio_combustible_vc);
+        $('#rendimiento-vc').val(rendimiento_vc_g);
+        $('#precio-combustible-vc').val(precio_combustible_vc_g);
         $('#porc-anual-combustible-vc').val(2);
         $('#factor-emision-vc').val(factor_emision_vc);
     }
@@ -337,10 +269,10 @@ var cambiarCongCVC = () => {
     if (v) $('#configuracion-cvc').removeClass('d-none');
     else {
         $('#configuracion-cvc').addClass('d-none');
-        $('#rendimiento-cvc').val(rendimiento_cvc);
-        $('#precio-combustible-cvc').val(precio_combustible_cvc);
+        $('#rendimiento-cvc').val(rendimiento_cvc_g);
+        $('#precio-combustible-cvc').val(precio_combustible_cvc_g);
         $('#porc-anual-combustible-cvc').val(2);
-        $('#factor-emision-cvc').val(factor_emision_cvc);
+        $('#factor-emision-cvc').val(factor_emision_cvc_g);
     }
 }
 
@@ -381,6 +313,7 @@ var cambiarTipoCompraCVE = () => {
     else $('#financiado-ve').removeClass('d-none');
 }
 
+//end_points
 var evaluarTipoVehTipoCombVC = () => {
     cambiarDepartamentoVC();
     if ($('#tipo-vehiculo-vc').val() == 0 || $('#tipo-combustible-vc').val() == 0) return;
@@ -393,13 +326,8 @@ var evaluarTipoVehTipoCombVC = () => {
         if (j.RENDIMIENTO != null){
             $('#rendimiento-vc').val(j.RENDIMIENTO.FACTOR);
             $('#unidad-rend-vc').html(j.RENDIMIENTO.UNIDAD);
-            rendimiento_vc = parseFloat(j.RENDIMIENTO.FACTOR);           
+            rendimiento_vc_g = parseFloat(j.RENDIMIENTO.FACTOR);           
         }
-        //if (j.PRECIO_COMBUSTIBLE != null){
-        //    $('#precio-combustible-vc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
-        //    $('#precio-comb-vc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
-        //    precio_combustible_vc = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
-        //}
         if (j.FACTOR_EMISION != null){
             $('#factor-emision-vc').val(j.FACTOR_EMISION.FACTOR);
             factor_emision_vc = parseFloat(j.FACTOR_EMISION.FACTOR);           
@@ -408,6 +336,7 @@ var evaluarTipoVehTipoCombVC = () => {
     });
 }
 
+//end_points igual a 316
 var evaluarTipoVehTipoCombCVC = () => {
     cambiarDepartamentoCVC();
     if ($('#tipo-vehiculo-cvc').val() == 0 || $('#tipo-combustible-cvc').val() == 0) return;
@@ -420,20 +349,15 @@ var evaluarTipoVehTipoCombCVC = () => {
         if (j.RENDIMIENTO != null){
             $('#rendimiento-cvc').val(j.RENDIMIENTO.FACTOR);
             $('#unidad-rend-cvc').html(j.RENDIMIENTO.UNIDAD);
-            rendimiento_vc = parseFloat(j.RENDIMIENTO.FACTOR);           
+            rendimiento_vc_g = parseFloat(j.RENDIMIENTO.FACTOR);           
         }
-        //if (j.PRECIO_COMBUSTIBLE != null){
-        //    $('#precio-combustible-cvc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
-        //    $('#precio-comb-cvc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
-        //    precio_combustible_vc = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
-        //}
         if (j.FACTOR_EMISION != null){
             $('#factor-emision-cvc').val(j.FACTOR_EMISION.FACTOR);
             factor_emision_vc = parseFloat(j.FACTOR_EMISION.FACTOR);           
         }
         if (j.PRECIO_VEHICULO != null){
             $('#costo-veh-cvc').val(j.PRECIO_VEHICULO.FACTOR);
-            precio_vehiculo_cvc = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
+            precio_vehiculo_cvc_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
         }   
         $('#porc-anual-combustible-cvc').val(2);
     });
@@ -444,8 +368,8 @@ var cambiarCongVE = () => {
     if (v) $('#configuracion-ve').removeClass('d-none');
     else {
         $('#configuracion-ve').addClass('d-none');
-        $('#rendimiento-ve').val(rendimiento_ve);
-        $('#batería-ve').val(capacidad_bateria);
+        $('#rendimiento-ve').val(rendimiento_ve_g);
+        $('#batería-ve').val(capacidad_bateria_g);
     }
 }
 
@@ -454,7 +378,7 @@ var cambiarCongTE = () => {
     if (v) $('#tarifa-e-ve').removeClass('d-none');
     else {
         $('#tarifa-e-ve').addClass('d-none');
-        $('#tarifa-ve').val(tarifa_electricidad);
+        $('#tarifa-ve').val(precio_vehiculo_cvc_g);
         $('#porc-aual-ve').val(0);
     }
 }
@@ -468,6 +392,7 @@ var cambiarCongINC = () => {
     }
 }
 
+//end_points
 var cambiarVE = () => {
     if ($('#tipo-vehiculo-ve').val() == 0) { $('#modelo-ve').parent().addClass('d-none'); $('#modelo-ve').val(0); return; }
     if ($('#tipo-vehiculo-ve').val() > 1) {$('#modelo-ve').parent().addClass('d-none'); $('#modelo-ve').val(0); }
@@ -480,22 +405,23 @@ var cambiarVE = () => {
             if (j.RENDIMIENTO != null){
                 $('#rendimiento-ve').val(j.RENDIMIENTO.FACTOR);
                 $('#unidad-rend-ve').html(j.RENDIMIENTO.UNIDAD);
-                rendimiento_ve = parseFloat(j.RENDIMIENTO.FACTOR);           
+                rendimiento_ve_g = parseFloat(j.RENDIMIENTO.FACTOR);           
             }
 
             if (j.CAPACIDAD_BATERIA != null){
                 $('#bateria-ve').val(j.CAPACIDAD_BATERIA.FACTOR);
-                capacidad_bateria = parseFloat(j.CAPACIDAD_BATERIA.FACTOR);           
+                capacidad_bateria_g = parseFloat(j.CAPACIDAD_BATERIA.FACTOR);           
             }
 
             if (j.PRECIO_VEHICULO != null){
                 $('#costo-veh-ve').val(j.PRECIO_VEHICULO.FACTOR);
-                precio_vehiculo_ve = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
+                precio_vehiculo_ve_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
             }
         });
     }
 }
 
+//end_points
 var cambiarMVE = () => {
     if ($('#modelo-ve').val() == 0) return;
 
@@ -505,7 +431,7 @@ var cambiarMVE = () => {
         if (j.RENDIMIENTO != null){
             $('#rendimiento-ve').val(j.RENDIMIENTO.FACTOR);
             $('#unidad-rend-ve').html(j.RENDIMIENTO.UNIDAD);
-            rendimiento_ve = parseFloat(j.RENDIMIENTO.FACTOR);           
+            rendimiento_ve_g = parseFloat(j.RENDIMIENTO.FACTOR);           
         }
 
         if (j.CAPACIDAD_BATERIA != null){
@@ -515,7 +441,7 @@ var cambiarMVE = () => {
 
         if (j.PRECIO_VEHICULO != null){
             $('#costo-veh-ve').val(j.PRECIO_VEHICULO.FACTOR);
-            precio_vehiculo_ve = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
+            precio_vehiculo_ve_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
         }
     });
 }
@@ -537,6 +463,7 @@ var cambiarTC = () => {
     $('#costo-instalacion').val('');
 }
 
+//end_points
 var cambiarCP = () => {
     if ($('#cbo-potencia').val() == 0) return;
 
@@ -545,16 +472,17 @@ var cambiarCP = () => {
         if (j == null) return;
         if (j.PRECIO_CARGADOR != null){
             $('#precio-cargador').val(j.PRECIO_CARGADOR.FACTOR);
-            precio_cargador = parseFloat(j.PRECIO_CARGADOR.FACTOR);          
+            precio_cargador_g = parseFloat(j.PRECIO_CARGADOR.FACTOR);          
         }
 
         if (j.COSTO_INSTALACION != null){
             $('#costo-instalacion').val(j.COSTO_INSTALACION.FACTOR);
-            costo_instalacion = parseFloat(j.COSTO_INSTALACION.FACTOR);           
+            costo_instalacion_g = parseFloat(j.COSTO_INSTALACION.FACTOR);           
         }
     });
 }
 
+//end_points
 var cambiarDP = () => {
     if ($('#cbo-departamento').val() == 0) return;
 
@@ -563,7 +491,7 @@ var cambiarDP = () => {
         if (j == null) return;
         if (j.TARIFA_ELECTRICIDAD != null){
             $('#tarifa-ve').val(j.TARIFA_ELECTRICIDAD.FACTOR/100);
-            tarifa_electricidad = parseFloat(j.TARIFA_ELECTRICIDAD.FACTOR)/100;          
+            precio_vehiculo_cvc_g = parseFloat(j.TARIFA_ELECTRICIDAD.FACTOR)/100;          
         }
         $('#porc-aual-ve').val(0);
     });
@@ -606,6 +534,7 @@ var validarOcultar = () => {
     $('#valor-inc-unico').parent().addClass('d-none');
 }
 
+//end_points
 var cambiarDepartamentoCVC = () => {
     let dep = $('#cbo-departamento-cvc').val();
     let tipo_veh = $('#tipo-vehiculo-cvc').val();
@@ -618,11 +547,12 @@ var cambiarDepartamentoCVC = () => {
         if (j.PRECIO_COMBUSTIBLE != null){
             $('#precio-combustible-cvc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
             $('#precio-comb-cvc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
-            precio_combustible_cvc = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
+            precio_combustible_cvc_g = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
         }
     });
 }
 
+//end_points igual a 531
 var cambiarDepartamentoVC = () => {
     let dep = $('#cbo-departamento-vc').val();
     let tipo_veh = $('#tipo-vehiculo-vc').val();
@@ -635,81 +565,14 @@ var cambiarDepartamentoVC = () => {
         if (j.PRECIO_COMBUSTIBLE != null){
             $('#precio-combustible-vc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
             $('#precio-comb-vc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
-            precio_combustible_vc = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
-        }
-    });
-}
-
-var cambiarServicio01 = () => {
-    if ($('#servicio-01').val() == 0) { factor_emision_01 = 0; rendimiento_01 = 0; rendimiento_pasajero_01 = 0; }
-    let url = `${baseUrl}api/calculo/obtenervalorserviciopublico?valor1=${$('#servicio-01').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
-        if (j == null) return;
-        if (j.FACTOR_EMISION != null){
-            factor_emision_01 = parseFloat(j.FACTOR_EMISION.FACTOR);           
-        }
-        if (j.RENDIMIENTO != null){
-            rendimiento_01 = parseFloat(j.RENDIMIENTO.FACTOR);           
-        }
-        if (j.RENDIMIENTO_PASAJERO != null){
-            rendimiento_pasajero_01 = parseFloat(j.RENDIMIENTO_PASAJERO.FACTOR);           
-        }
-    });
-}
-
-var cambiarServicio02 = () => {
-    if ($('#servicio-02').val() == 0) { factor_emision_02 = 0; rendimiento_02 = 0; rendimiento_pasajero_02 = 0; }
-    let url = `${baseUrl}api/calculo/obtenervalorserviciopublico?valor1=${$('#servicio-02').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
-        if (j == null) return;
-        if (j.FACTOR_EMISION != null){
-            factor_emision_02 = parseFloat(j.FACTOR_EMISION.FACTOR);           
-        }
-        if (j.RENDIMIENTO != null){
-            rendimiento_02 = parseFloat(j.RENDIMIENTO.FACTOR);           
-        }
-        if (j.RENDIMIENTO_PASAJERO != null){
-            rendimiento_pasajero_02 = parseFloat(j.RENDIMIENTO_PASAJERO.FACTOR);           
-        }
-    });
-}
-
-var cambiarServicio03 = () => {
-    if ($('#servicio-03').val() == 0) { factor_emision_03 = 0; rendimiento_03 = 0; rendimiento_pasajero_03 = 0; }
-    let url = `${baseUrl}api/calculo/obtenervalorserviciopublico?valor1=${$('#servicio-03').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
-        if (j == null) return;
-        if (j.FACTOR_EMISION != null){
-            factor_emision_03 = parseFloat(j.FACTOR_EMISION.FACTOR);           
-        }
-        if (j.RENDIMIENTO != null){
-            rendimiento_03 = parseFloat(j.RENDIMIENTO.FACTOR);           
-        }
-        if (j.RENDIMIENTO_PASAJERO != null){
-            rendimiento_pasajero_03 = parseFloat(j.RENDIMIENTO_PASAJERO.FACTOR);           
-        }
-    });
-}
-
-var cambiarServicio04 = () => {
-    if ($('#servicio-04').val() == 0) { factor_emision_04 = 0; rendimiento_04 = 0; rendimiento_pasajero_04 = 0; }
-    let url = `${baseUrl}api/calculo/obtenervalorserviciopublico?valor1=${$('#servicio-04').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
-        if (j == null) return;
-        if (j.FACTOR_EMISION != null){
-            factor_emision_04 = parseFloat(j.FACTOR_EMISION.FACTOR);           
-        }
-        if (j.RENDIMIENTO != null){
-            rendimiento_04 = parseFloat(j.RENDIMIENTO.FACTOR);           
-        }
-        if (j.RENDIMIENTO_PASAJERO != null){
-            rendimiento_pasajero_04 = parseFloat(j.RENDIMIENTO_PASAJERO.FACTOR);           
+            precio_combustible_vc_g = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
         }
     });
 }
 
 //=======================================
 
+//end_points 8
 var cargarComponentes = () => {
     let urlConsultarTipoTransporte = `${baseUrl}api/tipotransporte/obteneralltipotransporte`;
     let urlConsultarTipoCombustible = `${baseUrl}api/tipocombustible/obteneralltipocombustible`;
@@ -971,6 +834,7 @@ var evaluar = () => {
         CAPACIDAD_BATERIA_VE: capacidad_bateria_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
     }
 
+    //end_points 7
     //Calculo
     let urlvc = `${baseUrl}api/calculo/calcularvehiculoconvencional`;
     let datavc = data_vc;
@@ -1024,505 +888,6 @@ var cargarVCVE = ([listaVC, listaVE, listaleyenda, listaVCCE, listaVECE, listaEM
     Lista_emision_ve = listaEMVE;
     cambiarAnio();
     grafico_costo();
-}
-
-var evaluar1 = () => {
-    //
-    if ($('#rad-e2-si').prop('checked')) {
-        let cuota_inicial = 0;
-        let costo_vehiculo = parseFloat($('#costo-veh-cvc').val());
-        let meses_uso = $('#meses-cvc').val();
-        let porc_aumento_comb = $('#porc-anual-combustible-cvc').val() / 100;
-        //Cuota inicial y carga financiera
-        if ($('#tipo-compra-cvc').val() ==  1){
-            let porc_cuota_inicial = parseFloat($('#cuota-inicial-cvc').val())/100;            
-            cuota_inicial = porc_cuota_inicial * costo_vehiculo;
-            let tasa_interes = parseFloat($('#tasa-interes-cvc').val())/100; 
-            let primera_carga = (costo_vehiculo - cuota_inicial) * (1 + tasa_interes)
-            let anio_credito = $('#anio-credito-cvc').val();
-            for (let i = 0; i < anio_credito; i++){
-                if (i == 0) arrCargaFinancieraVCNominal[i] = primera_carga / anio_credito;
-                else arrCargaFinancieraVCNominal[i] = (primera_carga / anio_credito) * (1 + ipcc)
-            }
-        } else if ($('#tipo-compra-cvc').val() ==  2) {
-            cuota_inicial = costo_vehiculo;
-        }
-        arrInversionInicialVCNominal[0] = cuota_inicial;
-
-        //Seguro
-        if ($('#rad-sv-si-cvc').prop('checked')) {
-            for (var i = 0; i < 15; i++) {
-                if (i == 0) arrSeguroVCNominal[i] = $('#seguro-cvc').val();
-                else arrSeguroVCNominal[i] = arrSeguroVCNominal[i-1] * (1 + ipcc);
-            }
-        }
-
-        //Energia (Electricidad y combustible)
-        if ($('#rad-gcs-si-cvc').prop('checked')){
-            let gasto_comb = $('#gasto-cvc').val();   
-            for (var i = 0; i < 15; i++) {
-                if (i == 0) arrEnergiaVCNominal[i] = gasto_comb * 4 * meses_uso;
-                else arrEnergiaVCNominal[i] = arrEnergiaVCNominal[i-1] * (1 + ipcc) * (1 + reduccion_eficiencia_motor) * (1 + porc_aumento_comb);
-            }
-        } else {
-            let precio_comb = $('#precio-combustible-cvc').val();
-            let km = $('#kilometro-sem-cvc').val();
-            let rendimiento = $('#rendimiento-cvc').val();
-            let km_anual = (km * 52) * (meses_uso / 12);
-            for (var i = 0; i < 15; i++) {
-                if (i == 0) arrEnergiaVCNominal[i] = (km_anual / rendimiento) * precio_comb;
-                else arrEnergiaVCNominal[i] = arrEnergiaVCNominal[i-1] * (1 + ipcc) * (1 + reduccion_eficiencia_motor) * (1 + porc_aumento_comb);
-            }
-        }
-
-        //Mantenimiento continuo
-        let mantenim_20km = costo_vehiculo * 0.0207533234859675; // 2.1%
-        let mantenim_100km = costo_vehiculo * 0.0444362383062531; // 4.44%
-        for (var i = 0; i < 15; i++) {
-            if (i == 0) arrManteContinuoVCNominal[i] = mantenim_20km;
-            else if (i == 1) arrManteContinuoVCNominal[i] = mantenim_100km;
-            else arrManteContinuoVCNominal[i] = arrManteContinuoVCNominal[i-1] * (1 + ipcc);
-        }
-
-        //Depreciacion vehiculo
-        for (var i = 0; i < 15; i++) {
-            if (i == 0) depreciacionVC[i] = costo_vehiculo;
-            else if (i == 1) depreciacionVC[i] = depreciacionVC[i-1]*0.8;
-            else if (i == 2 || i == 3) depreciacionVC[i] = depreciacionVC[i-1]*0.85;
-            else if (i == 4 || i == 5 || i == 6) depreciacionVC[i] = depreciacionVC[i-1]*0.9;
-            else if (i == 7 || i == 8 || i == 9 || i == 10) depreciacionVC[i] = depreciacionVC[i-1]*0.95;
-            else if (i == 11 || i == 12) depreciacionVC[i] = depreciacionVC[i-1]*0.97;
-            else if (i == 13 || i == 14) depreciacionVC[i] = depreciacionVC[i-1]*0.98;
-        }
-        arrReventaVCNominal[14] = depreciacionVC[14];
-
-        //Mantenimiento extraordinario
-        let mante_extraordinario = 1500;
-        for (var i = 7; i < 15; i++) {
-            if (i == 7) arrManteExtraoVCNominal[i] = mante_extraordinario;
-            else arrManteExtraoVCNominal[i] = arrManteExtraoVCNominal[i-1] * (1 + ipcc);
-        }
-
-        valoresPresenteNetoCuotaInicial(arrInversionInicialVCNominal);
-        valoresPresenteNetoCargaFinanciera(arrCargaFinancieraVCNominal);
-        valoresPresenteNetoSeguro(arrSeguroVCNominal);
-        valoresPresenteNetoEnergiaVC(arrEnergiaVCNominal);
-        valoresPresenteNetoManteContinuoVC(arrManteContinuoVCNominal);
-        valoresPresenteNetoReventaVC(arrReventaVCNominal);
-        valoresPresenteNetoManteExtraoVC(arrManteExtraoVCNominal);
-    }
-
-    //Transporte servicio publico
-    if ($('#rad-e3-si').prop('checked')){
-        let costo_general = 0;
-        if ($('#servicio-01').val() > 0){
-            let costo_mov = $('#costo-movilidad-01').val();
-            let mes_uso = $('#meses-01').val();
-            costo_general += costo_mov * mes_uso * 4;
-        }
-        if ($('#servicio-02').val() > 0){
-            let costo_mov = $('#costo-movilidad-02').val();
-            let mes_uso = $('#meses-02').val();
-            costo_general += costo_mov * mes_uso * 4;
-        }
-        if ($('#servicio-03').val() > 0){
-            let costo_mov = $('#costo-movilidad-03').val();
-            let mes_uso = $('#meses-03').val();
-            costo_general += costo_mov * mes_uso * 4;
-        }
-        if ($('#servicio-04').val() > 0){
-            let costo_mov = $('#costo-movilidad-04').val();
-            let mes_uso = $('#meses-04').val();
-            costo_general += costo_mov * mes_uso * 4;
-        }
-
-        for (var i = 0; i < 15; i++) {
-            if (i == 0) arrServicioPublicoVCNominal[i] = costo_general;
-            else arrServicioPublicoVCNominal[i] = arrServicioPublicoVCNominal[i-1] * (1 + ipcc);
-        }
-        valoresPresenteNetoServicioPublicoVC(arrServicioPublicoVCNominal);
-    }
-
-    //Vehiculo electrico
-    //Incentivo
-    let incentivo_unico = 0;
-    let costo_vehiculo_ve = parseFloat($('#costo-veh-ve').val());
-    if ($('#rad-inc-si-ve').prop('checked')){
-        if ($('#tipo-incentivo').val() == 1) { //anual
-            let horizonte = $('#horizonte').val();
-            let cuota_incentivo_anual = $('#cuota-inc-anual').val();
-            for (var i = 0; i < horizonte; i++) {
-                arrIncentivoVENominal[i] = cuota_incentivo_anual;
-            }
-            valoresPresenteNetoIncentivoVE(arrIncentivoVENominal);
-        } else if ($('#tipo-incentivo').val() == 2){ //unico
-            if ($('#forma-incentivo').val() == 1){ //porcentual
-                let porc_incentivo = $('#porcentaje-inc').val() / 100;
-                incentivo_unico = costo_vehiculo_ve * porc_incentivo;
-            } else if ($('#forma-incentivo').val() == 2) { //directo
-                incentivo_unico = $('#valor-inc-unico').val();
-            }
-        }
-    }
-
-    //Recambio bateria VE
-    arrRecambioVENominal[7] = costo_vehiculo_ve * 0.15;
-    valoresPresenteNetoRecambioVE(arrRecambioVENominal);
-
-    //Mantenimiento continuo VE
-    let mantenim_20km_ve = costo_vehiculo_ve * 0.0041067041067; // 0.4%
-    let mantenim_100km_ve = costo_vehiculo_ve * 0.0111618111618; // 1.12%
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrManteContinuoVENominal[i] = mantenim_20km_ve;
-        else if (i == 1) arrManteContinuoVENominal[i] = mantenim_100km_ve;
-        else arrManteContinuoVENominal[i] = arrManteContinuoVENominal[i-1] * (1 + ipcc);
-    }
-
-    //Depreciacion vehiculo VE
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) depreciacionVE[i] = costo_vehiculo_ve;
-        else if (i == 1) depreciacionVE[i] = depreciacionVE[i-1]*0.8;
-        else if (i == 2 || i == 3) depreciacionVE[i] = depreciacionVE[i-1]*0.85;
-        else if (i == 4 || i == 5 || i == 6) depreciacionVE[i] = depreciacionVE[i-1]*0.9;
-        else if (i == 7 || i == 8 || i == 9 || i == 10) depreciacionVE[i] = depreciacionVE[i-1]*0.95;
-        else if (i == 11 || i == 12) depreciacionVE[i] = depreciacionVE[i-1]*0.97;
-        else if (i == 13 || i == 14) depreciacionVE[i] = depreciacionVE[i-1]*0.98;
-    }
-    arrReventaVENominal[14] = depreciacionVE[14];
-
-    //Cuota inicial y carga financiera
-    let cuota_inicial_ve = 0;    
-    costo_vehiculo_ve -= incentivo_unico;
-    if ($('#tipo-compra-ve').val() ==  1) {
-        let porc_cuota_inicial = parseFloat($('#cuota-inicial-ve').val())/100;            
-        cuota_inicial_ve = porc_cuota_inicial * costo_vehiculo_ve;
-        let tasa_interes = parseFloat($('#tasa-interes-ve').val())/100; 
-        let primera_carga = (costo_vehiculo_ve - cuota_inicial_ve) * (1 + tasa_interes)
-        let anio_credito_ve = $('#anio-credito-ve').val();
-        for (let i = 0; i < anio_credito_ve; i++){
-            if (i == 0) arrCargaFinancieraVENominal[i] = primera_carga / anio_credito_ve;
-            else arrCargaFinancieraVENominal[i] = (primera_carga / anio_credito_ve) * (1 + ipcc)
-        }
-    } else if ($('#tipo-compra-ve').val() ==  2) {
-        cuota_inicial_ve = costo_vehiculo_ve;
-    }
-    arrInversionInicialVENominal[0] = cuota_inicial_ve;
-
-    //Seguro VE
-    if ($('#rad-sv-si-ve').prop('checked')){
-        for (var i = 0; i < 15; i++) {
-            if (i == 0) arrSeguroVENominal[i] = $('#seguro-ve').val();
-            else arrSeguroVENominal[i] = arrSeguroVENominal[i-1] * (1 + ipcc);
-        }
-        valoresPresenteNetoSeguroVE(arrSeguroVENominal);
-    }
-
-    //Energia VE (Electricidad y combustible)
-    let porc_anual_ve = $('#porc-aual-ve').val() / 100;
-    let km_semanal_ve = $('#kilometro-sem-ve').val();
-    let meses_ve = $('#meses-ve').val();
-    let km_anual_ve = (km_semanal_ve * 52) * (meses_ve / 12);
-    let rendimiento_ve = $('#rendimiento-ve').val();
-    let tarifa_ve = $('#tarifa-ve').val();
-    let energia_ve = (km_anual_ve / rendimiento_ve) * tarifa_ve;
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrEnergiaVENominal[i] = energia_ve;
-        else arrEnergiaVENominal[i] =arrEnergiaVENominal[i-1] * (1 + ipcc) * (1 + porc_anual_ve);
-    }
-    
-    //Equipo carga e instalacion
-    let precio_cargador = parseFloat($('#precio-cargador').val());
-    let costo_instalacion = parseFloat($('#costo-instalacion').val());
-    let carga_instalacion = precio_cargador + costo_instalacion;
-
-    valoresPresenteNetoEnergiaVE(arrEnergiaVENominal);
-    valoresPresenteNetoCuotaInicialVE(arrInversionInicialVENominal);
-    valoresPresenteNetoCargaFinancieraVE(arrCargaFinancieraVENominal);
-    valoresPresenteNetoManteContinuoVE(arrManteContinuoVENominal);
-    valoresPresenteNetoCargaInstalacionVE(carga_instalacion);
-    valoresPresenteNetoReventaVE(arrReventaVENominal);
-
-    cambiarAnio();
-}
-
-//cuota inicial
-var valoresPresenteNetoCuotaInicial = (arr) => {
-    arrInversionInicialVCNeto[0] = arr[0]/Math.pow(1+tasa_descuento, -1 + 1);
-    valoresAcumuladoCuotaInicial(arrInversionInicialVCNeto)
-}
-
-var valoresAcumuladoCuotaInicial = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrInversionInicialVCAcumulado[i] = arrNeto[i];
-        else arrInversionInicialVCAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrInversionInicialVCAcumulado[i-1] == undefined ? 0 : arrInversionInicialVCAcumulado[i-1]);
-    }
-}
-
-//Cuota inicial VE
-var valoresPresenteNetoCuotaInicialVE = (arr) => {
-    arrInversionInicialVENeto[0] = arr[0]/Math.pow(1+tasa_descuento, -1 + 1);
-    valoresAcumuladoCuotaInicialVE(arrInversionInicialVENeto)
-}
-
-var valoresAcumuladoCuotaInicialVE = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrInversionInicialVEAcumulado[i] = arrNeto[i];
-        else arrInversionInicialVEAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrInversionInicialVEAcumulado[i-1] == undefined ? 0 : arrInversionInicialVEAcumulado[i-1]);
-    }
-}
-
-//Incentivo VE
-var valoresPresenteNetoIncentivoVE = (arr) => {
-    for (var i = 0; i < 15; i++) {
-        arrIncentivoVENeto[i] = (arr[i] == undefined ? 0 : arr[i]) /Math.pow(1+tasa_descuento, -1 + (i+1));
-    }
-    valoresAcumuladoIncentivoVE(arrIncentivoVENeto)
-}
-
-var valoresAcumuladoIncentivoVE = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrIncentivoVEAcumulado[i] = arrNeto[i];
-        else arrIncentivoVEAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrIncentivoVEAcumulado[i-1] == undefined ? 0 : arrIncentivoVEAcumulado[i-1]);
-    }
-}
-
-//Recambio bateria
-var valoresPresenteNetoRecambioVE = (arr) => {
-    arrRecambioVENeto[7] = arr[7]/Math.pow(1+tasa_descuento, -1 + 8);
-    valoresAcumuladoRecambioVE(arrRecambioVENeto)
-}
-
-var valoresAcumuladoRecambioVE = (arrNeto) => {
-    for (var i = 7; i < 15; i++) {
-        if (i == 7) arrRecambioVEAcumulado[i] = arrNeto[i];
-        else arrRecambioVEAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrRecambioVEAcumulado[i-1] == undefined ? 0 : arrRecambioVEAcumulado[i-1]);
-    }
-}
-
-//carga financiera
-var valoresPresenteNetoCargaFinanciera = (arr) => {
-    let anio_credito = $('#anio-credito-cvc').val();
-    if ($('#tipo-compra-cvc').val() ==  1){
-        for (var i = 0; i < anio_credito; i++) {
-            arrCargaFinancieraVCNeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-        }
-    }   
-    valoresAcumuladoCargaFinanciera(arrCargaFinancieraVCNeto)
-}
-
-var valoresAcumuladoCargaFinanciera = (arrNeto) => {
-    if ($('#tipo-compra-cvc').val() ==  1){
-        for (var i = 0; i < 15; i++) {
-            if (i == 0) arrCargaFinancieraVCAcumulado[i] = arrNeto[i];
-            else arrCargaFinancieraVCAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrCargaFinancieraVCAcumulado[i-1] == undefined ? 0 : arrCargaFinancieraVCAcumulado[i-1]);
-        }
-    }    
-}
-
-//carga financiera VE
-var valoresPresenteNetoCargaFinancieraVE = (arr) => {
-    let anio_credito = $('#anio-credito-ve').val();
-    if ($('#tipo-compra-ve').val() ==  1){
-        for (var i = 0; i < anio_credito; i++) {
-            arrCargaFinancieraVENeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-        }
-    }   
-    valoresAcumuladoCargaFinancieraVE(arrCargaFinancieraVENeto)
-}
-
-var valoresAcumuladoCargaFinancieraVE = (arrNeto) => {
-    if ($('#tipo-compra-ve').val() ==  1){
-        for (var i = 0; i < 15; i++) {
-            if (i == 0) arrCargaFinancieraVEAcumulado[i] = arrNeto[i];
-            else arrCargaFinancieraVEAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrCargaFinancieraVEAcumulado[i-1] == undefined ? 0 : arrCargaFinancieraVEAcumulado[i-1]);
-        }
-    }    
-}
-
-//Seguro
-var valoresPresenteNetoSeguro = (arr) => {
-    if ($('#rad-sv-si-cvc').prop('checked')){
-        for (var i = 0; i < 15; i++) {
-            arrSeguroVCNeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-        }
-    }
-    valoresAcumuladoSeguro(arrSeguroVCNeto)
-}
-
-var valoresAcumuladoSeguro = (arrNeto) => {
-    if ($('#rad-sv-si-cvc').prop('checked')){ 
-        for (var i = 0; i < 15; i++) {
-            if (i == 0) arrSeguroVCAcumulado[i] = arrNeto[i];
-            else arrSeguroVCAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrSeguroVCAcumulado[i-1] == undefined ? 0 : arrSeguroVCAcumulado[i-1]);
-        }
-    }    
-}
-
-//Seguro VE
-var valoresPresenteNetoSeguroVE = (arr) => {
-    for (var i = 0; i < 15; i++) {
-        arrSeguroVENeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-    }
-    valoresAcumuladoSeguroVE(arrSeguroVENeto)
-}
-
-var valoresAcumuladoSeguroVE = (arrNeto) => {
-    if ($('#rad-sv-si-cvc').prop('checked')){ 
-        for (var i = 0; i < 15; i++) {
-            if (i == 0) arrSeguroVEAcumulado[i] = arrNeto[i];
-            else arrSeguroVEAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrSeguroVEAcumulado[i-1] == undefined ? 0 : arrSeguroVEAcumulado[i-1]);
-        }
-    }    
-}
-
-//Energia
-var valoresPresenteNetoEnergiaVC = (arr) => {
-    for (var i = 0; i < 15; i++) {
-        arrEnergiaVCNeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-    }
-    valoresAcumuladoEnergia(arrEnergiaVCNeto)
-}
-
-var valoresAcumuladoEnergia = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrEnergiaVCAcumulado[i] = arrNeto[i];
-        else arrEnergiaVCAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrEnergiaVCAcumulado[i-1] == undefined ? 0 : arrEnergiaVCAcumulado[i-1]);
-    }   
-}
-
-//Energia VE
-var valoresPresenteNetoEnergiaVE = (arr) => {
-    for (var i = 0; i < 15; i++) {
-        arrEnergiaVENeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-    }
-    valoresAcumuladoEnergiaVE(arrEnergiaVENeto)
-}
-
-var valoresAcumuladoEnergiaVE = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrEnergiaVEAcumulado[i] = arrNeto[i];
-        else arrEnergiaVEAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrEnergiaVEAcumulado[i-1] == undefined ? 0 : arrEnergiaVEAcumulado[i-1]);
-    }   
-}
-
-//Mantenimiento Continuo
-var valoresPresenteNetoManteContinuoVC = (arr) => {
-    for (var i = 0; i < 15; i++) {
-        arrManteContinuoVCNeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-    }
-    valoresAcumuladoManteContinuo(arrManteContinuoVCNeto)
-}
-
-var valoresAcumuladoManteContinuo = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrManteContinuoVCAcumulado[i] = arrNeto[i];
-        else arrManteContinuoVCAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrManteContinuoVCAcumulado[i-1] == undefined ? 0 : arrManteContinuoVCAcumulado[i-1]);
-    }   
-}
-
-//Mantenimiento Continuo VE
-var valoresPresenteNetoManteContinuoVE = (arr) => {
-    for (var i = 0; i < 15; i++) {
-        arrManteContinuoVENeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-    }
-    valoresAcumuladoManteContinuoVE(arrManteContinuoVENeto)
-}
-
-var valoresAcumuladoManteContinuoVE = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrManteContinuoVEAcumulado[i] = arrNeto[i];
-        else arrManteContinuoVEAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrManteContinuoVEAcumulado[i-1] == undefined ? 0 : arrManteContinuoVEAcumulado[i-1]);
-    }   
-}
-
-//Carga e instalacion
-var valoresPresenteNetoCargaInstalacionVE = (carga_instalacion) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrCargaInstalacionVEAcumulado[i] = carga_instalacion;
-        else arrCargaInstalacionVEAcumulado[i] = 0 + (arrCargaInstalacionVEAcumulado[i-1] == undefined ? 0 : arrCargaInstalacionVEAcumulado[i-1]);
-    }
-}
-
-//Reventa
-var valoresPresenteNetoReventaVC = (arr) => {
-    arrReventaVCNeto[14] = arr[14]/Math.pow(1+tasa_descuento, -1 + 15);
-    valoresAcumuladoReventa(arrReventaVCNeto)
-}
-
-var valoresAcumuladoReventa = (arrNeto) => {
-    arrReventaVCAcumulado[14] = arrNeto[14];
-}
-
-//Reventa VE
-var valoresPresenteNetoReventaVE = (arr) => {
-    arrReventaVENeto[14] = arr[14]/Math.pow(1+tasa_descuento, -1 + 15);
-    valoresAcumuladoReventaVE(arrReventaVENeto)
-}
-
-var valoresAcumuladoReventaVE = (arrNeto) => {
-    arrReventaVEAcumulado[14] = arrNeto[14];
-}
-
-//Mantenimiento Extraordinario
-var valoresPresenteNetoManteExtraoVC = (arr) => {
-    for (var i = 7; i < 15; i++) {
-        arrManteExtraoVCNeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-    }
-    valoresAcumuladoManteExtrao(arrManteExtraoVCNeto)
-}
-
-var valoresAcumuladoManteExtrao = (arrNeto) => {
-    for (var i = 7; i < 15; i++) {
-        if (i == 7) arrManteExtraoVCAcumulado[i] = arrNeto[i];
-        else arrManteExtraoVCAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrManteExtraoVCAcumulado[i-1] == undefined ? 0 : arrManteExtraoVCAcumulado[i-1]);
-    }   
-}
-
-//Transporte Servicio publico
-var valoresPresenteNetoServicioPublicoVC = (arr) => {
-    for (var i = 0; i < 15; i++) {
-        arrServicioPublicoVCNeto[i] = arr[i]/Math.pow(1+tasa_descuento, -1 + (i+1));
-    }
-    valoresAcumuladoServicioPublico(arrServicioPublicoVCNeto)
-}
-
-var valoresAcumuladoServicioPublico = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrServicioPublicoVCAcumulado[i] = arrNeto[i];
-        else arrServicioPublicoVCAcumulado[i] = (arrNeto[i] == undefined ? 0 : arrNeto[i]) + (arrServicioPublicoVCAcumulado[i-1] == undefined ? 0 : arrServicioPublicoVCAcumulado[i-1]);
-    }
-}
-
-//===============
-var valores = (arrNeto) => {
-    for (var i = 0; i < 15; i++) {
-        if (i == 0) arrInversionInicialVCAcumulado[i] = arrNeto[i];
-        else arrInversionInicialVCAcumulado[i] = arrNeto[i] + arrNeto[i-1];
-    }
-}
-
-var cambiarAnio1 = () => {
-    let anio = $('#anio_evaluacion').val() - 1;
-    //vehiculo convencional
-    $('#eva-cuota-inicial-vc').html(arrInversionInicialVCAcumulado[anio] == null || arrInversionInicialVCAcumulado[anio] == "" || arrInversionInicialVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrInversionInicialVCAcumulado[anio]));
-    $('#eva-carga-financiera-vc').html(arrCargaFinancieraVCAcumulado[anio] == null || arrCargaFinancieraVCAcumulado[anio] == "" || arrCargaFinancieraVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrCargaFinancieraVCAcumulado[anio]));
-    $('#eva-seguro-vc').html(arrSeguroVCAcumulado[anio] == null || arrSeguroVCAcumulado[anio] == "" || arrSeguroVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrSeguroVCAcumulado[anio]));
-    $('#eva-energia-vc').html(arrEnergiaVCAcumulado[anio] == null || arrEnergiaVCAcumulado[anio] == "" || arrEnergiaVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrEnergiaVCAcumulado[anio]));
-    $('#eva-mante-continuo-vc').html(arrManteContinuoVCAcumulado[anio] == null || arrManteContinuoVCAcumulado[anio] == "" || arrManteContinuoVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrManteContinuoVCAcumulado[anio]));
-    $('#eva-reventa-vc').html(arrReventaVCAcumulado[anio] == null || arrReventaVCAcumulado[anio] == "" || arrReventaVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrReventaVCAcumulado[anio]));
-    $('#eva-mante-extraordinario-vc').html(arrManteExtraoVCAcumulado[anio] == null || arrManteExtraoVCAcumulado[anio] == "" || arrManteExtraoVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrManteExtraoVCAcumulado[anio]));
-    $('#eva-transporte-vc').html(arrServicioPublicoVCAcumulado[anio] == null || arrServicioPublicoVCAcumulado[anio] == "" || arrServicioPublicoVCAcumulado[anio] == undefined ? 0 : formatoMiles(arrServicioPublicoVCAcumulado[anio]));
-
-    //vehiculo electrico
-    $('#eva-cuota-inicial-ve').html(arrInversionInicialVEAcumulado[anio] == null || arrInversionInicialVEAcumulado[anio] == "" || arrInversionInicialVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrInversionInicialVEAcumulado[anio]));
-    $('#eva-carga-financiera-ve').html(arrCargaFinancieraVEAcumulado[anio] == null || arrCargaFinancieraVEAcumulado[anio] == "" || arrCargaFinancieraVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrCargaFinancieraVEAcumulado[anio]));
-    $('#eva-incentivo-ve').html(arrIncentivoVEAcumulado[anio] == null || arrIncentivoVEAcumulado[anio] == "" || arrIncentivoVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrIncentivoVEAcumulado[anio]));
-    $('#eva-seguro-ve').html(arrSeguroVEAcumulado[anio] == null || arrSeguroVEAcumulado[anio] == "" || arrSeguroVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrSeguroVEAcumulado[anio]));
-    $('#eva-recambio-ve').html(arrRecambioVEAcumulado[anio] == null || arrRecambioVEAcumulado[anio] == "" || arrRecambioVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrRecambioVEAcumulado[anio]));
-    $('#eva-energia-ve').html(arrEnergiaVEAcumulado[anio] == null || arrEnergiaVEAcumulado[anio] == "" || arrEnergiaVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrEnergiaVEAcumulado[anio]));
-    $('#eva-mante-continuo-ve').html(arrManteContinuoVEAcumulado[anio] == null || arrManteContinuoVEAcumulado[anio] == "" || arrManteContinuoVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrManteContinuoVEAcumulado[anio]));
-    $('#eva-carga-instalacion-ve').html(arrCargaInstalacionVEAcumulado[anio] == null || arrCargaInstalacionVEAcumulado[anio] == "" || arrCargaInstalacionVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrCargaInstalacionVEAcumulado[anio]));
-    $('#eva-reventa-ve').html(arrReventaVEAcumulado[anio] == null || arrReventaVEAcumulado[anio] == "" || arrReventaVEAcumulado[anio] == undefined ? 0 : formatoMiles(arrReventaVEAcumulado[anio]));
 }
 
 var cambiarAnio = () => {

@@ -138,16 +138,5 @@ namespace sres.app.Controllers.Api
             lista = elecLN.CalcularEmisionesVE(entidad);
             return lista;
         }
-
-        [Route("obtenervalorserviciopublico")]
-        [HttpGet]
-        public ElectromovilidadBE ValoresServicioPublico(int valor1)
-        {
-            ElectromovilidadBE obj = new ElectromovilidadBE();
-            obj.FACTOR_EMISION = elecLN.ListaFactor1P(14, 8, valor1);
-            obj.RENDIMIENTO = elecLN.ListaFactor1P(15, 8, valor1);
-            obj.RENDIMIENTO_PASAJERO = elecLN.ListaFactor1P(16, 8, valor1);
-            return obj;
-        }
     }
 }
