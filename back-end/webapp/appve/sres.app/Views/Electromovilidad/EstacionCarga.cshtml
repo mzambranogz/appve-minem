@@ -68,8 +68,8 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <label>Fotos (0 de 5):</label>
-                <div><input type="file" id="file-foto" class="form-control" multiple="multiple" /></div>
+                <label>Fotos (<span id="cantidad-foto">0</span> de 5):</label>
+                <div><input type="file" id="file-foto" class="form-control" multiple="multiple" accept="image/*" /></div>
             </div>
         </div>
         <div class="row">
@@ -140,7 +140,7 @@
                     <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
                         <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-protocolo" placeholder="Subir documentos" required>
-                        <input class="d-none fil-file-control" type="file" id="fle-protocolo" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                        <input class="d-none fil-file-control" type="file" id="fle-protocolo" accept="application/msword, application/pdf">
                         <div class="input-group-append">
                             <label class="input-group-text cursor-pointer estilo-01" for="fle-protocolo"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
                         </div>
@@ -162,7 +162,7 @@
                     <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
                         <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-certificado" placeholder="Subir documentos" required>
-                        <input class="d-none fil-file-control" type="file" id="fle-certificado" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                        <input class="d-none fil-file-control" type="file" id="fle-certificado" accept="application/msword, application/pdf">
                         <div class="input-group-append">
                             <label class="input-group-text cursor-pointer estilo-01" for="fle-certificado"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
                         </div>
@@ -179,5 +179,9 @@
     </div>
     <div class="row">
         <button class="btn btn-primary" id="btnGuardar" >Guardar</button>
+    </div>
+    <div class="row">
+        <div class="col-12 alert-add">
+        </div>
     </div>
 </div>

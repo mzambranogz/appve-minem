@@ -13,10 +13,12 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/estacioncarga")]
     public class EstacionCargaController : ApiController
     {
+        EstacionCargaLN estacionLN = new EstacionCargaLN();
         [Route("guardarestacion")]
         [HttpPost]
-        public EstacionCargaBE GuardarEstacion(EstacionCargaBE entidad) {
-            return entidad;
+        public bool GuardarEstacion(EstacionCargaBE entidad) {
+            bool v = estacionLN.GuardarEstacionCarga(entidad);
+            return v;
         }
     }
 }
