@@ -13,10 +13,10 @@ namespace sres.be
         public string P3 { get; set; }
         public decimal COSTO_VEHICULO_VC { get; set; }
         public int MESES_USO_VC { get; set; }
-        public int PORC_AUMENTO_COMBUSTIBLE_VC { get; set; }
+        public decimal PORC_AUMENTO_COMBUSTIBLE_VC { get; set; }
         public int TIPO_COMPRA_VC { get; set; }
-        public int PORC_CUOTA_INICIAL_VC { get; set; }
-        public int TASA_INTERES_VC { get; set; }
+        public decimal PORC_CUOTA_INICIAL_VC { get; set; }
+        public decimal TASA_INTERES_VC { get; set; }
         public int ANIO_CREDITO_VC { get; set; }
         public string P_SEGURO_VC { get; set; }
         public decimal SEGURO_VC { get; set; }
@@ -25,6 +25,7 @@ namespace sres.be
         public decimal PRECIO_COMBUSTIBLE_VC { get; set; }
         public decimal KILOMETRO_SEMANAL_VC { get; set; }
         public decimal RENDIMIENTO_VC { get; set; }
+        public decimal MANTENIMIENTO_VC { get; set; }
         public List<ServicioPublicoBE> LISTA_SERVICIO_PUBLICO { get; set; }
     }
 }

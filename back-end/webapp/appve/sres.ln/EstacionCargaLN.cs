@@ -16,7 +16,7 @@ namespace sres.ln
     {
         EstacionCargaDA estacionDa = new EstacionCargaDA();
 
-        public EstacionCargaBE GuardarCriterioCaso(EstacionCargaBE item)
+        public bool GuardarEstacionCarga(EstacionCargaBE item)
         {
             try
             {
@@ -26,11 +26,13 @@ namespace sres.ln
                     bool seGuardo = true;
                     int idinstitucion = -1;
                     int idestacion = -1;
-                    if (item.INSTITUCION.ID_INSTITUCION < 0) seGuardo = estacionDa.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
-                    if (seGuardo)
-                    {
-                        seGuardo = estacionDa.RegistrarEstacion(item, out idestacion, cn);
+                    if (item.INSTITUCION.ID_INSTITUCION < 0) {
+                        seGuardo = estacionDa.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
                         item.INSTITUCION.ID_INSTITUCION = idinstitucion;
+                    }
+                    if (seGuardo)
+                    {                        
+                        seGuardo = estacionDa.RegistrarEstacion(item, out idestacion, cn);
                         item.ID_ESTACION = idestacion;
                         if (item.LISTA_DOC != null)
                         {
@@ -38,10 +40,11 @@ namespace sres.ln
                             {
                                 if (seGuardo)
                                 {
+                                    iDoc.ID_ESTACION = idestacion;
                                     if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
                                     {
                                         string pathFormat = AppSettings.Get<string>("Path.Archivo.Documento");
-                                        string pathDirectoryRelative = string.Format(pathFormat, item.INSTITUCION.ID_INSTITUCION, item.ID_ESTACION, iDoc.ID_DOCUMENTO);
+                                        string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
                                         string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
                                         string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
                                         if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
@@ -59,16 +62,18 @@ namespace sres.ln
                             {
                                 if (seGuardo)
                                 {
+                                    iDoc.ID_ESTACION = idestacion;
+                                    if (!(seGuardo = estacionDa.DeshabilitarImagen(idestacion, cn))) break;
                                     if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
                                     {
                                         string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
-                                        string pathDirectoryRelative = string.Format(pathFormat, item.INSTITUCION.ID_INSTITUCION, item.ID_ESTACION, iDoc.ID_DOCUMENTO);
+                                        string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
                                         string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
                                         string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
                                         if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
                                         File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
                                     }
-                                    seGuardo = estacionDa.GuardarDocumento(iDoc, cn);
+                                    seGuardo = estacionDa.GuardarImagen(iDoc, cn);
                                 }
                                 else break;
                             }
@@ -82,7 +87,30 @@ namespace sres.ln
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
-            return item;
+            return item.OK;
+        }
+
+        public List<EstacionCargaBE> getAllEstacion()
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                cn.Open();
+                lista = estacionDa.getAllEstacion(cn);
+                foreach (EstacionCargaBE item in lista)
+                {
+                    item.LISTA_DOC = estacionDa.getAllEstacionDocumento(item, cn);
+                    item.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(item, cn);
+                    item.CANTIDAD_IMAGEN = item.LISTA_IMAGEN.Count;
+                    string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                    string pathDirectoryRelative = string.Format(pathFormat, item.ID_USUARIO, item.ID_ESTACION);
+                    foreach (DocumentoBE img in item.LISTA_IMAGEN)                                           
+                        img.RUTA = pathDirectoryRelative + "\\"+ img.ARCHIVO_BASE;
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

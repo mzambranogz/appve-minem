@@ -1,0 +1,5 @@
+16/02/2021 20:42:26: [Método: sres.be.FactorDataBE CalcularVC(sres.be.VehiculoConvencionalBE), Línea: 115] - Referencia a objeto no establecida como instancia de un objeto.
+16/02/2021 20:50:38: [Método: sres.be.FactorDataBE CalcularVC(sres.be.VehiculoConvencionalBE), Línea: 115] - Referencia a objeto no establecida como instancia de un objeto.
+16/02/2021 20:52:29: [Método: sres.be.FactorDataBE CalcularVC(sres.be.VehiculoConvencionalBE), Línea: 115] - Referencia a objeto no establecida como instancia de un objeto.
+16/02/2021 22:22:28: [Método: System.Collections.Generic.List`1[sres.be.EscenarioConvencionalBE] CalcularVC(sres.be.VehiculoConvencionalBE), Línea: 115] - Referencia a objeto no establecida como instancia de un objeto.
+16/02/2021 22:25:56: [Método: System.Collections.Generic.List`1[sres.be.EscenarioConvencionalBE] CalcularVC(sres.be.VehiculoConvencionalBE), Línea: 115] - Referencia a objeto no establecida como instancia de un objeto.

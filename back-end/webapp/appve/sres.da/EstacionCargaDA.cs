@@ -51,6 +51,7 @@ namespace sres.da
                 string sp = $"{Package.Calculo}USP_PRC_GUARDAR_ESTACION";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_ESTACION", entidad.ID_ESTACION);
+                p.Add("PI_ID_USUARIO", entidad.ID_USUARIO);
                 p.Add("PI_DESCRIPCION", entidad.DESCRIPCION);
                 p.Add("PI_MODELO", entidad.MODELO);
                 p.Add("PI_MARCA", entidad.MARCA);
@@ -62,6 +63,7 @@ namespace sres.da
                 p.Add("PI_HORA_DESDE", entidad.HORA_DESDE);
                 p.Add("PI_HORA_HASTA", entidad.HORA_HASTA);
                 p.Add("PI_TARIFA_SERVICIO", entidad.TARIFA_SERVICIO);
+                p.Add("PI_ID_ESTADO", entidad.ID_ESTADO);
                 p.Add("PI_UPD_USUARIO", entidad.UPD_USUARIO);
                 p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
@@ -86,14 +88,30 @@ namespace sres.da
                 string sp = $"{Package.Calculo}USP_PRC_MAN_DOCUMENTO_DATA";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
+                p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
                 p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
-                p.Add("PI_USUARIO_GUARDAR", inscripcionDoc.UPD_USUARIO);
+                p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
                 int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
                 seGuardo = filasAfectadas > 0;
             }
             catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
+        public bool DeshabilitarImagen(int id_estacion, OracleConnection db)
+        {
+            bool seGuardo = true;
+            try
+            {
+                string sp = $"{Package.Calculo}USP_DEL_DOCUMENTO_IMG";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", id_estacion);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); seGuardo = false; }
 
             return seGuardo;
         }
@@ -106,8 +124,10 @@ namespace sres.da
                 string sp = $"{Package.Calculo}USP_PRC_MAN_DOCUMENTO_IMG";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
+                p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
                 p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
-                p.Add("PI_USUARIO_GUARDAR", inscripcionDoc.UPD_USUARIO);
+                p.Add("PI_FLAG_ESTADO", inscripcionDoc.FLAG_ESTADO);
+                p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
                 int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
@@ -116,6 +136,62 @@ namespace sres.da
             catch (Exception ex) { Log.Error(ex); }
 
             return seGuardo;
+        }
+
+        public List<EstacionCargaBE> getAllEstacion(OracleConnection db)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ALL_ESTACION";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<DocumentoBE> getAllEstacionDocumento(EstacionCargaBE item, OracleConnection db)
+        {
+            List<DocumentoBE> lista = new List<DocumentoBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ALL_DOCUMENTO";                
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", item.ID_ESTACION);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<DocumentoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<DocumentoBE> getAllEstacionImagen(EstacionCargaBE item, OracleConnection db)
+        {
+            List<DocumentoBE> lista = new List<DocumentoBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ALL_IMAGEN";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", item.ID_ESTACION);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<DocumentoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
         }
     }
 }

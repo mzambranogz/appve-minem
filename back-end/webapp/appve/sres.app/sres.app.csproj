@@ -352,6 +352,7 @@
     <Content Include="Assets\js\pages\electromovilidad_calculo.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacioncarga.js" />
     <Content Include="Assets\js\pages\electromovilidad_menu_estacioncarga.js" />
+    <Content Include="Assets\js\pages\electromovilidad_menu_principal.js" />
     <Content Include="Assets\js\pages\electromovilidad_usuariocomprarevaluacion.js" />
     <Content Include="Assets\js\pages\electromovilidad_usuariotransportepublico.js" />
     <Content Include="Assets\js\pages\electromovilidad_usuariovehiculoconvencional.js" />
