@@ -16,5 +16,6 @@ namespace sres.be
         public FactorDataBE PRECIO_CARGADOR { get; set; }
         public FactorDataBE COSTO_INSTALACION { get; set; }
         public FactorDataBE TARIFA_ELECTRICIDAD { get; set; }
+        public FactorDataBE RENDIMIENTO_PASAJERO { get; set; }
     }
 }

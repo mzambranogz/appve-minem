@@ -14,7 +14,7 @@ var fileDocChange = (e) => {
 
     switch (fileContent.name.substring(fileContent.name.lastIndexOf('.') + 1).toLowerCase()) {
         //case 'pdf': case 'jpg': case 'jpeg': case 'png': case 'doc': case 'docx': case 'xls': case 'xlsx': case 'xlsm': break;
-        case 'pdf': break;
+        case 'pdf': case 'docx': case 'doc': break;
         default: $(elFile).parent().parent().parent().parent().alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo tiene una extensión no permitida` }); return false; break;
     }
 
@@ -51,16 +51,24 @@ var btnEliminarFileClick = () => {
 var storedFiles = [];
 var fileImagen = (e) => {
     storedFiles = [];
-    var files = e.target.files; // FileList object
-    
-    var extension = "fa-file-word";
-    for (var i = 0, f; f = files[i]; i++) {      
-        
+    let obj_file = $(`#${e.target.id}`);
+    $(obj_file).parent().alert('remove');    
+    let files = e.target.files; // FileList object
+    let cantidad = files.length;
+    if (cantidad > 5) {
+        obj_file.val("");
+        storedFiles = [];
+        $('#cantidad-foto').html(0);
+        $(obj_file).parent().alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `Solo está permitido subir 5 fotos` });
+        return false;
+    }
+    //var extension = "fa-file-word";
+    for (var i = 0, f; f = files[i]; i++) {
         if (f.size > 4194304) {
-            $(this).val("");
+            obj_file.val("");
             storedFiles = [];
-            //$("#total-documentos").html($("#total-documentos").data("cantidad"));
-            //MRV.Alert("Alerta", "Archivo que esta subiendo pesa más de 4 MB", "", "es")
+            $('#cantidad-foto').html(0);
+            $(obj_file).parent().alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `Las fotos deben tener un peso menor a 4 MB` });
             return false;
         }
 
@@ -68,10 +76,10 @@ var fileImagen = (e) => {
             case 'jpg': case 'jpeg': case 'png':
                 break;
             default:
-                $(this).val('');                
+                obj_file.val('');
                 storedFiles = [];
-                //$("#total-documentos").html($("#total-documentos").data("cantidad"));
-                //MRV.Alert('Alerta', "formato de archivo no válido", '', 'es');
+                $('#cantidad-foto').html(0);
+                $(obj_file).parent().alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `formato de archivo no válido` });
                 return false;
                 break;
         }
@@ -80,10 +88,11 @@ var fileImagen = (e) => {
         let reader = new FileReader();
         reader.onload = function (e) {
             let base64 = e.currentTarget.result.split(',')[1];
-            storedFiles.push({ ID_DOCUMENTO: storedFiles.length + 1, ARCHIVO_BASE: name, ARCHIVO_CONTENIDO: base64 });
+            storedFiles.push({ ID_DOCUMENTO: storedFiles.length + 1, ARCHIVO_BASE: name, ARCHIVO_CONTENIDO: base64, FLAG_ESTADO: '1', UPD_USUARIO: idUsuarioLogin, });
         }
         reader.readAsDataURL(e.currentTarget.files[i]);
     }
+    $('#cantidad-foto').html(cantidad);
 }
 
 var guardar = () => {
@@ -95,14 +104,15 @@ var guardar = () => {
     let telefono = $('#txt-telefono').val();
     let direccion = $('#txt-direccion').val();
 
-    arrEmpresa.push({
-        ID_INSTITUCION: 0,
+    arrEmpresa = {
+        ID_INSTITUCION: -1,
         RUC: ruc,
         RAZON_SOCIAL: razon_social,
         CORREO: correo,
         TELEFONO: telefono,
         DIRECCION: direccion,
-    });
+        UPD_USUARIO: idUsuarioLogin,
+    };
 
     let descripcion = $('#txt-descripcion').val();
     let modelo = $('#txt-modelo').val();
@@ -118,20 +128,19 @@ var guardar = () => {
 
     arrDoc.push({ ID_DOCUMENTO: 1, ARCHIVO_BASE: $('#txt-protocolo').val(), ARCHIVO_CONTENIDO: $('#fle-protocolo').data('file') });
     arrDoc.push({ ID_DOCUMENTO: 2, ARCHIVO_BASE: $('#txt-certificado').val(), ARCHIVO_CONTENIDO: $('#fle-certificado').data('file') });
-    debugger;
+    
     let url = `${baseUrl}api/estacioncarga/guardarestacion`;
     let data = { ID_ESTACION: -1, INSTITUCION: arrEmpresa, DESCRIPCION: descripcion, MODELO: modelo, MARCA: marca, POTENCIA: potencia, MODO_CARGA: modo_carga, 
                  TIPO_CARGADOR: tipo_cargador, TIPO_CONECTOR: tipo_conector, CANTIDAD_CONECTOR: cantidad, HORA_DESDE: hora_desde, HORA_HASTA: hora_hasta, TARIFA_SERVICIO: tarifa,
-                 LISTA_IMAGEN: storedFiles, LISTA_DOC: arrDoc, USUARIO_GUARDAR: idUsuarioLogin
+                 ID_USUARIO: idUsuarioLogin, ID_ESTADO: 1, LISTA_IMAGEN: storedFiles, LISTA_DOC: arrDoc, UPD_USUARIO: idUsuarioLogin,
     };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
         if (j != null) {
-            $.each(j.LISTA_PARAM, (x, y) => {
-                mostrarResultado(y.PARAMETROS, x + 1);
-            });
+            j ? $('#btnGuardar').parent().hide() : '';
+            j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se registró su estación de carga exitosamente.', close: { time: 4000 }, url: `${baseUrl}Electromovilidad/menu-estacion-carga` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
         }
     });
 }

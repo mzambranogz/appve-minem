@@ -107,6 +107,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
+    <Compile Include="Controllers\TipoTransporteApiController.cs" />
+    <Compile Include="Controllers\TipoVehiculoConvencionalApiController.cs" />
+    <Compile Include="Controllers\TipoVehiculoElectricoApiController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\TokenGenerator.cs" />
     <Compile Include="Controllers\TokenValidationHandler.cs" />

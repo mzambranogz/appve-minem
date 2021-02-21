@@ -42,6 +42,10 @@
   <ItemGroup>
     <Compile Include="BaseBE.cs" />
     <Compile Include="RolBE.cs" />
+    <Compile Include="TipoCargadorBE.cs" />
+    <Compile Include="TipoTransporteBE.cs" />
+    <Compile Include="TipoVehiculoConvencionalBE.cs" />
+    <Compile Include="TipoVehiculoElectricoBE.cs" />
     <Compile Include="UsuarioAuxBE.cs" />
     <Compile Include="UsuarioBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
