@@ -16,7 +16,7 @@ namespace WebApiElectroMovilidad.Controllers
         RolLN rolLN = new RolLN();
 
         [HttpPost]
-        [Route("agregar")]
+        [Route("insert")]
         public IHttpActionResult AgregarUsuario(UsuarioBE entidad)
         {
             bool guardoUsuario = false;
@@ -33,7 +33,7 @@ namespace WebApiElectroMovilidad.Controllers
         }
 
         [HttpGet]
-        [Route("leer")]
+        [Route("GetByFilter")]
         public UsuarioBE LeerUsuario(int idUsuario)
         {
             UsuarioBE entidad = null;

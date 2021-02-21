@@ -319,6 +319,30 @@ namespace Datos.minem.gob.pe
 
             return verificacion;
         }
+
+        public bool ResetClave( string correo, string contrasena, OracleConnection db)
+        {
+            bool seReseteo = false;
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_RESET_USUARIO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_CORREO", correo);
+                p.Add("PI_CONTRASENA", contrasena);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int cantidad = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seReseteo = cantidad > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return seReseteo;
+        }
+
         #endregion
 
 

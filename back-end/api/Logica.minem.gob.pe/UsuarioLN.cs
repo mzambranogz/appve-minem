@@ -253,6 +253,22 @@ namespace Logica.minem.gob.pe
             return valor;
         }
 
+        public bool ResetClave(string correo)
+        {
+            bool valor = false;
+            string contrasenaClaro = "";
+            string contrasenaEncryptada = "";
+            try
+            {
+                cn.Open();
+                contrasenaClaro = Seguridad.GenerarPassword(8);
+                contrasenaEncryptada = string.IsNullOrEmpty(contrasenaClaro) ? null : Seguridad.hashSal(contrasenaClaro);
+                valor = usuarioDA.ResetClave(correo, contrasenaEncryptada, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return valor;
+        }
 
     }
 }

@@ -16,6 +16,8 @@ namespace WebApiElectroMovilidad.Controllers
     [RoutePrefix("api/login")]
     public class LoginApiController : ApiController
     {
+        UsuarioLN usuarioLN = new UsuarioLN();
+
         [HttpGet]
         [Route("echoping")]
         public IHttpActionResult EchoPing()
@@ -36,7 +38,6 @@ namespace WebApiElectroMovilidad.Controllers
         public IHttpActionResult Authenticate(LoginRequest login)
         {
             UsuarioBE usuario = null;
-            Dictionary<string, object> response = new Dictionary<string, object> { ["success"] = false, ["message"] = "" };
 
             if (login == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -59,6 +60,26 @@ namespace WebApiElectroMovilidad.Controllers
 
         }
 
+        [HttpPut]
+        [Route("reset")]
+        public IHttpActionResult RecuperarClave(LoginRequest login)
+        {
+            if (login == null)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            bool guardoReset = false;
+
+            guardoReset = usuarioLN.ResetClave(login.Username);
+            if (guardoReset)
+            {
+                return Ok(guardoReset);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
 
         //[HttpPost]
         //[Route("authenticate")]

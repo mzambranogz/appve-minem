@@ -13,7 +13,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/30/2019 17:21:38</publishTime>
     </File>
     <File Include="bin/Datos.minem.gob.pe.dll">
-      <publishTime>02/16/2021 14:32:14</publishTime>
+      <publishTime>02/19/2021 18:18:14</publishTime>
     </File>
     <File Include="bin/Entidad.minem.gob.pe.dll">
       <publishTime>02/16/2021 14:07:22</publishTime>
@@ -28,7 +28,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/28/2015 04:03:50</publishTime>
     </File>
     <File Include="bin/Logica.minem.gob.pe.dll">
-      <publishTime>02/16/2021 14:32:14</publishTime>
+      <publishTime>02/19/2021 18:18:14</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 02:06:24</publishTime>
@@ -97,10 +97,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/28/2015 04:03:46</publishTime>
     </File>
     <File Include="bin/Util.minem.gob.pe.dll">
-      <publishTime>02/16/2021 14:07:22</publishTime>
+      <publishTime>02/19/2021 13:50:47</publishTime>
     </File>
     <File Include="bin/WebApiElectroMovilidad.dll">
-      <publishTime>02/16/2021 14:32:18</publishTime>
+      <publishTime>02/19/2021 18:18:18</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>01/15/2021 00:53:35</publishTime>
@@ -108,8 +108,11 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="packages.config">
       <publishTime>01/25/2021 08:49:32</publishTime>
     </File>
+    <File Include="Plantillas/CreacionUsuario.html">
+      <publishTime>02/19/2021 03:25:37</publishTime>
+    </File>
     <File Include="Web.config">
-      <publishTime>02/16/2021 09:01:30</publishTime>
+      <publishTime>02/19/2021 13:50:54</publishTime>
     </File>
   </ItemGroup>
 </Project>

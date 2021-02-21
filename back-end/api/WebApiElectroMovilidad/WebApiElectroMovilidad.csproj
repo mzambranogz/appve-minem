@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Plantillas\CreacionUsuario.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -129,6 +130,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Datos.minem.gob.pe\Datos.minem.gob.pe.csproj">
+      <Project>{9927794F-C3E3-4E7B-953F-08347786AA4D}</Project>
+      <Name>Datos.minem.gob.pe</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidad.minem.gob.pe\Entidad.minem.gob.pe.csproj">
       <Project>{FB2A2442-F7EB-4935-9F85-90E4AA011C77}</Project>
       <Name>Entidad.minem.gob.pe</Name>

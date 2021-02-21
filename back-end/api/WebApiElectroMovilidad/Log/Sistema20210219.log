@@ -1,0 +1,107 @@
+19/02/2021 00:50:48: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:50:48: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:50:48: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:50:48: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:50:48: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:50:48: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:50:48: [Método: Boolean GuardarUsuario(Entidad.minem.gob.pe.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 187] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:57:56: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:57:56: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:57:56: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:57:56: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:57:56: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:57:56: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:57:56: [Método: Boolean GuardarUsuario(Entidad.minem.gob.pe.UsuarioBE, Oracle.DataAccess.Client.OracleConnection), Línea: 187] - ORA-02291: restricción de integridad (ELECTROMOVILIDAD.SYS_C008342) violada - clave principal no encontrada
+ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 19
+ORA-06512: en línea 1
+19/02/2021 00:58:16: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-03135: la conexión ha perdido contacto
+Identificador de Proceso: 80384
+Identificador de Sesión: 265 Número de Serie: 10866
+19/02/2021 00:58:16: [Método: Void Rollback(), Línea: 0] - ORA-03135: la conexión ha perdido contacto
+Identificador de Proceso: 80384
+Identificador de Sesión: 265 Número de Serie: 10866
+19/02/2021 00:58:16: [Método: Boolean GuardarUsuario(Entidad.minem.gob.pe.UsuarioBE), Línea: 136] - ORA-03135: la conexión ha perdido contacto
+Identificador de Proceso: 80384
+Identificador de Sesión: 265 Número de Serie: 10866
+19/02/2021 13:24:23: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:24:23: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:24:23: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:24:23: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:24:23: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:24:23: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:24:23: [Método: Boolean ResetClave(System.String, System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 334] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:26:01: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:26:04: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:26:06: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:26:08: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:26:09: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:26:11: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 13:26:12: [Método: Boolean ResetClave(System.String, System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 334] - ORA-06550: línea 1, columna 45:
+PLS-00302: el componente 'USP_RESET_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
