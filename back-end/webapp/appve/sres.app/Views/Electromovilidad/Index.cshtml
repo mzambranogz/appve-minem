@@ -8,6 +8,7 @@
 }
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+<script src="@Url.Content("~/Assets/js/pages/electromovilidad_menu_principal.js")"></script>
 }
 
 <div class="container">
@@ -49,9 +50,47 @@
     </div>
 </div>
 
+<div class="container">
+    @*<p>
+        Different title positions<br />
+
+        <a id="example5" href="@Url.Content("~/Assets/images/001.jpg")" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img class="img-fluid" alt="example4" src="@Url.Content("~/Assets/images/001.jpg")" /></a>
+
+        <a id="example6" href="@Url.Content("~/Assets/images/002.jpg")" title="Etiam quis mi eu elit tempor facilisis id et neque. Nulla sit amet sem sapien. Vestibulum imperdiet porta ante ac ornare. Vivamus fringilla congue laoreet."><img class="img-fluid" alt="example5" src="@Url.Content("~/Assets/images/002.jpg")" /></a>
+
+        <a id="example7" href="@Url.Content("~/Assets/images/003.jpg")" title="Cras neque mi, semper at interdum id, dapibus in leo. Suspendisse nunc leo, eleifend sit amet iaculis et, cursus sed turpis."><img class="img-fluid" alt="example6" src="@Url.Content("~/Assets/images/003.jpg")" /></a>
+
+        <a id="example8" href="@Url.Content("~/Assets/images/004.jpg")" title="Sed vel sapien vel sem tempus placerat eu ut tortor. Nulla facilisi. Sed adipiscing, turpis ut cursus molestie, sem eros viverra mauris, quis sollicitudin sapien enim nec est. ras pulvinar placerat diam eu consectetur."><img class="last img-fluid" alt="example7" src="@Url.Content("~/Assets/images/004.jpg")"  /></a>
+    </p>*@
+
+    <p>
+        Image gallery (ps, try using mouse scroll wheel)<br />
+
+        @*<a rel="example_group" href="@Url.Content("~/Assets/images/005.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/005.jpg")" /></a>
+
+        <a rel="example_group" href="@Url.Content("~/Assets/images/002.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/002.jpg")" /></a>
+
+        <a rel="example_group" href="@Url.Content("~/Assets/images/003.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/003.jpg")" /></a>
+
+        <a rel="example_group" href="@Url.Content("~/Assets/images/004.jpg")" title=""><img class="last img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/004.jpg")" /></a>
+
+        <a rel="example_group" href="@Url.Content("~/Assets/images/006.jpg")" title=""><img class="last img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/006.jpg")" /></a>*@
+
+        <a class="example-image-link" href="@Url.Content("~/Assets/images/002.jpg")" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="@Url.Content("~/Assets/images/002.jpg")" alt="" /></a>
+        <a class="example-image-link" href="@Url.Content("~/Assets/images/003.jpg")" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="@Url.Content("~/Assets/images/003.jpg")" alt="" /></a>
+        <a class="example-image-link" href="@Url.Content("~/Assets/images/004.jpg")" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="@Url.Content("~/Assets/images/004.jpg")" alt="" /></a>
+        <a class="example-image-link" href="@Url.Content("~/Assets/images/005.jpg")" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="@Url.Content("~/Assets/images/005.jpg")" alt="" /></a>
+    </p>
+</div>
+
+
     
 
     <script type="text/javascript">
+
+        
+
+        
 
         //google.charts.load('current', { 'packages': ['corechart'] });
 

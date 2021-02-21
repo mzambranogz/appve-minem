@@ -32,6 +32,8 @@
     @*<script src="https://www.google.com/recaptcha/api.js?render=6Ldrz64ZAAAAAI1-XbefHCEBr8VMOgCPZhOPOI_7"></script>*@
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="@Url.Content("~/Assets/css/style.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Assets/css/lightbox.min.css")">
+    
     @RenderSection("link_header", false)
     <link rel="apple-touch-icon" sizes="57x57" href="@Url.Content("~/Assets/images/favicon/apple-icon-57x57.png")">
     <link rel="apple-touch-icon" sizes="60x60" href="@Url.Content("~/Assets/images/favicon/apple-icon-60x60.png")">
@@ -56,9 +58,10 @@
     @Html.Partial("_Header")
     @Html.Partial("_Slider")
     @Html.Partial("_SRES_Description")
-    @RenderBody()
+    @RenderBody()    
     @Html.Partial("_Footer")
-    <script src="@Url.Content("~/Assets/js/script.js")"></script>
+    <script src="@Url.Content("~/Assets/js/lightbox-plus-jquery.min.js")"></script>
+    <script src="@Url.Content("~/Assets/js/script.js")"></script>    
     <script type="text/javascript">
         const baseUrl = '@Url.Content("~")';
         const idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());

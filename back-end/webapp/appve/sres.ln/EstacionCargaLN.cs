@@ -89,5 +89,28 @@ namespace sres.ln
 
             return item.OK;
         }
+
+        public List<EstacionCargaBE> getAllEstacion()
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                cn.Open();
+                lista = estacionDa.getAllEstacion(cn);
+                foreach (EstacionCargaBE item in lista)
+                {
+                    item.LISTA_DOC = estacionDa.getAllEstacionDocumento(item, cn);
+                    item.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(item, cn);
+                    item.CANTIDAD_IMAGEN = item.LISTA_IMAGEN.Count;
+                    string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                    string pathDirectoryRelative = string.Format(pathFormat, item.ID_USUARIO, item.ID_ESTACION);
+                    foreach (DocumentoBE img in item.LISTA_IMAGEN)                                           
+                        img.RUTA = pathDirectoryRelative + "\\"+ img.ARCHIVO_BASE;
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

@@ -22,6 +22,7 @@ namespace sres.be
         public string HORA_HASTA { get; set; }
         public decimal TARIFA_SERVICIO { get; set; }
         public int ID_ESTADO { get; set; }
+        public int CANTIDAD_IMAGEN { get; set; }
         public InstitucionBE INSTITUCION { get; set; }
         public List<DocumentoBE> LISTA_IMAGEN { get; set; }
         public List<DocumentoBE> LISTA_DOC { get; set; }

@@ -20,5 +20,13 @@ namespace sres.app.Controllers.Api
             bool v = estacionLN.GuardarEstacionCarga(entidad);
             return v;
         }
+
+        [Route("obtenerallestaciones")]
+        [HttpGet]
+        public List<EstacionCargaBE> getAllEstacion()
+        {
+            List<EstacionCargaBE> lista = estacionLN.getAllEstacion();
+            return lista;
+        }
     }
 }

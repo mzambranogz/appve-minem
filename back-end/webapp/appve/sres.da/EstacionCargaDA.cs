@@ -137,5 +137,61 @@ namespace sres.da
 
             return seGuardo;
         }
+
+        public List<EstacionCargaBE> getAllEstacion(OracleConnection db)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ALL_ESTACION";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<DocumentoBE> getAllEstacionDocumento(EstacionCargaBE item, OracleConnection db)
+        {
+            List<DocumentoBE> lista = new List<DocumentoBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ALL_DOCUMENTO";                
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", item.ID_ESTACION);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<DocumentoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<DocumentoBE> getAllEstacionImagen(EstacionCargaBE item, OracleConnection db)
+        {
+            List<DocumentoBE> lista = new List<DocumentoBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ALL_IMAGEN";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", item.ID_ESTACION);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<DocumentoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }
