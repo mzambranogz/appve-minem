@@ -193,5 +193,65 @@ namespace sres.da
 
             return lista;
         }
+
+        public UsuarioBE getInstitucion(int idUsuario, OracleConnection db)
+        {
+            UsuarioBE user = new UsuarioBE();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_USUARIO_INSTITUCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_USUARIO", idUsuario);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                user = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return user;
+        }
+
+        public EstacionCargaBE getEstacion(int idestacion, OracleConnection db)
+        {
+            EstacionCargaBE obj = new EstacionCargaBE();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ESTACION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", idestacion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                obj = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return obj;
+        }
+
+        public bool EliminarEstacion(int idestacion, OracleConnection db)
+        {
+            bool v = true;
+            try
+            {
+                string sp = $"{Package.Calculo}USP_DEL_ESTACION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", idestacion);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                v = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                v = false;
+            }
+
+            return v;
+        }
     }
 }

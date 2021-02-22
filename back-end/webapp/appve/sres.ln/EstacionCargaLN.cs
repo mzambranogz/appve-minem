@@ -58,12 +58,12 @@ namespace sres.ln
 
                         if (item.LISTA_IMAGEN != null)
                         {
+                            seGuardo = estacionDa.DeshabilitarImagen(idestacion, cn);
                             foreach (DocumentoBE iDoc in item.LISTA_IMAGEN)
                             {
                                 if (seGuardo)
                                 {
-                                    iDoc.ID_ESTACION = idestacion;
-                                    if (!(seGuardo = estacionDa.DeshabilitarImagen(idestacion, cn))) break;
+                                    iDoc.ID_ESTACION = idestacion;                                    
                                     if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
                                     {
                                         string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
@@ -111,6 +111,76 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;
+        }
+
+        public UsuarioBE getInstitucion(int idUsuario)
+        {
+            UsuarioBE user = new UsuarioBE();
+            try
+            {
+                cn.Open();
+                user = estacionDa.getInstitucion(idUsuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return user;
+        }
+
+        public EstacionCargaBE getEstacion(int idestacion)
+        {
+            EstacionCargaBE obj = new EstacionCargaBE();
+            try
+            {
+                cn.Open();
+                obj = estacionDa.getEstacion(idestacion, cn);
+                if (obj != null && obj.ID_ESTACION > 0)
+                {
+                    obj.LISTA_DOC = estacionDa.getAllEstacionDocumento(obj, cn);
+                    obj.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(obj, cn);
+                    obj.CANTIDAD_IMAGEN = obj.LISTA_IMAGEN.Count;
+
+                    foreach (DocumentoBE doc in obj.LISTA_DOC)
+                    {
+                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Documento");
+                        string pathDirectoryRelative = string.Format(pathFormat, obj.ID_USUARIO, obj.ID_ESTACION);
+                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                        string pathFile = Path.Combine(pathDirectory, doc.ARCHIVO_BASE);
+                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                        pathFile = !File.Exists(pathFile) ? null : pathFile;
+                        doc.RUTA = !File.Exists(pathFile) ? "" : pathFile;
+                        doc.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
+                    }
+
+                    foreach (DocumentoBE img in obj.LISTA_IMAGEN)
+                    {
+                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                        string pathDirectoryRelative = string.Format(pathFormat, obj.ID_USUARIO, obj.ID_ESTACION);
+                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                        string pathFile = Path.Combine(pathDirectory, img.ARCHIVO_BASE);
+                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                        pathFile = !File.Exists(pathFile) ? null : pathFile;
+                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
+                        img.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
+                    }
+                        
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return obj;
+        }
+
+        public bool EliminarEstacion(int idestacion)
+        {
+            bool v = true;
+            try
+            {
+                cn.Open();
+                v = estacionDa.EliminarEstacion(idestacion, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return v;
         }
     }
 }

@@ -5,6 +5,7 @@ $(document).ready(() => {
     cargarComponentes();
 });
 
+//end points
 var cargarComponentes = () => {
     let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerallestaciones`;
     Promise.all([
@@ -28,8 +29,11 @@ var cargarDatos = ([listaDatos]) => {
 
             let seccion_titulo = `<div class="row">`;
             seccion_titulo += `<div class="col-10"><div class="row"><div class="col-12"><h6 style="color: blue;">Descripción de la estación de carga</h6></div></div></div>`;
-            seccion_titulo += `<div class="col-2"><div class="row"><div class="col-12 ml-3"><a href="#"><i class="fas fa-tools mr-1"></i></a></div></div></div>`;
-            seccion_titulo += `<div class="col-12"><hr /></div></div>`;     
+            //seccion_titulo += `<div class="col-2"><div class="row"><div class="col-12 ml-3"><a href="#"><i class="fas fa-tools mr-1"></i></a></div></div></div>`;
+            let editar = `<a class="dropdown-item estilo-01" href="${baseUrl}Electromovilidad/${x.ID_ESTACION}/Estacion"><i class="fas fa-history mr-1"></i>Editar</a>`;
+            let eliminar = `<a class="dropdown-item estilo-01 EliminarEstacion" id="eliminar-${x.ID_ESTACION}" data-valor="${x.ID_ESTACION}" href="javascript:void(0)"><i class="fas fa-history mr-1"></i>Eliminar</a>`;
+            seccion_titulo += `<div class="col-2"><div class="row"><div class="col-12 ml-3"><a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="fas fa-tools mr-1"></i></a><div class="dropdown-menu">${editar}${eliminar}</div></div></div></div>`;            
+            seccion_titulo += `<div class="col-12"><hr /></div></div>`;
                         
             let seccion_modelo_marca = `<div class="row">`;
             seccion_modelo_marca += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modelo</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODELO}</span></div></div></div>`;
@@ -65,8 +69,10 @@ var cargarDatos = ([listaDatos]) => {
         }).join('');
         $('#seccion-estacion').html(estaciones);
         $('#sin-estacion').addClass('d-none');
-    } else 
+    } else  {
         $('#sin-estacion').removeClass('d-none');
+        $('#seccion-estacion').html('');
+    }
 }
 
 //var mostrarImagen = (e) => {
@@ -94,4 +100,21 @@ $(document).on('click', '.imagen-estacion', (e) => {
         }
         $('#marco-imagenes').html(ruta_imagenes);
     }
+});
+
+//end points
+$(document).on('click', '.EliminarEstacion', (e) => {
+    let id = $(`#${e.currentTarget.id}`).data('valor');
+    if (id == null) return;
+    if (id <= 0) return;
+
+    let url = `${baseUrl}api/estacioncarga/eliminarestacion?idestacion=${id}`;
+    fetch(url).then(r => r.json()).then((data) => {
+        if (data) {
+            alert("Estación eliminada");
+            cargarComponentes();
+        } else {
+            alert("Ocurrió un problema, no se pudo eliminar la estación");
+        }
+    });
 });

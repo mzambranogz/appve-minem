@@ -15,6 +15,7 @@ namespace sres.app.Controllers
     [RoutePrefix("Electromovilidad")]
     public class ElectromovilidadController : BaseController
     {
+        EstacionCargaLN estacionLN = new EstacionCargaLN();
         // GET: Electromovilidad
         [SesionOut]
         public ActionResult Index()
@@ -54,6 +55,10 @@ namespace sres.app.Controllers
         [Route("registro-estacion-de-carga")]
         public ActionResult EstacionCarga()
         {
+            UsuarioBE usuario = ObtenerUsuarioLogin();
+            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            ViewData["usuario"] = usuario;
+            ViewData["estacion"] = 0;
             return View();
         }
 
@@ -61,6 +66,17 @@ namespace sres.app.Controllers
         [Route("inicio-electromovilidad")]
         public ActionResult MenuElectromovilidad()
         {
+            return View();
+        }
+
+        [SesionOut]
+        [Route("{idEstacion}/Estacion")]
+        public ActionResult EstacionCarga(int idEstacion)
+        {
+            UsuarioBE usuario = ObtenerUsuarioLogin();
+            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            ViewData["usuario"] = usuario;
+            ViewData["estacion"] = idEstacion;
             return View();
         }
     }

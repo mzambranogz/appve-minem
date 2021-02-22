@@ -15,6 +15,8 @@ namespace sres.be
         public string CONTRASENA { get; set; }
         public int? ID_ROL { get; set; }
         public RolBE ROL { get; set; }
+        public int ID_INSTITUCION { get; set; }
+        public InstitucionBE INSTITUCION { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }
