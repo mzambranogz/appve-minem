@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - sábado-febrero-20-2021   
+-- Archivo creado  - lunes-febrero-22-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Package Body PKG_ELECTROMOV_CALCULO
@@ -372,6 +372,40 @@
     WHERE FLAG_ESTADO = '1' AND ID_ESTACION = PI_ID_ESTACION
     ORDER BY ID_IMAGEN ASC;
   END USP_SEL_ALL_IMAGEN;
+  
+  PROCEDURE USP_SEL_USUARIO_INSTITUCION(
+    PI_ID_USUARIO NUMBER,
+    PO_REF OUT SYS_REFCURSOR    
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  *
+    FROM  T_GENM_USUARIO
+    WHERE ID_USUARIO = PI_ID_USUARIO;
+  END USP_SEL_USUARIO_INSTITUCION;
+  
+  PROCEDURE USP_SEL_ESTACION(
+    PI_ID_ESTACION NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  
+    *
+    FROM  T_GENM_ESTACION
+    WHERE  ID_ESTACION = PI_ID_ESTACION;
+  END USP_SEL_ESTACION;
+  
+  PROCEDURE USP_DEL_ESTACION(
+    PI_ID_ESTACION NUMBER,
+    PO_ROWAFFECTED OUT NUMBER
+  ) AS
+  BEGIN
+    UPDATE T_GENM_ESTACION
+    SET    FLAG_ESTADO = '0'
+    WHERE  ID_ESTACION = PI_ID_ESTACION;
+    PO_ROWAFFECTED := SQL%ROWCOUNT;
+  END USP_DEL_ESTACION;
 
 END PKG_ELECTROMOV_CALCULO;
 

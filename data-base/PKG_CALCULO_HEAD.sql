@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - sábado-febrero-20-2021   
+-- Archivo creado  - lunes-febrero-22-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Package PKG_ELECTROMOV_CALCULO
@@ -159,6 +159,21 @@
   PROCEDURE USP_SEL_ALL_IMAGEN(
     PO_REF OUT SYS_REFCURSOR,
     PI_ID_ESTACION NUMBER
+  );
+  
+  PROCEDURE USP_SEL_USUARIO_INSTITUCION(
+    PI_ID_USUARIO NUMBER,
+    PO_REF OUT SYS_REFCURSOR    
+  );
+  
+  PROCEDURE USP_SEL_ESTACION(
+    PI_ID_ESTACION NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  );
+  
+  PROCEDURE USP_DEL_ESTACION(
+    PI_ID_ESTACION NUMBER,
+    PO_ROWAFFECTED OUT NUMBER
   );
 
 END PKG_ELECTROMOV_CALCULO;
