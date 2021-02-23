@@ -10,5 +10,6 @@ D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\Entidad.minem.gob.pe\obj\Debu
 D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\Entidad.minem.gob.pe\obj\Debug\Entidad.minem.gob.pe.pdb
 C:\GRUPO ZUNI\appve-minem\back-end\api\Entidad.minem.gob.pe\bin\Debug\Entidad.minem.gob.pe.dll
 C:\GRUPO ZUNI\appve-minem\back-end\api\Entidad.minem.gob.pe\bin\Debug\Entidad.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\Entidad.minem.gob.pe\obj\Debug\Entidad.minem.gob.pe.csprojResolveAssemblyReference.cache
 C:\GRUPO ZUNI\appve-minem\back-end\api\Entidad.minem.gob.pe\obj\Debug\Entidad.minem.gob.pe.dll
 C:\GRUPO ZUNI\appve-minem\back-end\api\Entidad.minem.gob.pe\obj\Debug\Entidad.minem.gob.pe.pdb

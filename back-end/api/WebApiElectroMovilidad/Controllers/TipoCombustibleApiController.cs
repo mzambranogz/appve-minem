@@ -13,19 +13,19 @@ using WebApiElectroMovilidad.Models;
 namespace WebApiElectroMovilidad.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/TipoTransporte")]
-    public class TipoTransporteApiController : ApiController
+    [RoutePrefix("api/tipocombustible")]
+    public class TipoCombustibleApiController : ApiController
     {
-        TipoTransporteLN tipoLN = new TipoTransporteLN();
+        TipoCombustibleLN tipoLN = new TipoCombustibleLN();
 
         [HttpGet]
         [Route("buscar")]
-        public List<TipoTransporteBE> Buscar(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<TipoCombustibleBE> Buscar(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            List<TipoTransporteBE> lista = new List<TipoTransporteBE>();
+            List<TipoCombustibleBE> lista = new List<TipoCombustibleBE>();
             try
             {
-                lista = tipoLN.BuscarTipoTransporte(busqueda, registros, pagina, columna, orden);
+                lista = tipoLN.BuscarTipoCombustible(busqueda, registros, pagina, columna, orden);
             }
             catch (Exception ex)
             {
@@ -36,13 +36,14 @@ namespace WebApiElectroMovilidad.Controllers
 
         [HttpPost]
         [Route("agregar")]
-        public IHttpActionResult AgregarTipoTransporte(TipoTransporteBE oTipoTransporte) {
+        public IHttpActionResult AgregarTipoCombustible(TipoCombustibleBE oTipoCombustible)
+        {
             bool exito = false;
 
-            exito = tipoLN.GuardarTipoTransporte(oTipoTransporte);
+            exito = tipoLN.GuardarTipoCombustible(oTipoCombustible);
             if (exito)
             {
-                return Ok(oTipoTransporte);
+                return Ok(oTipoCombustible);
             }
             else
             {
@@ -52,12 +53,12 @@ namespace WebApiElectroMovilidad.Controllers
 
         [Route("obtener")]
         [HttpGet]
-        public TipoTransporteBE GetTipoTransporte(int id)
+        public TipoCombustibleBE GetTipoCombustible(int id)
         {
-            TipoTransporteBE ent = new TipoTransporteBE();
+            TipoCombustibleBE ent = new TipoCombustibleBE();
             try
             {
-                ent = tipoLN.getTipoTransporte(id);
+                ent = tipoLN.getTipoCombustible(id);
             }
             catch (Exception ex)
             {
@@ -68,9 +69,9 @@ namespace WebApiElectroMovilidad.Controllers
 
         [Route("cambiarestado")]
         [HttpPost]
-        public bool EliminarTipoTransporte(TipoTransporteBE oTipoTransporte)
+        public bool EliminarTipoCombustible(TipoCombustibleBE oTipoCombustible)
         {
-            TipoTransporteBE c = tipoLN.EliminarTipoTransporte(oTipoTransporte);
+            TipoCombustibleBE c = tipoLN.EliminarTipoCombustible(oTipoCombustible);
             return c.OK;
         }
 

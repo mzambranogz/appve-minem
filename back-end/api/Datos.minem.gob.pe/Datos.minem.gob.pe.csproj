@@ -51,6 +51,8 @@
     <Compile Include="DataBaseHelpers\OracleDynamicParameters.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="RolDA.cs" />
+    <Compile Include="TipoCargadorDA.cs" />
+    <Compile Include="TipoCombustibleDA.cs" />
     <Compile Include="TipoTransporteDA.cs" />
     <Compile Include="TipoVehiculoConvencionalDA.cs" />
     <Compile Include="TipoVehiculoElectricoDA.cs" />

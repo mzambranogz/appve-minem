@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBE.cs" />
+    <Compile Include="CargadorPotenciaBE.cs" />
     <Compile Include="RolBE.cs" />
     <Compile Include="TipoCargadorBE.cs" />
+    <Compile Include="TipoCombustibleBE.cs" />
     <Compile Include="TipoTransporteBE.cs" />
     <Compile Include="TipoVehiculoConvencionalBE.cs" />
     <Compile Include="TipoVehiculoElectricoBE.cs" />

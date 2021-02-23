@@ -11,25 +11,26 @@ using Util.minem.gob.pe;
 
 namespace Logica.minem.gob.pe
 {
-    public class TipoTransporteLN : BaseLN
+    public class TipoCombustibleLN : BaseLN
     {
-        TipoTransporteDA tipoDA = new TipoTransporteDA();
-        public List<TipoTransporteBE> BuscarTipoTransporte(string busqueda, int registros, int pagina, string columna, string orden)
+        TipoCombustibleDA tipoDA = new TipoCombustibleDA();
+
+        public List<TipoCombustibleBE> BuscarTipoCombustible(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            List<TipoTransporteBE> lista = new List<TipoTransporteBE>();
+            List<TipoCombustibleBE> lista = new List<TipoCombustibleBE>();
 
             try
             {
                 cn.Open();
-                lista = tipoDA.BuscarTipoTransporte(busqueda, registros, pagina, columna, orden, cn);
+                lista = tipoDA.BuscarTipoCombustible(busqueda, registros, pagina, columna, orden, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;
         }
-        
-        public bool GuardarTipoTransporte(TipoTransporteBE oTipoTransporte)
+
+        public bool GuardarTipoCombustible(TipoCombustibleBE oTipoCombustible)
         {
             bool seGuardo = false;
 
@@ -38,7 +39,7 @@ namespace Logica.minem.gob.pe
                 cn.Open();
                 using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
                 {
-                    seGuardo = tipoDA.GuardarTipoTransporte(oTipoTransporte, cn);
+                    seGuardo = tipoDA.GuardarTipoCombustible(oTipoCombustible, cn);
 
                     if (seGuardo) ot.Commit();
                     else ot.Rollback();
@@ -47,18 +48,17 @@ namespace Logica.minem.gob.pe
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
-
             return seGuardo;
         }
 
-        public TipoTransporteBE getTipoTransporte(int idTipoTransporte)
+        public TipoCombustibleBE getTipoCombustible(int idTipoCombustible)
         {
-            TipoTransporteBE item = null;
+            TipoCombustibleBE item = null;
 
             try
             {
                 cn.Open();
-                item = tipoDA.getTipoTransporte(idTipoTransporte, cn);
+                item = tipoDA.getTipoCombustible(idTipoCombustible, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
@@ -66,14 +66,14 @@ namespace Logica.minem.gob.pe
             return item;
         }
 
-        public TipoTransporteBE EliminarTipoTransporte(TipoTransporteBE oTipoTransporte)
+        public TipoCombustibleBE EliminarTipoCombustible(TipoCombustibleBE oTipoCombustible)
         {
-            TipoTransporteBE item = null;
+            TipoCombustibleBE item = null;
 
             try
             {
                 cn.Open();
-                item = tipoDA.EliminarTipoTransporte(oTipoTransporte, cn);
+                item = tipoDA.EliminarTipoCombustible(oTipoCombustible, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
