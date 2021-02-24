@@ -8,7 +8,7 @@ namespace WebApiElectroMovilidad.Controllers
     internal static class TokenGenerator
     {
 
-        public static string GenerateTokenJwt(string username)
+        public static string GenerateTokenJwt(string username, out DateTime tiempoExpiracion)
         {
             // appsetting for Token JWT
             var secretKey = ConfigurationManager.AppSettings["JWT_SECRET_KEY"];
@@ -23,13 +23,14 @@ namespace WebApiElectroMovilidad.Controllers
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, username) });
 
             // create token to the user
+            tiempoExpiracion = DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime));
             var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
             var jwtSecurityToken = tokenHandler.CreateJwtSecurityToken(
                 audience: audienceToken,
                 issuer: issuerToken,
                 subject: claimsIdentity,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime)),
+                expires: tiempoExpiracion, //DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime)),
                 signingCredentials: signingCredentials);
 
             var jwtTokenString = tokenHandler.WriteToken(jwtSecurityToken);

@@ -60,10 +60,6 @@
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.8.0\lib\net45\Microsoft.IdentityModel.Tokens.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.8.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
       <Private>True</Private>
@@ -160,6 +156,10 @@
     <ProjectReference Include="..\Logica.minem.gob.pe\Logica.minem.gob.pe.csproj">
       <Project>{A9FCF538-5305-40C5-B3B8-D650A8DF5190}</Project>
       <Name>Logica.minem.gob.pe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util.minem.gob.pe\Util.minem.gob.pe.csproj">
+      <Project>{B4F38664-F996-4EED-B019-4BA216584489}</Project>
+      <Name>Util.minem.gob.pe</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

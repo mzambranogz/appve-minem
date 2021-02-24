@@ -50,8 +50,12 @@ namespace WebApiElectroMovilidad.Controllers
                 {
                     return StatusCode(HttpStatusCode.Conflict);
                 }
-                var token = TokenGenerator.GenerateTokenJwt(login.Username);
-                return Ok(token);
+                DateTime tiempoExpiracion;
+                var token = TokenGenerator.GenerateTokenJwt(login.Username, out tiempoExpiracion);
+                //return Ok(token);
+                usuario.TOKEN = token;
+                usuario.TOKEN_EXPIRACION = tiempoExpiracion.ToString("dd/MM/yyyy HH:mm:ss");
+                return Json(usuario);
             }
             else
             {
@@ -81,25 +85,5 @@ namespace WebApiElectroMovilidad.Controllers
 
         }
 
-        //[HttpPost]
-        //[Route("authenticate")]
-        //public IHttpActionResult Authenticate(LoginRequest login)
-        //{
-        //    if (login == null)
-        //        throw new HttpResponseException(HttpStatusCode.BadRequest);
-
-        //    //TODO: Validate credentials Correctly, this code is only for demo !!
-        //    bool isCredentialValid = (login.Password == ConfigurationManager.AppSettings["JWT_CLAVE"]); //(login.Password == "123456");
-        //    if (isCredentialValid)
-        //    {
-        //        var token = TokenGenerator.GenerateTokenJwt(login.Username);
-        //        return Ok(token);
-        //    }
-        //    else
-        //    {
-        //        return Unauthorized();
-        //    }
-
-        //}
     }
 }

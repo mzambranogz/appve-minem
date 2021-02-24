@@ -177,12 +177,13 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.Cors.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.WebHost.dll
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Util.minem.gob.pe.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Dapper.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Oracle.DataAccess.dll
-D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Util.minem.gob.pe.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Datos.minem.gob.pe.pdb
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Entidad.minem.gob.pe.pdb
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Logica.minem.gob.pe.pdb
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Util.minem.gob.pe.pdb
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.JsonWebTokens.xml
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Logging.xml
@@ -194,7 +195,6 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Newtonsoft.Json.xml
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.WebHost.xml
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Dapper.xml
-D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Util.minem.gob.pe.pdb
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Net.Http.Formatting.resources.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Web.Http.resources.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Web.Http.WebHost.resources.dll

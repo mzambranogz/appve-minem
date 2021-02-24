@@ -13,10 +13,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/23/2021 12:09:29</publishTime>
     </File>
     <File Include="bin/Datos.minem.gob.pe.dll">
-      <publishTime>02/23/2021 13:37:16</publishTime>
+      <publishTime>02/24/2021 13:23:11</publishTime>
     </File>
     <File Include="bin/Entidad.minem.gob.pe.dll">
-      <publishTime>02/23/2021 13:37:15</publishTime>
+      <publishTime>02/24/2021 13:23:11</publishTime>
     </File>
     <File Include="bin/es/System.Net.Http.Formatting.resources.dll">
       <publishTime>11/28/2018 13:00:46</publishTime>
@@ -28,7 +28,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/23/2021 12:09:29</publishTime>
     </File>
     <File Include="bin/Logica.minem.gob.pe.dll">
-      <publishTime>02/23/2021 13:37:16</publishTime>
+      <publishTime>02/24/2021 13:23:11</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>02/23/2021 12:09:29</publishTime>
@@ -103,22 +103,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/23/2021 12:09:30</publishTime>
     </File>
     <File Include="bin/Util.minem.gob.pe.dll">
-      <publishTime>02/23/2021 13:37:15</publishTime>
+      <publishTime>02/24/2021 13:23:11</publishTime>
     </File>
     <File Include="bin/WebApiElectroMovilidad.dll">
-      <publishTime>02/23/2021 13:37:22</publishTime>
+      <publishTime>02/24/2021 13:23:15</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>02/23/2021 12:09:30</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>02/23/2021 12:14:33</publishTime>
+      <publishTime>02/24/2021 08:56:34</publishTime>
     </File>
     <File Include="Plantillas/CreacionUsuario.html">
       <publishTime>02/23/2021 12:09:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/23/2021 13:37:22</publishTime>
+      <publishTime>02/24/2021 13:23:16</publishTime>
     </File>
   </ItemGroup>
 </Project>

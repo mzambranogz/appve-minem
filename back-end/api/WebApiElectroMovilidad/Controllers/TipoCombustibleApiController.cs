@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Threading;
 using WebApiElectroMovilidad.Models;
+using Util.minem.gob.pe;
 
 namespace WebApiElectroMovilidad.Controllers
 {
@@ -29,6 +30,7 @@ namespace WebApiElectroMovilidad.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex);
                 return null;
             }
             return lista;
@@ -62,6 +64,7 @@ namespace WebApiElectroMovilidad.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex);
                 return null;
             }
             return ent;

@@ -8,7 +8,7 @@ using WebApiElectroMovilidad.Models;
 namespace WebApiElectroMovilidad.Controllers
 {
 
-    [Authorize]
+    [AllowAnonymous]
     [RoutePrefix("api/usuario")]
     public class UsuarioController : ApiController
     {

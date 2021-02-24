@@ -21,5 +21,7 @@ namespace Entidad.minem.gob.pe
         public int UPD_USUARIO { get; set; }
         public DateTime REG_FECHA { get; set; }
         public int VAL { get; set; }
+        public string   TOKEN { get; set; }
+        public string TOKEN_EXPIRACION { get; set; }
     }
 }
