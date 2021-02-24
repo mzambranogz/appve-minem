@@ -15,7 +15,7 @@ namespace Datos.minem.gob.pe
     {
         #region PAQUETE MANTENIMIENTO
 
-        public List<TipoTransporteBE> BuscarTipoTransporte(string busqueda, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<TipoTransporteBE> BuscarTipoTransporte(string busqueda, string estado, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<TipoTransporteBE> lista = null;
 
@@ -24,6 +24,7 @@ namespace Datos.minem.gob.pe
                 string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_TRANSP";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_BUSCAR", busqueda);
+                p.Add("PI_FLAG_ESTADO", estado);
                 p.Add("PI_REGISTROS", registros);
                 p.Add("PI_PAGINA", pagina);
                 p.Add("PI_COLUMNA", columna);
@@ -32,8 +33,8 @@ namespace Datos.minem.gob.pe
                 lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure)
                     .Select(x => new TipoTransporteBE
                     {
-                        ID = (int)x.ID_USUARIO,
-                        NOMBRES = (string)x.NOMBRES,                                                
+                        ID_TIPO_TRANSPORTE = (int)x.ID_TIPO_TRANSPORTE,
+                        NOMBRE = (string)x.NOMBRE,                                                
                         FLAG_ESTADO = (string)x.FLAG_ESTADO,
                         TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
                         PAGINA = (int)x.PAGINA,
@@ -72,8 +73,8 @@ namespace Datos.minem.gob.pe
             {
                 string sp = $"{Package.Mantenimiento}USP_PRC_GUARDAR_TIPO_TRANSP";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_ID_TIPO_TRANSPORTE", oTipoTransporte.ID);
-                p.Add("PI_NOMBRE", oTipoTransporte.NOMBRES);
+                p.Add("PI_ID_TIPO_TRANSPORTE", oTipoTransporte.ID_TIPO_TRANSPORTE);
+                p.Add("PI_NOMBRE", oTipoTransporte.NOMBRE);
                 p.Add("PI_UPD_USUARIO", oTipoTransporte.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
@@ -94,7 +95,7 @@ namespace Datos.minem.gob.pe
             {
                 string sp = $"{Package.Mantenimiento}USP_DEL_TIPO_TRANSP";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_ID_TIPO_TRANSPORTE", entidad.ID);
+                p.Add("PI_ID_TIPO_TRANSPORTE", entidad.ID_TIPO_TRANSPORTE);
                 p.Add("PI_UPD_USUARIO", entidad.UPD_USUARIO);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                 entidad.OK = true;

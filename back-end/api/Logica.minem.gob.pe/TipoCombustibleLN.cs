@@ -15,14 +15,14 @@ namespace Logica.minem.gob.pe
     {
         TipoCombustibleDA tipoDA = new TipoCombustibleDA();
 
-        public List<TipoCombustibleBE> BuscarTipoCombustible(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<TipoCombustibleBE> BuscarTipoCombustible(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
             List<TipoCombustibleBE> lista = new List<TipoCombustibleBE>();
 
             try
             {
                 cn.Open();
-                lista = tipoDA.BuscarTipoCombustible(busqueda, registros, pagina, columna, orden, cn);
+                lista = tipoDA.BuscarTipoCombustible(busqueda, estado, registros, pagina, columna, orden, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

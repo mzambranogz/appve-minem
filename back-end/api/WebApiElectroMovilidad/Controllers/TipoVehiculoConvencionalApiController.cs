@@ -20,12 +20,12 @@ namespace WebApiElectroMovilidad.Controllers
 
         [HttpGet]
         [Route("buscar")]
-        public List<TipoVehiculoConvencionalBE> Buscar(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<TipoVehiculoConvencionalBE> Buscar(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
             List<TipoVehiculoConvencionalBE> lista = new List<TipoVehiculoConvencionalBE>();
             try
             {
-                lista = tipoLN.BuscarTipoVehiculoConvencional(busqueda, registros, pagina, columna, orden);
+                lista = tipoLN.BuscarTipoVehiculoConvencional(busqueda, estado, registros, pagina, columna, orden);
             }
             catch (Exception ex)
             {

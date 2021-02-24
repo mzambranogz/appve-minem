@@ -14,14 +14,14 @@ namespace Logica.minem.gob.pe
     public class TipoTransporteLN : BaseLN
     {
         TipoTransporteDA tipoDA = new TipoTransporteDA();
-        public List<TipoTransporteBE> BuscarTipoTransporte(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<TipoTransporteBE> BuscarTipoTransporte(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
             List<TipoTransporteBE> lista = new List<TipoTransporteBE>();
 
             try
             {
                 cn.Open();
-                lista = tipoDA.BuscarTipoTransporte(busqueda, registros, pagina, columna, orden, cn);
+                lista = tipoDA.BuscarTipoTransporte(busqueda, estado, registros, pagina, columna, orden, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

@@ -15,7 +15,7 @@ namespace Datos.minem.gob.pe
     {
         #region PAQUETE MANTENIMIENTO
 
-        public List<TipoVehiculoConvencionalBE> BuscarTipoVehiculoConvencional(string busqueda, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<TipoVehiculoConvencionalBE> BuscarTipoVehiculoConvencional(string busqueda, string estado, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<TipoVehiculoConvencionalBE> lista = null;
 
@@ -24,6 +24,7 @@ namespace Datos.minem.gob.pe
                 string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_VEH_CONV";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_BUSCAR", busqueda);
+                p.Add("PI_FLAG_ESTADO", estado);
                 p.Add("PI_REGISTROS", registros);
                 p.Add("PI_PAGINA", pagina);
                 p.Add("PI_COLUMNA", columna);
@@ -32,8 +33,8 @@ namespace Datos.minem.gob.pe
                 lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure)
                     .Select(x => new TipoVehiculoConvencionalBE
                     {
-                        ID_TIPO_VEHICULO_CONV = (int)x.ID_USUARIO,
-                        NOMBRE = (string)x.NOMBRES,
+                        ID_TIPO_VEHICULO_CONV = (int)x.ID_TIPO_VEHICULO_CONV,
+                        NOMBRE = (string)x.NOMBRE,
                         FLAG_ESTADO = (string)x.FLAG_ESTADO,
                         TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
                         PAGINA = (int)x.PAGINA,

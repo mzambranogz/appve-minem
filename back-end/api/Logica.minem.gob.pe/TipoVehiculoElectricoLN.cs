@@ -15,14 +15,14 @@ namespace Logica.minem.gob.pe
     {
         TipoVehiculoElectricoDA tipoDA = new TipoVehiculoElectricoDA();
 
-        public List<TipoVehiculoElectricoBE> BuscarTipoVehiculoElectrico(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<TipoVehiculoElectricoBE> BuscarTipoVehiculoElectrico(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
             List<TipoVehiculoElectricoBE> lista = new List<TipoVehiculoElectricoBE>();
 
             try
             {
                 cn.Open();
-                lista = tipoDA.BuscarTipoVehiculoElectrico(busqueda, registros, pagina, columna, orden, cn);
+                lista = tipoDA.BuscarTipoVehiculoElectrico(busqueda, estado, registros, pagina, columna, orden, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
