@@ -148,3 +148,6 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Release\WebApiElectroMovilidad.csprojResolveAssemblyReference.cache
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Release\WebApiElectroMovilidad.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Release\WebApiElectroMovilidad.pdb
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Cors.dll
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.Cors.dll
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.Cors.xml

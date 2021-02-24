@@ -34,8 +34,9 @@
       <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
-      <HintPath>C:\app\client\Eduardo\product\12.2.0\client_1\odp.net\bin\2.x\Oracle.DataAccess.dll</HintPath>
+    <Reference Include="Oracle.DataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\app\Eduardo\virtual\product\12.2.0\dbhome_1\ODP.NET\bin\4\Oracle.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
