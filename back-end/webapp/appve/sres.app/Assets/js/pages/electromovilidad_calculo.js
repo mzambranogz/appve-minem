@@ -1,11 +1,20 @@
-﻿var Lista_convencional, Lista_electrico, Lista_leyenda, Lista_consumo_energ_vc, Lista_consumo_energ_ve, Lista_emision_vc, Lista_emision_ve;
+﻿//variable mapa
+var origen_longitud, origen_latitud, destino_longitud, destino_latitud, distancia, nombre_origen, nombre_destino, veces_semana_g, total_km_vc_g, total_km_cvc_g, total_km_ve_g, total_km_t1_g, total_km_t2_g, total_km_t3_g, total_km_t4_g; //variable origen (x, y), destino (x,y), distancia, nombre origen, nombre destino
+var directions; //variable mapbox
+var arr_ruta_vc = []; // array de rutas VC, CVC, VE, SP
+var validar_escenario, accion;
+
+//variable lista para graficos
+var Lista_convencional, Lista_electrico, Lista_leyenda, Lista_consumo_energ_vc, Lista_consumo_energ_ve, Lista_emision_vc, Lista_emision_ve;
 
 var rendimiento_vc_g = 0, precio_combustible_vc_g = 0, factor_emision_vc = 0, rendimiento_cvc_g = 0, precio_combustible_cvc_g = 0, factor_emision_cvc_g = 0, precio_vehiculo_cvc_g = 0;
-var rendimiento_ve_g = 0, capacidad_bateria_g = 0, precio_cargador_g = 0, costo_instalacion_g = 0, precio_vehiculo_cvc_g = 0, precio_vehiculo_ve_g;
+var rendimiento_ve_g = 0, capacidad_bateria_g = 0, precio_cargador_g = 0, costo_instalacion_g = 0, precio_vehiculo_cvc_g = 0, precio_vehiculo_ve_g = 0, tarifa_electricidad_g = 0;
 
 $(document).ready(() => {
     //configuracion();
+    mapa();
     cargarComponentes();
+    
     $('#btnMenu').on('click', (e) => comenzar());
     $('#btnReg01').on('click', (e) => regresar1());
     $('#btnSig01').on('click', (e) => siguiente1());
@@ -42,7 +51,111 @@ $(document).ready(() => {
     $('#anio_evaluacion').on('change', (e) => cambiarAnio());
     $('#cbo-departamento-cvc').on('change', (e) => cambiarDepartamentoCVC());
     $('#cbo-departamento-vc').on('change', (e) => cambiarDepartamentoVC());
+
+    $('#btnAdd-vc').on('click', (e) => mostrarRutas(e));
+    $('#btn-nueva-ruta').on('click', (e) => nuevaRuta(e));
+    //$('.editar-mapa').on('click', (e) => editarRuta(e));
+    $('#aceptar-ruta').on('click', (e) => ocultarRuta());
+    $('#btn-cerrar').on('click', (e) => ocultarMapa());
 });
+
+var mapa = () => {
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia3phcmtsb3oiLCJhIjoiY2tsaDRoenNjMjRjcDJ2cXR4a2FrOHFtMSJ9.IubP7nyb7i-2Rvoyg_bLlA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-77.03101439999999, -12.016025599999999],
+        zoom: 5
+    });
+
+    var nav = new mapboxgl.NavigationControl({
+        showCompass: true,
+        showZoom: true,
+        visualizePitch: true
+    });
+    map.addControl(nav);
+
+    map.addControl(new mapboxgl.FullscreenControl());
+    map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    }));
+
+    //map.on('mousemove', function (e) {
+    //    document.getElementById('coordenadas').innerHTML = JSON.stringify(e.lngLat);
+    //});
+
+    directions = new MapboxDirections({
+        accessToken: mapboxgl.accessToken,
+        unit: 'metric',
+        profile: 'mapbox/driving-traffic'
+    });
+
+    map.addControl(directions, 'top-left');
+
+    directions.on('route', function (e) {
+        distancia = e.route[0].distance;
+        let tm = e.route[0].legs[0].steps.length == 0 ? 0 : e.route[0].legs[0].steps.length - 1;
+        nombre_origen = e.route[0].legs[0].steps[0].name;
+        nombre_destino = e.route[0].legs[0].steps[tm].name;
+        //console.log(e.route[0].distance); // Logs the current route shown in the interface.
+    });
+
+    $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
+    $('.mapboxgl-ctrl-bottom-left').addClass('d-none');    
+}
+
+var getCoordenadas = () => {
+    veces_semana_g = $('#veces-semana').val() == "" ? 0 : parseInt($('#veces-semana').val());
+    if (directions.getOrigin().geometry == undefined || directions.getDestination().geometry == undefined) {
+        alert("Debe seleccionar el origen y destino"); return;
+    }
+    if (veces_semana_g == 0){
+        alert("Debe ingresar las veces por semana que utiliza esta ruta"); return;
+    }
+
+    origen_longitud = directions.getOrigin().geometry.coordinates[0];
+    origen_latitud = directions.getOrigin().geometry.coordinates[1];
+    destino_longitud = directions.getDestination().geometry.coordinates[0];
+    destino_latitud = directions.getDestination().geometry.coordinates[1];
+
+    //alert(`Origen: [${origen_longitud}, ${origen_latitud}], Destino: [${destino_longitud}, ${destino_latitud}]  Distancia: ${distancia}`);
+    let arr = validar_escenario == 'vc' ? arr_ruta_vc : [];
+    if (accion == 0) agregarRuta(arr);
+    else actualizarRuta(arr);  
+
+    alert("Se guardó la ruta exitosamente");
+    $('#seccion-mapa').addClass('d-none');
+    $('#seccion-menu-ruta').removeClass('d-none');
+    listarRutas();
+}
+
+var agregarRuta = (arr) => {
+    arr.push({
+        ID_RUTA: arr_ruta_vc.length + 1,
+        ORIGEN: `${origen_longitud}, ${origen_latitud}`,
+        DESTINO: `${destino_longitud}, ${destino_latitud}`,
+        NOMBRE_ORIGEN: nombre_origen,
+        NOMBRE_DESTINO: nombre_destino,
+        DISTANCIA: Math.round((parseFloat(distancia)/1000)*100)/100,
+        VECES_SEMANA: veces_semana_g
+    });
+}
+
+var actualizarRuta = (arr) => {
+    v = arr.find(x => { return x.ID_RUTA == accion; }) == undefined ? false : true;
+    if (v) {
+        let i = arr.findIndex(x => { return x.ID_RUTA == accion; });
+        arr[i].ORIGEN = `${origen_longitud}, ${origen_latitud}`;
+        arr[i].DESTINO = `${destino_longitud}, ${destino_latitud}`;
+        arr[i].NOMBRE_ORIGEN = nombre_origen;
+        arr[i].NOMBRE_DESTINO = nombre_destino;
+        arr[i].DISTANCIA = Math.round((parseFloat(distancia)/1000)*100)/100;
+        arr[i].VECES_SEMANA = veces_semana_g
+    }
+}
 
 var configuracion = () => {
     //Servicio trnasporte
@@ -313,7 +426,7 @@ var cambiarTipoCompraCVE = () => {
     else $('#financiado-ve').removeClass('d-none');
 }
 
-//end_points
+//end_points //Segundo
 var evaluarTipoVehTipoCombVC = () => {
     cambiarDepartamentoVC();
     if ($('#tipo-vehiculo-vc').val() == 0 || $('#tipo-combustible-vc').val() == 0) return;
@@ -336,7 +449,7 @@ var evaluarTipoVehTipoCombVC = () => {
     });
 }
 
-//end_points igual a 316
+//end_points igual a 430
 var evaluarTipoVehTipoCombCVC = () => {
     cambiarDepartamentoCVC();
     if ($('#tipo-vehiculo-cvc').val() == 0 || $('#tipo-combustible-cvc').val() == 0) return;
@@ -392,7 +505,7 @@ var cambiarCongINC = () => {
     }
 }
 
-//end_points
+//end_points //Cuarto
 var cambiarVE = () => {
     if ($('#tipo-vehiculo-ve').val() == 0) { $('#modelo-ve').parent().addClass('d-none'); $('#modelo-ve').val(0); return; }
     if ($('#tipo-vehiculo-ve').val() > 1) {$('#modelo-ve').parent().addClass('d-none'); $('#modelo-ve').val(0); }
@@ -421,7 +534,7 @@ var cambiarVE = () => {
     }
 }
 
-//end_points
+//end_points //Quinto
 var cambiarMVE = () => {
     if ($('#modelo-ve').val() == 0) return;
 
@@ -463,7 +576,7 @@ var cambiarTC = () => {
     $('#costo-instalacion').val('');
 }
 
-//end_points
+//end_points //Sexto
 var cambiarCP = () => {
     if ($('#cbo-potencia').val() == 0) return;
 
@@ -482,7 +595,7 @@ var cambiarCP = () => {
     });
 }
 
-//end_points
+//end_points //Septimo
 var cambiarDP = () => {
     if ($('#cbo-departamento').val() == 0) return;
 
@@ -491,7 +604,7 @@ var cambiarDP = () => {
         if (j == null) return;
         if (j.TARIFA_ELECTRICIDAD != null){
             $('#tarifa-ve').val(j.TARIFA_ELECTRICIDAD.FACTOR/100);
-            precio_vehiculo_cvc_g = parseFloat(j.TARIFA_ELECTRICIDAD.FACTOR)/100;          
+            tarifa_electricidad_g = parseFloat(j.TARIFA_ELECTRICIDAD.FACTOR)/100;          
         }
         $('#porc-aual-ve').val(0);
     });
@@ -534,7 +647,7 @@ var validarOcultar = () => {
     $('#valor-inc-unico').parent().addClass('d-none');
 }
 
-//end_points
+//end_points //Tercero
 var cambiarDepartamentoCVC = () => {
     let dep = $('#cbo-departamento-cvc').val();
     let tipo_veh = $('#tipo-vehiculo-cvc').val();
@@ -552,7 +665,7 @@ var cambiarDepartamentoCVC = () => {
     });
 }
 
-//end_points igual a 531
+//end_points igual a la linea 651
 var cambiarDepartamentoVC = () => {
     let dep = $('#cbo-departamento-vc').val();
     let tipo_veh = $('#tipo-vehiculo-vc').val();
@@ -572,7 +685,7 @@ var cambiarDepartamentoVC = () => {
 
 //=======================================
 
-//end_points 8
+//end_points 8 //Primero
 var cargarComponentes = () => {
     let urlConsultarTipoTransporte = `${baseUrl}api/tipotransporte/obteneralltipotransporte`;
     let urlConsultarTipoCombustible = `${baseUrl}api/tipocombustible/obteneralltipocombustible`;
@@ -834,7 +947,7 @@ var evaluar = () => {
         CAPACIDAD_BATERIA_VE: capacidad_bateria_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
     }
 
-    //end_points 7
+    //end_points 7 //Octavo Final
     //Calculo
     let urlvc = `${baseUrl}api/calculo/calcularvehiculoconvencional`;
     let datavc = data_vc;
@@ -1102,4 +1215,118 @@ var grafico_emisiones = () => {
         chart.draw(data, options);
     }
     google.charts.setOnLoadCallback(drawChartEM);
+}
+
+var mostrarRutas = (e) => {
+    $('#seccion-menu-ruta').removeClass('d-none');
+    validar_escenario = $(`#${e.target.id}`).data('validar');
+    listarRutas();
+}
+
+var ocultarMapa = () => {    
+    listarRutas();
+    $('#seccion-menu-ruta').removeClass('d-none');
+    $('#seccion-mapa').addClass('d-none');
+}
+
+var listarRutas = () => {
+    $('#rutas-km').html('');
+    let arr, rutas = "", total_km = 0;
+    if ("vc" == validar_escenario) arr = arr_ruta_vc;
+    if ("cvc" == validar_escenario) arr_ruta_vc = 0;
+    if ("ve" == validar_escenario) arr_ruta_vc = 0;
+    if ("t1" == validar_escenario) arr_ruta_vc = 0;
+    if ("t2" == validar_escenario) arr_ruta_vc = 0;
+    if ("t3" == validar_escenario) arr_ruta_vc = 0;
+    if ("t4" == validar_escenario) arr_ruta_vc = 0;
+
+    for (var i = 0; i < arr.length; i++) {
+        let total = parseFloat(arr[i].DISTANCIA) * parseFloat(arr[i].VECES_SEMANA);
+        total_km += total;        
+
+        let titulo = `<div class="row">`;
+        titulo += `<div class="col-10"><div class="row"><div class="col-12"><h6 style="color: blue;">Ruta N° ${arr[i].ID_RUTA}:</h6></div></div></div>`;
+        titulo += `<div class="col-2"><div class="row"><div class="col-12 ml-3"><a href="#"><i class="fas fa-window-close mr-1"></i></a></div></div></div>`;
+        titulo += `<div class="col-12"><hr /></div></div>`;
+
+        let origen_destino = `<div class="row">`;
+        origen_destino += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Origen</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${arr[i].NOMBRE_ORIGEN}</span></div></div></div>`;
+        origen_destino += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Destino</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${arr[i].NOMBRE_DESTINO}</span></div></div></div>`;
+        origen_destino += `<div class="col-12"><hr /></div></div>  `; 
+                        
+        let veces_km_semana = `<div class="row">`;  
+        veces_km_semana += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Veces por semana</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${arr[i].VECES_SEMANA}</span></div></div></div>`;
+        veces_km_semana += `<div class="col-6 "><div class="row"><div class="col-9"><span style="color: brown;">Km de la ruta</span></div><div class="col-3"><a class="editar-mapa" href="#" data-accion="editar" id="${validar_escenario}-${arr[i].ID_RUTA}"><i class="fas fa-map-marked mr-1"></i></a></div></div><div class="row"><div class="col-12"><span style="color: blue;">${arr[i].DISTANCIA} Km</span></div></div></div>`;
+        veces_km_semana += `<div class="col-12"><hr /></div></div>`;                                    
+        
+        let km_total = `<div class="row">`;
+        km_total += `<div class="col-6 "></div>`;
+        km_total += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Km total</span></div></div><div class="row"><div class="col-12"><span style="color: blue; font-size: 2em;">${Math.round(total * 100) / 100} Km</span></div></div></div>`;
+        km_total += `</div>`;
+
+        rutas += `<div class="col-6 mb-2"><div class="card" style="width: 100%;"><div class="card-body">${titulo}${origen_destino}${veces_km_semana}${km_total}</div></div></div>`;                    
+    }
+
+    total_km = Math.round(total_km * 100) / 100;
+    let totales = `<div class="col-6 mb-2"><div class="card" style="width: 100%;"><div class="card-body">`;
+    totales += `<div class="row"><div class="col-6 "><div class="row"><div class="col-3"><span><i class="fas fa-map-marked mr-1"></i></span></div><div class="col-9"><span style="color: brown;">Kilómetros totales</span></div></div></div>`;
+    totales += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: blue; font-size: 2em;">${total_km} Km</span></div></div></div></div>`;
+    totales += `</div></div></div>`;
+
+    $('#rutas-km').html(`${rutas}${totales}`);    
+    $('.editar-mapa').on('click', (e) => editarRuta(e));
+    if (validar_escenario == 'vc') $('#kilometro-sem-vc').val(total_km);    
+    if (validar_escenario == 'cvc')$('#kilometro-sem-cvc').val(total_km); 
+    if (validar_escenario == 've') $('#kilometro-sem-ve').val(total_km); 
+    if (validar_escenario == 't1') $('#kilometros-01').val(total_km); 
+    if (validar_escenario == 't2') $('#kilometros-02').val(total_km); 
+    if (validar_escenario == 't3') $('#kilometros-03').val(total_km); 
+    if (validar_escenario == 't4') $('#kilometros-04').val(total_km);
+    //if (validar_escenario == 'vc') total_km_vc_g = total_km;    
+    //if (validar_escenario == 'cvc') total_km_cvc_g = total_km;
+    //if (validar_escenario == 've') total_km_ve_g = total_km;
+    //if (validar_escenario == 't1') total_km_t1_g = total_km;
+    //if (validar_escenario == 't2') total_km_t2_g = total_km;
+    //if (validar_escenario == 't3') total_km_t3_g = total_km;
+    //if (validar_escenario == 't4') total_km_t4_g = total_km;
+}
+
+var nuevaRuta = (e) => {
+    mostrarMapa();
+    directions.removeRoutes();
+    accion = 0;
+}
+
+var editarRuta = (e) => {
+    mostrarMapa();
+    let id = $(`#${e.currentTarget.id}`);
+    accion = parseInt(e.currentTarget.id.replace('vc-','').replace('cvc-','').replace('ve','').replace('t1','').replace('t2','').replace('t3','').replace('t4',''));
+    let arr;
+    if ("vc" == validar_escenario) arr = arr_ruta_vc;
+    if ("cvc" == validar_escenario) arr_ruta_vc = 0;
+    if ("ve" == validar_escenario) arr_ruta_vc = 0;
+    if ("t1" == validar_escenario) arr_ruta_vc = 0;
+    if ("t2" == validar_escenario) arr_ruta_vc = 0;
+    if ("t3" == validar_escenario) arr_ruta_vc = 0;
+    if ("t4" == validar_escenario) arr_ruta_vc = 0;
+    let v = arr.find(x => { return x.ID_RUTA == accion; }) == undefined ? false : true;
+    if (v) {
+        let i = arr.findIndex(x => { return x.ID_RUTA == accion; });
+        directions.setOrigin(arr[i].ORIGEN);
+        directions.setDestination(arr[i].DESTINO);
+        $('#veces-semana').val(arr[i].VECES_SEMANA);
+    }
+}
+
+var mostrarMapa = () => {
+    $('#seccion-mapa').removeClass('d-none');
+    $('#seccion-menu-ruta').addClass('d-none');
+    //directions.removeRoutes();
+    $('#mapbox-directions-origin-input div input').val('');
+    $('#mapbox-directions-destination-input div input').val('');
+    $('#veces-semana').val('');
+}
+
+var ocultarRuta = () => {
+    $('#seccion-menu-ruta').addClass('d-none');
 }
