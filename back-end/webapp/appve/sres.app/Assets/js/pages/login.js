@@ -17,78 +17,50 @@ var sendLogin = (e) => {
 var iniciarSesionConCaptcha = (token) => {
     let correo = $('#txt-user').val().trim();
     let contrasena = $('#txt-pswd').val().trim();
-    //let data = { correo, contraseña, token };
-
-    //let url = `${baseUrl}Login/Validar`;
-    //let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     let url = `http://161.35.182.46/ApiElectromovilidad/api/login/authenticate`;
     let data = {Username: correo, Password: contrasena};
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-    //let request = fetch(url, init).then(r => r.json()).then(e => (validarInicioSesion));
-    //debugger;
-
-    //fetch(url, init)
-    //.then(r => r.json())
-    //.then(validarInicioSesion)
-
-
     fetch(url, init)
     .then(response => {
-        if (response.status == 200) return response.json().then(validarInicioSesion);
-        else if (response.status == 401) return mostrarMensaje("La contraseña es incorrecta");
-        else new Error("");
-    })    
+        if (response.status == 200) return response.json();
+        else if (response.status == 401) return 401;
+        else return 0;
+    })
+    .then(validarInicioSesion)
     .catch(error => {
         console.log('Hubo un problema con la petición Fetch:' + error.message);
+        return 0;
     });
-
-    //fetch(url, init)
-    //.then(res => res.json()).then(validarInicioSesion)
-    //.catch(error => console.error('Error:', error))
-    //.then(res => {
-    //    debugger;
-    //    let s = res.status
-    // });
-
-    //fetch(url, init)
-    //.then(response => {
-    //    if (response.status == 200) return response.json();
-    //    else if (response.status == 401) return (async() => "La contraseña es incorrecta")();
-    //    else new Error("");
-    //})
-    //.then(validarInicioSesion),
-    //ResponseToJson = (response) => {
-        
-    //}
-
-    //fetch(url, init)
-    //.then(function (response) {
-    //    debugger;
-    //    return response.text();
-    //})
-    //.then(function (data) {
-    //    debugger;
-    //    console.log('data = ', data);
-    //})
-    //.catch(function (err) {
-    //    console.error(err);
-    //});
-}
-
-var mostrarMensaje = (msj) => {
-    alert(msj);
 }
 
 var validarInicioSesion = (data) => {
-    alert("");
-    debugger;
-    if (data.success == true) {
+    if (data == 401) { mostrarMensajeError("Las credenciales no son válidas"); }
+    else if (data == 0) { mostrarMensajeError("Error de acceso"); }
+    else cargarSesion(data);
+}
+
+var mostrarMensajeError = (msj) => {
+    $('form .form-group:last').alert({ type: 'danger', title: 'Error de acceso', message: msj, close: { time: 3000 } });
+}
+
+var cargarSesion = (d) => {
+    let data = { ID_USUARIO: d.ID_USUARIO, NOMBRES: d.NOMBRES, ID_ROL: d.ID_ROL, ROL: {ID_ROL: d.ID_ROL}, TOKEN: d.TOKEN, TOKEN_EXPIRACION: d.TOKEN_EXPIRACION};
+
+    let url = `${baseUrl}Login/Validar`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(redireccionar)
+}
+
+var redireccionar = (data) => {
+    if (data.success)
         location.href = `${baseUrl}Electromovilidad`;
-    }
     else
-        $('form .form-group:last').alert({ type: 'danger', title: 'Error de acceso', message: "Las credenciales no son válidas", close: { time: 3000 } });
+        mostrarMensajeError("Ocurrió un problema");
 }
 
 $(document).on("keydown", ".solo-numero", function (e) {

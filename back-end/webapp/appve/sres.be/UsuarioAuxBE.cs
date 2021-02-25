@@ -9,5 +9,7 @@ namespace sres.be
     public partial class UsuarioBE
     {
         public string CONTRASENA_NUEVO { get; set; }
+        public string TOKEN { get; set; }
+        public string TOKEN_EXPIRACION { get; set; }
     }
 }
