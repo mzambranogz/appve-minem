@@ -109,6 +109,47 @@ namespace Datos.minem.gob.pe
             return oTipoVehiculoElectrico;
         }
 
+        public List<TipoVehiculoElectricoBE> ListadoTipoVehiculoElectrico(OracleConnection db)
+        {
+            List<TipoVehiculoElectricoBE> lista = new List<TipoVehiculoElectricoBE>();
+
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LIST_TIPO_VEH_ELEC";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoVehiculoElectricoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<TipoVehiculoElectricoBE> ListadoActivoTipoVehiculoElectrico(OracleConnection db)
+        {
+            List<TipoVehiculoElectricoBE> lista = new List<TipoVehiculoElectricoBE>();
+            List<TipoVehiculoElectricoBE> listaActivosVehiculosElec = new List<TipoVehiculoElectricoBE>();
+
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LIST_TIPO_VEH_ELEC";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoVehiculoElectricoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                var listaActivos = lista.Where(s => s.FLAG_ESTADO == "1").Select(s => s);
+                listaActivosVehiculosElec = listaActivos.ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return listaActivosVehiculosElec;
+        }
+
         #endregion
 
     }

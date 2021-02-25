@@ -82,6 +82,33 @@ namespace Logica.minem.gob.pe
             return item;
         }
 
+        public List<TipoVehiculoConvencionalBE> ListadoTipoVehiculoConvencional()
+        {
+            List<TipoVehiculoConvencionalBE> lista = new List<TipoVehiculoConvencionalBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoTipoVehiculoConvencional(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<TipoVehiculoConvencionalBE> ListadoActivoTipoVehiculoConvencional()
+        {
+            List<TipoVehiculoConvencionalBE> lista = new List<TipoVehiculoConvencionalBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoActivoTipoVehiculoConvencional(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
 
     }
 }

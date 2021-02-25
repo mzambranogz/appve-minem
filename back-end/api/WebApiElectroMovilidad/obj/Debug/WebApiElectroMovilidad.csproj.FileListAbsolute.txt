@@ -98,56 +98,6 @@ D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\WebApiElectroMovilidad\bin\es
 D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.csprojResolveAssemblyReference.cache
 D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.dll
 D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\csc.exe
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\System.Collections.Immutable.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\System.Reflection.Metadata.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\vbc.exe
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\VBCSCompiler.exe
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\VBCSCompiler.exe.config
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\WebApiElectroMovilidad.dll.config
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\WebApiElectroMovilidad.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\WebApiElectroMovilidad.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Datos.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Entidad.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Logica.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Logging.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Tokens.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Newtonsoft.Json.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.IdentityModel.Tokens.Jwt.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Net.Http.Formatting.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.WebHost.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Dapper.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Oracle.DataAccess.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Util.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Datos.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Entidad.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Logica.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.JsonWebTokens.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Logging.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Tokens.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.IdentityModel.Tokens.Jwt.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Newtonsoft.Json.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Net.Http.Formatting.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.WebHost.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Dapper.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Util.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Net.Http.Formatting.resources.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Web.Http.resources.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Web.Http.WebHost.resources.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.csprojResolveAssemblyReference.cache
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.pdb
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\csc.exe
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -201,3 +151,56 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.csprojResolveAssemblyReference.cache
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\csc.exe
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\System.Collections.Immutable.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\System.Reflection.Metadata.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\vbc.exe
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\VBCSCompiler.exe
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\roslyn\VBCSCompiler.exe.config
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\WebApiElectroMovilidad.dll.config
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\WebApiElectroMovilidad.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\WebApiElectroMovilidad.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Datos.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Entidad.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Logica.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Logging.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Tokens.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Newtonsoft.Json.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Net.Http.Formatting.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Cors.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.Cors.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.WebHost.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Util.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Dapper.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Oracle.DataAccess.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Datos.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Entidad.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Logica.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Util.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Logging.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Microsoft.IdentityModel.Tokens.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Net.Http.Formatting.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.Cors.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Newtonsoft.Json.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.WebHost.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Dapper.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Net.Http.Formatting.resources.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Web.Http.resources.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\bin\es\System.Web.Http.WebHost.resources.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.csprojResolveAssemblyReference.cache
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.pdb

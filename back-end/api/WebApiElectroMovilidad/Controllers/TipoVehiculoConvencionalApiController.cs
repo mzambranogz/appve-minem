@@ -78,6 +78,18 @@ namespace WebApiElectroMovilidad.Controllers
             return c.OK;
         }
 
+        [Route("obtenerall")]
+        [HttpGet]
+        public List<TipoVehiculoConvencionalBE> ListadoTipoVehiculoConvencional()
+        {
+            return tipoLN.ListadoTipoVehiculoConvencional();
+        }
 
+        [Route("obteneractivos")]
+        [HttpGet]
+        public List<TipoVehiculoConvencionalBE> ListadoActivoTipoVehiculoConvencional()
+        {
+            return tipoLN.ListadoActivoTipoVehiculoConvencional();
+        }
     }
 }

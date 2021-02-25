@@ -26,20 +26,6 @@ D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\Logica.minem.gob.pe\bin\Debug
 D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.csprojResolveAssemblyReference.cache
 D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.dll
 D:\Eduardo\Electromovilidad\WebApiElectroMovilidad\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Logica.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Logica.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Datos.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Entidad.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Oracle.DataAccess.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Util.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Dapper.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Datos.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Entidad.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Util.minem.gob.pe.pdb
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Dapper.xml
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.csprojResolveAssemblyReference.cache
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.dll
-C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.pdb
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Logica.minem.gob.pe.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Logica.minem.gob.pe.pdb
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Datos.minem.gob.pe.dll
@@ -54,3 +40,17 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Logica.minem.gob.pe\bin
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.csprojResolveAssemblyReference.cache
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Logica.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Logica.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Datos.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Entidad.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Oracle.DataAccess.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Util.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Dapper.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Datos.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Entidad.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Util.minem.gob.pe.pdb
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\bin\Debug\Dapper.xml
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.csprojResolveAssemblyReference.cache
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.dll
+C:\GRUPO ZUNI\appve-minem\back-end\api\Logica.minem.gob.pe\obj\Debug\Logica.minem.gob.pe.pdb

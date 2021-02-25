@@ -108,6 +108,51 @@ namespace Datos.minem.gob.pe
 
             return oTipoVehiculoConvencional;
         }
+
+        public List<TipoVehiculoConvencionalBE> ListadoTipoVehiculoConvencional(OracleConnection db)
+        {
+            List<TipoVehiculoConvencionalBE> lista = new List<TipoVehiculoConvencionalBE>();
+
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LIST_TIPO_VEH_CONV";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoVehiculoConvencionalBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                var listaActivo = lista.Where(s => s.FLAG_ESTADO == "1")
+                              .Select(s => s);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<TipoVehiculoConvencionalBE> ListadoActivoTipoVehiculoConvencional(OracleConnection db)
+        {
+            List<TipoVehiculoConvencionalBE> lista = new List<TipoVehiculoConvencionalBE>();
+            List<TipoVehiculoConvencionalBE> listaActivosVehiculosConv = new List<TipoVehiculoConvencionalBE>();
+
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LIST_TIPO_VEH_CONV";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoVehiculoConvencionalBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                var listaActivos = lista.Where(s => s.FLAG_ESTADO == "1").Select(s => s);
+                listaActivosVehiculosConv = listaActivos.ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return listaActivosVehiculosConv;
+        }
+
+
         #endregion
     }
 }

@@ -66,8 +66,7 @@ namespace Logica.minem.gob.pe
 
             return item;
         }
-
-
+        
         public TipoVehiculoElectricoBE EliminarTipoVehiculoElectrico(TipoVehiculoElectricoBE oTipoVehiculoElectrico)
         {
             TipoVehiculoElectricoBE item = null;
@@ -81,6 +80,34 @@ namespace Logica.minem.gob.pe
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return item;
+        }
+
+        public List<TipoVehiculoElectricoBE> ListadoTipoVehiculoElectrico()
+        {
+            List<TipoVehiculoElectricoBE> lista = new List<TipoVehiculoElectricoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoTipoVehiculoElectrico(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<TipoVehiculoElectricoBE> ListadoActivoTipoVehiculoElectrico()
+        {
+            List<TipoVehiculoElectricoBE> lista = new List<TipoVehiculoElectricoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoActivoTipoVehiculoElectrico(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
 
     }
