@@ -51,16 +51,28 @@ var registrarUsuario = () => {
         return;
     }
     
-    let url = `${baseUrl}api/usuario/guardarusuario`;
+    //let url = `${baseUrl}api/usuario/guardarusuario`;
+    //let data = { ID_USUARIO: -1, NOMBRES: nombres, ID_GENERO: genero, CORREO: correo, CONTRASENA: contraseña, ID_ROL: 3, FLAG_ESTADO: '1'};
+    //let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+
+    let url = `http://161.35.182.46/ApiElectromovilidad/api/usuario/insert`;
     let data = { ID_USUARIO: -1, NOMBRES: nombres, ID_GENERO: genero, CORREO: correo, CONTRASENA: contraseña, ID_ROL: 3, FLAG_ESTADO: '1'};
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    //Promise.all([
+    //    fetch(url, init),
+    //])
+    //.then(r => Promise.all(r.map(v => v.json())))
+    //.then(cargarDatos);
 
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
         console.log(j);
+        debugger;
         if(j == true) {
-            limpiarFormulario();
+            //limpiarFormulario();
             $('.registrar-usuario').addClass('d-none');
             $('form > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: '¡Se registró correctamente!', html: '<p id="redireccionarText" class="text-center estilo-01">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
             $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Login` });
