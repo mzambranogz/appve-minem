@@ -43,6 +43,8 @@
     <Compile Include="BaseBE.cs" />
     <Compile Include="CargadorPotenciaBE.cs" />
     <Compile Include="DepartamentoBE.cs" />
+    <Compile Include="ElectromovilidadBE.cs" />
+    <Compile Include="FactorDataBE.cs" />
     <Compile Include="ModeloVehiculoElectricoBE.cs" />
     <Compile Include="RolBE.cs" />
     <Compile Include="TipoCargadorBE.cs" />
