@@ -38,3 +38,13 @@ PL/SQL: Statement ignored
 PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_COMBUS' se debe declarar
 ORA-06550: línea 1, columna 7:
 PL/SQL: Statement ignored
+26/02/2021 15:26:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:26:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:26:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:26:45: [Método: Void Open(), Línea: 0] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:26:45: [Método: Boolean GuardarUsuario(Entidad.minem.gob.pe.UsuarioBE), Línea: 129] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:27:23: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:27:23: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:27:23: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:27:23: [Método: Void Open(), Línea: 0] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+26/02/2021 15:27:23: [Método: Boolean GuardarUsuario(Entidad.minem.gob.pe.UsuarioBE), Línea: 129] - ORA-12514: TNS:listener does not currently know of service requested in connect descriptor

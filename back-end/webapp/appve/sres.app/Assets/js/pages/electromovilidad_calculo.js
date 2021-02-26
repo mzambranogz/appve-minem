@@ -90,7 +90,7 @@ var mapa = () => {
     directions = new MapboxDirections({
         accessToken: mapboxgl.accessToken,
         unit: 'metric',
-        profile: 'mapbox/driving-traffic'
+        profile: 'mapbox/driving'
     });
 
     map.addControl(directions, 'top-left');
@@ -104,7 +104,8 @@ var mapa = () => {
     });
 
     $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
-    $('.mapboxgl-ctrl-bottom-left').addClass('d-none');    
+    $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
+    $('.mapbox-directions-instructions').addClass('d-none');
 }
 
 var getCoordenadas = () => {

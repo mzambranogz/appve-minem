@@ -225,7 +225,7 @@ var guardarUsuario = () => {
     if ($('#cbo-perfil').val() == 0) arr.push("Debe seleccionar un perfil");
     if ($("#frmUsuario").data("idUsuario") == null) {
         if ($("#txt-pswd").val().trim() === $("#txt-re-pswd").val().trim()) {
-            if (!(/[a-zñ]/.test($("#txt-pswd").val().trim()) && /[A-ZÑ]/.test($("#txt-pswd").val().trim()) && /[0-9]/.test($("#txt-pswd").val().trim()) && /\W/.test($("#txt-pswd").val().trim()) )) arr.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es) [!@#$&*]");
+            if (!(/[a-zñ]/.test($("#txt-pswd").val().trim()) && /[A-ZÑ]/.test($("#txt-pswd").val().trim()) && /[0-9]/.test($("#txt-pswd").val().trim()) && /\W/.test($("#txt-pswd").val().trim()) )) arr.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es)");
             if ($("#txt-pswd").val().trim().length < 6) arr.push("La contraseña debe contener 6 o más caracteres por seguridad"); }
         else arr.push("Las contraseñas no coinciden"); }   
     if (!$('#rad-e-01').prop('checked') && !$('#rad-e-02').prop('checked')) arr.push('Debe seleccionar un estado');

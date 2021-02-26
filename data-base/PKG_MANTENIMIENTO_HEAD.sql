@@ -1,11 +1,17 @@
 --------------------------------------------------------
--- Archivo creado  - jueves-febrero-25-2021   
+-- Archivo creado  - viernes-febrero-26-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Package PKG_ELECTROMOV_MANTENIMIENTO
 --------------------------------------------------------
 
   CREATE OR REPLACE PACKAGE "ELECTROMOVILIDAD"."PKG_ELECTROMOV_MANTENIMIENTO" AS 
+
+  PROCEDURE USP_RESET_USUARIO(
+    PI_CORREO VARCHAR2,
+    PI_CONTRASENA VARCHAR2,
+    PO_ROWAFFECTED OUT NUMBER
+  );
 
   --SECCION ROL
   PROCEDURE USP_SEL_LISTA_BUSQ_ROL(
@@ -225,12 +231,12 @@
     PO_REF OUT SYS_REFCURSOR
   );
   
-  PROCEDURE USP_SEL_GET_USUARIO(
+  PROCEDURE USP_SEL_OBTIENE_USUARIO(
     PI_ID_USUARIO NUMBER,
     PO_REF OUT SYS_REFCURSOR
   );
   
-  PROCEDURE USP_MAN_GUARDA_USUARIO(
+  PROCEDURE USP_PRC_GUARDAR_USUARIO(
     PI_ID_USUARIO IN OUT NUMBER,
     PI_NOMBRES VARCHAR2,
     PI_ID_GENERO NUMBER,

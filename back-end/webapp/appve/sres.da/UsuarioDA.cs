@@ -151,7 +151,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Mantenimiento}USP_MAN_GUARDA_USUARIO";
+                string sp = $"{Package.Mantenimiento}USP_PRC_GUARDAR_USUARIO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_USUARIO", usuario.ID_USUARIO);
                 p.Add("PI_NOMBRES", usuario.NOMBRES);
