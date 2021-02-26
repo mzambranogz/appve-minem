@@ -80,5 +80,33 @@ namespace Logica.minem.gob.pe
 
             return item;
         }
+
+        public List<TipoCombustibleBE> ListadoTipoCombustible()
+        {
+            List<TipoCombustibleBE> lista = new List<TipoCombustibleBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoTipoCombustible(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<TipoCombustibleBE> ListadoActivoTipoCombustible()
+        {
+            List<TipoCombustibleBE> lista = new List<TipoCombustibleBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoActivoTipoCombustible(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

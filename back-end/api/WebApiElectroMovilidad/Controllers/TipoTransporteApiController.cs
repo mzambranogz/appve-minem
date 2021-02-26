@@ -77,6 +77,18 @@ namespace WebApiElectroMovilidad.Controllers
             return c.OK;
         }
 
+        [Route("obtenerall")]
+        [HttpGet]
+        public List<TipoTransporteBE> ListadoTipoTransporte()
+        {
+            return tipoLN.ListadoTipoTransporte();
+        }
 
+        [Route("obteneractivos")]
+        [HttpGet]
+        public List<TipoTransporteBE> ListadoActivoTipoTransporte()
+        {
+            return tipoLN.ListadoActivoTipoTransporte();
+        }
     }
 }

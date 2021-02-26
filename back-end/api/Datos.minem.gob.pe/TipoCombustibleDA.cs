@@ -107,5 +107,45 @@ namespace Datos.minem.gob.pe
             return oTipoCombustible;
         }
 
+        public List<TipoCombustibleBE> ListadoTipoCombustible(OracleConnection db)
+        {
+            List<TipoCombustibleBE> lista = new List<TipoCombustibleBE>();
+
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LIST_TIPO_COMBUS";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoCombustibleBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<TipoCombustibleBE> ListadoActivoTipoCombustible(OracleConnection db)
+        {
+            List<TipoCombustibleBE> lista = new List<TipoCombustibleBE>();
+            List<TipoCombustibleBE> listaActivosTipoCombustible = new List<TipoCombustibleBE>();
+
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LIST_TIPO_COMBUS";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoCombustibleBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                var listaActivos = lista.Where(s => s.FLAG_ESTADO == "1").Select(s => s);
+                listaActivosTipoCombustible = listaActivos.ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }

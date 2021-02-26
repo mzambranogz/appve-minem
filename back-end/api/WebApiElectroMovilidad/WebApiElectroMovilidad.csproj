@@ -116,7 +116,9 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
+    <Compile Include="Controllers\ModeloVehiculoElectricoController.cs" />
     <Compile Include="Controllers\TipoCargadorApiController.cs" />
     <Compile Include="Controllers\TipoCombustibleApiController.cs" />
     <Compile Include="Controllers\TipoTransporteApiController.cs" />

@@ -18,18 +18,32 @@ namespace WebApiElectroMovilidad.Controllers
     {
         TipoCargadorLN tipoLN = new TipoCargadorLN();
 
-        [Route("obtenertipocargador")]
+        [Route("obteneralltipocargador")]
         [HttpGet]
-        public List<TipoCargadorBE> ListaTipoCargador()
+        public List<TipoCargadorBE> ListadoTipoCargador()
         {
-            return tipoLN.ListaTipoCargador();
+            return tipoLN.ListadoTipoCargador();
         }
 
-        [Route("obtenercargadorpotencia")]
+        [Route("obtenertipocargadoractivos")]
         [HttpGet]
-        public List<CargadorPotenciaBE> ListaCargadorPotencia()
+        public List<TipoCargadorBE> ListadoActivoTipoCargador()
         {
-            return tipoLN.ListaCargadorPotencia();
+            return tipoLN.ListadoActivoTipoCargador();
+        }
+
+        [Route("obtenerallcargadorpotencia")]
+        [HttpGet]
+        public List<CargadorPotenciaBE> ListadoCargadorPotencia()
+        {
+            return tipoLN.ListadoCargadorPotencia();
+        }
+
+        [Route("obtenercargadorpotenciaactivos")]
+        [HttpGet]
+        public List<CargadorPotenciaBE> ListadoActivoCargadorPotencia()
+        {
+            return tipoLN.ListadoActivoCargadorPotencia();
         }
     }
 }

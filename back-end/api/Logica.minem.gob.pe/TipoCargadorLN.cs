@@ -15,28 +15,56 @@ namespace Logica.minem.gob.pe
     {
         TipoCargadorDA tipoDA = new TipoCargadorDA();
 
-        public List<TipoCargadorBE> ListaTipoCargador()
+        public List<TipoCargadorBE> ListadoTipoCargador()
         {
             List<TipoCargadorBE> lista = new List<TipoCargadorBE>();
 
             try
             {
                 cn.Open();
-                lista = tipoDA.ListaTipoCargador(cn);
+                lista = tipoDA.ListadoTipoCargador(cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;
         }
 
-        public List<CargadorPotenciaBE> ListaCargadorPotencia()
+        public List<TipoCargadorBE> ListadoActivoTipoCargador()
+        {
+            List<TipoCargadorBE> lista = new List<TipoCargadorBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoActivoTipoCargador(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<CargadorPotenciaBE> ListadoCargadorPotencia()
         {
             List<CargadorPotenciaBE> lista = new List<CargadorPotenciaBE>();
 
             try
             {
                 cn.Open();
-                lista = tipoDA.ListaCargadorPotencia(cn);
+                lista = tipoDA.ListadoCargadorPotencia(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<CargadorPotenciaBE> ListadoActivoCargadorPotencia()
+        {
+            List<CargadorPotenciaBE> lista = new List<CargadorPotenciaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoActivoCargadorPotencia(cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

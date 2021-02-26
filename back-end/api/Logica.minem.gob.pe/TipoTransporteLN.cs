@@ -80,5 +80,34 @@ namespace Logica.minem.gob.pe
 
             return item;
         }
+
+        public List<TipoTransporteBE> ListadoTipoTransporte()
+        {
+            List<TipoTransporteBE> lista = new List<TipoTransporteBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoTipoTransporte(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<TipoTransporteBE> ListadoActivoTipoTransporte()
+        {
+            List<TipoTransporteBE> lista = new List<TipoTransporteBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListadoActivoTipoTransporte(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
     }
 }

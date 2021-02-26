@@ -79,5 +79,18 @@ namespace WebApiElectroMovilidad.Controllers
         }
 
 
+        [Route("obtenerall")]
+        [HttpGet]
+        public List<TipoCombustibleBE> ListadoTipoCombustible()
+        {
+            return tipoLN.ListadoTipoCombustible();
+        }
+
+        [Route("obteneractivos")]
+        [HttpGet]
+        public List<TipoCombustibleBE> ListadoActivoTipoCombustible()
+        {
+            return tipoLN.ListadoActivoTipoCombustible();
+        }
     }
 }

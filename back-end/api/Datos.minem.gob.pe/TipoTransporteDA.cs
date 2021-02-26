@@ -109,6 +109,46 @@ namespace Datos.minem.gob.pe
             return entidad;
         }
 
+        public List<TipoTransporteBE> ListadoTipoTransporte(OracleConnection db)
+        {
+            List<TipoTransporteBE> lista = new List<TipoTransporteBE>();
+
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LIST_TIPO_TRANSP";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoTransporteBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<TipoTransporteBE> ListadoActivoTipoTransporte(OracleConnection db)
+        {
+            List<TipoTransporteBE> lista = new List<TipoTransporteBE>();
+            List<TipoTransporteBE> listaActivosTipoTransporte = new List<TipoTransporteBE>();
+
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LIST_TIPO_TRANSP";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoTransporteBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                var listaActivos = lista.Where(s => s.FLAG_ESTADO == "1").Select(s => s);
+                listaActivosTipoTransporte = listaActivos.ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
 
         #endregion
     }
