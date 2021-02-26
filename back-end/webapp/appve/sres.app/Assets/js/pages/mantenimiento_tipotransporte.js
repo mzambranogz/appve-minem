@@ -60,17 +60,17 @@ $(".columna-filtro").click(function (e) {
 
 var consultar = () => {
     let busqueda = $('#txt-descripcion').val();
+    let estado = '1';
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
     let columna = $("#columna").val();
     let orden = $("#orden").val();
-    let params = { busqueda, registros, pagina, columna, orden };
+    let params = { busqueda, estado, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    debugger;
     //let url = `${baseUrl}api/tipotransporte/buscar?${queryParams}`;
-    let url = `http://161.35.182.46/ApiElectromovilidad/api/TipoTransporte/buscar?${queryParams}`;
-    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'token': token }};
+    let url = `${baseUrlApi}api/TipoTransporte/buscar?${queryParams}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init).then(r => r.json()).then(j => {
         let tabla = $('#tblmantenimiento');
@@ -133,17 +133,6 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
     return contenido;
 };
 
-//var cambiarEstado = (element) => {
-//    let id = $(element).attr('data-id');
-//    if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
-//    let data = { ID_REQUERIMIENTO: id, USUARIO_GUARDAR: idUsuarioLogin };
-//    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-//    let url = `${baseUrl}api/requerimiento/cambiarestadoobjeto`;
-//    fetch(url, init)
-//        .then(r => r.json())
-//        .then(j => { if (j) $('#btnConsultar')[0].click(); });
-//};
-
 var cambiarEstado = (element) => {
     idEliminar = $(element).attr('data-id');
     $("#modal-confirmacion").modal('show');
@@ -151,9 +140,12 @@ var cambiarEstado = (element) => {
 
 var eliminar = () => {
     if (idEliminar == 0) return;
+
+    //let url = `${baseUrl}api/tipotransporte/cambiarestado`;
+    let url = `${baseUrlApi}api/TipoTransporte/cambiarestado`;
     let data = { ID_TIPO_TRANSPORTE: idEliminar, UPD_USUARIO: idUsuarioLogin };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-    let url = `${baseUrl}api/tipotransporte/cambiarestado`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
+    
     fetch(url, init)
         .then(r => r.json())
         .then(j => {
@@ -182,18 +174,32 @@ var consultarObjeto = (element) => {
     $('#exampleModalLabel').html('ACTUALIZAR TIPO TRANSPORTE');
 
     let id = $(element).attr('data-id');
-    let url = `${baseUrl}api/tipotransporte/obtener?id=${id}`;
+    //let url = `${baseUrl}api/tipotransporte/obtener?id=${id}`;
+    let url = `${baseUrlApi}api/TipoTransporte/obtener?id=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(url)
-    .then(r => r.json())
-    .then(j => {
-        cargarDatos(j);
+    fetch(url, init)
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else return 0;
+    })
+    .then(cargarDatos)
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+        return 0;
     });
 }
 
 var cargarDatos = (data) => {
-    $('#frm').data('id', data.ID_TIPO_TRANSPORTE);
-    $('#txt-nombre').val(data.NOMBRE);
+    if (data == 0 || data == null) {
+        $('#btnGuardar').hide();
+        $('#btnGuardar').next().html('Cerrar');
+        mostrarMensajeError("Ocurrió un problema al traer la información requerida");
+    }
+    else {
+        $('#frm').data('id', data.ID_TIPO_TRANSPORTE);
+        $('#txt-nombre').val(data.NOMBRE);
+    }
 }
 
 var guardar = () => {
@@ -211,16 +217,37 @@ var guardar = () => {
 
     let id = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
-    let url = `${baseUrl}api/tipotransporte/guardar`;
+
+    //let url = `${baseUrl}api/tipotransporte/guardar`;
+    let url = `${baseUrlApi}api/TipoTransporte/agregar`;
     let data = { ID_TIPO_TRANSPORTE: id == null ? -1 : id, NOMBRE: nombre, UPD_USUARIO: idUsuarioLogin };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 
     fetch(url, init)
-    .then(r => r.json())
-    .then(j => {
-        $('.alert-add').html('');
-        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
-        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
-        if (j) $('#btnConsultar')[0].click();
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else if (response.status == 400) return 400;
+        else return 0;
+    })
+    .then(registro)
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+        return 0;
     });
+}
+
+var registro = (j) => {
+    $('.alert-add').html('');
+    if (j == 400) { mostrarMensajeError("Error en el registro tipo de transporte"); }
+    else if (j == 0) { mostrarMensajeError("Error, comunicarse con el administrador del sistema"); }
+    else {        
+        $('#btnGuardar').hide(); 
+        $('#btnGuardar').next().html('Cerrar');
+        $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` });
+        $('#btnConsultar')[0].click();
+    }
+}
+
+var mostrarMensajeError = (msj) => {
+    $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: msj });
 }

@@ -18,7 +18,7 @@ var iniciarSesionConCaptcha = (token) => {
     let correo = $('#txt-user').val().trim();
     let contrasena = $('#txt-pswd').val().trim();
 
-    let url = `http://161.35.182.46/ApiElectromovilidad/api/login/authenticate`;
+    let url = `${baseUrlApi}api/login/authenticate`;
     let data = {Username: correo, Password: contrasena};
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

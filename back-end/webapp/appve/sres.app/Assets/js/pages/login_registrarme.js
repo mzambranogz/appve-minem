@@ -55,7 +55,7 @@ var registrarUsuario = () => {
         return;
     }
 
-    let url = `http://161.35.182.46/ApiElectromovilidad/api/usuario/insert`;
+    let url = `${baseUrlApi}api/usuario/insert`;
     let data = { ID_USUARIO: -1, NOMBRES: nombres, ID_GENERO: genero, CORREO: correo, CONTRASENA: contraseña, ID_ROL: 3, FLAG_ESTADO: '1'};
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
@@ -73,7 +73,6 @@ var registrarUsuario = () => {
 }
 
 var registro = (j) => {
-    //console.log(j);
     if (j == 400) { mostrarMensajeError("Error en el registro de usuario"); }
     else if (j == 0) { mostrarMensajeError("Error, comunicarse con el administrador del sistema"); }
     else {
