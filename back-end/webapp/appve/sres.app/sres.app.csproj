@@ -364,6 +364,7 @@
     <Content Include="Assets\js\pages\mantenimiento_anno.js" />
     <Content Include="Assets\js\pages\mantenimiento_formulas.js" />
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
+    <Content Include="Assets\js\pages\mantenimiento_tipocombustible.js" />
     <Content Include="Assets\js\pages\mantenimiento_tipovehiculoconvencional.js" />
     <Content Include="Assets\js\pages\mantenimiento_tipotransporte.js" />
     <Content Include="Assets\js\pages\mantenimiento_tipovehiculoelectrico.js" />
@@ -711,6 +712,7 @@
     <Content Include="Views\Mantenimiento\ValoresFactor.cshtml" />
     <Content Include="Views\Electromovilidad\EstacionCarga.cshtml" />
     <Content Include="Views\Electromovilidad\MenuElectromovilidad.cshtml" />
+    <Content Include="Views\Mantenimiento\TipoCombustible.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
