@@ -33,3 +33,10 @@ D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\bin\Debug\Newtonsoft
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.csprojResolveAssemblyReference.cache
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.dll
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.pdb
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.ut\bin\Debug\sres.ut.dll
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.ut\bin\Debug\sres.ut.pdb
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.ut\bin\Debug\Newtonsoft.Json.dll
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.ut\bin\Debug\Newtonsoft.Json.xml
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.dll
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.pdb

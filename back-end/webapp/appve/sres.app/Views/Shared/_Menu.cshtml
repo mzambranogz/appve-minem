@@ -2,6 +2,7 @@
 @using sres.be
 @{
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+    string rol = usuario == null ? "" : usuario.ROL == null ? "" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.PUBLICO ? "Público" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.ESPECIALISTA ? "Especialista" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.ADMINISTRADOR ? "Administrador" : ""; //Temporal hasta que pasen por API el nombre de rol
 }
 <div class="container-fluid menu d-print-none">
     <div class="container">
@@ -39,7 +40,8 @@
                 else
                 {
                     <div class="btn-group">
-                        <a class="btn btn-sm btn-sres-mix animated slideInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="fas fa-user pr-1"></i>@usuario.NOMBRES.Split(' ')[0] &nbsp;@((usuario.ROL != null) ? Html.Raw($"<small class='badge badge-primary estilo-06'>{@usuario.ROL.NOMBRE}</small>") : Html.Raw(""))</a>
+                        @*<a class="btn btn-sm btn-sres-mix animated slideInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="fas fa-user pr-1"></i>@usuario.NOMBRES.Split(' ')[0] &nbsp;@((usuario.ROL != null) ? Html.Raw($"<small class='badge badge-primary estilo-06'>{@usuario.ROL.NOMBRE}</small>") : Html.Raw(""))</a>*@
+                        <a class="btn btn-sm btn-sres-mix animated slideInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="fas fa-user pr-1"></i>@usuario.NOMBRES.Split(' ')[0] &nbsp;@((usuario.ROL != null) ? Html.Raw($"<small class='badge badge-primary estilo-06'>{@rol}</small>") : Html.Raw(""))</a>
                         <div class="dropdown-menu dropdown-menu-right">
                             @*<a class="dropdown-item estilo-01" href="#"><i class="fas fa-id-card mr-1"></i>Mi Perfil</a>*@
                             @if (usuario.ID_ROL != (int)EnumsCustom.Roles.PUBLICO && usuario.ID_ROL != (int)EnumsCustom.Roles.ESPECIALISTA) {

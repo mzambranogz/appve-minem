@@ -94,8 +94,15 @@ namespace sres.da
         private string validarParametro(int parametro)
         {
             string sql = "SELECT ", campo = "", tabla = "";
+            if (parametro == 1) { tabla = "T_GENM_TIPO_VEHICULO_CONV"; campo = "ID_TIPO_VEHICULO_CONV ID_DETALLE, NOMBRE"; }
             if (parametro == 2) { tabla = "T_GENM_TIPO_COMBUSTIBLE"; campo = "ID_TIPO_COMBUSTIBLE ID_DETALLE, NOMBRE"; }
-            sql += campo + " FROM "+ tabla + " WHERE FLAG_ESTADO = '1'";
+            if (parametro == 3) { tabla = "T_GENM_TIPO_VEHICULO_ELEC"; campo = "ID_TIPO_VEHICULO_ELEC ID_DETALLE, NOMBRE"; }
+            if (parametro == 4) { tabla = "T_GENM_MODELO_VEHICULO_ELEC"; campo = "ID_MODELO ID_DETALLE, NOMBRE"; }
+            if (parametro == 5) { tabla = "T_GENM_TIPO_CARGADOR"; campo = "ID_CARGADOR ID_DETALLE, NOMBRE"; }
+            if (parametro == 6) { tabla = "T_GENM_CARGADOR_POTENCIA"; campo = "ID_POTENCIA ID_DETALLE, NOMBRE"; }
+            if (parametro == 7) { tabla = "T_MAE_DEPARTAMENTO"; campo = "ID_DEPARTAMENTO ID_DETALLE, NOMBRE"; }
+            if (parametro == 8) { tabla = "T_GENM_TIPO_TRANSPORTE"; campo = "ID_TIPO_TRANSPORTE ID_DETALLE, NOMBRE"; }
+            sql += campo + " FROM " + tabla + " WHERE FLAG_ESTADO = '1'";
             return sql;
         }
 

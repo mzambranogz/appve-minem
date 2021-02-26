@@ -78,8 +78,6 @@ namespace sres.da
                             ID_USUARIO = (int)x.ID_USUARIO,
                             NOMBRES = (string)x.NOMBRES,
                             CORREO = (string)x.CORREO,
-                            //ID_INSTITUCION = (int?)x.ID_INSTITUCION,
-                            //INSTITUCION = x.ID_INSTITUCION == null ? null : new InstitucionBE { ID_INSTITUCION = (int)x.ID_INSTITUCION, RAZON_SOCIAL = (string)x.RAZON_SOCIAL_INSTITUCION, RUC = (string)x.RUC_INSTITUCION },
                             ID_ROL = (int?)x.ID_ROL,
                             ROL = x.ID_ROL == null ? null : new RolBE { ID_ROL = (int)x.ID_ROL, NOMBRE = (string)x.NOMBRE_ROL },
                             FLAG_ESTADO = (string)x.FLAG_ESTADO,
@@ -118,7 +116,7 @@ namespace sres.da
 
             try
             {
-                    string sp = $"{Package.Mantenimiento}USP_SEL_OBTIENE_USUARIO";
+                    string sp = $"{Package.Mantenimiento}USP_SEL_GET_USUARIO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_USUARIO", idUsuario);
                     p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
@@ -157,7 +155,6 @@ namespace sres.da
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_USUARIO", usuario.ID_USUARIO);
                     p.Add("PI_FLAG_ESTADO", usuario.FLAG_ESTADO);
-                    //p.Add("PI_UPD_USUARIO", usuario.UPD_USUARIO);
                     p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                     db.Execute(sp, p, commandType: CommandType.StoredProcedure);
 
@@ -176,7 +173,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Mantenimiento}USP_PRC_GUARDAR_USUARIO";
+                string sp = $"{Package.Mantenimiento}USP_MAN_GUARDA_USUARIO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_USUARIO", usuario.ID_USUARIO);
                 p.Add("PI_NOMBRES", usuario.NOMBRES);
@@ -234,40 +231,6 @@ namespace sres.da
             }
 
             return usuario;
-        }
-
-        public List<UsuarioBE> ListarUsuarioResponsable(int idConvocatoria, OracleConnection db)
-        {
-            List<UsuarioBE> lista = null;
-
-            try
-            {
-                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_USUARIO_RESP";
-                var p = new OracleDynamicParameters();
-                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
-                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                lista = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
-            }
-            catch (Exception ex) { Log.Error(ex); }
-
-            return lista;
-        }
-
-        public List<UsuarioBE> ListarUsuarioResponsableAll(int idConvocatoria, OracleConnection db)
-        {
-            List<UsuarioBE> lista = null;
-
-            try
-            {
-                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_USUARIO_RESP_ALL";
-                var p = new OracleDynamicParameters();
-                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
-                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                lista = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
-            }
-            catch (Exception ex) { Log.Error(ex); }
-
-            return lista;
         }
 
         public UsuarioBE ObtenerClave(int idUsuario, OracleConnection db)
