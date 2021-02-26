@@ -60,52 +60,61 @@ $(".columna-filtro").click(function (e) {
 
 var consultar = () => {
     let busqueda = $('#txt-descripcion').val();
+    let estado = "1";
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
     let columna = $("#columna").val();
     let orden = $("#orden").val();
-    let params = { busqueda, registros, pagina, columna, orden };
+    let params = { busqueda, estado, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `${baseUrl}api/tipovehiculoelectrico/buscar?${queryParams}`;
+    //let url = `${baseUrl}api/tipovehiculoelectrico/buscar?${queryParams}`;
+    let url = `http://161.35.182.46/ApiElectromovilidad/api/tipovehiculoelectrico/buscar?${queryParams}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
-    fetch(url).then(r => r.json()).then(j => {
+    fetch(url, init).then(r => r.json()).then(j => {
         let tabla = $('#tblmantenimiento');
         tabla.find('tbody').html('');
         $('#viewPagination').attr('style', 'display: none !important');
-        if (j.length > 0) {
-            if (j[0].CANTIDAD_REGISTROS == 0) { $('#viewPagination').hide(); $('#view-page-result').hide(); }
-            else { $('#view-page-result').show(); $('#viewPagination').show(); }
-            $('.inicio-registros').text(j[0].CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (j[0].PAGINA - 1) * j[0].CANTIDAD_REGISTROS + 1);
-            $('.fin-registros').text(j[0].TOTAL_REGISTROS < j[0].PAGINA * j[0].CANTIDAD_REGISTROS ? j[0].TOTAL_REGISTROS : j[0].PAGINA * j[0].CANTIDAD_REGISTROS);
-            $('.total-registros').text(j[0].TOTAL_REGISTROS);
-            $('.pagina').text(j[0].PAGINA);
-            $('#ir-pagina').val(j[0].PAGINA);
-            $('#ir-pagina').attr('max', j[0].TOTAL_PAGINAS);
-            $('.total-paginas').text(j[0].TOTAL_PAGINAS);
+        if (j != null) {
+            if (j.length > 0) {
+                if (j[0].CANTIDAD_REGISTROS == 0) { $('#viewPagination').hide(); $('#view-page-result').hide(); }
+                else { $('#view-page-result').show(); $('#viewPagination').show(); }
+                $('.inicio-registros').text(j[0].CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (j[0].PAGINA - 1) * j[0].CANTIDAD_REGISTROS + 1);
+                $('.fin-registros').text(j[0].TOTAL_REGISTROS < j[0].PAGINA * j[0].CANTIDAD_REGISTROS ? j[0].TOTAL_REGISTROS : j[0].PAGINA * j[0].CANTIDAD_REGISTROS);
+                $('.total-registros').text(j[0].TOTAL_REGISTROS);
+                $('.pagina').text(j[0].PAGINA);
+                $('#ir-pagina').val(j[0].PAGINA);
+                $('#ir-pagina').attr('max', j[0].TOTAL_PAGINAS);
+                $('.total-paginas').text(j[0].TOTAL_PAGINAS);
 
-            let cantidadCeldasCabecera = tabla.find('thead tr th').length;
-            let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
-            tabla.find('tbody').html(contenido);
-            tabla.find('.btnCambiarEstado').each(x => {
-                let elementButton = tabla.find('.btnCambiarEstado')[x];
-                $(elementButton).on('click', (e) => {
-                    e.preventDefault();
-                    cambiarEstado(e.currentTarget);
+                let cantidadCeldasCabecera = tabla.find('thead tr th').length;
+                let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
+                tabla.find('tbody').html(contenido);
+                tabla.find('.btnCambiarEstado').each(x => {
+                    let elementButton = tabla.find('.btnCambiarEstado')[x];
+                    $(elementButton).on('click', (e) => {
+                        e.preventDefault();
+                        cambiarEstado(e.currentTarget);
+                    });
                 });
-            });
 
-            tabla.find('.btnEditar').each(x => {
-                let elementButton = tabla.find('.btnEditar')[x];
-                $(elementButton).on('click', (e) => {
-                    e.preventDefault();
-                    consultarObjeto(e.currentTarget);
+                tabla.find('.btnEditar').each(x => {
+                    let elementButton = tabla.find('.btnEditar')[x];
+                    $(elementButton).on('click', (e) => {
+                        e.preventDefault();
+                        consultarObjeto(e.currentTarget);
+                    });
                 });
-            });
+            } else {
+                $('#viewPagination').hide(); $('#view-page-result').hide();
+                $('.inicio-registros').text('No se encontraron resultados');
+            }
         } else {
             $('#viewPagination').hide(); $('#view-page-result').hide();
             $('.inicio-registros').text('No se encontraron resultados');
         }
+        
     });
 };
 
@@ -179,9 +188,11 @@ var consultarObjeto = (element) => {
     $('#exampleModalLabel').html('ACTUALIZAR TIPO VEHÍCULO CONVENCIONAL');
 
     let id = $(element).attr('data-id');
-    let url = `${baseUrl}api/tipovehiculoelectrico/obtener?id=${id}`;
+    //let url = `${baseUrl}api/tipovehiculoelectrico/obtener?id=${id}`;
+    let url = `http://161.35.182.46/ApiElectromovilidad/api/tipovehiculoelectrico/obtener?id=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(url)
+    fetch(url, init)
     .then(r => r.json())
     .then(j => {
         cargarDatos(j);

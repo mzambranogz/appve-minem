@@ -145,28 +145,6 @@ namespace sres.da
             return item;
         }
 
-        public bool CambiarEstadoUsuario(UsuarioBE usuario, OracleConnection db)
-        {
-            bool seActualizo = false;
-
-            try
-            {
-                    string sp = $"{Package.Mantenimiento}USP_UPD_CAMBIA_ESTADO_USUARIO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_ID_USUARIO", usuario.ID_USUARIO);
-                    p.Add("PI_FLAG_ESTADO", usuario.FLAG_ESTADO);
-                    p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
-                    db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-
-                    int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-
-                    seActualizo = filasAfectadas > 0;
-            }
-            catch (Exception ex) { Log.Error(ex); }
-
-            return seActualizo;
-        }
-
         public bool GuardarUsuario(UsuarioBE usuario, OracleConnection db)
         {
             bool seActualizo = false;

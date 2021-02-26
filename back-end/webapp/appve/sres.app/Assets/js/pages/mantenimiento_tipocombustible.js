@@ -68,6 +68,7 @@ var consultar = () => {
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
     let url = `${baseUrl}api/tipocombustible/buscar?${queryParams}`;
+    //let url = `http://161.35.182.46/ApiElectromovilidad/api/tipocombustible/buscar?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblmantenimiento');
@@ -129,17 +130,6 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
 
     return contenido;
 };
-
-//var cambiarEstado = (element) => {
-//    let id = $(element).attr('data-id');
-//    if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
-//    let data = { ID_REQUERIMIENTO: id, USUARIO_GUARDAR: idUsuarioLogin };
-//    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-//    let url = `${baseUrl}api/requerimiento/cambiarestadoobjeto`;
-//    fetch(url, init)
-//        .then(r => r.json())
-//        .then(j => { if (j) $('#btnConsultar')[0].click(); });
-//};
 
 var cambiarEstado = (element) => {
     idEliminar = $(element).attr('data-id');

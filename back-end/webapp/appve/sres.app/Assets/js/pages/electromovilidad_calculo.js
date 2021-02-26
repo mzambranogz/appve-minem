@@ -687,23 +687,33 @@ var cambiarDepartamentoVC = () => {
 
 //end_points 8 //Primero
 var cargarComponentes = () => {
-    let urlConsultarTipoTransporte = `${baseUrl}api/tipotransporte/obteneralltipotransporte`;
-    let urlConsultarTipoCombustible = `${baseUrl}api/tipocombustible/obteneralltipocombustible`;
-    let urlConsultarTipoVehiculoConvencional = `${baseUrl}api/tipovehiculoconvencional/obteneralltipovehiculoconvencional`;
-    let urlConsultarTipoVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obteneralltipovehiculoelectrico`;
-    let urlConsultarModeloVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obtenerallmodelovehiculoelectrico`;
-    let urlConsultarTipoCargador = `${baseUrl}api/tipocargador/obteneralltipocargador`;
-    let urlConsultarCargadorPotencia = `${baseUrl}api/tipocargador/obtenerallcargadorpotencia`;
-    let urlConsultarDepartamento = `${baseUrl}api/departamento/obteneralldepartamento`;
+    //let urlConsultarTipoTransporte = `${baseUrl}api/tipotransporte/obteneralltipotransporte`;
+    let urlConsultarTipoTransporte = `http://161.35.182.46/ApiElectromovilidad/api/TipoTransporte/obtenerall`;
+    //let urlConsultarTipoCombustible = `${baseUrl}api/tipocombustible/obteneralltipocombustible`;
+    let urlConsultarTipoCombustible = `http://161.35.182.46/ApiElectromovilidad/api/TipoCombustible/obtenerall`;
+    //let urlConsultarTipoVehiculoConvencional = `${baseUrl}api/tipovehiculoconvencional/obteneralltipovehiculoconvencional`;
+    let urlConsultarTipoVehiculoConvencional = `http://161.35.182.46/ApiElectromovilidad/api/TipoVehiculoConvencional/obtenerall`;
+    //let urlConsultarTipoVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obteneralltipovehiculoelectrico`;
+    let urlConsultarTipoVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/TipovehiculoElectrico/obtenerall`;
+    //let urlConsultarModeloVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obtenerallmodelovehiculoelectrico`;
+    let urlConsultarModeloVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/modelovehiculo/obtenerall`;
+    //let urlConsultarTipoCargador = `${baseUrl}api/tipocargador/obteneralltipocargador`;
+    let urlConsultarTipoCargador = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obteneralltipocargador`;
+    //let urlConsultarCargadorPotencia = `${baseUrl}api/tipocargador/obtenerallcargadorpotencia`;
+    let urlConsultarCargadorPotencia = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obtenerallcargadorpotencia`;
+    //let urlConsultarDepartamento = `${baseUrl}api/departamento/obteneralldepartamento`;
+    let urlConsultarDepartamento = `http://161.35.182.46/ApiElectromovilidad/api/Departamento/obteneralldepartamento`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
+
     Promise.all([
-        fetch(urlConsultarTipoTransporte),
-        fetch(urlConsultarTipoCombustible),
-        fetch(urlConsultarTipoVehiculoConvencional),
-        fetch(urlConsultarTipoVehiculoElectrico),
-        fetch(urlConsultarModeloVehiculoElectrico),
-        fetch(urlConsultarTipoCargador),
-        fetch(urlConsultarCargadorPotencia),
-        fetch(urlConsultarDepartamento),
+        fetch(urlConsultarTipoTransporte, init),
+        fetch(urlConsultarTipoCombustible, init),
+        fetch(urlConsultarTipoVehiculoConvencional, init),
+        fetch(urlConsultarTipoVehiculoElectrico, init),
+        fetch(urlConsultarModeloVehiculoElectrico, init),
+        fetch(urlConsultarTipoCargador, init),
+        fetch(urlConsultarCargadorPotencia, init),
+        fetch(urlConsultarDepartamento, init),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarListas);
@@ -725,11 +735,11 @@ var cargarListas = ([listaTipoTransporte, listaTipoCombustible, listaTipoVehicul
     $(`#tipo-combustible-vc`).html(`${option}${opcionestc}`);
     $(`#tipo-combustible-cvc`).html(`${option}${opcionestc}`);
 
-    let opcionestv = listaTipoVehiculoConvencional.length == 0 ? '' : listaTipoVehiculoConvencional.map(x => `<option value="${x.ID_TIPO_VEHICULO_CONV}">${x.NOMBRE}</option>`).join('');
+    let opcionestv = listaTipoVehiculoConvencional.length == 0 ? '' : listaTipoVehiculoConvencional.map(x => `<option value="${x.ID_TIPO_VEHICULO_CONV}">${x.NOMBRE == null ? "" : x.NOMBRE}</option>`).join('');
     $(`#tipo-vehiculo-vc`).html(`${option}${opcionestv}`);
     $(`#tipo-vehiculo-cvc`).html(`${option}${opcionestv}`);
 
-    let opcioneste = listaTipoVehiculoElectrico.length == 0 ? '' : listaTipoVehiculoElectrico.map(x => `<option value="${x.ID_TIPO_VEHICULO_ELEC}">${x.NOMBRE}</option>`).join('');
+    let opcioneste = listaTipoVehiculoElectrico.length == 0 ? '' : listaTipoVehiculoElectrico.map(x => `<option value="${x.ID_TIPO_VEHICULO_ELEC}">${x.NOMBRE == null ? "" : x.NOMBRE}</option>`).join('');
     $(`#tipo-vehiculo-ve`).html(`${option}${opcioneste}`);
 
     let opcionestm = listaModeloVehiculoElectrico.length == 0 ? '' : listaModeloVehiculoElectrico.map(x => `<option value="${x.ID_MODELO}">${x.NOMBRE}</option>`).join('');

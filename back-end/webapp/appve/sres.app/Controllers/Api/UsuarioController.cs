@@ -57,45 +57,6 @@ namespace sres.app.Controllers.Api
             };
         }
 
-        [Route("cambiarestadousuario")]
-        [HttpPost]
-        public bool CambiarEstadoUsuario(UsuarioBE usuario)
-        {
-            bool habilitar = usuario.FLAG_ESTADO == "1";
-            bool seGuardo = usuarioLN.CambiarEstadoUsuario(usuario);
-
-            if (seGuardo)
-            {
-                string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldServer = "[SERVER]", fieldentidad = "[ENTIDAD]";
-                usuario = usuarioLN.ObtenerUsuario(usuario.ID_USUARIO);
-
-                if (habilitar)
-                {
-                    string[] fields = new string[] { fieldNombres, fieldApellidos, fieldServer, fieldentidad };
-                    string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldServer, fieldentidad };
-                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldServer] = AppSettings.Get<string>("Server")};
-                    string subject = $"{usuario.NOMBRES}, Su cuenta ha sido aprobada en nuestra plataforma Reconocimiento de Energía Eficiente y Sostenible";
-                    MailAddressCollection mailTo = new MailAddressCollection();
-                    mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES}"));
-
-                    Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.AprobacionUsuario, dataBody, fields, fieldsRequire, subject, mailTo));
-                }
-                else
-                {
-                    string[] fields = new string[] { fieldNombres, fieldApellidos, fieldServer, fieldentidad };
-                    string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldServer, fieldentidad };
-                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES,[fieldServer] = AppSettings.Get<string>("Server") };
-                    string subject = $"{usuario.NOMBRES}, Su cuenta ha sido deshabilitada en nuestra plataforma Reconocimiento de Energía Eficiente y Sostenible";
-                    MailAddressCollection mailTo = new MailAddressCollection();
-                    mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES}"));
-
-                    Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.DeshabilitarUsuario, dataBody, fields, fieldsRequire, subject, mailTo));
-                }
-            }
-
-            return seGuardo;
-        }
-
         [Route("guardarusuario")]
         [HttpPost]
         public bool GuardarUsuario(UsuarioBE usuario)

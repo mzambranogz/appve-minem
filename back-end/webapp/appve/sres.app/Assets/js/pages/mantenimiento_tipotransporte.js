@@ -67,9 +67,12 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `${baseUrl}api/tipotransporte/buscar?${queryParams}`;
+    debugger;
+    //let url = `${baseUrl}api/tipotransporte/buscar?${queryParams}`;
+    let url = `http://161.35.182.46/ApiElectromovilidad/api/TipoTransporte/buscar?${queryParams}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'token': token }};
 
-    fetch(url).then(r => r.json()).then(j => {
+    fetch(url, init).then(r => r.json()).then(j => {
         let tabla = $('#tblmantenimiento');
         tabla.find('tbody').html('');
         $('#viewPagination').attr('style', 'display: none !important');

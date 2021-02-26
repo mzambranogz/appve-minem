@@ -105,21 +105,6 @@ namespace sres.ln
             return item;
         }
 
-        public bool CambiarEstadoUsuario(UsuarioBE usuario)
-        {
-            bool valor = false;
-
-            try
-            {
-                cn.Open();
-                valor = usuarioDA.CambiarEstadoUsuario(usuario, cn);
-            }
-            catch (Exception ex) { Log.Error(ex); }
-            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
-
-            return valor;
-        }
-
         public bool GuardarUsuario(UsuarioBE usuario)
         {
             bool seGuardo = false;

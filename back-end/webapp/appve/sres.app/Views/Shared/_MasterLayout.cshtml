@@ -88,6 +88,7 @@
         const baseUrl = '@Url.Content("~")';
         const idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());
         const idRolLogin = @(usuario == null ? "null" : usuario.ROL == null ? "null" : usuario.ID_ROL.ToString());
+        const token = '@(usuario == null ? "" : $"{usuario.TOKEN}")';
     </script>
     @RenderSection("scripts_footer", false)
 </body>
