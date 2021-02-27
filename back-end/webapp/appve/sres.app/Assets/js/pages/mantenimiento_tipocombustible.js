@@ -60,53 +60,57 @@ $(".columna-filtro").click(function (e) {
 
 var consultar = () => {
     let busqueda = $('#txt-descripcion').val();
+    let estado = '1';
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
     let columna = $("#columna").val();
     let orden = $("#orden").val();
-    let params = { busqueda, registros, pagina, columna, orden };
+    let params = { busqueda, estado, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `${baseUrl}api/tipocombustible/buscar?${queryParams}`;
-    //let url = `http://161.35.182.46/ApiElectromovilidad/api/tipocombustible/buscar?${queryParams}`;
+    //let url = `${baseUrl}api/tipocombustible/buscar?${queryParams}`;
+    let url = `${baseUrlApi}api/tipocombustible/buscar?${queryParams}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(url).then(r => r.json()).then(j => {
+    fetch(url, init).then(r => r.json()).then(j => {
         let tabla = $('#tblmantenimiento');
         tabla.find('tbody').html('');
         $('#viewPagination').attr('style', 'display: none !important');
-        if (j.length > 0) {
-            if (j[0].CANTIDAD_REGISTROS == 0) { $('#viewPagination').hide(); $('#view-page-result').hide(); }
-            else { $('#view-page-result').show(); $('#viewPagination').show(); }
-            $('.inicio-registros').text(j[0].CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (j[0].PAGINA - 1) * j[0].CANTIDAD_REGISTROS + 1);
-            $('.fin-registros').text(j[0].TOTAL_REGISTROS < j[0].PAGINA * j[0].CANTIDAD_REGISTROS ? j[0].TOTAL_REGISTROS : j[0].PAGINA * j[0].CANTIDAD_REGISTROS);
-            $('.total-registros').text(j[0].TOTAL_REGISTROS);
-            $('.pagina').text(j[0].PAGINA);
-            $('#ir-pagina').val(j[0].PAGINA);
-            $('#ir-pagina').attr('max', j[0].TOTAL_PAGINAS);
-            $('.total-paginas').text(j[0].TOTAL_PAGINAS);
+        if (j != null) {
+            if (j.length > 0) {
+                if (j[0].CANTIDAD_REGISTROS == 0) { $('#viewPagination').hide(); $('#view-page-result').hide(); }
+                else { $('#view-page-result').show(); $('#viewPagination').show(); }
+                $('.inicio-registros').text(j[0].CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (j[0].PAGINA - 1) * j[0].CANTIDAD_REGISTROS + 1);
+                $('.fin-registros').text(j[0].TOTAL_REGISTROS < j[0].PAGINA * j[0].CANTIDAD_REGISTROS ? j[0].TOTAL_REGISTROS : j[0].PAGINA * j[0].CANTIDAD_REGISTROS);
+                $('.total-registros').text(j[0].TOTAL_REGISTROS);
+                $('.pagina').text(j[0].PAGINA);
+                $('#ir-pagina').val(j[0].PAGINA);
+                $('#ir-pagina').attr('max', j[0].TOTAL_PAGINAS);
+                $('.total-paginas').text(j[0].TOTAL_PAGINAS);
 
-            let cantidadCeldasCabecera = tabla.find('thead tr th').length;
-            let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
-            tabla.find('tbody').html(contenido);
-            tabla.find('.btnCambiarEstado').each(x => {
-                let elementButton = tabla.find('.btnCambiarEstado')[x];
-                $(elementButton).on('click', (e) => {
-                    e.preventDefault();
-                    cambiarEstado(e.currentTarget);
+                let cantidadCeldasCabecera = tabla.find('thead tr th').length;
+                let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
+                tabla.find('tbody').html(contenido);
+                tabla.find('.btnCambiarEstado').each(x => {
+                    let elementButton = tabla.find('.btnCambiarEstado')[x];
+                    $(elementButton).on('click', (e) => {
+                        e.preventDefault();
+                        cambiarEstado(e.currentTarget);
+                    });
                 });
-            });
 
-            tabla.find('.btnEditar').each(x => {
-                let elementButton = tabla.find('.btnEditar')[x];
-                $(elementButton).on('click', (e) => {
-                    e.preventDefault();
-                    consultarObjeto(e.currentTarget);
+                tabla.find('.btnEditar').each(x => {
+                    let elementButton = tabla.find('.btnEditar')[x];
+                    $(elementButton).on('click', (e) => {
+                        e.preventDefault();
+                        consultarObjeto(e.currentTarget);
+                    });
                 });
-            });
-        } else {
-            $('#viewPagination').hide(); $('#view-page-result').hide();
-            $('.inicio-registros').text('No se encontraron resultados');
-        }
+            } else {
+                $('#viewPagination').hide(); $('#view-page-result').hide();
+                $('.inicio-registros').text('No se encontraron resultados');
+            }
+        }        
     });
 };
 
@@ -138,9 +142,12 @@ var cambiarEstado = (element) => {
 
 var eliminar = () => {
     if (idEliminar == 0) return;
+
+    //let url = `${baseUrl}api/tipocombustible/cambiarestado`;
+    let url = `${baseUrlApi}api/tipocombustible/cambiarestado`;
     let data = { ID_TIPO_COMBUSTIBLE: idEliminar, UPD_USUARIO: idUsuarioLogin };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-    let url = `${baseUrl}api/tipocombustible/cambiarestado`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
+    
     fetch(url, init)
         .then(r => r.json())
         .then(j => {
@@ -169,18 +176,32 @@ var consultarObjeto = (element) => {
     $('#exampleModalLabel').html('ACTUALIZAR TIPO COMBUSTIBLE');
 
     let id = $(element).attr('data-id');
-    let url = `${baseUrl}api/tipocombustible/obtener?id=${id}`;
+    //let url = `${baseUrl}api/tipocombustible/obtener?id=${id}`;
+    let url = `${baseUrlApi}api/tipocombustible/obtener?id=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(url)
-    .then(r => r.json())
-    .then(j => {
-        cargarDatos(j);
+    fetch(url, init)
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else return 0;
+    })
+    .then(cargarDatos)
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+        return 0;
     });
 }
 
 var cargarDatos = (data) => {
-    $('#frm').data('id', data.ID_TIPO_COMBUSTIBLE);
-    $('#txt-nombre').val(data.NOMBRE);
+    if (data == 0 || data == null) {
+        $('#btnGuardar').hide();
+        $('#btnGuardar').next().html('Cerrar');
+        mostrarMensajeError("Ocurrió un problema al traer la información requerida");
+    }
+    else {
+        $('#frm').data('id', data.ID_TIPO_COMBUSTIBLE);
+        $('#txt-nombre').val(data.NOMBRE);
+    }
 }
 
 var guardar = () => {
@@ -198,16 +219,36 @@ var guardar = () => {
 
     let id = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
-    let url = `${baseUrl}api/tipocombustible/guardar`;
+    //let url = `${baseUrl}api/tipocombustible/guardar`;
+    let url = `${baseUrlApi}api/tipocombustible/agregar`;
     let data = { ID_TIPO_COMBUSTIBLE: id == null ? -1 : id, NOMBRE: nombre, UPD_USUARIO: idUsuarioLogin };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 
     fetch(url, init)
-    .then(r => r.json())
-    .then(j => {
-        $('.alert-add').html('');
-        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
-        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
-        if (j) $('#btnConsultar')[0].click();
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else if (response.status == 400) return 400;
+        else return 0;
+    })
+    .then(registro)
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+        return 0;
     });
+}
+
+var registro = (j) => {
+    $('.alert-add').html('');
+    if (j == 400) { mostrarMensajeError("Error en el registro tipo de combustible"); }
+    else if (j == 0) { mostrarMensajeError("Error, comunicarse con el administrador del sistema"); }
+    else {
+        $('#btnGuardar').hide();
+        $('#btnGuardar').next().html('Cerrar');
+        $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` });
+        $('#btnConsultar')[0].click();
+    }
+}
+
+var mostrarMensajeError = (msj) => {
+    $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: msj });
 }
