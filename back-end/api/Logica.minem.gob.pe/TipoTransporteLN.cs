@@ -66,6 +66,20 @@ namespace Logica.minem.gob.pe
             return item;
         }
 
+        public TipoTransporteBE getTipoTransporte(TipoTransporteBE entidad)
+        {
+            TipoTransporteBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = tipoDA.getTipoTransporte(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
         public TipoTransporteBE EliminarTipoTransporte(TipoTransporteBE oTipoTransporte)
         {
             TipoTransporteBE item = null;
