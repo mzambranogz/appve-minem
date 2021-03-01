@@ -1,0 +1,371 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Usuario transporte público";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+    int resultado = ViewData["resultado"] == null ? 0 : (int)ViewData["resultado"];
+}
+@section scripts_footer{    
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_verresultado.js")"></script>
+}
+
+<div class="container mt-5">
+    <div id="seccion-resultados">
+        <h4>Resultados</h4>
+        <div class="row">
+            <label>Años evaluación</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="anio_evaluacion"></select>
+        </div>
+        <div class="row mt-2">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <tr>
+                                    <th>Ahorro económico</th>
+                                    <td><span id="ahorro-economico-d"></span> g</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Escenario Movilidad Convencional</h4>
+            </div>
+            <div class="col-6">
+                <h4>Escenario Electromovilidad</h4>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>inversión (Cuota inicial)</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-cuota-inicial-vc"></span>
+            </div>
+            <div class="col-6">
+                <span id="eva-cuota-inicial-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Incentivo económico anual</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-incentivo-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-incentivo-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Recambio batería</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-recambio-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-recambio-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-seguro-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-seguro-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Energía (Electricidad o Combustible)</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-energia-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-energia-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Mantenimiento continuo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-mante-continuo-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-mante-continuo-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Carga Financiera Anual</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-carga-financiera-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-carga-financiera-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Equipo de carga e instalación</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-carga-instalacion-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-carga-instalacion-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Reventa vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-reventa-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-reventa-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Otros transportes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-transporte-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-transporte-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Mantenimiento extraordinario</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-mante-extraordinario-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-mante-extraordinario-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Total</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-total-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-total-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="linechart_material"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Consumo energético</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción Total Consumo energético</th>
+                                        <td><span id="consumo-energetico-d"></span> GJ</td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Reducción de contaminantes Globales</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción Total Gases Efecto Invernadero</th>
+                                        <td><span id="emisiones-d"></span> kgCO2e</td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="columnchart_values"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="consumo_energetico"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="consumo_energetico_total"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="emisiones_totales"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Reducción de contaminantes locales totales</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción total de NOx</th>
+                                        <td><span id="cl-nox"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de CO</th>
+                                        <td><span id="cl-co"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de MP 2.5</th>
+                                        <td><span id="cl-mp25"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de BC</th>
+                                        <td><span id="cl-bc"></span> g</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-sm btn-info" type="button" id="btnRegresar">Regresar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    var idresultado = @resultado;
+    google.charts.load('current', { 'packages': ['line'] });
+    google.charts.load("current", { packages: ['corechart'] });
+</script>

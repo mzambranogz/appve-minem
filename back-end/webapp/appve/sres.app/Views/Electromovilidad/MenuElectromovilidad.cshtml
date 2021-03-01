@@ -199,7 +199,7 @@
             <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input id="kilometro-sem-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
             <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id="btnAdd-cvc" ata-validar="cvc" class="btn btn-primary">Agregar ruta</button>
+            <button id="btnAdd-cvc" data-validar="cvc" class="btn btn-primary">Agregar ruta</button>
         </div>
         <div class="row">
             <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -268,7 +268,7 @@
                 <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="kilometros-01" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="btnAdd-t1" ata-validar="t1" class="btn btn-primary">Agregar ruta</button>
+                <button id="btnAdd-t1" data-validar="t1" class="btn btn-primary">Agregar ruta</button>
             </div>
             <div class="row">
                 <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -291,7 +291,7 @@
                 <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="kilometros-02" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="btnAdd-t2" ata-validar="t2" class="btn btn-primary">Agregar ruta</button>
+                <button id="btnAdd-t2" data-validar="t2" class="btn btn-primary">Agregar ruta</button>
             </div>
             <div class="row">
                 <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -314,7 +314,7 @@
                 <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="kilometros-03" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="btnAdd-t3" ata-validar="t3" class="btn btn-primary">Agregar ruta</button>
+                <button id="btnAdd-t3" data-validar="t3" class="btn btn-primary">Agregar ruta</button>
             </div>
             <div class="row">
                 <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -337,7 +337,7 @@
                 <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="kilometros-04" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="btnAdd-t4" ata-validar="t4" class="btn btn-primary">Agregar ruta</button>
+                <button id="btnAdd-t4" data-validar="t4" class="btn btn-primary">Agregar ruta</button>
             </div>
             <div class="row">
                 <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -427,7 +427,7 @@
             <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input id="kilometro-sem-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
             <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id="btnAdd-ve" ata-validar="ve" class="btn btn-primary">Agregar ruta</button>
+            <button id="btnAdd-ve" data-validar="ve" class="btn btn-primary">Agregar ruta</button>
         </div>
         <div class="row">
             <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -521,6 +521,24 @@
             <label>Años evaluación</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <select id="anio_evaluacion"></select>
         </div>
+
+        <div class="row mt-2">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <tr>
+                                    <th>Ahorro económico</th>
+                                    <td><span id="ahorro-economico-d"></span> g</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-6">
                 <h4>Escenario Movilidad Convencional</h4>
@@ -700,11 +718,73 @@
                 <hr />
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="linechart_material"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Consumo energético</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción Total Consumo energético</th>
+                                        <td><span id="consumo-energetico-d"></span> GJ</td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Reducción de contaminantes Globales</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción Total Gases Efecto Invernadero</th>
+                                        <td><span id="emisiones-d"></span> kgCO2e</td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
                             <div class="logros chart" id="columnchart_values"></div>
                         </div>
                     </div>
@@ -715,7 +795,7 @@
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
                             <div class="logros chart" id="consumo_energetico"></div>
                         </div>
                     </div>
@@ -726,7 +806,7 @@
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
                             <div class="logros chart" id="consumo_energetico_total"></div>
                         </div>
                     </div>
@@ -737,7 +817,7 @@
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
                             <div class="logros chart" id="emisiones_totales"></div>
                         </div>
                     </div>
@@ -748,13 +828,45 @@
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
-                            <div class="logros chart" id="linechart_material"></div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Reducción de contaminantes locales totales</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción total de NOx</th>
+                                        <td><span id="cl-nox"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de CO</th>
+                                        <td><span id="cl-co"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de MP 2.5</th>
+                                        <td><span id="cl-mp25"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de BC</th>
+                                        <td><span id="cl-bc"></span> g</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
+              
+    </div>
+
+    <div class="row d-none" id="seccion-opciones">
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-sm btn-info" type="button" id="btnNuevo">Nuevo Cálvulo</button>
+            <button class="btn btn-sm btn-dark" type="button" id="btnGuardar">Guardar</button>
+        </div>
     </div>
 
 </div>
