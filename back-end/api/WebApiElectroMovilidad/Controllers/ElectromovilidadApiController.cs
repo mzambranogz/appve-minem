@@ -30,6 +30,16 @@ namespace WebApiElectroMovilidad.Controllers
             return obj;
         }
 
+        [Route("obtenervalorestccp")]
+        [HttpGet]
+        public ElectromovilidadBE ValoresCargador(int valor1, int valor2)
+        {
+            ElectromovilidadBE obj = new ElectromovilidadBE();
+            obj.PRECIO_CARGADOR = tipoLN.ListaFactor2P(11, 5, 6, valor1, valor2);
+            obj.COSTO_INSTALACION = tipoLN.ListaFactor2P(12, 5, 6, valor1, valor2);
+            return obj;
+        }
+
         [Route("obtenervalorestvem")]
         [HttpGet]
         public ElectromovilidadBE ValoresModeloVehiculoElectrico(int valor1)
@@ -38,16 +48,6 @@ namespace WebApiElectroMovilidad.Controllers
             obj.RENDIMIENTO = tipoLN.ListaFactor1P(6, 4, valor1);
             obj.PRECIO_VEHICULO = tipoLN.ListaFactor1P(8, 4, valor1);
             obj.CAPACIDAD_BATERIA = tipoLN.ListaFactor1P(10, 4, valor1);
-            return obj;
-        }
-
-        [Route("obtenervalorestccp")]
-        [HttpGet]
-        public ElectromovilidadBE ValoresCargador(int valor1, int valor2)
-        {
-            ElectromovilidadBE obj = new ElectromovilidadBE();
-            obj.PRECIO_CARGADOR = tipoLN.ListaFactor2P(11, 5, 6, valor1, valor2);
-            obj.COSTO_INSTALACION = tipoLN.ListaFactor2P(12, 5, 6, valor1, valor2);
             return obj;
         }
     }
