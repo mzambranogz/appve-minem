@@ -1,0 +1,14 @@
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\sres.da.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\sres.da.pdb
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\Dapper.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\Newtonsoft.Json.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\Oracle.DataAccess.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\sres.be.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\sres.ut.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\sres.be.pdb
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\sres.ut.pdb
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\Dapper.xml
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\bin\Release\Newtonsoft.Json.xml
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\obj\Release\sres.da.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\obj\Release\sres.da.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.da\obj\Release\sres.da.pdb

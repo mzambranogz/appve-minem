@@ -50,49 +50,30 @@ namespace sres.app.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Validar(string correo, string contrasena, string token = null)
-        {
-            Dictionary<string, object> response = new Dictionary<string, object> {["success"] = false,["message"] = "" };
-            UsuarioBE usuario = null;
-            try
-            {
-                bool esValido = usuarioLN.ValidarUsuario(correo, contrasena, out usuario);
-                if (esValido)
-                {
-                    if (usuario.FLAG_ESTADO == "0" || usuario.FLAG_ESTADO == "2")
-                    {
-                        response["success"] = false;
-                        response["message"] = "Usuario no se encuentra habilitado";
-                        return Json(response);
-                    }
-                    if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
-                    Session["user"] = usuario;
-                    response["success"] = true;
-                    response["message"] = "Validación correcta";
-                    return Json(response);
-                }
-                response["success"] = false;
-                response["message"] = "Contraseña incorrecta";
-                if (usuario == null) response["message"] = "Usuario no existe";
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-            return Json(response);
-        }
-
-        //public async Task<ActionResult> Validar(string correo, string contrasena, int id_rol, string token = null)
-        //public async Task<ActionResult> Validar(UsuarioBE usuario, string token = null)
+        //public async Task<ActionResult> Validar(string correo, string contrasena, string token = null)
         //{
         //    Dictionary<string, object> response = new Dictionary<string, object> {["success"] = false,["message"] = "" };
-        //    //UsuarioBE usuario = new UsuarioBE;
+        //    UsuarioBE usuario = null;
         //    try
         //    {
-        //        Session["user"] = usuario;
-        //        response["success"] = true;
-        //        response["message"] = "Validación correcta";
-        //        return Json(response);
+        //        bool esValido = usuarioLN.ValidarUsuario(correo, contrasena, out usuario);
+        //        if (esValido)
+        //        {
+        //            if (usuario.FLAG_ESTADO == "0" || usuario.FLAG_ESTADO == "2")
+        //            {
+        //                response["success"] = false;
+        //                response["message"] = "Usuario no se encuentra habilitado";
+        //                return Json(response);
+        //            }
+        //            if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
+        //            Session["user"] = usuario;
+        //            response["success"] = true;
+        //            response["message"] = "Validación correcta";
+        //            return Json(response);
+        //        }
+        //        response["success"] = false;
+        //        response["message"] = "Contraseña incorrecta";
+        //        if (usuario == null) response["message"] = "Usuario no existe";
         //    }
         //    catch (Exception ex)
         //    {
@@ -100,6 +81,24 @@ namespace sres.app.Controllers
         //    }
         //    return Json(response);
         //}
+
+        //public async Task<ActionResult> Validar(string correo, string contrasena, int id_rol, string token = null)
+        public async Task<ActionResult> Validar(UsuarioBE usuario, string token = null)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object> {["success"] = false,["message"] = "" };
+            try
+            {
+                Session["user"] = usuario;
+                response["success"] = true;
+                response["message"] = "Validación correcta";
+                return Json(response);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return Json(response);
+        }
 
         //[HttpPost]
         //public async Task<ActionResult> ValidarMRV(string correo, string contraseña, string token = null)

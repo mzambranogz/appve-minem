@@ -1,0 +1,202 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Estación de carga";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_menu_estacioncarga.js")"></script>
+}
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-12">
+            <a href="@Url.Action("registro-estacion-de-carga","Electromovilidad")" class="btn btn-primary">Nueva estación</a>
+        </div>        
+    </div>
+    <div class="row" id="sin-estacion">
+        <div><span>No hay estaciones de carga registradas</span></div>
+    </div>
+    <div class="row" id="seccion-estacion">
+        @*<div class="col-6 mb-2">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-12"><h6 style="color: blue;">Descripción de la estación de carga</h6></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row">
+                                <div class="col-12 ml-3"><a href="#"><i class="fas fa-tools mr-1"></i></a></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Modelo</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">ABC-DEF</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Marca</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Tesla</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-9"><span style="color: brown;">Fotos</span></div>
+                                <div class="col-3"><a class="imagen-estacion" id="estacion-1" href="javascript:void(0);" data-valor="1" data-toggle="modal" data-target="#modal-foto"><i class="fas fa-camera mr-1"></i></a></div>                              
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">5 de 5</span></div>                                
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-9"><span style="color: brown;">Dirección</span></div>
+                                <div class="col-3"><a href="#"><i class="fas fa-map-marked mr-1"></i></a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Av. Javier Prado 536</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Potencia</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">110</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Modo de carga</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Normal</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Tipo de cargador</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Wallbox</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">3</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Horario desde</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">08:00 a.m.</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Horario hasta</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">10:00 p.m.</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Tarifa de servicio</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">3.5</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Cumplimiento del protocolo</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Si</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+
+    </div>
+    
+</div>
+
+<div class="modal fade" id="modal-foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">Fotos</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">Imágenes de la estación de carga</h2>
+                            <div class="form-group mt-2">
+                                <p id="marco-imagenes">
+                                    @*<a rel="example_group" href="@Url.Content("~/Assets/images/005.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/005.jpg")" /></a>
+                                    <a rel="example_group" href="@Url.Content("~/Assets/images/002.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/002.jpg")" /></a>
+                                    <a rel="example_group" href="@Url.Content("~/Assets/images/003.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/003.jpg")" /></a>
+                                    <a rel="example_group" href="@Url.Content("~/Assets/images/004.jpg")" title=""><img class="last img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/004.jpg")" /></a>
+                                    <a rel="example_group" href="@Url.Content("~/Assets/images/006.jpg")" title=""><img class="last img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/006.jpg")" /></a>*@
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="alert-add"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Mis consultas y resultados";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_consultasresultados.js")"></script>
+}
+
+<div class="container mt-5">
+    <div class="row" id="consultas">
+        
+    </div> 
+</div>
+

@@ -1,0 +1,6 @@
+17/02/2021 09:12:23: [Método: Void FCallDivide(System.Decimal ByRef, System.Decimal ByRef), Línea: 0] - Intento de dividir por cero.
+17/02/2021 09:12:23: [Método: System.Decimal op_Division(System.Decimal, System.Decimal), Línea: 0] - Intento de dividir por cero.
+17/02/2021 09:12:23: [Método: System.Collections.Generic.List`1[sres.be.EscenarioConvencionalBE] CalcularVC(sres.be.VehiculoConvencionalBE), Línea: 203] - Intento de dividir por cero.
+17/02/2021 09:23:18: [Método: Void FCallDivide(System.Decimal ByRef, System.Decimal ByRef), Línea: 0] - Intento de dividir por cero.
+17/02/2021 09:23:18: [Método: System.Decimal op_Division(System.Decimal, System.Decimal), Línea: 0] - Intento de dividir por cero.
+17/02/2021 09:23:18: [Método: System.Collections.Generic.List`1[sres.be.EscenarioConvencionalBE] CalcularVC(sres.be.VehiculoConvencionalBE), Línea: 0] - Intento de dividir por cero.

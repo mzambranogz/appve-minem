@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Titulo = "Login";
+    ViewBag.Header = new Dictionary<string, object>
+    {
+        ["Imagen"] = "~/Assets/images/bg-login.png",
+        ["Titulo"] = "INICIAR SESIÓN"
+    };
+
+    ViewBag.SRESDescription = false;
+
+    ViewBag.SRESDocumentation = new Dictionary<string, Dictionary<string, object>>
+    {
+        ["References"] = new Dictionary<string, object>
+        {
+            ["Show"] = true,
+            ["Titulo"] = "DOCUMENTOS DE REFERENCIA",
+            ["Data"] = new Dictionary<int, object>
+            {
+                //[1] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado 2018 a 2019", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                //[2] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado de Eficiencia Energética 2020", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                //[6] = new Dictionary<string, object> { ["Texto"] = "Guía de Auditorías Energéticas", ["Url"] = "#" },
+                //[7] = new Dictionary<string, object> { ["Texto"] = "Manual de uso de la plataforma del Reconocimiento de Energía Eficiente y Sostenible", ["Url"] = "#" }
+            }
+        }
+    };
+}
+
+@section scripts_header{
+    @*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
+    <script src="https://www.google.com/recaptcha/api.js?render=@(ViewData["keySiteCaptcha"].ToString())"></script>
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/plugins/counter.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/login.js")"></script>
+}
+
+
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 d-none d-lg-block">
+                @*<div class="row">
+                    <div class="col-12 wow fadeIn">
+                        <div class="p-5 set-bg" data-setbg="@Url.Content("~/Assets/images/login-left.png")">
+                            <p class="estilo-01 text-white text-justify barra-blanca my-5"></p>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 mb-5 mb-lg-0">
+                <div class="row">
+                    <div class="col-12 wow fadeIn">
+                        <div class="h4 estilo-03">Ingresar <br><small class="text-muted estilo-02">Accede con tu cuenta</small></div>
+                        <form id="frmLogin" action="@Url.Action("Validar", "Login")" method="post" autocomplete="off">
+                            <input type="hidden" name="token" id="token" />
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-user">Correo electrónico</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-envelope"></i></span></div>
+                                    <input class="form-control estilo-01" type="email" id="txt-user" placeholder="Ingresar correo electrónico" aria-describedby="inputGroup1" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@("@")[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-pswd">Contraseña</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup2"><i class="fas fa-key"></i></span></div>
+                                    <input class="form-control estilo-01" type="password" id="txt-pswd" placeholder="Ingresar contraseña" aria-describedby="inputGroup2" maxlength="30" title="Ingrese su contraseña." autocomplete="new-password" required>
+                                    <div class="input-group-append">
+                                        <label class="input-group-text cursor-pointer ver-clave estilo-01"><i class="fas fa-eye mr-1"></i>Mostrar</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="chk-recd">
+                                    <label class="custom-control-label estilo-01" for="chk-recd">Recordar email</label>
+                                </div>
+                            </div>
+
+                            <button class="btn-lg btn-primary w-100 mb-3" id="sresBtn" type="submit"><i class="fas fa-sign-in-alt px-1"></i>Ingresar</button>
+                        </form>
+                        <p class="pt-4 mb-0 text-center estilo-01">¿No tienes una cuenta?&nbsp;<a class="text-sres-verde estilo-01" href="@Url.Action("Registrarme", "Login")">Regístrese ahora <br></a><a class="text-sres-verde estilo-01" href="@Url.Action("RecuperarContraseña", "Login")">¿Olvidó su contraseña?</a></p>
+                    </div>
+                </div>
+            </div>
+            @*@Html.Partial("_SRES_Documentation")*@
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalValidacionSres" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-nama-azul text-white">
+                <h5 class="modal-title estilo-01" id="exampleModalLabel">Validacion de credenciales</h5>
+            </div>
+            <div class="modal-body medidas-modal">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="text-center estilo-03">Comparando datos...</h3>
+                        <p class="text-center estilo-01">Estamos procediendo a validar sus datos con la plataforma de MRV del sector energía, en breve confirmaremos los resultados.</p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <p id="redireccionarText" class="text-center estilo-01" style="display:none">
+                            Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos
+                        </p>
+                        <div class="progress mb-3" style="height: 25px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated estilo-01" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Validando, espere un momento por favor...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var key = '@ViewData["keySiteCaptcha"].ToString()';
+</script>

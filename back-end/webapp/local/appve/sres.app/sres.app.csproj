@@ -1,0 +1,814 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{357FD8C1-D418-429A-AD82-B0C41A39DF2B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sres.app</RootNamespace>
+    <AssemblyName>sres.app</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.Common\12.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.DataVisualization\12.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.DataVisualization.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\12.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Assets\css\lightbox.min.css" />
+    <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\fonts\fa-brands-400.svg" />
+    <Content Include="Assets\fonts\fa-regular-400.svg" />
+    <Content Include="Assets\fonts\fa-solid-900.svg" />
+    <Content Include="Assets\fonts\Flaticon.svg" />
+    <Content Include="Assets\fonts\gothamrounded-bolditalic.svg" />
+    <Content Include="Assets\fonts\gothamrounded-bookitalic.svg" />
+    <Content Include="Assets\fonts\gothamrounded-lightitalic.svg" />
+    <Content Include="Assets\fonts\gothamrounded-mediumitalic.svg" />
+    <Content Include="Assets\fonts\gothamroundedbold.svg" />
+    <Content Include="Assets\fonts\gothamroundedbook.svg" />
+    <Content Include="Assets\fonts\gothamroundedlight.svg" />
+    <Content Include="Assets\fonts\gothamroundedmedium.svg" />
+    <Content Include="Assets\images\001.jpg" />
+    <Content Include="Assets\images\002.jpg" />
+    <Content Include="Assets\images\003.jpg" />
+    <Content Include="Assets\images\004.jpg" />
+    <Content Include="Assets\images\005.jpg" />
+    <Content Include="Assets\images\006.jpg" />
+    <Content Include="Assets\images\01_registro_manual.svg" />
+    <Content Include="Assets\images\02_registro_masivo.svg" />
+    <Content Include="Assets\images\acuerdo_paris.png" />
+    <Content Include="Assets\images\android-chrome-512x512.png" />
+    <Content Include="Assets\images\banner-001.jpg" />
+    <Content Include="Assets\images\banner-002.jpg" />
+    <Content Include="Assets\images\banner-003.jpg" />
+    <Content Include="Assets\images\banner-004.jpg" />
+    <Content Include="Assets\images\banner-005.jpg" />
+    <Content Include="Assets\images\banner-006.jpg" />
+    <Content Include="Assets\images\banner.png" />
+    <Content Include="Assets\images\bg-categorias.png" />
+    <Content Include="Assets\images\bg-convocatoria.png" />
+    <Content Include="Assets\images\bg-criterios.png" />
+    <Content Include="Assets\images\bg-detalle.png" />
+    <Content Include="Assets\images\bg-gracias.png" />
+    <Content Include="Assets\images\bg-login.png" />
+    <Content Include="Assets\images\bg-mantenimientos.png" />
+    <Content Include="Assets\images\bg-participantes.png" />
+    <Content Include="Assets\images\bg-premiacion.png" />
+    <Content Include="Assets\images\bg-reconocimiento.png" />
+    <Content Include="Assets\images\bg-registro.png" />
+    <Content Include="Assets\images\bg-reportes.png" />
+    <Content Include="Assets\images\bg-terminos.png" />
+    <Content Include="Assets\images\bg_footer.png" />
+    <Content Include="Assets\images\brillo.png" />
+    <Content Include="Assets\images\bronce.png" />
+    <Content Include="Assets\images\carousel-01.jpg" />
+    <Content Include="Assets\images\carousel-02.jpg" />
+    <Content Include="Assets\images\carousel-03.jpg" />
+    <Content Include="Assets\images\carousel-04.jpg" />
+    <Content Include="Assets\images\carousel-05.jpg" />
+    <Content Include="Assets\images\carousel-06.jpg" />
+    <Content Include="Assets\images\caso_01.png" />
+    <Content Include="Assets\images\caso_02.png" />
+    <Content Include="Assets\images\caso_03.png" />
+    <Content Include="Assets\images\caso_04.png" />
+    <Content Include="Assets\images\caso_05.png" />
+    <Content Include="Assets\images\caso_06.png" />
+    <Content Include="Assets\images\cinta.png" />
+    <Content Include="Assets\images\clave.png" />
+    <Content Include="Assets\images\close.png" />
+    <Content Include="Assets\images\colaboradores.png" />
+    <Content Include="Assets\images\convocatoria.png" />
+    <Content Include="Assets\images\criterio-01.png" />
+    <Content Include="Assets\images\criterio-02.png" />
+    <Content Include="Assets\images\criterio-02_old.png" />
+    <Content Include="Assets\images\criterio-03.png" />
+    <Content Include="Assets\images\criterio-04.png" />
+    <Content Include="Assets\images\criterio-04_old.png" />
+    <Content Include="Assets\images\criterio-05.png" />
+    <Content Include="Assets\images\criterio-06.png" />
+    <Content Include="Assets\images\criterio-07.png" />
+    <Content Include="Assets\images\criterio-08.png" />
+    <Content Include="Assets\images\criterio-08_old.png" />
+    <Content Include="Assets\images\criterio-09.png" />
+    <Content Include="Assets\images\criterio-10.png" />
+    <Content Include="Assets\images\criterio-11.png" />
+    <Content Include="Assets\images\criterio-12.png" />
+    <Content Include="Assets\images\criterio-13.png" />
+    <Content Include="Assets\images\diagrama-01.png" />
+    <Content Include="Assets\images\diagrama.png" />
+    <Content Include="Assets\images\diagrama_2.png" />
+    <Content Include="Assets\images\dos_estrella.png" />
+    <Content Include="Assets\images\dos_estrellas.png" />
+    <Content Include="Assets\images\empresa-00.jpg" />
+    <Content Include="Assets\images\empresa-01.png" />
+    <Content Include="Assets\images\empresa-02.png" />
+    <Content Include="Assets\images\empresa-03.png" />
+    <Content Include="Assets\images\empresa-04.png" />
+    <Content Include="Assets\images\empresa-05.png" />
+    <Content Include="Assets\images\empresa-06.png" />
+    <Content Include="Assets\images\faq.png" />
+    <Content Include="Assets\images\favicon-ini.png" />
+    <Content Include="Assets\images\favicon\android-chrome-192x192.png" />
+    <Content Include="Assets\images\favicon\android-chrome-512x512.png" />
+    <Content Include="Assets\images\favicon\android-icon-144x144.png" />
+    <Content Include="Assets\images\favicon\android-icon-192x192.png" />
+    <Content Include="Assets\images\favicon\android-icon-36x36.png" />
+    <Content Include="Assets\images\favicon\android-icon-48x48.png" />
+    <Content Include="Assets\images\favicon\android-icon-72x72.png" />
+    <Content Include="Assets\images\favicon\android-icon-96x96.png" />
+    <Content Include="Assets\images\favicon\apple-icon-114x114.png" />
+    <Content Include="Assets\images\favicon\apple-icon-120x120.png" />
+    <Content Include="Assets\images\favicon\apple-icon-144x144.png" />
+    <Content Include="Assets\images\favicon\apple-icon-152x152.png" />
+    <Content Include="Assets\images\favicon\apple-icon-180x180.png" />
+    <Content Include="Assets\images\favicon\apple-icon-57x57.png" />
+    <Content Include="Assets\images\favicon\apple-icon-60x60.png" />
+    <Content Include="Assets\images\favicon\apple-icon-72x72.png" />
+    <Content Include="Assets\images\favicon\apple-icon-76x76.png" />
+    <Content Include="Assets\images\favicon\apple-icon-precomposed.png" />
+    <Content Include="Assets\images\favicon\apple-icon.png" />
+    <Content Include="Assets\images\favicon\apple-touch-icon.png" />
+    <Content Include="Assets\images\favicon\browserconfig.xml" />
+    <Content Include="Assets\images\favicon\favicon-16x16.png" />
+    <Content Include="Assets\images\favicon\favicon-32x32.png" />
+    <Content Include="Assets\images\favicon\favicon-96x96.png" />
+    <Content Include="Assets\images\favicon\favicon.ico" />
+    <Content Include="Assets\images\favicon\manifest.json" />
+    <Content Include="Assets\images\favicon\ms-icon-144x144.png" />
+    <Content Include="Assets\images\favicon\ms-icon-150x150.png" />
+    <Content Include="Assets\images\favicon\ms-icon-310x310.png" />
+    <Content Include="Assets\images\favicon\ms-icon-70x70.png" />
+    <Content Include="Assets\images\favicon\site.webmanifest" />
+    <Content Include="Assets\images\fondo_12_medidas.png" />
+    <Content Include="Assets\images\gei.png" />
+    <Content Include="Assets\images\Grupo 1045.png" />
+    <Content Include="Assets\images\ico_nama_amarillo_01.svg" />
+    <Content Include="Assets\images\ico_nama_amarillo_02.svg" />
+    <Content Include="Assets\images\ico_nama_amarillo_03.svg" />
+    <Content Include="Assets\images\ico_nama_amarillo_04.svg" />
+    <Content Include="Assets\images\ico_nama_amarillo_05.svg" />
+    <Content Include="Assets\images\ico_nama_amarillo_06.svg" />
+    <Content Include="Assets\images\ico_nama_amarillo_07.svg" />
+    <Content Include="Assets\images\ico_nama_azul_01.svg" />
+    <Content Include="Assets\images\ico_nama_rojo_01.svg" />
+    <Content Include="Assets\images\ico_nama_rojo_02.svg" />
+    <Content Include="Assets\images\ico_nama_verde_01.svg" />
+    <Content Include="Assets\images\ico_nama_verde_02.svg" />
+    <Content Include="Assets\images\img-p1.png" />
+    <Content Include="Assets\images\img-p2.png" />
+    <Content Include="Assets\images\lazo.png" />
+    <Content Include="Assets\images\loading.gif" />
+    <Content Include="Assets\images\log-sres-blanco.png" />
+    <Content Include="Assets\images\login-left.png" />
+    <Content Include="Assets\images\logo-blockchain-blanco.png" />
+    <Content Include="Assets\images\logo-gef-blanco.png" />
+    <Content Include="Assets\images\logo-minem-blanco.png" />
+    <Content Include="Assets\images\logo-minem.jpg" />
+    <Content Include="Assets\images\logo-nama-blanco.png" />
+    <Content Include="Assets\images\logo-pnud-blanco.png" />
+    <Content Include="Assets\images\logo-principal.svg" />
+    <Content Include="Assets\images\logo_gef.jpg" />
+    <Content Include="Assets\images\logo_gef.png" />
+    <Content Include="Assets\images\logo_gef.svg" />
+    <Content Include="Assets\images\logo_mrv_new_negro.png" />
+    <Content Include="Assets\images\logo_mrv_new_negro.svg" />
+    <Content Include="Assets\images\logo_pnud.jpg" />
+    <Content Include="Assets\images\logo_pnud.png" />
+    <Content Include="Assets\images\logo_pnud.svg" />
+    <Content Include="Assets\images\mrv-iso.png" />
+    <Content Include="Assets\images\next.png" />
+    <Content Include="Assets\images\oro.png" />
+    <Content Include="Assets\images\paneles.png" />
+    <Content Include="Assets\images\participantes.png" />
+    <Content Include="Assets\images\password-level-47px.png" />
+    <Content Include="Assets\images\plata.png" />
+    <Content Include="Assets\images\preguntas_frecuentes.png" />
+    <Content Include="Assets\images\preguntas_frecuentes_email.jpg" />
+    <Content Include="Assets\images\prev.png" />
+    <Content Include="Assets\images\proceso.png" />
+    <Content Include="Assets\images\reconocimientos.png" />
+    <Content Include="Assets\images\rees-iso.png" />
+    <Content Include="Assets\images\rees_reconocimientos.png" />
+    <Content Include="Assets\images\reunion_acuerdo_paris.png" />
+    <Content Include="Assets\images\sector-privado.png" />
+    <Content Include="Assets\images\sector-publico.png" />
+    <Content Include="Assets\images\sello.svg" />
+    <Content Include="Assets\images\sello_new.svg" />
+    <Content Include="Assets\images\sin-foto.png" />
+    <Content Include="Assets\images\sin-sres.png" />
+    <Content Include="Assets\images\slide-01.jpg" />
+    <Content Include="Assets\images\slide-02.jpg" />
+    <Content Include="Assets\images\slide-03.jpg" />
+    <Content Include="Assets\images\slide-04.jpg" />
+    <Content Include="Assets\images\slide-05.jpg" />
+    <Content Include="Assets\images\sres-iso.png" />
+    <Content Include="Assets\images\sres-logo.png" />
+    <Content Include="Assets\images\sres-logo_old.png" />
+    <Content Include="Assets\images\sres-logo_old_02.png" />
+    <Content Include="Assets\images\sres-menu.png" />
+    <Content Include="Assets\images\sres_0.png" />
+    <Content Include="Assets\images\sres_bronce_0_star.png" />
+    <Content Include="Assets\images\sres_bronce_1_star.png" />
+    <Content Include="Assets\images\sres_bronce_2_star.png" />
+    <Content Include="Assets\images\sres_bronce_3_star.png" />
+    <Content Include="Assets\images\sres_oro_0_star.png" />
+    <Content Include="Assets\images\sres_oro_1_star.png" />
+    <Content Include="Assets\images\sres_oro_2_star.png" />
+    <Content Include="Assets\images\sres_oro_3_star.png" />
+    <Content Include="Assets\images\sres_plata_0_star.png" />
+    <Content Include="Assets\images\sres_plata_1_star.png" />
+    <Content Include="Assets\images\sres_plata_2_star.png" />
+    <Content Include="Assets\images\sres_plata_3_star.png" />
+    <Content Include="Assets\images\tres_estrella.png" />
+    <Content Include="Assets\images\tres_estrellas.png" />
+    <Content Include="Assets\images\una_estrella.png" />
+    <Content Include="Assets\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
+    <Content Include="Assets\js\pages\electromovilidad_calculo.js" />
+    <Content Include="Assets\js\pages\electromovilidad_estacioncarga.js" />
+    <Content Include="Assets\js\pages\electromovilidad_menu_estacioncarga.js" />
+    <Content Include="Assets\js\pages\electromovilidad_menu_principal.js" />
+    <Content Include="Assets\js\pages\electromovilidad_consultasresultados.js" />
+    <Content Include="Assets\js\pages\electromovilidad_usuariotransportepublico.js" />
+    <Content Include="Assets\js\pages\electromovilidad_verresultado.js" />
+    <Content Include="Assets\js\pages\inicio.js" />
+    <Content Include="Assets\js\pages\login.js" />
+    <Content Include="Assets\js\pages\login_recuperarcontraseña.js" />
+    <Content Include="Assets\js\pages\login_registrarme.js" />
+    <Content Include="Assets\js\pages\mantenimiento.js" />
+    <Content Include="Assets\js\pages\mantenimiento_anno.js" />
+    <Content Include="Assets\js\pages\mantenimiento_formulas.js" />
+    <Content Include="Assets\js\pages\mantenimiento_rol.js" />
+    <Content Include="Assets\js\pages\mantenimiento_tipocombustible.js" />
+    <Content Include="Assets\js\pages\mantenimiento_tipovehiculoconvencional.js" />
+    <Content Include="Assets\js\pages\mantenimiento_tipotransporte.js" />
+    <Content Include="Assets\js\pages\mantenimiento_tipovehiculoelectrico.js" />
+    <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
+    <Content Include="Assets\js\pages\mantenimiento_valoresfactor.js" />
+    <Content Include="Assets\js\pages\reporte.js" />
+    <Content Include="Assets\js\plugins\alert.js" />
+    <Content Include="Assets\js\plugins\counter.js" />
+    <Content Include="Assets\js\script.js" />
+    <Content Include="Files\Criterios\1\Imagen\criterio-11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\2\Imagen\criterio-12.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\3\Imagen\criterio-13.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\4\Imagen\criterio-04.png" />
+    <Content Include="Files\Criterios\5\Imagen\criterio-10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\6\Imagen\criterio-05.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\7\Imagen\criterio-03.png" />
+    <Content Include="Files\Criterios\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Insignias\1\Imagen\sres_0.png" />
+    <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
+    <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
+    <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\Insignias\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\MedidaMitigacion\10\Imagen\ico_nama_verde_01.svg" />
+    <Content Include="Files\MedidaMitigacion\11\Imagen\ico_nama_verde_02.svg" />
+    <Content Include="Files\MedidaMitigacion\12\Imagen\ico_nama_azul_01.svg" />
+    <Content Include="Files\MedidaMitigacion\1\Imagen\ico_nama_amarillo_03.svg" />
+    <Content Include="Files\MedidaMitigacion\2\Imagen\ico_nama_amarillo_06.svg" />
+    <Content Include="Files\MedidaMitigacion\3\Imagen\ico_nama_amarillo_07.svg" />
+    <Content Include="Files\MedidaMitigacion\4\Imagen\ico_nama_amarillo_04.svg" />
+    <Content Include="Files\MedidaMitigacion\5\Imagen\ico_nama_amarillo_01.svg" />
+    <Content Include="Files\MedidaMitigacion\6\Imagen\ico_nama_amarillo_05.svg" />
+    <Content Include="Files\MedidaMitigacion\7\Imagen\ico_nama_amarillo_02.svg" />
+    <Content Include="Files\MedidaMitigacion\8\Imagen\ico_nama_rojo_02.svg" />
+    <Content Include="Files\MedidaMitigacion\9\Imagen\ico_nama_rojo_01.svg" />
+    <Content Include="Files\MedidaMitigacion\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Reconocimientos\10\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\Reconocimientos\11\Imagen\sres_oro_1_star.png" />
+    <Content Include="Files\Reconocimientos\12\Imagen\sres_oro_2_star.png" />
+    <Content Include="Files\Reconocimientos\13\Imagen\sres_oro_3_star.png" />
+    <Content Include="Files\Reconocimientos\1\Imagen\sres_0.png" />
+    <Content Include="Files\Reconocimientos\2\Imagen\sres_bronce_0_star.png" />
+    <Content Include="Files\Reconocimientos\3\Imagen\sres_bronce_1_star.png" />
+    <Content Include="Files\Reconocimientos\4\Imagen\sres_bronce_2_star.png" />
+    <Content Include="Files\Reconocimientos\5\Imagen\sres_bronce_3_star.png" />
+    <Content Include="Files\Reconocimientos\6\Imagen\sres_plata_0_star.png" />
+    <Content Include="Files\Reconocimientos\7\Imagen\sres_plata_1_star.png" />
+    <Content Include="Files\Reconocimientos\8\Imagen\sres_plata_2_star.png" />
+    <Content Include="Files\Reconocimientos\9\Imagen\sres_plata_3_star.png" />
+    <Content Include="Files\Reconocimientos\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="Log\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Mailing\AprobacionRequesitos.html" />
+    <Content Include="Mailing\CoordinacionConvocatoria.html" />
+    <Content Include="Mailing\CreacionConvocatoria.html" />
+    <Content Include="Mailing\DocSolicitadosConvocatoria.html" />
+    <Content Include="Mailing\FiltradoConvocatoria.html" />
+    <Content Include="Mailing\FinalizacionConvocatoria.html" />
+    <Content Include="Mailing\InformeFinal.html" />
+    <Content Include="Mailing\InformeFinalConvocatoria.html" />
+    <Content Include="Mailing\InformePreConvocatoria.html" />
+    <Content Include="Mailing\InformePreliminar.html" />
+    <Content Include="Mailing\InscripcionAnulacion.html" />
+    <Content Include="Mailing\InscripcionConvocatoria.html" />
+    <Content Include="Mailing\DeshabilitarUsuario.html" />
+    <Content Include="Mailing\AprobacionUsuario.html" />
+    <Content Include="Mailing\CreacionUsuario.html" />
+    <Content Include="Mailing\LevantamientoObsConvocatoria.html" />
+    <Content Include="Mailing\LevantamientoObservacion.html" />
+    <Content Include="Mailing\ObservacionRequisitos.html" />
+    <Content Include="Mailing\PostulacionConvocatoria.html" />
+    <Content Include="Mailing\RecopilacionInfConvocatoria.html" />
+    <Content Include="Mailing\RecuperarClave.html" />
+    <Content Include="Mailing\ResultadosConvocatoria.html" />
+    <Content Include="Mailing\RevisionN1Convocatoria.html" />
+    <Content Include="Mailing\RevisionN2Convocatoria.html" />
+    <Content Include="Mailing\RevisionReqConvocatoria.html" />
+    <Content Include="Reportes\ReporteConvocatoriaXEmpresa.aspx" />
+    <Content Include="Reportes\ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx" />
+    <Content Include="Reportes\ReporteEstadisticoReconocimientoXConvocatoria.aspx" />
+    <Content Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx" />
+    <Content Include="Reportes\ReportePostulacionesXSectorSubSector.aspx" />
+    <Content Include="Reportes\ReporteReconocimientoXConvocatoriaEmpresa.aspx" />
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosAntPenales.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosAntPNP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosDNI.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosMigraciones.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosPrincipalesRUC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosRepresenatesRUC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosSunarp.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosSUNEDU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServicioPIDE\srvConsultas.wsdl" />
+    <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos.disco" />
+    <None Include="Service References\ServicioPIDE\configuration91.svcinfo" />
+    <None Include="Service References\ServicioPIDE\configuration.svcinfo" />
+    <None Include="Service References\ServicioPIDE\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ReporteEstadisticoTipoEmpresaXConvocatoria.aspx" />
+    <Content Include="Views\web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\AnnoController.cs" />
+    <Compile Include="Controllers\Api\CasoController.cs" />
+    <Compile Include="Controllers\Api\DepartamentoController.cs" />
+    <Compile Include="Controllers\Api\ElectromovilidadController.cs" />
+    <Compile Include="Controllers\Api\EstacionCargaController.cs" />
+    <Compile Include="Controllers\Api\FactorController.cs" />
+    <Compile Include="Controllers\Api\FormulaController.cs" />
+    <Compile Include="Controllers\Api\ParametroController.cs" />
+    <Compile Include="Controllers\Api\RolController.cs" />
+    <Compile Include="Controllers\Api\TipoCargadorController.cs" />
+    <Compile Include="Controllers\Api\TipoCombustibleController.cs" />
+    <Compile Include="Controllers\Api\TipoTransporteController.cs" />
+    <Compile Include="Controllers\Api\TipoVehiculoConvencionalController.cs" />
+    <Compile Include="Controllers\Api\TipoVehiculoElectricoController.cs" />
+    <Compile Include="Controllers\Api\UsuarioController.cs" />
+    <Compile Include="Controllers\Api\UsuarioTransportePublicoController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ElectromovilidadController.cs" />
+    <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MantenimientoController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
+    <Compile Include="Controllers\_Base\SesionIn.cs" />
+    <Compile Include="Controllers\_Base\SesionOut.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EnumsCustom.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\ReporteConvocatoriaXEmpresa.aspx.cs">
+      <DependentUpon>ReporteConvocatoriaXEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteConvocatoriaXEmpresa.aspx.designer.cs">
+      <DependentUpon>ReporteConvocatoriaXEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx.cs">
+      <DependentUpon>ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx.designer.cs">
+      <DependentUpon>ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadisticoReconocimientoXConvocatoria.aspx.cs">
+      <DependentUpon>ReporteEstadisticoReconocimientoXConvocatoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadisticoReconocimientoXConvocatoria.aspx.designer.cs">
+      <DependentUpon>ReporteEstadisticoReconocimientoXConvocatoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx.cs">
+      <DependentUpon>ReporteEstadisticoTipoPostulanteXConvocatoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx.designer.cs">
+      <DependentUpon>ReporteEstadisticoTipoPostulanteXConvocatoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReportePostulacionesXSectorSubSector.aspx.cs">
+      <DependentUpon>ReportePostulacionesXSectorSubSector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReportePostulacionesXSectorSubSector.aspx.designer.cs">
+      <DependentUpon>ReportePostulacionesXSectorSubSector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteReconocimientoXConvocatoriaEmpresa.aspx.cs">
+      <DependentUpon>ReporteReconocimientoXConvocatoriaEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteReconocimientoXConvocatoriaEmpresa.aspx.designer.cs">
+      <DependentUpon>ReporteReconocimientoXConvocatoriaEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Repositorio\ReporteRepositorio.cs" />
+    <Compile Include="Response\GoogleResponse.cs" />
+    <Compile Include="Service References\ServicioPIDE\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Reportes\ReporteEstadisticoTipoEmpresaXConvocatoria.aspx.cs">
+      <DependentUpon>ReporteEstadisticoTipoEmpresaXConvocatoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadisticoTipoEmpresaXConvocatoria.aspx.designer.cs">
+      <DependentUpon>ReporteEstadisticoTipoEmpresaXConvocatoria.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Inicio\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Mantenimiento\TablaMantenimiento.cshtml" />
+    <Content Include="Views\Mantenimiento\Usuario.cshtml" />
+    <Content Include="Views\Shared\_MasterLayout.cshtml" />
+    <Content Include="Views\Login\Registrarme.cshtml" />
+    <Content Include="Views\Mantenimiento\Anno.cshtml" />
+    <Content Include="Views\Mantenimiento\Rol.cshtml" />
+    <Content Include="Views\Shared\_MenuTop.cshtml" />
+    <Content Include="Views\Shared\_MenuBottom.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Slider.cshtml" />
+    <Content Include="Views\Shared\_SRES_Description.cshtml" />
+    <Content Include="Views\Shared\_SRES_Documentation.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Assets\fonts\fa-brands-400.eot" />
+    <Content Include="Assets\fonts\fa-brands-400.ttf" />
+    <Content Include="Assets\fonts\fa-brands-400.woff" />
+    <Content Include="Assets\fonts\fa-brands-400.woff2" />
+    <Content Include="Assets\fonts\fa-regular-400.eot" />
+    <Content Include="Assets\fonts\fa-regular-400.ttf" />
+    <Content Include="Assets\fonts\fa-regular-400.woff" />
+    <Content Include="Assets\fonts\fa-regular-400.woff2" />
+    <Content Include="Assets\fonts\fa-solid-900.eot" />
+    <Content Include="Assets\fonts\fa-solid-900.ttf" />
+    <Content Include="Assets\fonts\fa-solid-900.woff" />
+    <Content Include="Assets\fonts\fa-solid-900.woff2" />
+    <Content Include="Assets\fonts\Flaticon.eot" />
+    <Content Include="Assets\fonts\Flaticon.ttf" />
+    <Content Include="Assets\fonts\Flaticon.woff" />
+    <Content Include="Assets\fonts\gothamrounded-bolditalic.eot" />
+    <Content Include="Assets\fonts\gothamrounded-bolditalic.ttf" />
+    <Content Include="Assets\fonts\gothamrounded-bolditalic.woff" />
+    <Content Include="Assets\fonts\gothamrounded-bookitalic.eot" />
+    <Content Include="Assets\fonts\gothamrounded-bookitalic.ttf" />
+    <Content Include="Assets\fonts\gothamrounded-bookitalic.woff" />
+    <Content Include="Assets\fonts\gothamrounded-lightitalic.eot" />
+    <Content Include="Assets\fonts\gothamrounded-lightitalic.ttf" />
+    <Content Include="Assets\fonts\gothamrounded-lightitalic.woff" />
+    <Content Include="Assets\fonts\gothamrounded-mediumitalic.eot" />
+    <Content Include="Assets\fonts\gothamrounded-mediumitalic.ttf" />
+    <Content Include="Assets\fonts\gothamrounded-mediumitalic.woff" />
+    <Content Include="Assets\fonts\gothamroundedbold.eot" />
+    <Content Include="Assets\fonts\gothamroundedbold.otf" />
+    <Content Include="Assets\fonts\gothamroundedbold.ttf" />
+    <Content Include="Assets\fonts\gothamroundedbold.woff" />
+    <Content Include="Assets\fonts\gothamroundedbook.eot" />
+    <Content Include="Assets\fonts\gothamroundedbook.otf" />
+    <Content Include="Assets\fonts\gothamroundedbook.ttf" />
+    <Content Include="Assets\fonts\gothamroundedbook.woff" />
+    <Content Include="Assets\fonts\gothamroundedlight.eot" />
+    <Content Include="Assets\fonts\gothamroundedlight.otf" />
+    <Content Include="Assets\fonts\gothamroundedlight.ttf" />
+    <Content Include="Assets\fonts\gothamroundedlight.woff" />
+    <Content Include="Assets\fonts\gothamroundedmedium.eot" />
+    <Content Include="Assets\fonts\gothamroundedmedium.otf" />
+    <Content Include="Assets\fonts\gothamroundedmedium.ttf" />
+    <Content Include="Assets\fonts\gothamroundedmedium.woff" />
+    <Content Include="Assets\documentos\2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI %28TCO2%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\documentos\3° Criterios para alcanzar Categorías y Estrellas de recocnocimiento de energía sostenible.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\documentos\SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\documentos\descargar-reconocimiento.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
+    <Content Include="Views\Shared\CambiarClave.cshtml" />
+    <Content Include="Views\Login\RecuperarContraseña.cshtml" />
+    <Content Include="Views\Reporte\Index.cshtml" />
+    <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Electromovilidad\Index.cshtml" />
+    <Content Include="Views\Electromovilidad\UsuarioTransportePublico.cshtml" />
+    <Content Include="Views\Electromovilidad\VerResultado.cshtml" />
+    <Content Include="Views\Electromovilidad\ConsultasResultados.cshtml" />
+    <Content Include="Views\Electromovilidad\MenuEstacionCarga.cshtml" />
+    <Content Include="Views\Mantenimiento\TipoVehiculoConvencional.cshtml" />
+    <Content Include="Views\Mantenimiento\TipoVehiculoElectrico.cshtml" />
+    <Content Include="Views\Mantenimiento\TipoTransporte.cshtml" />
+    <Content Include="Views\Mantenimiento\Formula.cshtml" />
+    <Content Include="Views\Mantenimiento\ValoresFactor.cshtml" />
+    <Content Include="Views\Electromovilidad\EstacionCarga.cshtml" />
+    <Content Include="Views\Electromovilidad\MenuElectromovilidad.cshtml" />
+    <Content Include="Views\Mantenimiento\TipoCombustible.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fichas\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\_Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sres.be\sres.be.csproj">
+      <Project>{7A5B8CD0-B340-4B43-8E1B-B536206992D4}</Project>
+      <Name>sres.be</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sres.ln\sres.ln.csproj">
+      <Project>{FCE3F8A9-A3BF-4A5E-876F-BCB1D6093123}</Project>
+      <Name>sres.ln</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sres.ut\sres.ut.csproj">
+      <Project>{BE003476-6364-45C9-9F5E-C199F6153859}</Project>
+      <Name>sres.ut</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_Data\Reportes\Certificado.rdlc" />
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\Reportes\rptReportePostulacionesXSectorSubsector.rdlc" />
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteConvocatoriaXEmpresa.rdlc" />
+    <EmbeddedResource Include="App_Data\Reportes\rptReconocimientoEmpresa.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServicioPIDE\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51508</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55371/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

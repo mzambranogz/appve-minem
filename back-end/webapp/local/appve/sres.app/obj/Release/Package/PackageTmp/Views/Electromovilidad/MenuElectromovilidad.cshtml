@@ -1,0 +1,1068 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Estación de carga";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{    
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_calculo.js")"></script>
+    <script type="text/javascript">
+            
+    </script>
+}
+
+<div class="container mt-4">
+
+    <div id="seccion-01">
+        <div class="row">
+            <label>¿Eres dueño/a de un vehículo que usa combustible?</label>&nbsp;&nbsp;
+            <input id="rad-e1-si" type="radio" name="rad-e1" />Si&nbsp;
+            <input id="rad-e1-no" type="radio" name="rad-e1" />No
+        </div>
+        <div class="row">
+            <label>¿Pretendes renovar o comprar un nuevo vehículo que usa combustible?</label>&nbsp;&nbsp;
+            <input id="rad-e2-si" type="radio" name="rad-e2" />Si&nbsp;
+            <input id="rad-e2-no" type="radio" name="rad-e2" />No
+        </div>
+        <div class="row">
+            <label>¿Usas servicio(s) de transporte?</label>&nbsp;&nbsp;
+            <input id="rad-e3-si" type="radio" name="rad-e3" />Si&nbsp;
+            <input id="rad-e3-no" type="radio" name="rad-e3" />No
+        </div>
+        <div class="row">
+            <button id="btnMenu" class="btn btn-primary">Comienza</button>
+        </div>
+    </div>
+
+    <div id="seccion-02" class="d-none">
+        <h3>Seleciona hasta 4 tipos de transporte más utilizados</h3>
+        <div class="row">
+            <label>Servicio transporte 01</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="servicio-01"></select>
+        </div>
+        <div class="row">
+            <label>Servicio transporte 02</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="servicio-02"></select>
+        </div>
+        <div class="row">
+            <label>Servicio transporte 03</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="servicio-03"></select>
+        </div>
+        <div class="row">
+            <label>Servicio transporte 04</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="servicio-04"></select>
+        </div>
+        <div class="row">
+            <button id="btnReg01" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+            <button id="btnSig01" class="btn btn-primary">Siguiente</button>            
+        </div>
+    </div>
+
+    <div id="seccion-03" class="d-none">
+        <h3>Características del vehículo propio</h3>
+        <div class="row">
+            <label>Tipo de vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="tipo-vehiculo-vc"></select>
+        </div>
+        <div class="row">
+            <label>Tipo de combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="tipo-combustible-vc"></select>
+        </div>
+        <div class="row">
+            <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="cbo-departamento-vc"></select>
+        </div>
+        <div class="row">
+            <label>Configuración avanzada</label>&nbsp;&nbsp;
+            <input id="rad-ca-si-vc" type="radio" name="rad-ca-vc" value="1" />Si&nbsp;
+            <input id="rad-ca-no-vc" type="radio" name="rad-ca-vc" value="0" />No
+        </div>
+        <div id="configuracion-vc" class="ml-5">
+            <div class="row">
+                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="rendimiento-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small id="unidad-rend-vc">km/galón</small>
+            </div>
+            <div class="row">
+                <label>Precio combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="precio-combustible-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small id="precio-comb-vc">s/m3</small>
+            </div>
+            <div class="row">
+                <label>% Aumento anual combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="porc-anual-combustible-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+            <div class="row">
+                <label>Factor de emisión asociado</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="factor-emision-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>kgCO2e/km</small>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>Mantenimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="mantenimiento-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>S/año</small>
+        </div>
+        <div class="row">
+            <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="seguro-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>S/año</small>
+        </div>
+
+        <div class="row">
+            <label>¿Conoces tu gasto en combustible semanal?</label>&nbsp;&nbsp;
+            <input id="rad-gcs-si-vc" type="radio" name="rad-gcs-vc" value="1" />Si&nbsp;
+            <input id="rad-gcs-no-vc" type="radio" name="rad-gcs-vc" value="0" />No
+        </div>
+        <div id="gasto-comb-vc" class="ml-5">
+            <label>Combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="gasto-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>S/año</small>
+        </div>
+
+        <div class="row">
+            <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="kilometro-sem-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btnAdd-vc" data-validar="vc" class="btn btn-primary" href="javascript:void(0);" data-toggle="modal" data-target="#modal-rutas">Agregar ruta</a>
+        </div>
+        <div class="row">
+            <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="meses-vc"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>meses/año</small>
+        </div>
+        
+        <div class="row">
+            <button id="btnReg02" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+            <button id="btnSig02" class="btn btn-primary">Siguiente</button>            
+        </div>
+    </div>
+
+    <div id="seccion-04" class="d-none">
+        <h3>Características del vehículo a combustible nuevo</h3>
+        <div class="row">
+            <label>Tipo de vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="tipo-vehiculo-cvc"></select>
+        </div>
+        <div class="row">
+            <label>Tipo de combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="tipo-combustible-cvc"></select>
+        </div>
+        <div class="row">
+            <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="cbo-departamento-cvc"></select>
+        </div>
+        <div class="row">
+            <label>Configuración avanzada</label>&nbsp;&nbsp;
+            <input id="rad-ca-si-cvc" type="radio" name="rad-ca-cvc" value="1" />Si&nbsp;
+            <input id="rad-ca-no-cvc" type="radio" name="rad-ca-cvc" value="0" />No
+        </div>
+        <div id="configuracion-cvc" class="ml-5">
+            <div class="row">
+                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="rendimiento-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small id="unidad-rend-cvc">km/galón</small>
+            </div>
+            <div class="row">
+                <label>Precio combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="precio-combustible-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small id="precio-comb-cvc">s/m3</small>
+            </div>
+            <div class="row">
+                <label>% Aumento anual combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="porc-anual-combustible-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+            <div class="row">
+                <label>Factor de emisión asociado</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="factor-emision-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>kgCO2e/km</small>
+            </div>
+        </div>        
+
+        <div class="row">
+            <label>¿Conoces tu gasto en combustible semanal?</label>&nbsp;&nbsp;
+            <input id="rad-gcs-si-cvc" type="radio" name="rad-gcs-cvc" value="1" />Si&nbsp;
+            <input id="rad-gcs-no-cvc" type="radio" name="rad-gcs-cvc" value="0" />No
+        </div>
+        <div id="gasto-comb-cvc" class="ml-5">
+            <label>Combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="gasto-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>S/año</small>
+        </div>
+
+        <div class="row">
+            <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="kilometro-sem-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="btnAdd-cvc" data-validar="cvc" class="btn btn-primary">Agregar ruta</button>
+        </div>
+        <div class="row">
+            <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="meses-cvc"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>meses/año</small>
+        </div>
+
+        <div class="row">
+            <label>Costo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="costo-veh-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>soles</small>
+        </div>
+        <div class="row">
+            <label>Tipo de compra</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="tipo-compra-cvc"></select>
+        </div>
+        <div id="financiado-cvc" class="ml-5">
+            <div class="row">
+                <label>Tasa de interés</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="tasa-interes-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+            <div class="row">
+                <label>Años de crédito</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="anio-credito-cvc"></select>
+            </div>
+            <div class="row">
+                <label>% cuota inicial</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cuota-inicial-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>¿Contratas un seguro para tu vehículo?</label>&nbsp;&nbsp;
+            <input id="rad-sv-si-cvc" type="radio" name="rad-sv-cvc" value="1" />Si&nbsp;
+            <input id="rad-sv-no-cvc" type="radio" name="rad-sv-cvc" value="0" />No
+        </div>
+        <div id="seguro-veh-cvc" class="ml-5">
+            <div class="row">
+                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="seguro-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>S/año</small>
+            </div>
+        </div>        
+
+        <div class="row">            
+            <button id="btnReg03" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+            <button id="btnSig03" class="btn btn-primary">Siguiente</button>
+        </div>
+    </div>
+
+    <div id="seccion-05" class="d-none">
+        <h3>Servicios de transporte</h3>
+        <div id="transporte-01" class="d-none">
+            <div class="row">
+                <label>Transporte utilizado 01</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="tipo-transporte-01" disabled></select>
+            </div>
+            <div class="row">
+                <label>Costo en movilidad semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="costo-movilidad-01" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>Soles/semana</small>
+            </div>
+            <div class="row">
+                <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="kilometros-01" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="btnAdd-t1" data-validar="t1" class="btn btn-primary">Agregar ruta</button>
+            </div>
+            <div class="row">
+                <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="meses-01"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>meses/año</small>
+            </div><br /><br />
+        </div>
+
+        <div id="transporte-02" class="d-none">
+            <div class="row">
+                <label>Transporte utilizado 02</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="tipo-transporte-02" disabled></select>
+            </div>
+            <div class="row">
+                <label>Costo en movilidad semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="costo-movilidad-02" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>Soles/semana</small>
+            </div>
+            <div class="row">
+                <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="kilometros-02" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="btnAdd-t2" data-validar="t2" class="btn btn-primary">Agregar ruta</button>
+            </div>
+            <div class="row">
+                <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="meses-02"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>meses/año</small>
+            </div><br /><br />
+        </div>
+        
+        <div id="transporte-03" class="d-none">
+            <div class="row">
+                <label>Transporte utilizado 03</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="tipo-transporte-03" disabled></select>
+            </div>
+            <div class="row">
+                <label>Costo en movilidad semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="costo-movilidad-03" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>Soles/semana</small>
+            </div>
+            <div class="row">
+                <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="kilometros-03" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="btnAdd-t3" data-validar="t3" class="btn btn-primary">Agregar ruta</button>
+            </div>
+            <div class="row">
+                <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="meses-03"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>meses/año</small>
+            </div><br /><br />
+        </div>    
+        
+        <div id="transporte-04" class="d-none">
+            <div class="row">
+                <label>Transporte utilizado 04</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="tipo-transporte-04" disabled></select>
+            </div>
+            <div class="row">
+                <label>Costo en movilidad semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="costo-movilidad-04" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>Soles/semana</small>
+            </div>
+            <div class="row">
+                <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="kilometros-04" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="btnAdd-t4" data-validar="t4" class="btn btn-primary">Agregar ruta</button>
+            </div>
+            <div class="row">
+                <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="meses-04"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>meses/año</small>
+            </div><br /><br />
+        </div>
+
+        <div class="row">
+            <button id="btnReg04" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+            <button id="btnSig04" class="btn btn-primary">Siguiente</button>
+        </div>
+    </div>
+
+    <div id="seccion-06" class="d-none">
+        <h3>Caracterización de movilidad eléctrica</h3>
+        <div class="row">
+            <label>Tipo de vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="tipo-vehiculo-ve"></select>
+        </div>
+        <div class="row">
+            <label>Modelo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="modelo-ve"></select>
+        </div>
+        <div class="row">
+            <label>Configuración avanzada</label>&nbsp;&nbsp;
+            <input id="rad-ca-si-ve" type="radio" name="rad-ca-ve" value="1" />Si&nbsp;
+            <input id="rad-ca-no-ve" type="radio" name="rad-ca-ve" value="0" />No
+        </div>
+        <div id="configuracion-ve" class="ml-5">
+            <div class="row">
+                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="rendimiento-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small id="unidad-rend-ve">km/kWh</small>
+            </div>
+            <div class="row">
+                <label>Capacidad batería</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="bateria-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>kWh</small>
+            </div>
+        </div>        
+
+        <div class="row">
+            <label>Tipo de cargador</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="tipo-cargador"></select>
+        </div>
+        <div class="row">
+            <label>Potencia instalada</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="cbo-potencia"></select>&nbsp;&nbsp;
+            <input id="txt-potencia" type="text" />&nbsp;&nbsp;
+            <small>kw</small>
+        </div>
+        <div class="row">
+            <label>Precio cargador</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="precio-cargador" type="text" />&nbsp;&nbsp;
+            <small>soles</small>
+        </div>
+        <div class="row">
+            <label>Costo instalación</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="costo-instalacion" type="text" />&nbsp;&nbsp;
+            <small>soles</small>
+        </div>
+
+        <div class="row">
+            <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="cbo-departamento"></select>
+        </div>
+        <div class="row">
+            <label>Configuración avanzada tarifa</label>&nbsp;&nbsp;
+            <input id="rad-t-si-ve" type="radio" name="rad-t-ve" value="1" />Si&nbsp;
+            <input id="rad-t-no-ve" type="radio" name="rad-t-ve" value="0" />No
+        </div>
+        <div id="tarifa-e-ve" class="ml-5">
+            <div class="row">
+                <label>Tarifa eléctrica</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="tarifa-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>soles/kWh</small>
+            </div>
+            <div class="row">
+                <label>% aumento anual de electricidad</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="porc-aual-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="kilometro-sem-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="btnAdd-ve" data-validar="ve" class="btn btn-primary">Agregar ruta</button>
+        </div>
+        <div class="row">
+            <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="meses-ve"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>meses/año</small>
+        </div>
+
+        <div class="row">
+            <label>Costo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="costo-veh-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>soles</small>
+        </div>
+        <div class="row">
+            <label>Tipo de compra</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="tipo-compra-ve"></select>
+        </div>
+        <div id="financiado-ve" class="ml-5">
+            <div class="row">
+                <label>Tasa de interés</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="tasa-interes-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+            <div class="row">
+                <label>Años de crédito</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="anio-credito-ve"></select>
+            </div>
+            <div class="row">
+                <label>% cuota inicial</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cuota-inicial-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>¿Contratas un seguro para tu vehículo?</label>&nbsp;&nbsp;
+            <input id="rad-sv-si-ve" type="radio" name="rad-sv-ve" value="1" />Si&nbsp;
+            <input id="rad-sv-no-ve" type="radio" name="rad-sv-ve" value="0" />No
+        </div>
+        <div id="seguro-veh-ve" class="ml-5">
+            <div class="row">
+                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="seguro-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>soles/año</small>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>¿Existe un incentivo ecónomico a la compra de tu vehículo eléctrico?</label>&nbsp;&nbsp;
+            <input id="rad-inc-si-ve" type="radio" name="rad-inc-ve" value="1" />Si&nbsp;
+            <input id="rad-inc-no-ve" type="radio" name="rad-inc-ve" value="0" />No
+        </div>
+        <div id="incentivo-ve" class="ml-5">
+            <div class="row">
+                <label>Tipo incentivo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="tipo-incentivo"></select>
+            </div>
+            <div class="row">
+                <label>Horizonte aplicación</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="horizonte"></select>
+            </div>
+            <div class="row">
+                <label>Cuota incentivo anual</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="cuota-inc-anual" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>soles/año</small>
+            </div>
+            <div class="row">
+                <label>Forma de incentivo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="forma-incentivo"></select>
+            </div>
+            <div class="row">
+                <label>Porcentaje</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="porcentaje-inc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+            <div class="row">
+                <label>Valor incentivo único</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="valor-inc-unico" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>soles</small>
+            </div>
+        </div>
+
+        <div class="row">
+            <button id="btnReg05" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+            <button id="btnEva05" class="btn btn-primary">Evaluar</button>
+        </div>
+    </div>
+    
+    <div id="seccion-07" class="d-none">
+        <h4>Resultados</h4>
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="linechart_material"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">         
+            <label>Años evaluación</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="anio_evaluacion"></select>
+        </div>
+
+        <div class="row mt-2">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <tr>
+                                    <th>Ahorro económico</th>
+                                    <td>S/ <span id="ahorro-economico-d"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="columnchart_values"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <h4>Escenario Movilidad Convencional</h4>
+            </div>
+            <div class="col-6">
+                <h4>Escenario Electromovilidad</h4>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>inversión (Cuota inicial)</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>            
+            <div class="col-6">
+                <span id="eva-cuota-inicial-vc"></span>
+            </div>
+            <div class="col-6">
+                <span id="eva-cuota-inicial-ve">0</span>
+            </div>     
+            <div class="col-12">
+                <hr />
+            </div>      
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Incentivo económico anual</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-incentivo-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-incentivo-ve">0</span>
+            </div>  
+            <div class="col-12">
+                <hr />
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Recambio batería</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-recambio-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-recambio-ve">0</span>
+            </div> 
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-seguro-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-seguro-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Energía (Electricidad o Combustible)</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-energia-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-energia-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Mantenimiento continuo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-mante-continuo-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-mante-continuo-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Carga Financiera Anual</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-carga-financiera-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-carga-financiera-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Equipo de carga e instalación</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-carga-instalacion-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-carga-instalacion-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Reventa vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-reventa-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-reventa-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Otros transportes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-transporte-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-transporte-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Mantenimiento extraordinario</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-mante-extraordinario-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-mante-extraordinario-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Total</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <span id="eva-total-vc">0</span>
+            </div>
+            <div class="col-6">
+                <span id="eva-total-ve">0</span>
+            </div>
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>   
+
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Consumo energético</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción Total Consumo energético</th>
+                                        <td><span id="consumo-energetico-d"></span> GJ</td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Reducción de contaminantes Globales</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción Total Gases Efecto Invernadero</th>
+                                        <td><span id="emisiones-d"></span> kgCO2e</td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="emisiones_totales"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Reducción de contaminantes locales totales</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción total de NOx</th>
+                                        <td><span id="cl-nox"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de CO</th>
+                                        <td><span id="cl-co"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de MP 2.5</th>
+                                        <td><span id="cl-mp25"></span> g</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reducción total de BC</th>
+                                        <td><span id="cl-bc"></span> g</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="consumo_energetico"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="consumo_energetico_total"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+              
+    </div>
+
+    <div class="row d-none" id="seccion-opciones">
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-sm btn-info" type="button" id="btnNuevo">Nuevo Cálvulo</button>
+            <button class="btn btn-sm btn-dark" type="button" id="btnGuardar">Guardar</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="modal-ruta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">Fotos</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">Imágenes de la estación de carga</h2>
+                        </div>
+                    </div>
+                    @*<div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div id='map' style='width: 100%; height: 400px;'></div>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <pre id='coordenadas'></pre>
+                    </div>
+                    <div class="row">
+                        <button id='btn-ruta' onclick="getCoordenadas(this);">Obtener ruta</button>
+                    </div>*@ 
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="alert-add"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="seccion-menu-ruta" class="container mt-3 d-none">
+
+    <div class="row">
+        <div class="col-12 mb-2">
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h2 class="estilo-04 text-sres-oscuro mb-3">Rutas registradas</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-2">
+            <a class="btn btn-primary" id="btn-nueva-ruta" data-accion="nuevo" href="javascript:void(0)">NUEVA RUTA</a>
+        </div>
+    </div>
+
+    <div class="row" id="rutas-km">
+        @*<div class="col-6 mb-2">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-12"><h6 style="color: blue;">Ruta N° 1:</h6></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row">
+                                <div class="col-12 ml-3"><a href="#"><i class="fas fa-window-close mr-1"></i></a></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Origen</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Bayover</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Destino</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Surco</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Veces por semana</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">4</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-9"><span style="color: brown;">Km de la ruta</span></div>
+                                <div class="col-3"><a class="editar-mapa" href="#" data-accion="editar" id="vc-1"><i class="fas fa-map-marked mr-1"></i></a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">4Km</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Km total</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue; font-size: 2em;">40Km</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 mb-2">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-3"><span><i class="fas fa-map-marked mr-1"></i></span></div>
+                                <div class="col-9"><span style="color: brown;">Kilómetros totales</span></div>                                
+                            </div>
+                        </div>
+                        <div class="col-6 ">                            
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue; font-size: 2em;">40Km</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-2">
+            <a class="btn btn-primary" id="aceptar-ruta" href="javascript:void(0)">ACEPTAR</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="alert-add"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4 d-none" id="seccion-mapa">
+    <div class="row mb-2">
+        <div id='map' style='width: 100%; height: 400px;'></div>
+    </div>
+    <div class="row d-none">
+        <pre id='coordenadas'></pre>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="input-group">
+                <input id="veces-semana" class="form-control" placeholder="Ingrese cantidad de veces que utiliza esta ruta" />&nbsp;
+                <button id='btn-ruta' class="btn btn-primary" onclick="getCoordenadas();">Guardar ruta</button>&nbsp;
+                <button id='btn-cerrar' class="btn btn-secondary">Cerrar</button>
+            </div>    
+        </div>                
+    </div>
+</div>
+
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['line'] });
+    google.charts.load("current", { packages: ['corechart'] });
+</script>

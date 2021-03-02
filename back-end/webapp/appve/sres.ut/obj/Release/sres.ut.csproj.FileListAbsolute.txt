@@ -1,0 +1,7 @@
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\bin\Release\sres.ut.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\bin\Release\sres.ut.pdb
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\bin\Release\Newtonsoft.Json.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\bin\Release\Newtonsoft.Json.xml
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\obj\Release\sres.ut.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\obj\Release\sres.ut.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\obj\Release\sres.ut.pdb

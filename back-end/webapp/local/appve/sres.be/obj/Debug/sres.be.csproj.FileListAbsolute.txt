@@ -1,0 +1,63 @@
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\bin\Debug\sres.be.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\bin\Debug\sres.be.pdb
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\bin\Debug\sres.ut.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\bin\Debug\sres.ut.pdb
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\obj\Debug\sres.be.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\obj\Debug\sres.be.pdb
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\bin\Debug\sres.be.dll
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\bin\Debug\sres.be.pdb
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\bin\Debug\sres.ut.dll
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\bin\Debug\sres.ut.pdb
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\obj\Debug\sres.be.dll
+C:\Users\Pc\Desktop\GIT APP\sres\sres.be\obj\Debug\sres.be.pdb
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.be.dll
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.be.pdb
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.dll
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.pdb
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.dll
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.pdb
+C:\Users\Pc\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.be.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.be.pdb
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.pdb
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.xml
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.dll
+C:\Users\juanc\OneDrive\Desktop\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.pdb
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.be.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.be.pdb
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.pdb
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.xml
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.be\obj\Debug\sres.be.pdb
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\bin\Debug\sres.be.dll
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\bin\Debug\sres.be.pdb
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.dll
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.dll
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\bin\Debug\sres.ut.pdb
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\bin\Debug\Newtonsoft.Json.xml
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\obj\Debug\sres.be.dll
+D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.be\obj\Debug\sres.be.pdb
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\bin\Debug\sres.be.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\bin\Debug\sres.be.pdb
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\bin\Debug\sres.ut.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\bin\Debug\Newtonsoft.Json.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\bin\Debug\sres.ut.pdb
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\bin\Debug\Newtonsoft.Json.xml
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\obj\Debug\sres.be.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.be\obj\Debug\sres.be.pdb
