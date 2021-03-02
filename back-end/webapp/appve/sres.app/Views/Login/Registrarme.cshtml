@@ -6,6 +6,7 @@
         ["Imagen"] = "~/Assets//images/bg-registro.png",
         ["Titulo"] = "REGISTRARSE"
     };
+    ViewBag.SRESDescription = false;
 }
 
 @section scripts_footer{
@@ -17,6 +18,7 @@
 <div class="container-fluid my-5">
     <div class="container">
         <div class="row">
+            <div class="col-lg-2 col-md-12 col-sm-12 mb-5 mb-lg-0"></div>
             <div class="col-lg-8 col-md-12 col-sm-12 mb-5 mb-lg-0">
                 <div class="row">
                     <div class="col-12 wow fadeIn">
@@ -41,13 +43,13 @@
                                                 <div class="col-auto my-1">
                                                     <div class="custom-control custom-radio mr-sm-2">
                                                         <input class="custom-control-input" type="radio" name="rad-estado" id="rad-01">
-                                                        <label class="custom-control-label badge badge-actor-aprobado" for="rad-01"><i class="fas fa-check-circle mr-1"></i>Masculino</label>
+                                                        <label class="custom-control-label badge badge-actor-02" for="rad-01"><i class="fas fa-check-circle mr-1"></i>Masculino</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto my-1">
                                                     <div class="custom-control custom-radio mr-sm-2">
                                                         <input class="custom-control-input" type="radio" name="rad-estado" id="rad-02">
-                                                        <label class="custom-control-label badge badge-actor-desaprobado" for="rad-02"><i class="fas fa-times-circle mr-1"></i>Femenino</label>
+                                                        <label class="custom-control-label badge badge-actor-aprobado" for="rad-02"><i class="fas fa-times-circle mr-1"></i>Femenino</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,18 +120,21 @@
                                 </div>
                             </div>
                             <div class="row registrar-usuario">
-                                <div class="col-sm-12 col-md-6">                                  
+                                <div class="col-sm-12 col-md-3">                                  
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <button class="btn-lg btn-sres-verde w-100" type="submit"><i class="fas fa-paper-plane px-1"></i>Registrarse</button>
                                     <p class="py-4 mb-0 text-center estilo-01">¿Ya tiene una cuenta?&nbsp;<a class="text-sres-verde" href="@Url.Action("Index","Login")">Ingrese ahora <br></a><a class="text-sres-verde" href="@Url.Action("RecuperarContraseña", "Login")">¿Olvidó su contraseña?</a></p>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            @Html.Partial("_SRES_Documentation")
+            <div class="col-lg-2 col-md-12 col-sm-12 mb-5 mb-lg-0"></div>
+            @*@Html.Partial("_SRES_Documentation")*@
         </div>
     </div>
 </div>

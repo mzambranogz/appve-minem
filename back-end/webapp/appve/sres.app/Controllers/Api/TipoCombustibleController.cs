@@ -16,12 +16,12 @@ namespace sres.app.Controllers.Api
 
         [Route("buscar")]
         [HttpGet]
-        public List<TipoCombustibleBE> Buscar(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<TipoCombustibleBE> Buscar(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
             List<TipoCombustibleBE> lista = new List<TipoCombustibleBE>();
             try
             {
-                lista = tipoLN.ListaBusquedaTipoCombustible(new TipoCombustibleBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+                lista = tipoLN.ListaBusquedaTipoCombustible(new TipoCombustibleBE() { CANTIDAD_REGISTROS = registros, FLAG_ESTADO = estado, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
             }
             catch (Exception ex)
             {

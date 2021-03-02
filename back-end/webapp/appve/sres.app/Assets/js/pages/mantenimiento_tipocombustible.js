@@ -68,8 +68,8 @@ var consultar = () => {
     let params = { busqueda, estado, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    //let url = `${baseUrl}api/tipocombustible/buscar?${queryParams}`;
-    let url = `${baseUrlApi}api/tipocombustible/buscar?${queryParams}`;
+    let url = `${baseUrl}api/tipocombustible/buscar?${queryParams}`;
+    //let url = `${baseUrlApi}api/tipocombustible/buscar?${queryParams}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init).then(r => r.json()).then(j => {
@@ -143,8 +143,8 @@ var cambiarEstado = (element) => {
 var eliminar = () => {
     if (idEliminar == 0) return;
 
-    //let url = `${baseUrl}api/tipocombustible/cambiarestado`;
-    let url = `${baseUrlApi}api/tipocombustible/cambiarestado`;
+    let url = `${baseUrl}api/tipocombustible/cambiarestado`;
+    //let url = `${baseUrlApi}api/tipocombustible/cambiarestado`;
     let data = { ID_TIPO_COMBUSTIBLE: idEliminar, UPD_USUARIO: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
     
@@ -176,8 +176,8 @@ var consultarObjeto = (element) => {
     $('#exampleModalLabel').html('ACTUALIZAR TIPO COMBUSTIBLE');
 
     let id = $(element).attr('data-id');
-    //let url = `${baseUrl}api/tipocombustible/obtener?id=${id}`;
-    let url = `${baseUrlApi}api/tipocombustible/obtener?id=${id}`;
+    let url = `${baseUrl}api/tipocombustible/obtener?id=${id}`;
+    //let url = `${baseUrlApi}api/tipocombustible/obtener?id=${id}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)
@@ -219,8 +219,8 @@ var guardar = () => {
 
     let id = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
-    //let url = `${baseUrl}api/tipocombustible/guardar`;
-    let url = `${baseUrlApi}api/tipocombustible/agregar`;
+    let url = `${baseUrl}api/tipocombustible/guardar`;
+    //let url = `${baseUrlApi}api/tipocombustible/agregar`;
     let data = { ID_TIPO_COMBUSTIBLE: id == null ? -1 : id, NOMBRE: nombre, UPD_USUARIO: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 

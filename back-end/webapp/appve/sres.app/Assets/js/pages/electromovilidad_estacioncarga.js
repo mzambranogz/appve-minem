@@ -15,7 +15,7 @@ var inicio = () => {
     cargarEstacion(idestacion);
 }
 
-//end points
+//end points catorceavo
 var cargarEstacion = (id) => {
 
     //let url = `http://161.35.182.46/ApiElectromovilidad/api/login/authenticate`;

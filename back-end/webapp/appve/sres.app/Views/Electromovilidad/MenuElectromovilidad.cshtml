@@ -517,7 +517,18 @@
     
     <div id="seccion-07" class="d-none">
         <h4>Resultados</h4>
-        <div class="row">            
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="linechart_material"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">         
             <label>Años evaluación</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <select id="anio_evaluacion"></select>
         </div>
@@ -530,9 +541,21 @@
                             <table class="table">
                                 <tr>
                                     <th>Ahorro económico</th>
-                                    <td><span id="ahorro-economico-d"></span> g</td>
+                                    <td>S/ <span id="ahorro-economico-d"></span></td>
                                 </tr>
                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="columnchart_values"></div>
                         </div>
                     </div>
                 </div>
@@ -717,18 +740,7 @@
             <div class="col-12">
                 <hr />
             </div>
-        </div>
-        <div class="row mt-3">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
-                            <div class="logros chart" id="linechart_material"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div>   
 
         <div class="row mt-3">
             <div class="container">
@@ -785,39 +797,6 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
-                            <div class="logros chart" id="columnchart_values"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
-                            <div class="logros chart" id="consumo_energetico"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
-                            <div class="logros chart" id="consumo_energetico_total"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
                             <div class="logros chart" id="emisiones_totales"></div>
                         </div>
                     </div>
@@ -858,7 +837,31 @@
                     </div>
                 </div>
             </div>
+        </div>  
+        
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="consumo_energetico"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <div class="logros chart" id="consumo_energetico_total"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
               
     </div>
 
@@ -908,124 +911,6 @@
         </div>
     </div>
 </div>
-
-@*<div class="modal fade" id="modal-rutas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <form action="" id="frm">
-                <div class="modal-header bg-sres-azul text-white">
-                    <h5 class="modal-title estilo-01" id="exampleModalLabel">Rutas</h5>
-                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <h2 class="estilo-04 text-sres-oscuro mb-3">Rutas registradas</h2>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12 mb-2">
-                            <button class="btn btn-primary" id="btn-nueva-ruta">NUEVA RUTA</button>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-12 mb-2">
-                            <div class="card" style="width: 100%;">
-                                <div class="card-body">
-                                    
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <div class="row">
-                                                <div class="col-12"><h6 style="color: blue;">Ruta N° 1:</h6></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="row">
-                                                <div class="col-12 ml-3"><a href="#"><i class="fas fa-window-close mr-1"></i></a></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12"><hr /></div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6 ">
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: brown;">Origen</span></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: blue;">Bayover</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 ">
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: brown;">Destino</span></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: blue;">Surco</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12"><hr /></div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6 ">
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: brown;">Veces por semana</span></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: blue;">4</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 ">
-                                            <div class="row">
-                                                <div class="col-9"><span style="color: brown;">Km de la ruta</span></div>
-                                                <div class="col-3"><a href="#"><i class="fas fa-map-marked mr-1"></i></a></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: blue;">4Km</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12"><hr /></div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6 ">
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: brown;">Tarifa de servicio</span></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: blue;">3.5</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 ">
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: brown;">Km total</span></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12"><span style="color: blue; font-size: 2em;">40Km</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="alert-add"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>*@
 
 <div id="seccion-menu-ruta" class="container mt-3 d-none">
 
@@ -1169,7 +1054,7 @@
     <div class="row">
         <div class="col-8">
             <div class="input-group">
-                <input id="veces-semana" class="form-control" placeholder="Ingrese la cantidad de veces a la semana que utiliza esta ruta" />&nbsp;
+                <input id="veces-semana" class="form-control" placeholder="Ingrese cantidad de veces que utiliza esta ruta" />&nbsp;
                 <button id='btn-ruta' class="btn btn-primary" onclick="getCoordenadas();">Guardar ruta</button>&nbsp;
                 <button id='btn-cerrar' class="btn btn-secondary">Cerrar</button>
             </div>    

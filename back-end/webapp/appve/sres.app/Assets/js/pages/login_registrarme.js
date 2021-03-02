@@ -55,20 +55,34 @@ var registrarUsuario = () => {
         return;
     }
 
-    let url = `${baseUrlApi}api/usuario/insert`;
+    debugger;
+    let url = `${baseUrl}api/usuario/guardarusuario`;
+    //let url = `${baseUrlApi}api/usuario/insert`;
     let data = { ID_USUARIO: -1, NOMBRES: nombres, ID_GENERO: genero, CORREO: correo, CONTRASENA: contraseña, ID_ROL: 3, FLAG_ESTADO: '1'};
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
+    //fetch(url, init)
+    //.then(response => {
+    //    if (response.status == 200) return response.json();
+    //    else if (response.status == 400) return 400;
+    //    else return 0;
+    //})
+    //.then(registro)
+    //.catch(error => {
+    //    console.log('Hubo un problema con la petición Fetch:' + error.message);
+    //    return 0;
+    //});
+
     fetch(url, init)
-    .then(response => {
-        if (response.status == 200) return response.json();
-        else if (response.status == 400) return 400;
-        else return 0;
-    })
-    .then(registro)
-    .catch(error => {
-        console.log('Hubo un problema con la petición Fetch:' + error.message);
-        return 0;
+    .then(r => r.json())
+    .then(j => {
+        console.log(j);
+        debugger;
+        if (j == true) {
+            limpiarFormulario();
+            $('form > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: '¡Se registró correctamente!', html: '<p id="redireccionarText" class="text-center estilo-01">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
+            $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Login` });
+        }
     });
 }
 
@@ -76,9 +90,15 @@ var registro = (j) => {
     if (j == 400) { mostrarMensajeError("Error en el registro de usuario"); }
     else if (j == 0) { mostrarMensajeError("Error, comunicarse con el administrador del sistema"); }
     else {
-        $('.registrar-usuario').addClass('d-none');
-        $('form > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: '¡Se registró correctamente!', html: '<p id="redireccionarText" class="text-center estilo-01">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
-        $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Login` });
+        //$('.registrar-usuario').addClass('d-none');
+        //$('form > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: '¡Se registró correctamente!', html: '<p id="redireccionarText" class="text-center estilo-01">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
+        //$('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Login` });
+
+        if (j == true) {
+            limpiarFormulario();
+            $('form > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: '¡Se registró correctamente!', html: '<p id="redireccionarText" class="text-center estilo-01">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
+            $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Login` });
+        }
     }        
 }
 

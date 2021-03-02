@@ -6,6 +6,8 @@
         ["Titulo"] = "INICIAR SESIÓN"
     };
 
+    ViewBag.SRESDescription = false;
+
     ViewBag.SRESDocumentation = new Dictionary<string, Dictionary<string, object>>
     {
         ["References"] = new Dictionary<string, object>
@@ -14,13 +16,10 @@
             ["Titulo"] = "DOCUMENTOS DE REFERENCIA",
             ["Data"] = new Dictionary<int, object>
             {
-                [1] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado 2018 a 2019", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
-                [2] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado de Eficiencia Energética 2020", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
-                //[3] = new Dictionary<string, object> { ["Texto"] = "Piloto de Auditorías Energéticas en el Sector Público", ["Url"] = "#" },
-                //[4] = new Dictionary<string, object> { ["Texto"] = "Piloto de Auditorías Energéticas en el Sector Privado", ["Url"] = "#" },
-                //[5] = new Dictionary<string, object> { ["Texto"] = "Reglamento de Etiquetado de Eficiencia Energética", ["Url"] = "#" },
-                [6] = new Dictionary<string, object> { ["Texto"] = "Guía de Auditorías Energéticas", ["Url"] = "#" },
-                [7] = new Dictionary<string, object> { ["Texto"] = "Manual de uso de la plataforma del Reconocimiento de Energía Eficiente y Sostenible", ["Url"] = "#" }
+                //[1] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado 2018 a 2019", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                //[2] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado de Eficiencia Energética 2020", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                //[6] = new Dictionary<string, object> { ["Texto"] = "Guía de Auditorías Energéticas", ["Url"] = "#" },
+                //[7] = new Dictionary<string, object> { ["Texto"] = "Manual de uso de la plataforma del Reconocimiento de Energía Eficiente y Sostenible", ["Url"] = "#" }
             }
         }
     };
@@ -42,13 +41,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-12 d-none d-lg-block">
-                <div class="row">
+                @*<div class="row">
                     <div class="col-12 wow fadeIn">
                         <div class="p-5 set-bg" data-setbg="@Url.Content("~/Assets/images/login-left.png")">
-                            <p class="estilo-01 text-white text-justify barra-blanca my-5">Si ya está registrado en el Reconocimiento de Energía Eficiente y Sostenible acceda con sus credenciales de REES, si ya es un Usuario Administrado en la Plataforma MRV del sector energía, puede optar por ingresar con su cuenta MRV de manera inmediata.</p>
+                            <p class="estilo-01 text-white text-justify barra-blanca my-5"></p>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-5 mb-lg-0">
                 <div class="row">
@@ -86,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            @Html.Partial("_SRES_Documentation")
+            @*@Html.Partial("_SRES_Documentation")*@
         </div>
     </div>
 </div>

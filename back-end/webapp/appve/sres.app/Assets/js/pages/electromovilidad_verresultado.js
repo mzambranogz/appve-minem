@@ -11,6 +11,7 @@ var Regresar = () => {
     location.href = `${baseUrl}Electromovilidad/mis-consultas-y-resultados`;
 }
 
+//end_points onceavo
 var cargarComponentes = () => {
         let urlConsultarLeyenda = `${baseUrl}api/calculo/obtenerleyenda?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
         let urlConsultarCostoVC = `${baseUrl}api/calculo/obtenercostovc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;

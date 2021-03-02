@@ -18,27 +18,43 @@ var iniciarSesionConCaptcha = (token) => {
     let correo = $('#txt-user').val().trim();
     let contrasena = $('#txt-pswd').val().trim();
 
-    let url = `${baseUrlApi}api/login/authenticate`;
-    let data = {Username: correo, Password: contrasena};
+    let url = `${baseUrl}Login/Validar`;
+    //let url = `${baseUrlApi}api/login/authenticate`;
+    //let data = { Username: correo, Password: contrasena };
+    let data = { correo, contrasena, token };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
+    //fetch(url, init)
+    //.then(response => {
+    //    if (response.status == 200) return response.json();
+    //    else if (response.status == 401) return 401;
+    //    else return 0;
+    //})
+    //.then(validarInicioSesion)
+    //.catch(error => {
+    //    console.log('Hubo un problema con la petición Fetch:' + error.message);
+    //    return 0;
+    //});
+
     fetch(url, init)
-    .then(response => {
-        if (response.status == 200) return response.json();
-        else if (response.status == 401) return 401;
-        else return 0;
-    })
+    .then(r => r.json())
     .then(validarInicioSesion)
-    .catch(error => {
-        console.log('Hubo un problema con la petición Fetch:' + error.message);
-        return 0;
-    });
 }
 
+//var validarInicioSesion = (data) => {
+//    if (data == 401) { mostrarMensajeError("Las credenciales no son válidas"); }
+//    else if (data == 0) { mostrarMensajeError("Error de acceso"); }
+//    //else cargarSesion(data);
+//    else redireccionar(data);
+//}
+
 var validarInicioSesion = (data) => {
-    if (data == 401) { mostrarMensajeError("Las credenciales no son válidas"); }
-    else if (data == 0) { mostrarMensajeError("Error de acceso"); }
-    else cargarSesion(data);
+    if (data.success == true) {
+        location.href = `${baseUrl}Electromovilidad`;
+    }
+    else {
+        mostrarMensajeError("Las credenciales no son válidas");
+    }
 }
 
 var mostrarMensajeError = (msj) => {

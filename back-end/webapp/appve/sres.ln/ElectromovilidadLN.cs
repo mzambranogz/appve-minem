@@ -885,16 +885,18 @@ namespace sres.ln
                 decimal[] arrContaminanteTP = new decimal[4];
 
                 //Vehiculo convencional
-                decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
-                decimal nox_vc = elecLN.ListaFactor2P(18, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
-                decimal co_vc = elecLN.ListaFactor2P(19, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
-                decimal pm25_vc = elecLN.ListaFactor2P(20, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
-                decimal bc_vc = elecLN.ListaFactor2P(21, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                if (entidad.P1 == "1" || entidad.P2 == "1") {
+                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                    decimal nox_vc = elecLN.ListaFactor2P(18, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal co_vc = elecLN.ListaFactor2P(19, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal pm25_vc = elecLN.ListaFactor2P(20, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal bc_vc = elecLN.ListaFactor2P(21, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
 
-                arrContaminanteVC[0] = km_anual * nox_vc;
-                arrContaminanteVC[1] = km_anual * co_vc;
-                arrContaminanteVC[2] = km_anual * pm25_vc;
-                arrContaminanteVC[3] = km_anual * bc_vc;
+                    arrContaminanteVC[0] = km_anual * nox_vc;
+                    arrContaminanteVC[1] = km_anual * co_vc;
+                    arrContaminanteVC[2] = km_anual * pm25_vc;
+                    arrContaminanteVC[3] = km_anual * bc_vc;
+                }
 
                 foreach (ServicioPublicoBE item in entidad.LISTA_SERVICIO_PUBLICO)
                 {
