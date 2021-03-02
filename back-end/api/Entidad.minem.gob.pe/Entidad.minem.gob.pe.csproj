@@ -42,19 +42,33 @@
   <ItemGroup>
     <Compile Include="BaseBE.cs" />
     <Compile Include="CargadorPotenciaBE.cs" />
+    <Compile Include="ConsumoEnergeticoConvencionalBE.cs" />
+    <Compile Include="ConsumoEnergeticoElectricoBE.cs" />
     <Compile Include="DepartamentoBE.cs" />
     <Compile Include="ElectromovilidadBE.cs" />
+    <Compile Include="EmisionesConvencionalBE.cs" />
+    <Compile Include="EmisionesElectricoBE.cs" />
+    <Compile Include="EscenarioConvencionalBE.cs" />
+    <Compile Include="EscenarioConvencionalConsumoEnergBE.cs" />
+    <Compile Include="EscenarioConvencionalEmisionesBE.cs" />
+    <Compile Include="EscenarioElectricoConsumoEnergBE.cs" />
+    <Compile Include="EscenarioElectricoEmisionesBE.cs" />
+    <Compile Include="EscenarioElectromovilidadBE.cs" />
     <Compile Include="FactorDataBE.cs" />
     <Compile Include="ModeloVehiculoElectricoBE.cs" />
     <Compile Include="RolBE.cs" />
+    <Compile Include="ServicioPublicoBE.cs" />
     <Compile Include="TipoCargadorBE.cs" />
     <Compile Include="TipoCombustibleBE.cs" />
     <Compile Include="TipoTransporteBE.cs" />
     <Compile Include="TipoVehiculoConvencionalBE.cs" />
     <Compile Include="TipoVehiculoElectricoBE.cs" />
+    <Compile Include="TransportePublicoBE.cs" />
     <Compile Include="UsuarioAuxBE.cs" />
     <Compile Include="UsuarioBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehiculoConvencionalBE.cs" />
+    <Compile Include="VehiculoElectricoBE.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -353,9 +353,9 @@
     <Content Include="Assets\js\pages\electromovilidad_estacioncarga.js" />
     <Content Include="Assets\js\pages\electromovilidad_menu_estacioncarga.js" />
     <Content Include="Assets\js\pages\electromovilidad_menu_principal.js" />
-    <Content Include="Assets\js\pages\electromovilidad_usuariocomprarevaluacion.js" />
+    <Content Include="Assets\js\pages\electromovilidad_consultasresultados.js" />
     <Content Include="Assets\js\pages\electromovilidad_usuariotransportepublico.js" />
-    <Content Include="Assets\js\pages\electromovilidad_usuariovehiculoconvencional.js" />
+    <Content Include="Assets\js\pages\electromovilidad_verresultado.js" />
     <Content Include="Assets\js\pages\inicio.js" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_recuperarcontraseña.js" />
@@ -702,8 +702,8 @@
     </None>
     <Content Include="Views\Electromovilidad\Index.cshtml" />
     <Content Include="Views\Electromovilidad\UsuarioTransportePublico.cshtml" />
-    <Content Include="Views\Electromovilidad\UsuarioVehiculoConvencional.cshtml" />
-    <Content Include="Views\Electromovilidad\UsuarioComprarEvaluacion.cshtml" />
+    <Content Include="Views\Electromovilidad\VerResultado.cshtml" />
+    <Content Include="Views\Electromovilidad\ConsultasResultados.cshtml" />
     <Content Include="Views\Electromovilidad\MenuEstacionCarga.cshtml" />
     <Content Include="Views\Mantenimiento\TipoVehiculoConvencional.cshtml" />
     <Content Include="Views\Mantenimiento\TipoVehiculoElectrico.cshtml" />

@@ -65,6 +65,28 @@ namespace Datos.minem.gob.pe
             return item;
         }
 
+        public TipoTransporteBE getTipoTransporte(TipoTransporteBE entidad, OracleConnection db)
+        {
+            TipoTransporteBE item = new TipoTransporteBE();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_TIPO_TRANSP";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_TIPO_TRANSPORTE", entidad.ID_TIPO_TRANSPORTE);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<TipoTransporteBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                item.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                item.OK = false;
+            }
+
+            return item;
+        }
+
         public bool GuardarTipoTransporte(TipoTransporteBE oTipoTransporte, OracleConnection db)
         {
             bool seActualizo = false;

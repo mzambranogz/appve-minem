@@ -1,17 +1,18 @@
 ﻿//variable mapa
-var origen_longitud, origen_latitud, destino_longitud, destino_latitud, distancia, nombre_origen, nombre_destino, veces_semana_g, total_km_vc_g, total_km_cvc_g, total_km_ve_g, total_km_t1_g, total_km_t2_g, total_km_t3_g, total_km_t4_g; //variable origen (x, y), destino (x,y), distancia, nombre origen, nombre destino
+var origen_longitud, origen_latitud, destino_longitud, destino_latitud, distancia, nombre_origen, nombre_destino, veces_semana_g; //variable origen (x, y), destino (x,y), distancia, nombre origen, nombre destino
 var directions; //variable mapbox
-var arr_ruta_vc = []; // array de rutas VC, CVC, VE, SP
+var arr_ruta_vc = [], arr_ruta_cvc = [], arr_ruta_ve = [], arr_ruta_t1 = [], arr_ruta_t2 = [], arr_ruta_t3 = [], arr_ruta_t4 = []; // array de rutas VC, CVC, VE, SP
 var validar_escenario, accion;
 
 //variable lista para graficos
-var Lista_convencional, Lista_electrico, Lista_leyenda, Lista_consumo_energ_vc, Lista_consumo_energ_ve, Lista_emision_vc, Lista_emision_ve;
+var Lista_convencional = [], Lista_electrico = [], Lista_leyenda = [], Lista_consumo_energ_vc = [], Lista_consumo_energ_ve = [], Lista_emision_vc = [], Lista_emision_ve = [], Lista_contaminante_local = [];
 
 var rendimiento_vc_g = 0, precio_combustible_vc_g = 0, factor_emision_vc = 0, rendimiento_cvc_g = 0, precio_combustible_cvc_g = 0, factor_emision_cvc_g = 0, precio_vehiculo_cvc_g = 0;
 var rendimiento_ve_g = 0, capacidad_bateria_g = 0, precio_cargador_g = 0, costo_instalacion_g = 0, precio_vehiculo_cvc_g = 0, precio_vehiculo_ve_g = 0, tarifa_electricidad_g = 0;
 
 $(document).ready(() => {
     //configuracion();
+    debugger;
     mapa();
     cargarComponentes();
     
@@ -53,10 +54,17 @@ $(document).ready(() => {
     $('#cbo-departamento-vc').on('change', (e) => cambiarDepartamentoVC());
 
     $('#btnAdd-vc').on('click', (e) => mostrarRutas(e));
+    $('#btnAdd-cvc').on('click', (e) => mostrarRutas(e));
+    $('#btnAdd-ve').on('click', (e) => mostrarRutas(e));
+    $('#btnAdd-t1').on('click', (e) => mostrarRutas(e));
+    $('#btnAdd-t2').on('click', (e) => mostrarRutas(e));
+    $('#btnAdd-t3').on('click', (e) => mostrarRutas(e));
+    $('#btnAdd-t4').on('click', (e) => mostrarRutas(e));
     $('#btn-nueva-ruta').on('click', (e) => nuevaRuta(e));
-    //$('.editar-mapa').on('click', (e) => editarRuta(e));
     $('#aceptar-ruta').on('click', (e) => ocultarRuta());
     $('#btn-cerrar').on('click', (e) => ocultarMapa());
+    $('#btnGuardar').on('click', (e) => guardarResultados());
+    $('#btnNuevo').on('click', (e) => nuevoCalculo());
 });
 
 var mapa = () => {
@@ -105,7 +113,6 @@ var mapa = () => {
 
     $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
     $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
-    $('.mapbox-directions-instructions').addClass('d-none');
 }
 
 var getCoordenadas = () => {
@@ -123,9 +130,9 @@ var getCoordenadas = () => {
     destino_latitud = directions.getDestination().geometry.coordinates[1];
 
     //alert(`Origen: [${origen_longitud}, ${origen_latitud}], Destino: [${destino_longitud}, ${destino_latitud}]  Distancia: ${distancia}`);
-    let arr = validar_escenario == 'vc' ? arr_ruta_vc : [];
-    if (accion == 0) agregarRuta(arr);
-    else actualizarRuta(arr);  
+    //let arr = validar_escenario == 'vc' ? arr_ruta_vc : validar_escenario == 'cvc' ? arr_ruta_cvc : validar_escenario == 've' ? arr_ruta_ve : validar_escenario == 't1' ? arr_ruta_t1 : validar_escenario == 't2' ? arr_ruta_t2 : validar_escenario == 't3' ? arr_ruta_t3 : validar_escenario == 't4' ? arr_ruta_t4 : [];
+    if (accion == 0) agregarRuta(validar_escenario == 'vc' ? arr_ruta_vc : validar_escenario == 'cvc' ? arr_ruta_cvc : validar_escenario == 've' ? arr_ruta_ve : validar_escenario == 't1' ? arr_ruta_t1 : validar_escenario == 't2' ? arr_ruta_t2 : validar_escenario == 't3' ? arr_ruta_t3 : validar_escenario == 't4' ? arr_ruta_t4 : []);
+    else actualizarRuta(validar_escenario == 'vc' ? arr_ruta_vc : validar_escenario == 'cvc' ? arr_ruta_cvc : validar_escenario == 've' ? arr_ruta_ve : validar_escenario == 't1' ? arr_ruta_t1 : validar_escenario == 't2' ? arr_ruta_t2 : validar_escenario == 't3' ? arr_ruta_t3 : validar_escenario == 't4' ? arr_ruta_t4 : []);  
 
     alert("Se guardó la ruta exitosamente");
     $('#seccion-mapa').addClass('d-none');
@@ -135,7 +142,7 @@ var getCoordenadas = () => {
 
 var agregarRuta = (arr) => {
     arr.push({
-        ID_RUTA: arr_ruta_vc.length + 1,
+        ID_RUTA: arr.length + 1,
         ORIGEN: `${origen_longitud}, ${origen_latitud}`,
         DESTINO: `${destino_longitud}, ${destino_latitud}`,
         NOMBRE_ORIGEN: nombre_origen,
@@ -225,14 +232,14 @@ var siguiente1 = () => {
     let tp3 = $('#servicio-03').val() == 0 ? false : true;
     let tp4 = $('#servicio-04').val() == 0 ? false : true;
     if (!(tp1 || tp2 || tp3 || tp4))  {alert('Debe seleccionar al menos un tipo de transporte'); return;}
-    if ($('#servicio-01').val() > 0) $('#transporte-01').removeClass();
-    else $('#transporte-01').addClass();
-    if ($('#servicio-02').val() > 0) $('#transporte-02').removeClass();
-    else $('#transporte-02').addClass();
-    if ($('#servicio-03').val() > 0) $('#transporte-03').removeClass();
-    else $('#transporte-03').addClass();
-    if ($('#servicio-04').val() > 0) $('#transporte-04').removeClass();
-    else $('#transporte-04').addClass();
+    if ($('#servicio-01').val() > 0) $('#transporte-01').removeClass('d-none');
+    else $('#transporte-01').addClass('d-none');
+    if ($('#servicio-02').val() > 0) $('#transporte-02').removeClass('d-none');
+    else $('#transporte-02').addClass('d-none');
+    if ($('#servicio-03').val() > 0) $('#transporte-03').removeClass('d-none');
+    else $('#transporte-03').addClass('d-none');
+    if ($('#servicio-04').val() > 0) $('#transporte-04').removeClass('d-none');
+    else $('#transporte-04').addClass('d-none');
     $('#tipo-transporte-01').val($('#servicio-01').val() == null ? 0 : $('#servicio-01').val());
     $('#tipo-transporte-02').val($('#servicio-02').val() == null ? 0 : $('#servicio-02').val());
     $('#tipo-transporte-03').val($('#servicio-03').val() == null ? 0 : $('#servicio-03').val());
@@ -435,18 +442,34 @@ var evaluarTipoVehTipoCombVC = () => {
     let tipocombustible = $('#tipo-combustible-vc').val();
 
     let url = `${baseUrl}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
-    fetch(url).then(r => r.json()).then(j => {
-        if (j == null) return;
-        if (j.RENDIMIENTO != null){
-            $('#rendimiento-vc').val(j.RENDIMIENTO.FACTOR);
-            $('#unidad-rend-vc').html(j.RENDIMIENTO.UNIDAD);
-            rendimiento_vc_g = parseFloat(j.RENDIMIENTO.FACTOR);           
-        }
-        if (j.FACTOR_EMISION != null){
-            $('#factor-emision-vc').val(j.FACTOR_EMISION.FACTOR);
-            factor_emision_vc = parseFloat(j.FACTOR_EMISION.FACTOR);           
-        }
-        $('#porc-anual-combustible-vc').val(2);
+    //let url = `${baseUrlApi}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init)
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else if (response.status == 401) return 401;
+        else return 0;
+    })
+    .then(j => {
+        if (j == 401) { console.log("No tiene autorización para realizar este proceso"); }
+        else if (j == 0) { console.log("Error"); }
+        else {
+            if (j == null) return;
+            if (j.RENDIMIENTO != null){
+                $('#rendimiento-vc').val(j.RENDIMIENTO.FACTOR);
+                $('#unidad-rend-vc').html(j.RENDIMIENTO.UNIDAD);
+                rendimiento_vc_g = parseFloat(j.RENDIMIENTO.FACTOR);          
+            }
+            if (j.FACTOR_EMISION != null){
+                $('#factor-emision-vc').val(j.FACTOR_EMISION.FACTOR);
+                factor_emision_vc = parseFloat(j.FACTOR_EMISION.FACTOR);           
+            }
+            $('#porc-anual-combustible-vc').val(2);
+        }        
+    })
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
     });
 }
 
@@ -463,11 +486,11 @@ var evaluarTipoVehTipoCombCVC = () => {
         if (j.RENDIMIENTO != null){
             $('#rendimiento-cvc').val(j.RENDIMIENTO.FACTOR);
             $('#unidad-rend-cvc').html(j.RENDIMIENTO.UNIDAD);
-            rendimiento_vc_g = parseFloat(j.RENDIMIENTO.FACTOR);           
+            rendimiento_cvc_g = parseFloat(j.RENDIMIENTO.FACTOR);           
         }
         if (j.FACTOR_EMISION != null){
             $('#factor-emision-cvc').val(j.FACTOR_EMISION.FACTOR);
-            factor_emision_vc = parseFloat(j.FACTOR_EMISION.FACTOR);           
+            factor_emision_cvc_g = parseFloat(j.FACTOR_EMISION.FACTOR);           
         }
         if (j.PRECIO_VEHICULO != null){
             $('#costo-veh-cvc').val(j.PRECIO_VEHICULO.FACTOR);
@@ -492,7 +515,7 @@ var cambiarCongTE = () => {
     if (v) $('#tarifa-e-ve').removeClass('d-none');
     else {
         $('#tarifa-e-ve').addClass('d-none');
-        $('#tarifa-ve').val(precio_vehiculo_cvc_g);
+        $('#tarifa-ve').val(tarifa_electricidad_g);
         $('#porc-aual-ve').val(0);
     }
 }
@@ -696,14 +719,14 @@ var cargarComponentes = () => {
     let urlConsultarTipoVehiculoConvencional = `http://161.35.182.46/ApiElectromovilidad/api/TipoVehiculoConvencional/obtenerall`;
     //let urlConsultarTipoVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obteneralltipovehiculoelectrico`;
     let urlConsultarTipoVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/TipovehiculoElectrico/obtenerall`;
-    //let urlConsultarModeloVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obtenerallmodelovehiculoelectrico`;
-    let urlConsultarModeloVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/modelovehiculo/obtenerall`;
-    //let urlConsultarTipoCargador = `${baseUrl}api/tipocargador/obteneralltipocargador`;
-    let urlConsultarTipoCargador = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obteneralltipocargador`;
-    //let urlConsultarCargadorPotencia = `${baseUrl}api/tipocargador/obtenerallcargadorpotencia`;
-    let urlConsultarCargadorPotencia = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obtenerallcargadorpotencia`;
-    //let urlConsultarDepartamento = `${baseUrl}api/departamento/obteneralldepartamento`;
-    let urlConsultarDepartamento = `http://161.35.182.46/ApiElectromovilidad/api/Departamento/obteneralldepartamento`;
+    let urlConsultarModeloVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obtenerallmodelovehiculoelectrico`;
+    //let urlConsultarModeloVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/modelovehiculo/obtenerall`;
+    let urlConsultarTipoCargador = `${baseUrl}api/tipocargador/obteneralltipocargador`;
+    //let urlConsultarTipoCargador = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obteneralltipocargador`;
+    let urlConsultarCargadorPotencia = `${baseUrl}api/tipocargador/obtenerallcargadorpotencia`;
+    //let urlConsultarCargadorPotencia = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obtenerallcargadorpotencia`;
+    let urlConsultarDepartamento = `${baseUrl}api/departamento/obteneralldepartamento`;
+    //let urlConsultarDepartamento = `http://161.35.182.46/ApiElectromovilidad/api/Departamento/obteneralldepartamento`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
     Promise.all([
@@ -796,7 +819,7 @@ var validar = (id) => {
 }
 
 var evaluar = () => {
-    let data_vc = {}, data_ve = {}, data_ce_vc = {}, data_ce_ve = {}, data_l = {}, data_em_vc = {}, data_em_ve = {};
+    let data_vc = {}, data_ve = {}, data_ce_vc = {}, data_ce_ve = {}, data_l = {}, data_em_vc = {}, data_em_ve = {}, data_cm = {};
 
     //vehiculo convencional costo
     let p1 = $('#rad-e1-si').prop('checked') ? '1' : '0';
@@ -807,7 +830,7 @@ var evaluar = () => {
     let costo_vehiculo_vc = 0, meses_uso_vc = 0, porc_aumento_comb_vc = 0, tipo_compra_vc = 0;
     let porc_cuota_inicial_vc = 0, tasa_interes_vc = 0, anio_credito_vc = 0, seguro_vc = 0;
     let gasto_combustible_vc = 0, precio_combustible_vc = 0, kilometro_semanal_vc = 0, rendimiento_vc = 0, mantenimiento_vc = 0;
-    let factor_emisionvc = 0, tipo_combustible_vc = 0;
+    let factor_emisionvc = 0, tipo_combustible_vc = 0, tipo_vehiculo_vc = 0;
     let lista_servicio_publico = [];
     if (p2 == '1') {
         costo_vehiculo_vc = parseFloat($('#costo-veh-cvc').val());
@@ -815,6 +838,7 @@ var evaluar = () => {
         porc_aumento_comb_vc = $('#porc-anual-combustible-cvc').val() / 100;
         factor_emisionvc = $('#factor-emision-cvc').val();
         tipo_combustible_vc = $('#tipo-combustible-cvc').val();
+        tipo_vehiculo_vc = $('#tipo-vehiculo-cvc').val();
         tipo_compra_vc = $('#tipo-compra-cvc').val();
         if (tipo_compra_vc == 1){
             porc_cuota_inicial_vc = parseFloat($('#cuota-inicial-cvc').val())/100; 
@@ -824,22 +848,23 @@ var evaluar = () => {
         if (p_seguro_vc == '1') seguro_vc = $('#seguro-cvc').val();
         if (p_gasto_combustible == '1') gasto_combustible_vc = $('#gasto-cvc').val();
         else {
-            precio_combustible_vc = $('#precio-combustible-cvc').val();
-            kilometro_semanal_vc = $('#kilometro-sem-cvc').val();
+            precio_combustible_vc = $('#precio-combustible-cvc').val();            
             rendimiento_vc = $('#rendimiento-cvc').val();
-        }                
+        }    
+        kilometro_semanal_vc = $('#kilometro-sem-cvc').val();
     } else if (p1 == '1') {
         meses_uso_vc = $('#meses-vc').val();
         porc_aumento_comb_vc = $('#porc-anual-combustible-vc').val() / 100;
         factor_emisionvc = $('#factor-emision-vc').val();
         tipo_combustible_vc = $('#tipo-combustible-vc').val();
+        tipo_vehiculo_vc = $('#tipo-vehiculo-vc').val();
         seguro_vc = $('#seguro-vc').val();
         if (p_gasto_combustible == '1') gasto_combustible_vc = $('#gasto-vc').val();
         else {
-            precio_combustible_vc = $('#precio-combustible-vc').val();
-            kilometro_semanal_vc = $('#kilometro-sem-vc').val();
+            precio_combustible_vc = $('#precio-combustible-vc').val();            
             rendimiento_vc = $('#rendimiento-vc').val();
         }
+        kilometro_semanal_vc = $('#kilometro-sem-vc').val();
         mantenimiento_vc = $('#mantenimiento-vc').val();
     }
 
@@ -958,6 +983,11 @@ var evaluar = () => {
         CAPACIDAD_BATERIA_VE: capacidad_bateria_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
     }
 
+    //Contaminantes locales
+    data_cm = {
+        P1: p1, P2: p2, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, MESES_USO_VC: meses_uso_vc, ID_TIPO_VEHICULO_VC: tipo_vehiculo_vc, ID_TIPO_COMBUSTIBLE_VC: tipo_combustible_vc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
+    }
+
     //end_points 7 //Octavo Final
     //Calculo
     let urlvc = `${baseUrl}api/calculo/calcularvehiculoconvencional`;
@@ -988,6 +1018,10 @@ var evaluar = () => {
     let dataemve = data_em_ve;
     let initemve = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataemve) };
 
+    let urlcm = `${baseUrl}api/calculo/calcularcontaminantelocal`;
+    let datacm = data_cm;
+    let initcm = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datacm) };
+
     Promise.all([
         fetch(urlvc, initvc),
         fetch(urlve, initve),
@@ -996,13 +1030,14 @@ var evaluar = () => {
         fetch(urlvece, initvece),
         fetch(urlemvc, initemvc),
         fetch(urlemve, initemve),
+        fetch(urlcm, initcm),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarVCVE);
 
 }
 
-var cargarVCVE = ([listaVC, listaVE, listaleyenda, listaVCCE, listaVECE, listaEMVC, listaEMVE]) => {
+var cargarVCVE = ([listaVC, listaVE, listaleyenda, listaVCCE, listaVECE, listaEMVC, listaEMVE, listaCM]) => {
     Lista_convencional = listaVC;
     Lista_electrico = listaVE;
     Lista_leyenda = listaleyenda;
@@ -1010,17 +1045,32 @@ var cargarVCVE = ([listaVC, listaVE, listaleyenda, listaVCCE, listaVECE, listaEM
     Lista_consumo_energ_ve = listaVECE;
     Lista_emision_vc = listaEMVC;
     Lista_emision_ve = listaEMVE;
+    Lista_contaminante_local = listaCM;
     cambiarAnio();
     grafico_costo();
 }
 
 var cambiarAnio = () => {
+    valoresDiferenciados();
     cambiarAnioVC();
     cambiarAnioVE();
     grafico_costo_por_anio();
     grafico_consumo_energ();
     grafico_consumo_energ_total();
     grafico_emisiones();
+    mostrar_contaminante_local();
+    $('#seccion-opciones').removeClass('d-none');
+}
+
+var valoresDiferenciados = () => {
+    let i = $('#anio_evaluacion').val() - 1;
+    let total_costo = parseFloat(Lista_convencional[i].TOTAL) - parseFloat(Lista_electrico[i].TOTAL);
+    let total_consumo = parseFloat(Lista_consumo_energ_vc[i].TOTAL_PUBLICO) - parseFloat(Lista_consumo_energ_ve[i].TOTAL_PUBLICO);
+    let total_emisiones = parseFloat(Lista_emision_vc[i].TOTAL_VC) - parseFloat(Lista_emision_ve[i].TOTAL_VE);
+
+    $('#ahorro-economico-d').html(formatoMiles(total_costo));
+    $('#consumo-energetico-d').html(formatoMiles(total_consumo));
+    $('#emisiones-d').html(formatoMiles(total_emisiones));
 }
 
 var cambiarAnioVC = () => {
@@ -1228,6 +1278,14 @@ var grafico_emisiones = () => {
     google.charts.setOnLoadCallback(drawChartEM);
 }
 
+var mostrar_contaminante_local = () => {
+    let i = $('#anio_evaluacion').val() - 1;
+    $('#cl-nox').html(formatoMiles(Lista_contaminante_local[i].TOTAL_NOX));
+    $('#cl-co').html(formatoMiles(Lista_contaminante_local[i].TOTAL_CO));
+    $('#cl-mp25').html(formatoMiles(Lista_contaminante_local[i].TOTAL_PM25));
+    $('#cl-bc').html(formatoMiles(Lista_contaminante_local[i].TOTAL_BC));
+}
+
 var mostrarRutas = (e) => {
     $('#seccion-menu-ruta').removeClass('d-none');
     validar_escenario = $(`#${e.target.id}`).data('validar');
@@ -1244,12 +1302,12 @@ var listarRutas = () => {
     $('#rutas-km').html('');
     let arr, rutas = "", total_km = 0;
     if ("vc" == validar_escenario) arr = arr_ruta_vc;
-    if ("cvc" == validar_escenario) arr_ruta_vc = 0;
-    if ("ve" == validar_escenario) arr_ruta_vc = 0;
-    if ("t1" == validar_escenario) arr_ruta_vc = 0;
-    if ("t2" == validar_escenario) arr_ruta_vc = 0;
-    if ("t3" == validar_escenario) arr_ruta_vc = 0;
-    if ("t4" == validar_escenario) arr_ruta_vc = 0;
+    if ("cvc" == validar_escenario) arr = arr_ruta_cvc;
+    if ("ve" == validar_escenario) arr = arr_ruta_ve;
+    if ("t1" == validar_escenario) arr = arr_ruta_t1;
+    if ("t2" == validar_escenario) arr = arr_ruta_t2;
+    if ("t3" == validar_escenario) arr = arr_ruta_t3;
+    if ("t4" == validar_escenario) arr = arr_ruta_t4;
 
     for (var i = 0; i < arr.length; i++) {
         let total = parseFloat(arr[i].DISTANCIA) * parseFloat(arr[i].VECES_SEMANA);
@@ -1293,13 +1351,6 @@ var listarRutas = () => {
     if (validar_escenario == 't2') $('#kilometros-02').val(total_km); 
     if (validar_escenario == 't3') $('#kilometros-03').val(total_km); 
     if (validar_escenario == 't4') $('#kilometros-04').val(total_km);
-    //if (validar_escenario == 'vc') total_km_vc_g = total_km;    
-    //if (validar_escenario == 'cvc') total_km_cvc_g = total_km;
-    //if (validar_escenario == 've') total_km_ve_g = total_km;
-    //if (validar_escenario == 't1') total_km_t1_g = total_km;
-    //if (validar_escenario == 't2') total_km_t2_g = total_km;
-    //if (validar_escenario == 't3') total_km_t3_g = total_km;
-    //if (validar_escenario == 't4') total_km_t4_g = total_km;
 }
 
 var nuevaRuta = (e) => {
@@ -1310,16 +1361,17 @@ var nuevaRuta = (e) => {
 
 var editarRuta = (e) => {
     mostrarMapa();
+    debugger;
     let id = $(`#${e.currentTarget.id}`);
-    accion = parseInt(e.currentTarget.id.replace('vc-','').replace('cvc-','').replace('ve','').replace('t1','').replace('t2','').replace('t3','').replace('t4',''));
+    accion = parseInt(e.currentTarget.id.replace('vc-','').replace('cvc-','').replace('ve-','').replace('t1-','').replace('t2-','').replace('t3-','').replace('t4-',''));
     let arr;
     if ("vc" == validar_escenario) arr = arr_ruta_vc;
-    if ("cvc" == validar_escenario) arr_ruta_vc = 0;
-    if ("ve" == validar_escenario) arr_ruta_vc = 0;
-    if ("t1" == validar_escenario) arr_ruta_vc = 0;
-    if ("t2" == validar_escenario) arr_ruta_vc = 0;
-    if ("t3" == validar_escenario) arr_ruta_vc = 0;
-    if ("t4" == validar_escenario) arr_ruta_vc = 0;
+    if ("cvc" == validar_escenario) arr = arr_ruta_cvc;
+    if ("ve" == validar_escenario) arr = arr_ruta_ve;
+    if ("t1" == validar_escenario) arr = arr_ruta_t1;
+    if ("t2" == validar_escenario) arr = arr_ruta_t2;
+    if ("t3" == validar_escenario) arr = arr_ruta_t3;
+    if ("t4" == validar_escenario) arr = arr_ruta_t4;
     let v = arr.find(x => { return x.ID_RUTA == accion; }) == undefined ? false : true;
     if (v) {
         let i = arr.findIndex(x => { return x.ID_RUTA == accion; });
@@ -1340,4 +1392,195 @@ var mostrarMapa = () => {
 
 var ocultarRuta = () => {
     $('#seccion-menu-ruta').addClass('d-none');
+}
+
+var guardarResultados = () => {
+    let data = {
+        ID_USUARIO: idUsuarioLogin,
+        LISTA_LEYENDA: Lista_leyenda,
+        LISTA_COSTO_CONVENCIONAL: Lista_convencional,
+        LISTA_COSTO_ELECTRICO: Lista_electrico,
+        LISTA_CONSUMO_CONVENCIONAL: Lista_consumo_energ_vc,
+        LISTA_CONSUMO_ELECTRICO: Lista_consumo_energ_ve,
+        LISTA_EMISIONES_CONVENCIONAL: Lista_emision_vc,
+        LISTA_EMISIONES_ELECTRICO: Lista_emision_ve,
+        LISTA_CONTAMINANTE_LOCAL: Lista_contaminante_local,
+        UPD_USUARIO: idUsuarioLogin,
+    }
+
+    let url = `${baseUrl}api/calculo/guardarresultados`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else if (response.status == 400) return 400;
+        else return 0;
+    })
+    .then(registro)
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+        return 0;
+    });
+}
+
+var registro = (j) => {
+    $('.alert-add').html('');
+    if (j == 400) { mostrarMensajeError("Error en el registro de resultados"); }
+    else if (j == 0) { mostrarMensajeError("Error, comunicarse con el administrador del sistema"); }
+    else {
+        //$('#btnGuardar').hide();
+        //$('#btnGuardar').next().html('Cerrar');
+        //$('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` });
+        //$('#btnConsultar')[0].click();
+        alert("Los datos fueron guardados correctamente.");
+        nuevoCalculo();
+    }
+}
+
+var nuevoCalculo = () => {
+    origen_longitud, origen_latitud, destino_longitud, destino_latitud, distancia, nombre_origen, nombre_destino, veces_semana_g;
+    arr_ruta_vc = [], arr_ruta_cvc = [], arr_ruta_ve = [], arr_ruta_t1 = [], arr_ruta_t2 = [], arr_ruta_t3 = [], arr_ruta_t4 = [];
+    validar_escenario = "", accion = 0;
+
+    //variable lista para graficos
+    Lista_convencional = [], Lista_electrico = [], Lista_leyenda = [], Lista_consumo_energ_vc = [], Lista_consumo_energ_ve = [], Lista_emision_vc = [], Lista_emision_ve = [], Lista_contaminante_local = [];
+
+    rendimiento_vc_g = 0, precio_combustible_vc_g = 0, factor_emision_vc = 0, rendimiento_cvc_g = 0, precio_combustible_cvc_g = 0, factor_emision_cvc_g = 0, precio_vehiculo_cvc_g = 0;
+    rendimiento_ve_g = 0, capacidad_bateria_g = 0, precio_cargador_g = 0, costo_instalacion_g = 0, precio_vehiculo_cvc_g = 0, precio_vehiculo_ve_g = 0, tarifa_electricidad_g = 0;
+
+    limpiarTP();
+    limpiarVC();
+    limpiarCVC();
+    limpiarVE();
+
+    $('#rad-e1-si').prop('checked', false);
+    $('#rad-e1-no').prop('checked', false);
+    $('#rad-e2-si').prop('checked', false);
+    $('#rad-e2-no').prop('checked', false);
+    $('#rad-e3-si').prop('checked', false);
+    $('#rad-e3-no').prop('checked', false);
+
+    $('#seccion-07').addClass('d-none');
+    $('#seccion-opciones').addClass('d-none');
+    $('#seccion-01').removeClass('d-none');
+    $('#anio_evaluacion').val(15);
+}
+
+var limpiarTP = () => {
+    $('#servicio-01').val(0);
+    $('#servicio-02').val(0);
+    $('#servicio-03').val(0);
+    $('#servicio-04').val(0);
+    $('#tipo-transporte-01').val(0);
+    $('#tipo-transporte-02').val(0);
+    $('#tipo-transporte-03').val(0);
+    $('#tipo-transporte-04').val(0);
+    $('#costo-movilidad-01').val('');
+    $('#costo-movilidad-02').val('');
+    $('#costo-movilidad-03').val('');
+    $('#costo-movilidad-04').val('');
+    $('#kilometros-01').val('');
+    $('#kilometros-02').val('');
+    $('#kilometros-03').val('');
+    $('#kilometros-04').val('');
+    $('#meses-01').val(0);
+    $('#meses-02').val(0);
+    $('#meses-03').val(0);
+    $('#meses-04').val(0);
+}
+
+var limpiarVC = () => {
+    $('#tipo-vehiculo-vc').val(0);
+    $('#tipo-combustible-vc').val(0);
+    $('#cbo-departamento-vc').val(0);
+    $('#rad-ca-si-vc').prop('checked', false);
+    $('#rad-ca-no-vc').prop('checked', true);
+    $('#rendimiento-vc').val('0');
+    $('#precio-combustible-vc').val('0');
+    $('#porc-anual-combustible-vc').val('0');
+    $('#factor-emision-vc').val('0');
+    $('#mantenimiento-vc').val('0');
+    $('#seguro-vc').val('0');
+    $('#rad-gcs-si-vc').prop('checked', false);
+    $('#rad-gcs-no-vc').prop('checked', true);
+    $('#gasto-vc').val('0');
+    $('#kilometro-sem-vc').val('0');
+    $('#meses-vc').val(0);
+    cambiarCongVC();
+    cambiarCongGCVC();
+}
+
+var limpiarCVC = () => {
+    $('#tipo-vehiculo-cvc').val(0);
+    $('#tipo-combustible-cvc').val(0);
+    $('#cbo-departamento-cvc').val(0);
+    $('#rad-ca-si-cvc').prop('checked', false);
+    $('#rad-ca-no-cvc').prop('checked', true);
+    $('#rendimiento-cvc').val('0');
+    $('#precio-combustible-cvc').val('0');
+    $('#porc-anual-combustible-cvc').val('0');
+    $('#factor-emision-cvc').val('0');
+    $('#rad-gcs-si-cvc').prop('checked', false);
+    $('#rad-gcs-no-cvc').prop('checked', true);
+    $('#gasto-cvc').val('0');
+    $('#kilometro-sem-cvc').val('0');
+    $('#meses-cvc').val(0);
+    $('#costo-veh-cvc').val('0');
+    $('#tipo-compra-cvc').val(0);
+    $('#tasa-interes-cvc').val('0');
+    $('#anio-credito-cvc').val('0');
+    $('#cuota-inicial-cvc').val('0');
+    $('#rad-sv-si-cvc').prop('checked', false);
+    $('#rad-sv-no-cvc').prop('checked', true);
+    $('#seguro-cvc').val('0');
+    cambiarCongCVC();
+    cambiarCongGCCVC();
+    cambiarSeguroCVC();
+    cambiarTipoCompraCVC();
+}
+
+var limpiarVE = () => {
+    $('#tipo-vehiculo-ve').val(0);
+    $('#modelo-ve').val(0);    
+    $('#rad-ca-si-ve').prop('checked', false);
+    $('#rad-ca-no-ve').prop('checked', true);
+    $('#rendimiento-ve').val('0');
+    $('#bateria-ve').val('0');
+    $('#tipo-cargador').val(0);
+    $('#txt-potencia').val('0');
+    $('#cbo-potencia').val(0);
+    $('#precio-cargador').val('0');
+    $('#costo-instalacion').val('0');
+    $('#cbo-departamento').val(0);
+    $('#rad-t-si-ve').prop('checked', false);
+    $('#rad-t-no-ve').prop('checked', true);
+    $('#tarifa-ve').val('0');
+    $('#porc-aual-ve').val('0');
+    $('#kilometro-sem-ve').val('0');
+    $('#meses-ve').val(0);
+    $('#costo-veh-ve').val('0');
+    $('#tipo-compra-ve').val(0);
+    $('#tasa-interes-ve').val('0');
+    $('#anio-credito-ve').val('0');
+    $('#cuota-inicial-ve').val('0');
+    $('#rad-sv-si-ve').prop('checked', false);
+    $('#rad-sv-no-ve').prop('checked', true);
+    $('#seguro-ve').val('0');
+    $('#rad-inc-si-ve').prop('checked', false);
+    $('#rad-inc-no-ve').prop('checked', true);
+    $('#tipo-incentivo').val(0);
+    $('#horizonte').val(0);
+    $('#cuota-inc-anual').val('0');
+    $('#forma-incentivo').val(0);
+    $('#porcentaje-inc').val('0');
+    $('#valor-inc-unico').val('0');
+    cambiarCongVE();
+    cambiarTipoCompraCVE();
+    cambiarSeguroCVE();
+    cambiarTC();
+    cambiarCongTE();
+    cambiarCongINC();
+    cambiarTI();
+    cambiarFI();
 }

@@ -38,8 +38,8 @@ namespace sres.app.Controllers
         }
 
         [SesionOut]
-        [Route("usuario-comprar-evaluacion")]
-        public ActionResult UsuarioComprarEvaluacion()
+        [Route("mis-consultas-y-resultados")]
+        public ActionResult ConsultasResultados()
         {
             return View();
         }
@@ -77,6 +77,17 @@ namespace sres.app.Controllers
             usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
             ViewData["usuario"] = usuario;
             ViewData["estacion"] = idEstacion;
+            return View();
+        }
+
+        [SesionOut]
+        [Route("ver-resultado/{idresultado}")]
+        public ActionResult VerResultado(int idresultado)
+        {
+            UsuarioBE usuario = ObtenerUsuarioLogin();
+            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            ViewData["usuario"] = usuario;
+            ViewData["resultado"] = idresultado;
             return View();
         }
     }

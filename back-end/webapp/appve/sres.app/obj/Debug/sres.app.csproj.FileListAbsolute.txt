@@ -618,7 +618,6 @@ D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\System.Web.Webpag
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\System.Web.Webpages.Razor.dll
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\sres.da.dll
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Oracle.DataAccess.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Microsoft.SqlServer.Types.dll
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Dapper.dll
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\sres.be.pdb
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\sres.ln.pdb
@@ -650,16 +649,6 @@ D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\es\System.Web.Mvc
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\es\System.Net.Http.Formatting.resources.dll
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\es\System.Web.Http.resources.dll
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\es\System.Web.Http.WebHost.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\de\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\es\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\fr\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\it\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\ja\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\ko\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\pt\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\ru\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\obj\Debug\sres.app.csprojResolveAssemblyReference.cache
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\obj\Debug\RdlCompile.cache
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\obj\Debug\RdlCompile.compiled

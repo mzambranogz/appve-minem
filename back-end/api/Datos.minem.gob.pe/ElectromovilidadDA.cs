@@ -11,7 +11,7 @@ using Util.minem.gob.pe;
 
 namespace Datos.minem.gob.pe
 {
-    public class ElectromivilidadDA : BaseDA
+    public class ElectromovilidadDA : BaseDA
     {
         public FactorDataBE ListaFactor1P(int idfactor, int p1, int v1, OracleConnection db)
         {

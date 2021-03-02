@@ -1,0 +1,5 @@
+1/03/2021 04:24:33: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12541: TNS:no hay ningún listener
+1/03/2021 04:24:33: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12541: TNS:no hay ningún listener
+1/03/2021 04:24:33: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-12541: TNS:no hay ningún listener
+1/03/2021 04:24:33: [Método: Void Open(), Línea: 0] - ORA-12541: TNS:no hay ningún listener
+1/03/2021 04:24:33: [Método: Boolean ValidarUsuario(System.String, System.String, Entidad.minem.gob.pe.UsuarioBE ByRef), Línea: 154] - ORA-12541: TNS:no hay ningún listener
