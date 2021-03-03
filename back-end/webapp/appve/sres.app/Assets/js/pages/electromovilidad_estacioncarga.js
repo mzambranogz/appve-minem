@@ -259,7 +259,53 @@ var guardar = () => {
     .then(j => {
         if (j != null) {
             j ? $('#btnGuardar').parent().hide() : '';
-            j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: `${baseUrl}Electromovilidad/menu-estacion-carga` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+            j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+            if (j) actualizarDatosSesion();
         }
     });
 }
+
+var actualizarDatosSesion = () => 
+{
+    let url = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuarioLogin}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+    fetch(url, init)
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else return 0;
+    })
+    .then(ActualizarSesion)
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+        return 0;
+    });
+}
+
+var ActualizarSesion = (data) => {
+    if (data == 0 || data == null) { Console.log("Ocurrió un error al traer los datos para actualizar la sesión"); }
+    else cargarSesion(data);
+}
+
+var cargarSesion = (d) => {
+    let data = { ID_USUARIO: d.ID_USUARIO, NOMBRES: d.NOMBRES, ID_ROL: d.ID_ROL, NOMBRE_ROL: d.NOMBRE_ROL, ID_INSTITUCION: d.ID_INSTITUCION, PROPIETARIO: d.PROPIETARIO, ROL: {ID_ROL: d.ID_ROL, NOMBRE: d.NOMBRE_ROL}, TOKEN: token};
+
+    let url = `${baseUrl}Login/Validar`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(validarredireccionar)
+}
+
+var validarredireccionar = (data) => {
+    if (data.success)
+        setTimeout(redireccionar, 3000);        
+    else
+        mostrarMensajeError("Ocurrió un problema");
+}
+
+var redireccionar = () => {
+    location.href = `${baseUrl}Electromovilidad`;
+}
+

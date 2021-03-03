@@ -116,7 +116,7 @@ namespace sres.da
 
             try
             {
-                    string sp = $"{Package.Mantenimiento}USP_SEL_GET_USUARIO";
+                    string sp = $"{Package.Mantenimiento}USP_SEL_OBTIENE_USUARIO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_USUARIO", idUsuario);
                     p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);

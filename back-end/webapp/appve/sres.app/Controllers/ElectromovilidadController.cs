@@ -24,20 +24,6 @@ namespace sres.app.Controllers
         }
 
         [SesionOut]
-        [Route("usuario-transpore-publico")]
-        public ActionResult UsuarioTransportePublico()
-        {
-            return View();
-        }
-
-        [SesionOut]
-        [Route("usuario-vehiculo-convencional")]
-        public ActionResult UsuarioVehiculoConvencional()
-        {
-            return View();
-        }
-
-        [SesionOut]
         [Route("mis-consultas-y-resultados")]
         public ActionResult ConsultasResultados()
         {
@@ -52,7 +38,14 @@ namespace sres.app.Controllers
         }
 
         [SesionOut]
-        [Route("registro-estacion-de-carga")]
+        [Route("estaciones-de-carga")]
+        public ActionResult EstacionesCarga()
+        {
+            return View();
+        }
+
+        [SesionOut]
+        [Route("estacion-de-carga")]
         public ActionResult EstacionCarga()
         {
             UsuarioBE usuario = ObtenerUsuarioLogin();

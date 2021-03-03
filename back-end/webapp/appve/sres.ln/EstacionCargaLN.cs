@@ -90,13 +90,13 @@ namespace sres.ln
             return item.OK;
         }
 
-        public List<EstacionCargaBE> getAllEstacion()
+        public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
             {
                 cn.Open();
-                lista = estacionDa.getAllEstacion(cn);
+                lista = estacionDa.getEstacionPorUsuario(idusuario, cn);
                 foreach (EstacionCargaBE item in lista)
                 {
                     item.LISTA_DOC = estacionDa.getAllEstacionDocumento(item, cn);

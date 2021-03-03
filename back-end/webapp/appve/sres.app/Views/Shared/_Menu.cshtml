@@ -24,7 +24,10 @@
                     {
                         <li class="nav-item btn barra barra-inicio activo"><a class="nav-link wow slideInUp nav-active" href="@Url.Action("Index", "Electromovilidad")" data-wow-delay=".2s"><i class="fas fa-house-damage fa-lg mr-1 mr-lg-0"></i><span class="d-lg-none">INICIO</span></a></li>
                         <li class="nav-item btn barra barra-participante"><a class="nav-link wow slideInUp" href="@Url.Action("Index", "Participantes")" data-wow-delay=".4s"><i class="fas fa-users fa-lg mr-1"></i>ESTACIONES DE CARGA</a></li>
-                        <li class="nav-item btn barra barra-convocatoria"><a class="nav-link wow slideInUp" href="@Url.Action("0/Informacion", "Convocatoria")" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>MIS ESTACIONES DE CARGA</a></li>
+                        if (usuario.PROPIETARIO == "1")
+                        {
+                            <li class="nav-item btn barra barra-convocatoria"><a class="nav-link wow slideInUp" href="@Url.Action("estaciones-de-carga", "Electromovilidad")" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>MIS ESTACIONES DE CARGA</a></li>
+                        }
                         <li class="nav-item btn barra barra-categoria"><a class="nav-link wow slideInUp" href="@Url.Action("mis-consultas-y-resultados", "Electromovilidad")" data-wow-delay=".6s"><i class="fas fa-network-wired fa-lg mr-1"></i>MIS CONSULTAS Y RESULTADOS</a></li>
                         <li class="nav-item btn barra barra-reconocimiento"><a class="nav-link wow slideInUp" href="@Url.Action("Reconocimientos-y-Criterio", "Participantes")" data-wow-delay=".7s"><i class="fas fa-trophy fa-lg mr-1"></i>MANUAL</a></li>
                         <li class="nav-item btn barra barra-bandeja"><a class="nav-link wow slideInUp" href="@Url.Action("Index", "Electromovilidad")" data-wow-delay=".5s"><i class="fas fa-inbox fa-lg mr-1"></i>MI PERFIL</a></li>

@@ -138,13 +138,14 @@ namespace sres.da
             return seGuardo;
         }
 
-        public List<EstacionCargaBE> getAllEstacion(OracleConnection db)
+        public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario, OracleConnection db)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
             {
-                string sp = $"{Package.Calculo}USP_SEL_ALL_ESTACION";
+                string sp = $"{Package.Calculo}USP_SEL_ESTACION_USUARIO";
                 var p = new OracleDynamicParameters();
+                p.Add("PI_ID_USUARIO", idusuario);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }

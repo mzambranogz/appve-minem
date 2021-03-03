@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - viernes-febrero-26-2021   
+-- Archivo creado  - miÈrcoles-marzo-03-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Package Body PKG_ELECTROMOV_MANTENIMIENTO
@@ -113,6 +113,7 @@
   --SECCION TIPO VEHICULO CONVENCIONAL
   PROCEDURE USP_SEL_LISTA_BUSQ_VEH_CONV(
     PI_BUSCAR VARCHAR2,
+    PI_FLAG_ESTADO VARCHAR2,
     PI_REGISTROS NUMBER,
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
@@ -130,7 +131,7 @@
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_TIPO_VEHICULO_CONV R
                     WHERE LOWER(TRANSLATE(R.NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND
-                    R.FLAG_ESTADO = ''1''';
+                    R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
     vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
@@ -155,7 +156,7 @@
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_TIPO_VEHICULO_CONV R
                         WHERE LOWER(TRANSLATE(R.NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND
-                        R.FLAG_ESTADO = ''1''
+                        R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
     
@@ -212,6 +213,7 @@
   --SECCION TIPO VEHICULO ELECTRICO
   PROCEDURE USP_SEL_LISTA_BUSQ_VEH_ELEC(
     PI_BUSCAR VARCHAR2,
+    PI_FLAG_ESTADO VARCHAR2,
     PI_REGISTROS NUMBER,
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
@@ -229,7 +231,7 @@
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_TIPO_VEHICULO_ELEC R
                     WHERE LOWER(TRANSLATE(R.NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND
-                    R.FLAG_ESTADO = ''1''';
+                    R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
     vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
@@ -254,7 +256,7 @@
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_TIPO_VEHICULO_ELEC R
                         WHERE LOWER(TRANSLATE(R.NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND
-                        R.FLAG_ESTADO = ''1''
+                        R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
     
@@ -311,12 +313,13 @@
   --SECCION TIPO TRANSPORTE
   PROCEDURE USP_SEL_LISTA_BUSQ_TRANSP(
     PI_BUSCAR VARCHAR2,
+    PI_FLAG_ESTADO VARCHAR2,
     PI_REGISTROS NUMBER,
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
     PI_ORDEN VARCHAR2,
     PO_REF OUT SYS_REFCURSOR
-  ) AS    
+  ) AS
     vTOTAL_REG INTEGER;
     vPAGINA_TOTAL INTEGER;
     vPAGINA_ACTUAL INTEGER := PI_PAGINA;
@@ -328,9 +331,9 @@
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_TIPO_TRANSPORTE
                     WHERE LOWER(TRANSLATE(NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND
-                    FLAG_ESTADO = ''1''';
+                    FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
-    
+
     vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
     IF vPAGINA_ACTUAL = 0 THEN
       vPAGINA_ACTUAL := 1;
@@ -341,8 +344,8 @@
 
     vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
     vCOLUMNA := PI_COLUMNA;
-    
-    vQUERY_SELECT := 'SELECT * FROM 
+
+    vQUERY_SELECT := 'SELECT * FROM
                         (
                         SELECT  ID_TIPO_TRANSPORTE,
                                 NOMBRE,
@@ -353,10 +356,10 @@
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_TIPO_TRANSPORTE
                         WHERE LOWER(TRANSLATE(NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND
-                        FLAG_ESTADO = ''1''
+                        FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
-    
+
     OPEN PO_REF FOR vQUERY_SELECT;
   END USP_SEL_LISTA_BUSQ_TRANSP;
   
@@ -633,6 +636,7 @@
   --SECCION TIPO COMBUSTIBLE
   PROCEDURE USP_SEL_LISTA_BUSQ_COMBUS(
     PI_BUSCAR VARCHAR2,
+    PI_FLAG_ESTADO VARCHAR2,
     PI_REGISTROS NUMBER,
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
@@ -650,7 +654,7 @@
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_TIPO_COMBUSTIBLE R
                     WHERE LOWER(TRANSLATE(R.NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND
-                    R.FLAG_ESTADO = ''1''';
+                    R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
     vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
@@ -675,7 +679,7 @@
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_TIPO_COMBUSTIBLE R
                         WHERE LOWER(TRANSLATE(R.NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND
-                        R.FLAG_ESTADO = ''1''
+                        R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
     
@@ -846,8 +850,9 @@
   ) AS
   BEGIN
     OPEN PO_REF FOR
-    SELECT U.*
+    SELECT U.*, R.NOMBRE NOMBRE_ROL --ADD 3/3/21
     FROM T_GENM_USUARIO U
+    INNER JOIN T_MAE_ROL R ON U.ID_ROL = R.ID_ROL
     WHERE   U.ID_USUARIO = PI_ID_USUARIO;
   END USP_SEL_OBTIENE_USUARIO;  
 
