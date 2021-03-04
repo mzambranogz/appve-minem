@@ -49,7 +49,7 @@ namespace sres.app.Controllers
         public ActionResult EstacionCarga()
         {
             UsuarioBE usuario = ObtenerUsuarioLogin();
-            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            //usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
             ViewData["usuario"] = usuario;
             ViewData["estacion"] = 0;
             return View();
@@ -67,7 +67,7 @@ namespace sres.app.Controllers
         public ActionResult EstacionCarga(int idEstacion)
         {
             UsuarioBE usuario = ObtenerUsuarioLogin();
-            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            //usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
             ViewData["usuario"] = usuario;
             ViewData["estacion"] = idEstacion;
             return View();
@@ -78,7 +78,7 @@ namespace sres.app.Controllers
         public ActionResult VerResultado(int idresultado)
         {
             UsuarioBE usuario = ObtenerUsuarioLogin();
-            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            //usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
             ViewData["usuario"] = usuario;
             ViewData["resultado"] = idresultado;
             return View();

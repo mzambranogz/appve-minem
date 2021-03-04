@@ -260,7 +260,7 @@ var guardar = () => {
         if (j != null) {
             j ? $('#btnGuardar').parent().hide() : '';
             j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
-            if (j) actualizarDatosSesion();
+            if (j && idinstitucion <= 0) actualizarDatosSesion();
         }
     });
 }

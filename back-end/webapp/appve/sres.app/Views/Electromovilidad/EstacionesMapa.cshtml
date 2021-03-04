@@ -1,0 +1,17 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Menu ";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+}
+
+<div class="container">
+    <div class="row">
+        <h4>Ubica </h4>
+    </div>
+
+</div>

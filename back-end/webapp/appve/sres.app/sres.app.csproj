@@ -713,6 +713,7 @@
     <Content Include="Views\Electromovilidad\MenuElectromovilidad.cshtml" />
     <Content Include="Views\Mantenimiento\TipoCombustible.cshtml" />
     <Content Include="Views\Electromovilidad\EstacionesCarga.cshtml" />
+    <Content Include="Views\Electromovilidad\EstacionesMapa.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
