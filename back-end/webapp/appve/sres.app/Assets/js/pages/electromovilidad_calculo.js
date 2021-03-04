@@ -535,8 +535,11 @@ var cambiarVE = () => {
     else $('#modelo-ve').parent().removeClass('d-none');
 
     if ($('#tipo-vehiculo-ve').val() > 1){
-        let url = `${baseUrl}api/calculo/obtenervalorestve?valor1=${$('#tipo-vehiculo-ve').val()}`;
-        fetch(url).then(r => r.json()).then(j => {
+        //let url = `${baseUrl}api/calculo/obtenervalorestve?valor1=${$('#tipo-vehiculo-ve').val()}`;
+        let url = `${baseUrlApi}api/calculo/obtenervalorestve?valor1=${$('#tipo-vehiculo-ve').val()}`;
+        let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+        fetch(url, init).then(r => r.json()).then(j => {
             if (j == null) return;
             if (j.RENDIMIENTO != null){
                 $('#rendimiento-ve').val(j.RENDIMIENTO.FACTOR);
@@ -561,8 +564,11 @@ var cambiarVE = () => {
 var cambiarMVE = () => {
     if ($('#modelo-ve').val() == 0) return;
 
-    let url = `${baseUrl}api/calculo/obtenervalorestvem?valor1=${$('#modelo-ve').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervalorestvem?valor1=${$('#modelo-ve').val()}`;
+    let url = `${baseUrlApi}api/calculo/obtenervalorestvem?valor1=${$('#modelo-ve').val()}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.RENDIMIENTO != null){
             $('#rendimiento-ve').val(j.RENDIMIENTO.FACTOR);
@@ -603,8 +609,11 @@ var cambiarTC = () => {
 var cambiarCP = () => {
     if ($('#cbo-potencia').val() == 0) return;
 
-    let url = `${baseUrl}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
+    let url = `${baseUrlApi}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.PRECIO_CARGADOR != null){
             $('#precio-cargador').val(j.PRECIO_CARGADOR.FACTOR);
@@ -622,8 +631,11 @@ var cambiarCP = () => {
 var cambiarDP = () => {
     if ($('#cbo-departamento').val() == 0) return;
 
-    let url = `${baseUrl}api/calculo/obtenervaloresdp?valor1=${$('#cbo-departamento').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervaloresdp?valor1=${$('#cbo-departamento').val()}`;
+    let url = `${baseUrlApi}api/calculo/obtenervaloresdp?valor1=${$('#cbo-departamento').val()}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.TARIFA_ELECTRICIDAD != null){
             $('#tarifa-ve').val(j.TARIFA_ELECTRICIDAD.FACTOR/100);
@@ -677,8 +689,11 @@ var cambiarDepartamentoCVC = () => {
     let tipo_comb = $('#tipo-combustible-cvc').val();
     if (dep == 0 || tipo_veh == 0 || tipo_comb == 0) { $('#precio-combustible-cvc').val(0); return; }
 
-    let url = `${baseUrl}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
+    let url = `${baseUrlApi}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.PRECIO_COMBUSTIBLE != null){
             $('#precio-combustible-cvc').val(j.PRECIO_COMBUSTIBLE.FACTOR);

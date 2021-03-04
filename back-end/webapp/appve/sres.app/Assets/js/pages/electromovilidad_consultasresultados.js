@@ -4,6 +4,7 @@ $(document).ready(() => {
 });
 
 var cargarComponentes = () => {
+    //end_points 12
     let urlConsultarResultados = `${baseUrl}api/calculo/obtenerallresultados?idusuario=${idUsuarioLogin}`;
     Promise.all([
         fetch(urlConsultarResultados),
@@ -38,6 +39,7 @@ $(document).on('click', '.EliminarResultado', (e) => {
     if (id == null) return;
     if (id <= 0) return;
 
+    //end_points 13
     let url = `${baseUrl}api/calculo/eliminarresultado?idresultado=${id}&idusuario=${idUsuarioLogin}`;
     fetch(url).then(r => r.json()).then((data) => {
         if (data) {
