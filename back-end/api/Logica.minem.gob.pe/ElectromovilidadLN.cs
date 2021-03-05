@@ -876,5 +876,260 @@ namespace Logica.minem.gob.pe
         }
 
 
+        ///
+        public List<EscenarioContaminanteLocalBE> CalcularContaminantesLocales(ContaminanteLocalBE entidad)
+        {
+            List<EscenarioContaminanteLocalBE> lista = new List<EscenarioContaminanteLocalBE>();
+            ElectromovilidadLN elecLN = new ElectromovilidadLN();
+            try
+            {
+                decimal[] arrContaminanteVC = new decimal[4];
+                decimal[] arrContaminanteTP = new decimal[4];
+
+                //Vehiculo convencional
+                if (entidad.P1 == "1" || entidad.P2 == "1")
+                {
+                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                    decimal nox_vc = elecLN.ListaFactor2P(18, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal co_vc = elecLN.ListaFactor2P(19, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal pm25_vc = elecLN.ListaFactor2P(20, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal bc_vc = elecLN.ListaFactor2P(21, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+
+                    arrContaminanteVC[0] = km_anual * nox_vc;
+                    arrContaminanteVC[1] = km_anual * co_vc;
+                    arrContaminanteVC[2] = km_anual * pm25_vc;
+                    arrContaminanteVC[3] = km_anual * bc_vc;
+                }
+
+                foreach (ServicioPublicoBE item in entidad.LISTA_SERVICIO_PUBLICO)
+                {
+                    decimal nox = elecLN.ListaFactor1P(22, 8, item.ID_TIPO_TRANSPORTE).FACTOR;
+                    arrContaminanteTP[0] += nox * item.KILOMETRO_SEMANAL;
+                }
+
+                foreach (ServicioPublicoBE item in entidad.LISTA_SERVICIO_PUBLICO)
+                {
+                    decimal co = elecLN.ListaFactor1P(23, 8, item.ID_TIPO_TRANSPORTE).FACTOR;
+                    arrContaminanteTP[1] += co * item.KILOMETRO_SEMANAL;
+                }
+
+                foreach (ServicioPublicoBE item in entidad.LISTA_SERVICIO_PUBLICO)
+                {
+                    decimal pm25 = elecLN.ListaFactor1P(24, 8, item.ID_TIPO_TRANSPORTE).FACTOR;
+                    arrContaminanteTP[2] += pm25 * item.KILOMETRO_SEMANAL;
+                }
+
+                foreach (ServicioPublicoBE item in entidad.LISTA_SERVICIO_PUBLICO)
+                {
+                    decimal bc = elecLN.ListaFactor1P(25, 8, item.ID_TIPO_TRANSPORTE).FACTOR;
+                    arrContaminanteTP[3] += bc * item.KILOMETRO_SEMANAL;
+                }
+
+                for (int i = 0; i < 15; i++)
+                {
+                    EscenarioContaminanteLocalBE ec = new EscenarioContaminanteLocalBE();
+                    ec.TOTAL_NOX = (arrContaminanteVC[0] + arrContaminanteTP[0]) * (i + 1);
+                    ec.TOTAL_CO = (arrContaminanteVC[1] + arrContaminanteTP[1]) * (i + 1);
+                    ec.TOTAL_PM25 = (arrContaminanteVC[2] + arrContaminanteTP[2]) * (i + 1);
+                    ec.TOTAL_BC = (arrContaminanteVC[3] + arrContaminanteTP[3]) * (i + 1);
+                    lista.Add(ec);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+
+        public bool GuardarResultados(ResultadosBE entidad)
+        {
+            bool seGuardo = false;
+            int idresultado = 0;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    if (entidad != null)
+                    {
+                        if (seGuardo = elecDA.GenerarDetalleResultado(entidad.ID_USUARIO, out idresultado, cn))
+                        {
+                            if (entidad.LISTA_LEYENDA != null && seGuardo)
+                            {
+                                foreach (var tp in entidad.LISTA_LEYENDA.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarLeyenda(entidad.ID_USUARIO, idresultado, tp.index + 1, tp.value, cn).OK)) break;
+                                }
+                            }
+                            if (entidad.LISTA_COSTO_CONVENCIONAL != null && seGuardo)
+                            {
+                                foreach (var vc in entidad.LISTA_COSTO_CONVENCIONAL.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarCostoVC(entidad.ID_USUARIO, idresultado, vc.index + 1, vc.value, cn).OK)) break;
+                                }
+                            }
+                            if (entidad.LISTA_COSTO_ELECTRICO != null && seGuardo)
+                            {
+                                foreach (var ve in entidad.LISTA_COSTO_ELECTRICO.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarCostoVE(entidad.ID_USUARIO, idresultado, ve.index + 1, ve.value, cn).OK)) break;
+                                }
+                            }
+                            if (entidad.LISTA_CONSUMO_CONVENCIONAL != null && seGuardo)
+                            {
+                                foreach (var vc in entidad.LISTA_CONSUMO_CONVENCIONAL.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarConsumoVC(entidad.ID_USUARIO, idresultado, vc.index + 1, vc.value, cn).OK)) break;
+                                }
+                            }
+                            if (entidad.LISTA_CONSUMO_ELECTRICO != null && seGuardo)
+                            {
+                                foreach (var ve in entidad.LISTA_CONSUMO_ELECTRICO.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarConsumoVE(entidad.ID_USUARIO, idresultado, ve.index + 1, ve.value, cn).OK)) break;
+                                }
+                            }
+                            if (entidad.LISTA_EMISIONES_CONVENCIONAL != null && seGuardo)
+                            {
+                                foreach (var vc in entidad.LISTA_EMISIONES_CONVENCIONAL.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarEmisionesVC(entidad.ID_USUARIO, idresultado, vc.index + 1, vc.value, cn).OK)) break;
+                                }
+                            }
+                            if (entidad.LISTA_EMISIONES_ELECTRICO != null && seGuardo)
+                            {
+                                foreach (var ve in entidad.LISTA_EMISIONES_ELECTRICO.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarEmisionesVE(entidad.ID_USUARIO, idresultado, ve.index + 1, ve.value, cn).OK)) break;
+                                }
+                            }
+                            if (entidad.LISTA_CONTAMINANTE_LOCAL != null && seGuardo)
+                            {
+                                foreach (var ve in entidad.LISTA_CONTAMINANTE_LOCAL.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarContaminanteLocal(entidad.ID_USUARIO, idresultado, ve.index + 1, ve.value, cn).OK)) break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seGuardo;
+        }
+
+        public List<TransportePublicoBE> ObtenerLeyenda(int idresultado, int idusuario)
+        {
+            List<TransportePublicoBE> lista = new List<TransportePublicoBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerLeyenda(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<EscenarioConvencionalBE> ObtenerCostoVC(int idresultado, int idusuario)
+        {
+            List<EscenarioConvencionalBE> lista = new List<EscenarioConvencionalBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerCostoVC(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<EscenarioElectromovilidadBE> ObtenerCostoVE(int idresultado, int idusuario)
+        {
+            List<EscenarioElectromovilidadBE> lista = new List<EscenarioElectromovilidadBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerCostoVE(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<EscenarioConvencionalConsumoEnergBE> ObtenerConsumoVC(int idresultado, int idusuario)
+        {
+            List<EscenarioConvencionalConsumoEnergBE> lista = new List<EscenarioConvencionalConsumoEnergBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerConsumoVC(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<EscenarioElectricoConsumoEnergBE> ObtenerConsumoVE(int idresultado, int idusuario)
+        {
+            List<EscenarioElectricoConsumoEnergBE> lista = new List<EscenarioElectricoConsumoEnergBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerConsumoVE(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<EscenarioConvencionalEmisionesBE> ObtenerEmisionesVC(int idresultado, int idusuario)
+        {
+            List<EscenarioConvencionalEmisionesBE> lista = new List<EscenarioConvencionalEmisionesBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerEmisionesVC(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<EscenarioElectricoEmisionesBE> ObtenerEmisionesVE(int idresultado, int idusuario)
+        {
+            List<EscenarioElectricoEmisionesBE> lista = new List<EscenarioElectricoEmisionesBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerEmisionesVE(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<EscenarioContaminanteLocalBE> ObtenerContaminanteLocal(int idresultado, int idusuario)
+        {
+            List<EscenarioContaminanteLocalBE> lista = new List<EscenarioContaminanteLocalBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerContaminanteLocal(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+
+
     }
 }

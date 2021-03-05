@@ -145,6 +145,101 @@ namespace WebApiElectroMovilidad.Controllers
             return lista;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
+        [Route("calcularcontaminantelocal")]
+        [HttpPost]
+        public List<EscenarioContaminanteLocalBE> CalcularContaminantesLocales(ContaminanteLocalBE entidad)
+        {
+            List<EscenarioContaminanteLocalBE> lista = new List<EscenarioContaminanteLocalBE>();
+            lista = tipoLN.CalcularContaminantesLocales(entidad);
+            return lista;
+        }
+
+        [Route("guardarresultados")]
+        [HttpPost]
+        public bool GuardarResultados(ResultadosBE entidad)
+        {
+            bool v = tipoLN.GuardarResultados(entidad);
+            return v;
+        }
+
+        [Route("obtenerleyenda")]
+        [HttpGet]
+        public List<TransportePublicoBE> ObtenerLeyenda(int idresultado, int idusuario)
+        {
+            List<TransportePublicoBE> lista = new List<TransportePublicoBE>();
+            lista = tipoLN.ObtenerLeyenda(idresultado, idusuario);
+            return lista;
+        }
+
+        [Route("obtenercostovc")]
+        [HttpGet]
+        public List<EscenarioConvencionalBE> ObtenerCostoVC(int idresultado, int idusuario)
+        {
+            List<EscenarioConvencionalBE> lista = new List<EscenarioConvencionalBE>();
+            lista = tipoLN.ObtenerCostoVC(idresultado, idusuario);
+            return lista;
+        }
+
+        [Route("obtenercostove")]
+        [HttpGet]
+        public List<EscenarioElectromovilidadBE> ObtenerCostoVE(int idresultado, int idusuario)
+        {
+            List<EscenarioElectromovilidadBE> lista = new List<EscenarioElectromovilidadBE>();
+            lista = tipoLN.ObtenerCostoVE(idresultado, idusuario);
+            return lista;
+        }
+
+        [Route("obtenerconsumovc")]
+        [HttpGet]
+        public List<EscenarioConvencionalConsumoEnergBE> ObtenerConsumoVC(int idresultado, int idusuario)
+        {
+            List<EscenarioConvencionalConsumoEnergBE> lista = new List<EscenarioConvencionalConsumoEnergBE>();
+            lista = tipoLN.ObtenerConsumoVC(idresultado, idusuario);
+            return lista;
+        }
+
+        [Route("obtenerconsumove")]
+        [HttpGet]
+        public List<EscenarioElectricoConsumoEnergBE> ObtenerConsumoVE(int idresultado, int idusuario)
+        {
+            List<EscenarioElectricoConsumoEnergBE> lista = new List<EscenarioElectricoConsumoEnergBE>();
+            lista = tipoLN.ObtenerConsumoVE(idresultado, idusuario);
+            return lista;
+        }
+
+        [Route("obteneremisionesvc")]
+        [HttpGet]
+        public List<EscenarioConvencionalEmisionesBE> ObtenerEmisionesVC(int idresultado, int idusuario)
+        {
+            List<EscenarioConvencionalEmisionesBE> lista = new List<EscenarioConvencionalEmisionesBE>();
+            lista = tipoLN.ObtenerEmisionesVC(idresultado, idusuario);
+            return lista;
+        }
+
+        [Route("obteneremisionesve")]
+        [HttpGet]
+        public List<EscenarioElectricoEmisionesBE> ObtenerEmisionesVE(int idresultado, int idusuario)
+        {
+            List<EscenarioElectricoEmisionesBE> lista = new List<EscenarioElectricoEmisionesBE>();
+            lista = tipoLN.ObtenerEmisionesVE(idresultado, idusuario);
+            return lista;
+        }
+
+        [Route("obtenercontaminantelocal")]
+        [HttpGet]
+        public List<EscenarioContaminanteLocalBE> ObtenerContaminanteLocal(int idresultado, int idusuario)
+        {
+            List<EscenarioContaminanteLocalBE> lista = new List<EscenarioContaminanteLocalBE>();
+            lista = tipoLN.ObtenerContaminanteLocal(idresultado, idusuario);
+            return lista;
+        }
+
+
 
 
     }
