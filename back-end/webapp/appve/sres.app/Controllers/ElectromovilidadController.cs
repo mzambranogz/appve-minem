@@ -83,5 +83,12 @@ namespace sres.app.Controllers
             ViewData["resultado"] = idresultado;
             return View();
         }
+
+        [SesionOut]
+        [Route("estaciones-mapa")]
+        public ActionResult EstacionesMapa()
+        {
+            return View();
+        }
     }
 }

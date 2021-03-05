@@ -52,6 +52,9 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_ESTACION", entidad.ID_ESTACION);
                 p.Add("PI_ID_USUARIO", entidad.ID_USUARIO);
+                p.Add("PI_LONGITUD", entidad.LONGITUD);
+                p.Add("PI_LATITUD", entidad.LATITUD);
+                p.Add("PI_DIRECCION", entidad.DIRECCION);
                 p.Add("PI_DESCRIPCION", entidad.DESCRIPCION);
                 p.Add("PI_MODELO", entidad.MODELO);
                 p.Add("PI_MARCA", entidad.MARCA);
@@ -253,6 +256,24 @@ namespace sres.da
             }
 
             return v;
+        }
+
+        public List<EstacionCargaBE> getEstacionAll(OracleConnection db)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ALL_ESTACION";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
         }
     }
 }

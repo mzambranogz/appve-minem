@@ -440,8 +440,8 @@ var evaluarTipoVehTipoCombVC = () => {
     let tipovehiculo = $('#tipo-vehiculo-vc').val();
     let tipocombustible = $('#tipo-combustible-vc').val();
 
-    //let url = `${baseUrl}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
-    let url = `${baseUrlApi}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
+    let url = `${baseUrl}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
+    //let url = `${baseUrlApi}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
 
     fetch(url, init)
@@ -1060,6 +1060,7 @@ var evaluar = () => {
 }
 
 var cargarVCVE = ([listaVC, listaVE, listaleyenda, listaVCCE, listaVECE, listaEMVC, listaEMVE, listaCM]) => {
+    debugger;
     Lista_convencional = listaVC;
     Lista_electrico = listaVE;
     Lista_leyenda = listaleyenda;

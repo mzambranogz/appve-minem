@@ -7,11 +7,27 @@
 }
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_estacionmapa.js")"></script> 
 }
 
 <div class="container">
-    <div class="row">
-        <h4>Ubica </h4>
+    <div class="row mt-3">
+        <h4>Encuentra la estación de carga más cerca de ti</h4>
     </div>
-
+    <div class="row mb-2">
+        <div id='map' style='width: 100%; height: 400px;'></div>
+    </div>
+    <div class="row d-none">
+        <pre id='coordenadas'></pre>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="input-group">
+                @*<input id="veces-semana" class="form-control" placeholder="Ingrese cantidad de veces que utiliza esta ruta" />&nbsp;
+                <button id='btn-ruta' class="btn btn-primary" onclick="getCoordenadas();">Guardar ruta</button>&nbsp;
+                <button id='btn-cerrar' class="btn btn-secondary">Cerrar</button>*@
+                <input type="button" onclick="getLocation();" value="Get Location" />
+            </div>
+        </div>
+    </div>
 </div>

@@ -65,5 +65,13 @@ namespace sres.app.Controllers.Api
             bool v = estacionLN.EliminarEstacion(idestacion);
             return v;
         }
+
+        [Route("obtenerestacionall")]
+        [HttpGet]
+        public List<EstacionCargaBE> getEstacionAll()
+        {
+            List<EstacionCargaBE> lista = estacionLN.getEstacionAll();
+            return lista;
+        }
     }
 }

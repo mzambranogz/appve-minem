@@ -351,6 +351,7 @@
     <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
     <Content Include="Assets\js\pages\electromovilidad_calculo.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacioncarga.js" />
+    <Content Include="Assets\js\pages\electromovilidad_estacionmapa.js" />
     <Content Include="Assets\js\pages\electromovilidad_menu_estacioncarga.js" />
     <Content Include="Assets\js\pages\electromovilidad_menu_principal.js" />
     <Content Include="Assets\js\pages\electromovilidad_consultasresultados.js" />

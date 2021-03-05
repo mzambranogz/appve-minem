@@ -182,5 +182,18 @@ namespace sres.ln
 
             return v;
         }
+
+        public List<EstacionCargaBE> getEstacionAll()
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                cn.Open();
+                lista = estacionDa.getEstacionAll(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }
