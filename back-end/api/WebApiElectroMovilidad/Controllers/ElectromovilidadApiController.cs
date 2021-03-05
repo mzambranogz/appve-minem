@@ -239,7 +239,22 @@ namespace WebApiElectroMovilidad.Controllers
             return lista;
         }
 
+        [Route("obtenerallresultados")]
+        [HttpGet]
+        public List<ResultadosBE> ObtenerResultados(int idusuario)
+        {
+            List<ResultadosBE> lista = new List<ResultadosBE>();
+            lista = tipoLN.ObtenerResultados(idusuario);
+            return lista;
+        }
 
+        [Route("eliminarresultado")]
+        [HttpGet]
+        public bool EliminarResultado(int idresultado, int idusuario)
+        {
+            bool v = tipoLN.EliminarResultado(idresultado, idusuario);
+            return v;
+        }
 
 
     }

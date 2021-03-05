@@ -1129,6 +1129,33 @@ namespace Logica.minem.gob.pe
             return lista;
         }
 
+        public List<ResultadosBE> ObtenerResultados(int idusuario)
+        {
+            List<ResultadosBE> lista = new List<ResultadosBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerResultados(idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public bool EliminarResultado(int idresultado, int idusuario)
+        {
+            bool seGuardo = false;
+            try
+            {
+                cn.Open();
+                seGuardo = elecDA.EliminarResultado(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seGuardo;
+        }
+
+
 
 
     }

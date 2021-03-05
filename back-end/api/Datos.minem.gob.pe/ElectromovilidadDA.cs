@@ -509,6 +509,46 @@ namespace Datos.minem.gob.pe
             return lista;
         }
 
+        public List<ResultadosBE> ObtenerResultados(int idusuario, OracleConnection db)
+        {
+            List<ResultadosBE> lista = new List<ResultadosBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LISTA_RESULTADOS";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_USUARIO", idusuario);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ResultadosBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public bool EliminarResultado(int idresultado, int idusuario, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Calculo}USP_DEL_RESULTADO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_RESULTADO", idresultado);
+                p.Add("PI_UPD_USUARIO", idusuario);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return seGuardo;
+        }
 
 
     }
