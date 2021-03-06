@@ -3,3 +3,13 @@
 1/03/2021 04:24:33: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-12541: TNS:no hay ningún listener
 1/03/2021 04:24:33: [Método: Void Open(), Línea: 0] - ORA-12541: TNS:no hay ningún listener
 1/03/2021 04:24:33: [Método: Boolean ValidarUsuario(System.String, System.String, Entidad.minem.gob.pe.UsuarioBE ByRef), Línea: 154] - ORA-12541: TNS:no hay ningún listener
+01/03/2021 23:36:58: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12543: TNS:host de destino no accesible
+01/03/2021 23:36:58: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12543: TNS:host de destino no accesible
+01/03/2021 23:36:58: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-12543: TNS:host de destino no accesible
+01/03/2021 23:36:58: [Método: Void Open(), Línea: 0] - ORA-12543: TNS:host de destino no accesible
+01/03/2021 23:36:58: [Método: Boolean ValidarUsuario(System.String, System.String, Entidad.minem.gob.pe.UsuarioBE ByRef), Línea: 154] - ORA-12543: TNS:host de destino no accesible
+01/03/2021 23:47:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12514: TNS:el listener no conoce actualmente el servicio solicitado en el descriptor de conexión
+01/03/2021 23:47:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12514: TNS:el listener no conoce actualmente el servicio solicitado en el descriptor de conexión
+01/03/2021 23:47:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-12514: TNS:el listener no conoce actualmente el servicio solicitado en el descriptor de conexión
+01/03/2021 23:47:35: [Método: Void Open(), Línea: 0] - ORA-12514: TNS:el listener no conoce actualmente el servicio solicitado en el descriptor de conexión
+01/03/2021 23:47:35: [Método: Boolean ValidarUsuario(System.String, System.String, Entidad.minem.gob.pe.UsuarioBE ByRef), Línea: 154] - ORA-12514: TNS:el listener no conoce actualmente el servicio solicitado en el descriptor de conexión
