@@ -21,6 +21,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_ROL", entidad.ID_ROL);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_USUARIO_GUARDAR", entidad.UPD_USUARIO);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                 entidad.OK = true;
             }

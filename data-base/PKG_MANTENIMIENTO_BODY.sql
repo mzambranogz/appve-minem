@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - miércoles-marzo-03-2021   
+-- Archivo creado  - viernes-marzo-05-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Package Body PKG_ELECTROMOV_MANTENIMIENTO
