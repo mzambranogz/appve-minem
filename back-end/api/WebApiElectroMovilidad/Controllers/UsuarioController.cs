@@ -15,6 +15,23 @@ namespace WebApiElectroMovilidad.Controllers
         UsuarioLN usuarioLN = new UsuarioLN();
         RolLN rolLN = new RolLN();
 
+        [Route("buscarusuario")]
+        [HttpGet]
+        public List<UsuarioBE> BuscarUsuario(string busqueda, string estado, int registros, int pagina, string columna, string orden)
+        {
+            return usuarioLN.BuscarUsuario(busqueda, estado, registros, pagina, columna, orden);
+        }
+
+        [HttpGet]
+        [Route("GetByFilter")]
+        public UsuarioBE LeerUsuario(int idUsuario)
+        {
+            UsuarioBE entidad = null;
+
+            entidad = usuarioLN.ObtenerUsuario(idUsuario);
+            return entidad;
+        }
+
         [HttpPost]
         [Route("insert")]
         public IHttpActionResult AgregarUsuario(UsuarioBE entidad)
@@ -32,15 +49,19 @@ namespace WebApiElectroMovilidad.Controllers
             }
         }
 
+        [Route("obtenerall")]
         [HttpGet]
-        [Route("GetByFilter")]
-        public UsuarioBE LeerUsuario(int idUsuario)
+        public List<UsuarioBE> ListadoUsuario()
         {
-            UsuarioBE entidad = null;
-
-            entidad = usuarioLN.ObtenerUsuario(idUsuario);
-            return entidad;
+            return usuarioLN.ListaUsuario();
         }
 
+        [Route("cambiarestado")]
+        [HttpPost]
+        public bool EliminarTipoCombustible(UsuarioBE oUsuario)
+        {
+            UsuarioBE c = usuarioLN.EliminarUsuario(oUsuario);
+            return c.OK;
+        }  
     }
 }

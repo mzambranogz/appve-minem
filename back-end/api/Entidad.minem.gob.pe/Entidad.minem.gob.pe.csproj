@@ -42,10 +42,13 @@
   <ItemGroup>
     <Compile Include="BaseBE.cs" />
     <Compile Include="CargadorPotenciaBE.cs" />
+    <Compile Include="CasoAuxBE.cs" />
+    <Compile Include="CasoBE.cs" />
     <Compile Include="ConsumoEnergeticoConvencionalBE.cs" />
     <Compile Include="ConsumoEnergeticoElectricoBE.cs" />
     <Compile Include="ContaminanteLocalBE.cs" />
     <Compile Include="DepartamentoBE.cs" />
+    <Compile Include="DocumentoBE.cs" />
     <Compile Include="ElectromovilidadBE.cs" />
     <Compile Include="EmisionesConvencionalBE.cs" />
     <Compile Include="EmisionesElectricoBE.cs" />
@@ -56,8 +59,16 @@
     <Compile Include="EscenarioElectricoConsumoEnergBE.cs" />
     <Compile Include="EscenarioElectricoEmisionesBE.cs" />
     <Compile Include="EscenarioElectromovilidadBE.cs" />
+    <Compile Include="EstacionCargaBE.cs" />
+    <Compile Include="FactorAuxBE.cs" />
+    <Compile Include="FactorBE.cs" />
     <Compile Include="FactorDataBE.cs" />
+    <Compile Include="FactorParametroAuxBE.cs" />
+    <Compile Include="FactorParametroBE.cs" />
+    <Compile Include="InstitucionBE.cs" />
     <Compile Include="ModeloVehiculoElectricoBE.cs" />
+    <Compile Include="ParametroBE.cs" />
+    <Compile Include="ParametroDetalleBE.cs" />
     <Compile Include="ResultadosBE.cs" />
     <Compile Include="RolBE.cs" />
     <Compile Include="ServicioPublicoBE.cs" />

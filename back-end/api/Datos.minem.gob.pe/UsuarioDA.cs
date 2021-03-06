@@ -22,7 +22,7 @@ namespace Datos.minem.gob.pe
 
             try
             {
-                string sp = $"{Package.Admin}USP_SEL_USUARIO";
+                string sp = $"{Package.Admin}USP_SEL_LIST_USUARIO";
                 var p = new OracleDynamicParameters();
                 p.Add("PO", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
@@ -57,7 +57,7 @@ namespace Datos.minem.gob.pe
         #endregion
 
         #region PAQUETE MANTENIMIENTO
-        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<UsuarioBE> BuscarUsuario(string busqueda, string estado, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<UsuarioBE> lista = null;
 
@@ -66,6 +66,7 @@ namespace Datos.minem.gob.pe
                 string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_USUARIO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_BUSCAR", busqueda);
+                p.Add("PI_FLAG_ESTADO", estado);
                 p.Add("PI_REGISTROS", registros);
                 p.Add("PI_PAGINA", pagina);
                 p.Add("PI_COLUMNA", columna);
@@ -343,6 +344,25 @@ namespace Datos.minem.gob.pe
             return seReseteo;
         }
 
+        public UsuarioBE EliminarUsuario(UsuarioBE oUsuario, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_DEL_USUARIO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_TIPO_COMBUSTIBLE", oUsuario.ID_USUARIO);
+                p.Add("PI_UPD_USUARIO", oUsuario.UPD_USUARIO);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                oUsuario.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                oUsuario.OK = false;
+            }
+
+            return oUsuario;
+        }
         #endregion
 
 

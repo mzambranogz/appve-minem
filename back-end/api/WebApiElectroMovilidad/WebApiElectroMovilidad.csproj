@@ -115,11 +115,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CasoController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\ElectromovilidadApiController.cs" />
+    <Compile Include="Controllers\EstacionCargaController.cs" />
+    <Compile Include="Controllers\FactorController.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
     <Compile Include="Controllers\ModeloVehiculoElectricoController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\TipoCargadorApiController.cs" />
     <Compile Include="Controllers\TipoCombustibleApiController.cs" />
     <Compile Include="Controllers\TipoTransporteApiController.cs" />

@@ -45,14 +45,14 @@ namespace Logica.minem.gob.pe
             return item;
         }
 
-        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<UsuarioBE> BuscarUsuario(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
             List<UsuarioBE> lista = new List<UsuarioBE>();
 
             try
             {
                 cn.Open();
-                lista = usuarioDA.BuscarUsuario(busqueda, registros, pagina, columna, orden, cn);
+                lista = usuarioDA.BuscarUsuario(busqueda, estado, registros, pagina, columna, orden, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
@@ -268,6 +268,21 @@ namespace Logica.minem.gob.pe
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return valor;
+        }
+
+        public UsuarioBE EliminarUsuario(UsuarioBE oUsuario)
+        {
+            UsuarioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = usuarioDA.EliminarUsuario(oUsuario, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
     }

@@ -49,10 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDA.cs" />
+    <Compile Include="CasoDA.cs" />
     <Compile Include="DataBaseHelpers\OracleDynamicParameters.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="DepartamentoDA.cs" />
     <Compile Include="ElectromovilidadDA.cs" />
+    <Compile Include="EstacionCargaDA.cs" />
+    <Compile Include="FactorDA.cs" />
     <Compile Include="ModeloVehiculoElectricoDA.cs" />
     <Compile Include="RolDA.cs" />
     <Compile Include="TipoCargadorDA.cs" />

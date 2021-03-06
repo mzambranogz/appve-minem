@@ -46,8 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLN.cs" />
+    <Compile Include="CasoLN.cs" />
     <Compile Include="DepartamentoLN.cs" />
     <Compile Include="ElectromovilidadLN.cs" />
+    <Compile Include="EstacionCargaLN.cs" />
+    <Compile Include="FactorLN.cs" />
     <Compile Include="ModeloVehiculoElectricoLN.cs" />
     <Compile Include="RolLN.cs" />
     <Compile Include="TipoCargadorLN.cs" />

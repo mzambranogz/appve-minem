@@ -13,8 +13,6 @@ namespace Datos.minem.gob.pe
 {
     public class RolDA : BaseDA
     {
-
-
         public RolBE GuardarRol(RolBE entidad, OracleConnection db)
         {
             try
@@ -23,6 +21,7 @@ namespace Datos.minem.gob.pe
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_ROL", entidad.ID_ROL);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_USUARIO_GUARDAR", entidad.UPD_USUARIO);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                 entidad.OK = true;
             }
@@ -83,6 +82,7 @@ namespace Datos.minem.gob.pe
                 string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_ROL";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_BUSCAR", entidad.BUSCAR);
+                p.Add("PI_FLAG_ESTADO", entidad.FLAG_ESTADO);
                 p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
                 p.Add("PI_PAGINA", entidad.PAGINA);
                 p.Add("PI_COLUMNA", entidad.ORDER_BY);
@@ -117,6 +117,44 @@ namespace Datos.minem.gob.pe
             return lista;
         }
 
+        public List<RolBE> ListaRol(OracleConnection db)
+        {
+            List<RolBE> lista = null;
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LIST_ROL";
+                var p = new OracleDynamicParameters();
+                p.Add("PO", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<RolBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public RolBE EliminarRol(RolBE oRol, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_DEL_ROL";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ROL", oRol.ID_ROL);
+                p.Add("PI_UPD_USUARIO", oRol.UPD_USUARIO);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                oRol.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                oRol.OK = false;
+            }
+
+            return oRol;
+        }
 
     }
 }
