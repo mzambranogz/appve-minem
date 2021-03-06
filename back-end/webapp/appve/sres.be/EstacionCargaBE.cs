@@ -10,6 +10,9 @@ namespace sres.be
     {
         public int ID_ESTACION { get; set; }
         public int ID_USUARIO { get; set; }
+        public string LONGITUD { get; set; }
+        public string LATITUD { get; set; }
+        public string DIRECCION { get; set; }
         public string DESCRIPCION { get; set; }
         public string MODELO { get; set; }
         public string MARCA { get; set; }

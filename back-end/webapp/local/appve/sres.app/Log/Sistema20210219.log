@@ -1,0 +1,143 @@
+19/02/2021 00:01:39: [Método: System.Collections.Generic.List`1[sres.be.EscenarioConvencionalEmisionesBE] CalcularEmisionesVC(sres.be.EmisionesConvencionalBE), Línea: 797] - Índice fuera de los límites de la matriz.
+19/02/2021 00:04:22: [Método: System.Collections.Generic.List`1[sres.be.EscenarioConvencionalEmisionesBE] CalcularEmisionesVC(sres.be.EmisionesConvencionalBE), Línea: 797] - Índice fuera de los límites de la matriz.
+19/02/2021 00:05:39: [Método: System.Collections.Generic.List`1[sres.be.EscenarioConvencionalEmisionesBE] CalcularEmisionesVC(sres.be.EmisionesConvencionalBE), Línea: 797] - Índice fuera de los límites de la matriz.
+19/02/2021 20:38:25: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 20:38:25: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 20:38:25: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 20:38:25: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 20:38:25: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 20:38:25: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 20:38:25: [Método: Boolean GuardarImagen(sres.be.DocumentoBE, Oracle.DataAccess.Client.OracleConnection), Línea: 132] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:14:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:14:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:14:43: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:14:43: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:14:43: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:14:43: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:14:43: [Método: Boolean GuardarImagen(sres.be.DocumentoBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_IMG'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:16:16: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:16:16: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:16:16: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:16:16: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:16:16: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:16:16: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:16:16: [Método: Boolean GuardarDocumento(sres.be.DocumentoBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:31:41: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:31:41: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:31:41: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:31:41: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:31:41: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:31:41: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:31:41: [Método: Boolean GuardarDocumento(sres.be.DocumentoBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:33:41: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:33:41: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:33:41: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:33:41: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:33:41: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:33:41: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/02/2021 21:33:41: [Método: Boolean GuardarDocumento(sres.be.DocumentoBE, Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_PRC_MAN_DOCUMENTO_DATA'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored

@@ -1,0 +1,7 @@
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.ut\bin\Release\sres.ut.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.ut\bin\Release\sres.ut.pdb
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.ut\bin\Release\Newtonsoft.Json.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.ut\bin\Release\Newtonsoft.Json.xml
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.ut\obj\Release\sres.ut.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.ut\obj\Release\sres.ut.dll
+D:\ESCRITORIO\APP WEB LOCAL\appve\sres.ut\obj\Release\sres.ut.pdb

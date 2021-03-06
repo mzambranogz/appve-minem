@@ -17,7 +17,7 @@
 }
 
 <div class="container mt-4">
-    <div id="seccion-empresa">
+    <div id="seccion-empresa" style="border: solid 1px #0094ff; padding: 20px; border-radius: 2%;">
         <div class="row">
             <div class="col-12">
                 <label>Número de ruc:</label>
@@ -43,17 +43,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-10">
-                <label>Dirección:</label>
+            <div class="col-12">
+                <label>Dirección de la empresa:</label>
                 <div><input type="text" id="txt-direccion" class="form-control" /></div>
-            </div>
-            <div class="col-2">
-                <div>&nbsp;</div>
-                <button class="btn btn-primary w-100" id="btnDireccion">Situa tu dirección</button>
             </div>
         </div>
     </div>
-    <div id="seccion-estacion">
+    <div id="seccion-estacion" class="mt-2" style="border: solid 1px #0094ff; padding: 20px; border-radius: 3%;">
+        <div class="row">
+            <div class="col-9">
+                <label>Dirección de la estación de carga:</label>
+                <div><input type="text" id="txt-direccion-estacion" class="form-control" /></div>
+            </div>
+            <div class="col-3">
+                <div>&nbsp;</div>
+                <a class="editar-mapa" href="javascript:void(0)" id="btnUbicacion"><i class="fas fa-map-marked mr-1"></i>&nbsp;Situa tu ubicación</a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <label>Descripción de la estación de carga:</label>
@@ -198,7 +204,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-2">
         <button class="btn btn-primary" id="btnGuardar" >Guardar</button>
     </div>
     <div class="row">
@@ -228,6 +234,45 @@
                                         <a rel="example_group" href="@Url.Content("~/Assets/images/006.jpg")" title=""><img class="last img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/006.jpg")" /></a>*@
                                 </p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-ubicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">Ubicación</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">Ubica tu estación de carga</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div id='map' style='width: 100%; height: 400px;'></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <pre id='coordenadas'></pre>
+                        </div>
+                        @*<div class="row">
+                            <button id='btn-ruta' onclick="getCoordenadas(this);">Obtener ruta</button>
+                        </div>*@
+                    <div class="row">
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-sm btn-info" type="button" id="btnGuardarU">Guardar</button>
+                            <button class="btn btn-sm btn-dark" type="button" id="btnCerrarU">Cerrar</button>
                         </div>
                     </div>
                 </div>

@@ -192,13 +192,13 @@ namespace sres.ln
                     {
                         for (int i = 0; i < 15; i++)
                         {
-                            if (i == 0) arrEnergiaNominalVC[i] = entidad.GASTO_COMBUSTIBLE_VC * 4 * entidad.MESES_USO_VC;
+                            if (i == 0) arrEnergiaNominalVC[i] = entidad.GASTO_COMBUSTIBLE_VC * 4 * decimal.Parse(entidad.MESES_USO_VC.ToString());
                             else arrEnergiaNominalVC[i] = arrEnergiaNominalVC[i - 1] * (1 + ipc) * (1 + reduccion_eficiencia_motor) * (1 + entidad.PORC_AUMENTO_COMBUSTIBLE_VC);
                         }
                     }
                     else
                     {
-                        decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                        decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12);
                         for (int i = 0; i < 15; i++)
                         {
                             if (i == 0) arrEnergiaNominalVC[i] = (km_anual / entidad.RENDIMIENTO_VC) * entidad.PRECIO_COMBUSTIBLE_VC;
@@ -588,7 +588,7 @@ namespace sres.ln
                 }
 
                 //Energia (Electricidad y combustible) Nominal VC
-                decimal km_anual_ve = (entidad.KILOMETRO_SEMANAL_VE * 52) * (entidad.MESES_USO_VE / 12);
+                decimal km_anual_ve = (entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12);
                 decimal energia_ve = (km_anual_ve / entidad.RENDIMIENTO_VE) * entidad.TARIFA_VE;
                 for (var i = 0; i < 15; i++)
                 {
@@ -688,7 +688,7 @@ namespace sres.ln
 
                 if (entidad.P2 == "1" || entidad.P1 == "1") {
                     decimal factor_rendimiento = elecLN.ListaFactor1P(17, 2, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
-                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12);
                     vehiculo_ce = km_anual / factor_rendimiento;
                 }                
 
@@ -696,7 +696,7 @@ namespace sres.ln
                 for (int i = 0; i < tamanio; i++)   
                 {
                     decimal rendimiento_pasajero = elecLN.ListaFactor1P(16, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
-                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO / rendimiento_pasajero;
+                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * decimal.Parse(entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO.ToString()) / rendimiento_pasajero;
                     arrConsumoEnergetivoVC[i+1] = consumo_energetico;
                 }
 
@@ -729,7 +729,7 @@ namespace sres.ln
 
                 decimal[] arrConsumoEnergetivoVE = new decimal[5];
 
-                arrConsumoEnergetivoVE[0] = (((entidad.KILOMETRO_SEMANAL_VE * 52) * (entidad.MESES_USO_VE / 12)) / entidad.RENDIMIENTO_VE) * equivalenteenergetico;
+                arrConsumoEnergetivoVE[0] = (((entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12)) / entidad.RENDIMIENTO_VE) * equivalenteenergetico;
 
                 for (int i = 0; i < 15; i++)
                 {
@@ -785,7 +785,7 @@ namespace sres.ln
                 {
                     arrFactorEmisionVC[i] = elecLN.ListaFactor1P(14, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
                     decimal rendimiento_pasajero = elecLN.ListaFactor1P(16, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
-                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO / rendimiento_pasajero;
+                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * decimal.Parse(entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO.ToString()) / rendimiento_pasajero;
                     arrConsumoEnergetivoVC[i] = consumo_energetico;
                 }
 
@@ -802,7 +802,7 @@ namespace sres.ln
                 {
                     for (int i = 0; i < 15; i++)
                     {
-                        arrOperacionVehiculoVC[i] = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12) * entidad.FACTOR_EMISION_VC * (i + 1);
+                        arrOperacionVehiculoVC[i] = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12) * entidad.FACTOR_EMISION_VC * (i + 1);
                     }
                 }
 
@@ -845,7 +845,7 @@ namespace sres.ln
                     arrFabricacionBateriaVE[i] = fabricacion_bateria * entidad.CAPACIDAD_BATERIA_VE;
                 }
 
-                decimal operacion_vehiculo = (entidad.KILOMETRO_SEMANAL_VE * 52) * (entidad.MESES_USO_VE / 12) / entidad.RENDIMIENTO_VE * (factor_emision_consumo / (1 - perdida_transmision_distribucion));
+                decimal operacion_vehiculo = (entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12) / entidad.RENDIMIENTO_VE * (factor_emision_consumo / (1 - perdida_transmision_distribucion));
                 for (int i = 0; i < 15; i++)
                 {
                     arrOperacionVehiculoVE[i] = operacion_vehiculo * (i + 1);
@@ -885,16 +885,18 @@ namespace sres.ln
                 decimal[] arrContaminanteTP = new decimal[4];
 
                 //Vehiculo convencional
-                decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
-                decimal nox_vc = elecLN.ListaFactor2P(18, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
-                decimal co_vc = elecLN.ListaFactor2P(19, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
-                decimal pm25_vc = elecLN.ListaFactor2P(20, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
-                decimal bc_vc = elecLN.ListaFactor2P(21, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                if (entidad.P1 == "1" || entidad.P2 == "1") {
+                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12);
+                    decimal nox_vc = elecLN.ListaFactor2P(18, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal co_vc = elecLN.ListaFactor2P(19, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal pm25_vc = elecLN.ListaFactor2P(20, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal bc_vc = elecLN.ListaFactor2P(21, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
 
-                arrContaminanteVC[0] = km_anual * nox_vc;
-                arrContaminanteVC[1] = km_anual * co_vc;
-                arrContaminanteVC[2] = km_anual * pm25_vc;
-                arrContaminanteVC[3] = km_anual * bc_vc;
+                    arrContaminanteVC[0] = km_anual * nox_vc;
+                    arrContaminanteVC[1] = km_anual * co_vc;
+                    arrContaminanteVC[2] = km_anual * pm25_vc;
+                    arrContaminanteVC[3] = km_anual * bc_vc;
+                }
 
                 foreach (ServicioPublicoBE item in entidad.LISTA_SERVICIO_PUBLICO)
                 {

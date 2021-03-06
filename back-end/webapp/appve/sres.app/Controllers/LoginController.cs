@@ -52,7 +52,7 @@ namespace sres.app.Controllers
         [HttpPost]
         //public async Task<ActionResult> Validar(string correo, string contrasena, string token = null)
         //{
-        //    Dictionary<string, object> response = new Dictionary<string, object> { ["success"] = false, ["message"] = "" };
+        //    Dictionary<string, object> response = new Dictionary<string, object> {["success"] = false,["message"] = "" };
         //    UsuarioBE usuario = null;
         //    try
         //    {
@@ -75,9 +75,10 @@ namespace sres.app.Controllers
         //        response["message"] = "Contraseña incorrecta";
         //        if (usuario == null) response["message"] = "Usuario no existe";
         //    }
-        //    catch (Exception ex){
+        //    catch (Exception ex)
+        //    {
         //        Log.Error(ex);
-        //    }            
+        //    }
         //    return Json(response);
         //}
 
@@ -85,7 +86,6 @@ namespace sres.app.Controllers
         public async Task<ActionResult> Validar(UsuarioBE usuario, string token = null)
         {
             Dictionary<string, object> response = new Dictionary<string, object> {["success"] = false,["message"] = "" };
-            //UsuarioBE usuario = new UsuarioBE;
             try
             {
                 Session["user"] = usuario;

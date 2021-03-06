@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - martes-febrero-16-2021   
+-- Archivo creado  - viernes-marzo-05-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Package Body PKG_ELECTROMOV_ADMIN
@@ -25,9 +25,10 @@
   ) AS
   BEGIN
       OPEN PO_CURSOR FOR
-      SELECT *
-      FROM T_GENM_USUARIO
-      WHERE LOWER(TRANSLATE(CORREO,'ΑΙΝΣΪαινσϊ','AEIOUaeiou')) = LOWER(TRANSLATE(PI_CORREO,'ΑΙΝΣΪαινσϊ','AEIOUaeiou'));
+      SELECT U.*, R.NOMBRE NOMBRE_ROL
+      FROM T_GENM_USUARIO U
+      INNER JOIN T_MAE_ROL R ON U.ID_ROL = R.ID_ROL
+      WHERE LOWER(TRANSLATE(U.CORREO,'ΑΙΝΣΪαινσϊ','AEIOUaeiou')) = LOWER(TRANSLATE(PI_CORREO,'ΑΙΝΣΪαινσϊ','AEIOUaeiou'));
   END USP_SEL_USUARIO_CORREO;
 
 END PKG_ELECTROMOV_ADMIN;

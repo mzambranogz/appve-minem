@@ -11,5 +11,6 @@ namespace sres.be
         public string CONTRASENA_NUEVO { get; set; }
         public string TOKEN { get; set; }
         public string TOKEN_EXPIRACION { get; set; }
+        public string NOMBRE_ROL { get; set; }
     }
 }

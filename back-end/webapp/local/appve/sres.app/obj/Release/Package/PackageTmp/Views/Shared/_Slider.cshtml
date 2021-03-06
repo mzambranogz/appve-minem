@@ -1,0 +1,34 @@
+﻿@if (ViewBag.Slider != null)
+{
+    if (ViewBag.Slider.Count > 0)
+    {
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="hero-section">
+                    <div class="hero-slider owl-carousel">
+                        @foreach (KeyValuePair<int, Dictionary<string, object>> item in ViewBag.Slider) {
+                        <div class="hs-item set-bg" data-setbg="@Url.Content(item.Value["Imagen"].ToString())">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-7 text-white barra-blanca">
+                                        <span class="estilo-02">@Html.Raw(item.Value["Titulo"].ToString())</span>
+                                        <h2 class="estilo-03">@Html.Raw(item.Value["SubTitulo"].ToString())</h2>
+                                        <p class="estilo-01">@Html.Raw(item.Value["Descripcion"].ToString())</p>
+                                        @Html.Raw(item.Value["Html"].ToString())
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    <div class="container">
+                        <div class="slide-num-holder" id="snh-1"></div>
+                    </div>
+                </div>
+                <div class="d-none d-lg-block" id="line-long"></div>
+            </div>
+        </div>
+    </div>
+    }
+}

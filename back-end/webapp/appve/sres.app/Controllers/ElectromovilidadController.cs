@@ -24,20 +24,6 @@ namespace sres.app.Controllers
         }
 
         [SesionOut]
-        [Route("usuario-transpore-publico")]
-        public ActionResult UsuarioTransportePublico()
-        {
-            return View();
-        }
-
-        [SesionOut]
-        [Route("usuario-vehiculo-convencional")]
-        public ActionResult UsuarioVehiculoConvencional()
-        {
-            return View();
-        }
-
-        [SesionOut]
         [Route("mis-consultas-y-resultados")]
         public ActionResult ConsultasResultados()
         {
@@ -52,11 +38,18 @@ namespace sres.app.Controllers
         }
 
         [SesionOut]
-        [Route("registro-estacion-de-carga")]
+        [Route("estaciones-de-carga")]
+        public ActionResult EstacionesCarga()
+        {
+            return View();
+        }
+
+        [SesionOut]
+        [Route("estacion-de-carga")]
         public ActionResult EstacionCarga()
         {
             UsuarioBE usuario = ObtenerUsuarioLogin();
-            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            //usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
             ViewData["usuario"] = usuario;
             ViewData["estacion"] = 0;
             return View();
@@ -74,7 +67,7 @@ namespace sres.app.Controllers
         public ActionResult EstacionCarga(int idEstacion)
         {
             UsuarioBE usuario = ObtenerUsuarioLogin();
-            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            //usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
             ViewData["usuario"] = usuario;
             ViewData["estacion"] = idEstacion;
             return View();
@@ -85,9 +78,16 @@ namespace sres.app.Controllers
         public ActionResult VerResultado(int idresultado)
         {
             UsuarioBE usuario = ObtenerUsuarioLogin();
-            usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
+            //usuario = estacionLN.getInstitucion(usuario.ID_USUARIO);
             ViewData["usuario"] = usuario;
             ViewData["resultado"] = idresultado;
+            return View();
+        }
+
+        [SesionOut]
+        [Route("estaciones-mapa")]
+        public ActionResult EstacionesMapa()
+        {
             return View();
         }
     }

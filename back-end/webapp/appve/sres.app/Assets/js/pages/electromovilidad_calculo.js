@@ -12,7 +12,6 @@ var rendimiento_ve_g = 0, capacidad_bateria_g = 0, precio_cargador_g = 0, costo_
 
 $(document).ready(() => {
     //configuracion();
-    debugger;
     mapa();
     cargarComponentes();
     
@@ -536,8 +535,11 @@ var cambiarVE = () => {
     else $('#modelo-ve').parent().removeClass('d-none');
 
     if ($('#tipo-vehiculo-ve').val() > 1){
-        let url = `${baseUrl}api/calculo/obtenervalorestve?valor1=${$('#tipo-vehiculo-ve').val()}`;
-        fetch(url).then(r => r.json()).then(j => {
+        //let url = `${baseUrl}api/calculo/obtenervalorestve?valor1=${$('#tipo-vehiculo-ve').val()}`;
+        let url = `${baseUrlApi}api/calculo/obtenervalorestve?valor1=${$('#tipo-vehiculo-ve').val()}`;
+        let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+        fetch(url, init).then(r => r.json()).then(j => {
             if (j == null) return;
             if (j.RENDIMIENTO != null){
                 $('#rendimiento-ve').val(j.RENDIMIENTO.FACTOR);
@@ -562,8 +564,11 @@ var cambiarVE = () => {
 var cambiarMVE = () => {
     if ($('#modelo-ve').val() == 0) return;
 
-    let url = `${baseUrl}api/calculo/obtenervalorestvem?valor1=${$('#modelo-ve').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervalorestvem?valor1=${$('#modelo-ve').val()}`;
+    let url = `${baseUrlApi}api/calculo/obtenervalorestvem?valor1=${$('#modelo-ve').val()}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.RENDIMIENTO != null){
             $('#rendimiento-ve').val(j.RENDIMIENTO.FACTOR);
@@ -604,8 +609,11 @@ var cambiarTC = () => {
 var cambiarCP = () => {
     if ($('#cbo-potencia').val() == 0) return;
 
-    let url = `${baseUrl}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
+    let url = `${baseUrlApi}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.PRECIO_CARGADOR != null){
             $('#precio-cargador').val(j.PRECIO_CARGADOR.FACTOR);
@@ -623,8 +631,11 @@ var cambiarCP = () => {
 var cambiarDP = () => {
     if ($('#cbo-departamento').val() == 0) return;
 
-    let url = `${baseUrl}api/calculo/obtenervaloresdp?valor1=${$('#cbo-departamento').val()}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervaloresdp?valor1=${$('#cbo-departamento').val()}`;
+    let url = `${baseUrlApi}api/calculo/obtenervaloresdp?valor1=${$('#cbo-departamento').val()}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.TARIFA_ELECTRICIDAD != null){
             $('#tarifa-ve').val(j.TARIFA_ELECTRICIDAD.FACTOR/100);
@@ -678,8 +689,11 @@ var cambiarDepartamentoCVC = () => {
     let tipo_comb = $('#tipo-combustible-cvc').val();
     if (dep == 0 || tipo_veh == 0 || tipo_comb == 0) { $('#precio-combustible-cvc').val(0); return; }
 
-    let url = `${baseUrl}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
+    let url = `${baseUrlApi}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.PRECIO_COMBUSTIBLE != null){
             $('#precio-combustible-cvc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
@@ -712,21 +726,22 @@ var cambiarDepartamentoVC = () => {
 //end_points 8 //Primero
 var cargarComponentes = () => {
     //let urlConsultarTipoTransporte = `${baseUrl}api/tipotransporte/obteneralltipotransporte`;
-    let urlConsultarTipoTransporte = `http://161.35.182.46/ApiElectromovilidad/api/TipoTransporte/obtenerall`;
     //let urlConsultarTipoCombustible = `${baseUrl}api/tipocombustible/obteneralltipocombustible`;
-    let urlConsultarTipoCombustible = `http://161.35.182.46/ApiElectromovilidad/api/TipoCombustible/obtenerall`;
     //let urlConsultarTipoVehiculoConvencional = `${baseUrl}api/tipovehiculoconvencional/obteneralltipovehiculoconvencional`;
-    let urlConsultarTipoVehiculoConvencional = `http://161.35.182.46/ApiElectromovilidad/api/TipoVehiculoConvencional/obtenerall`;
     //let urlConsultarTipoVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obteneralltipovehiculoelectrico`;
-    let urlConsultarTipoVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/TipovehiculoElectrico/obtenerall`;
-    let urlConsultarModeloVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obtenerallmodelovehiculoelectrico`;
-    //let urlConsultarModeloVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/modelovehiculo/obtenerall`;
-    let urlConsultarTipoCargador = `${baseUrl}api/tipocargador/obteneralltipocargador`;
-    //let urlConsultarTipoCargador = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obteneralltipocargador`;
-    let urlConsultarCargadorPotencia = `${baseUrl}api/tipocargador/obtenerallcargadorpotencia`;
-    //let urlConsultarCargadorPotencia = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obtenerallcargadorpotencia`;
-    let urlConsultarDepartamento = `${baseUrl}api/departamento/obteneralldepartamento`;
-    //let urlConsultarDepartamento = `http://161.35.182.46/ApiElectromovilidad/api/Departamento/obteneralldepartamento`;
+    //let urlConsultarModeloVehiculoElectrico = `${baseUrl}api/tipovehiculoelectrico/obtenerallmodelovehiculoelectrico`;
+    //let urlConsultarTipoCargador = `${baseUrl}api/tipocargador/obteneralltipocargador`;
+    //let urlConsultarCargadorPotencia = `${baseUrl}api/tipocargador/obtenerallcargadorpotencia`;
+    //let urlConsultarDepartamento = `${baseUrl}api/departamento/obteneralldepartamento`;
+
+    let urlConsultarTipoTransporte = `http://161.35.182.46/ApiElectromovilidad/api/TipoTransporte/obtenerall`;    
+    let urlConsultarTipoCombustible = `http://161.35.182.46/ApiElectromovilidad/api/TipoCombustible/obtenerall`;    
+    let urlConsultarTipoVehiculoConvencional = `http://161.35.182.46/ApiElectromovilidad/api/TipoVehiculoConvencional/obtenerall`;    
+    let urlConsultarTipoVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/TipovehiculoElectrico/obtenerall`;    
+    let urlConsultarModeloVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/modelovehiculo/obtenerall`;    
+    let urlConsultarTipoCargador = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obteneralltipocargador`;    
+    let urlConsultarCargadorPotencia = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obtenerallcargadorpotencia`;    
+    let urlConsultarDepartamento = `http://161.35.182.46/ApiElectromovilidad/api/Departamento/obteneralldepartamento`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
     Promise.all([
@@ -990,37 +1005,46 @@ var evaluar = () => {
 
     //end_points 7 //Octavo Final
     //Calculo
-    let urlvc = `${baseUrl}api/calculo/calcularvehiculoconvencional`;
+    //let urlvc = `${baseUrl}api/calculo/calcularvehiculoconvencional`;
+    let urlvc = `${baseUrlApi}api/calculo/calcularvehiculoconvencional`;
     let datavc = data_vc;
-    let initvc = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datavc) };
+    let initvc = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datavc) };
 
-    let urlve = `${baseUrl}api/calculo/calcularvehiculoelectrico`;
+    //let urlve = `${baseUrl}api/calculo/calcularvehiculoelectrico`;
+    let urlve = `${baseUrlApi}api/calculo/calcularvehiculoelectrico`;
     let datave = data_ve;
-    let initve = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datave) };
+    let initve = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datave) };
 
-    let urll = `${baseUrl}api/calculo/obtenerleyendas`;
+    //let urll = `${baseUrl}api/calculo/obtenerleyendas`;
+    let urll = `${baseUrlApi}api/calculo/obtenerleyendas`;
     let datal = data_l;
-    let initl = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datal) };
+    let initl = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datal) };
 
-    let urlvcce = `${baseUrl}api/calculo/calcularconsumoenergeticoconvencional`;
+    //let urlvcce = `${baseUrl}api/calculo/calcularconsumoenergeticoconvencional`;
+    let urlvcce = `${baseUrlApi}api/calculo/calcularconsumoenergeticoconvencional`;
     let datavcce = data_ce_vc;
-    let initvcce = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datavcce) };
+    let initvcce = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datavcce) };
 
-    let urlvece = `${baseUrl}api/calculo/calcularconsumoenergeticoelectrico`;
+    //let urlvece = `${baseUrl}api/calculo/calcularconsumoenergeticoelectrico`;
+    let urlvece = `${baseUrlApi}api/calculo/calcularconsumoenergeticoelectrico`;
     let datavece = data_ce_ve;
-    let initvece = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datavece) };
+    let initvece = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datavece) };
 
-    let urlemvc = `${baseUrl}api/calculo/calcularemisionesconvencional`;
+    //let urlemvc = `${baseUrl}api/calculo/calcularemisionesconvencional`;
+    let urlemvc = `${baseUrlApi}api/calculo/calcularemisionesconvencional`;
     let dataemvc = data_em_vc;
-    let initemvc = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataemvc) };
+    let initemvc = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(dataemvc) };
 
-    let urlemve = `${baseUrl}api/calculo/calcularemisioneselectrico`;
+    //let urlemve = `${baseUrl}api/calculo/calcularemisioneselectrico`;
+    let urlemve = `${baseUrlApi}api/calculo/calcularemisioneselectrico`;
     let dataemve = data_em_ve;
-    let initemve = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataemve) };
+    let initemve = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(dataemve) };
 
-    let urlcm = `${baseUrl}api/calculo/calcularcontaminantelocal`;
+    //end_points noveno
+    //let urlcm = `${baseUrl}api/calculo/calcularcontaminantelocal`;
+    let urlcm = `${baseUrlApi}api/calculo/calcularcontaminantelocal`;
     let datacm = data_cm;
-    let initcm = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datacm) };
+    let initcm = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datacm) };
 
     Promise.all([
         fetch(urlvc, initvc),
@@ -1065,7 +1089,7 @@ var cambiarAnio = () => {
 var valoresDiferenciados = () => {
     let i = $('#anio_evaluacion').val() - 1;
     let total_costo = parseFloat(Lista_convencional[i].TOTAL) - parseFloat(Lista_electrico[i].TOTAL);
-    let total_consumo = parseFloat(Lista_consumo_energ_vc[i].TOTAL_PUBLICO) - parseFloat(Lista_consumo_energ_ve[i].TOTAL_PUBLICO);
+    let total_consumo = (parseFloat(Lista_consumo_energ_vc[i].TOTAL_PUBLICO) + parseFloat(Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC)) - (parseFloat(Lista_consumo_energ_ve[i].TOTAL_PUBLICO) + parseFloat(Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE));
     let total_emisiones = parseFloat(Lista_emision_vc[i].TOTAL_VC) - parseFloat(Lista_emision_ve[i].TOTAL_VE);
 
     $('#ahorro-economico-d').html(formatoMiles(total_costo));
@@ -1361,7 +1385,6 @@ var nuevaRuta = (e) => {
 
 var editarRuta = (e) => {
     mostrarMapa();
-    debugger;
     let id = $(`#${e.currentTarget.id}`);
     accion = parseInt(e.currentTarget.id.replace('vc-','').replace('cvc-','').replace('ve-','').replace('t1-','').replace('t2-','').replace('t3-','').replace('t4-',''));
     let arr;
@@ -1408,13 +1431,14 @@ var guardarResultados = () => {
         UPD_USUARIO: idUsuarioLogin,
     }
 
-    let url = `${baseUrl}api/calculo/guardarresultados`;
+    //new end_points //decimo
+    //let url = `${baseUrl}api/calculo/guardarresultados`;
+    let url = `${baseUrlApi}api/calculo/guardarresultados`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(response => {
         if (response.status == 200) return response.json();
-        else if (response.status == 400) return 400;
         else return 0;
     })
     .then(registro)
@@ -1426,13 +1450,9 @@ var guardarResultados = () => {
 
 var registro = (j) => {
     $('.alert-add').html('');
-    if (j == 400) { mostrarMensajeError("Error en el registro de resultados"); }
-    else if (j == 0) { mostrarMensajeError("Error, comunicarse con el administrador del sistema"); }
+    if (j == 0) { alert("Error, comunicarse con el administrador del sistema"); }
+    else if (j == null || !(j)) { alert("Error en el registro de resultados"); }
     else {
-        //$('#btnGuardar').hide();
-        //$('#btnGuardar').next().html('Cerrar');
-        //$('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` });
-        //$('#btnConsultar')[0].click();
         alert("Los datos fueron guardados correctamente.");
         nuevoCalculo();
     }

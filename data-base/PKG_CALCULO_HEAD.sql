@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - lunes-marzo-01-2021   
+-- Archivo creado  - miércoles-marzo-03-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Package PKG_ELECTROMOV_CALCULO
@@ -147,7 +147,8 @@
     PI_ID_ESTACION NUMBER
   );
   
-  PROCEDURE USP_SEL_ALL_ESTACION(
+  PROCEDURE USP_SEL_ESTACION_USUARIO(
+    PI_ID_USUARIO NUMBER,
     PO_REF OUT SYS_REFCURSOR
   );
   

@@ -23,11 +23,11 @@ namespace sres.app.Controllers.Api
             return v;
         }
 
-        [Route("obtenerallestaciones")]
+        [Route("obtenerestacionesporusuario")]
         [HttpGet]
-        public List<EstacionCargaBE> getAllEstacion()
+        public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario)
         {
-            List<EstacionCargaBE> lista = estacionLN.getAllEstacion();
+            List<EstacionCargaBE> lista = estacionLN.getEstacionPorUsuario(idusuario);
             return lista;
         }
 
@@ -64,6 +64,14 @@ namespace sres.app.Controllers.Api
         {
             bool v = estacionLN.EliminarEstacion(idestacion);
             return v;
+        }
+
+        [Route("obtenerestacionall")]
+        [HttpGet]
+        public List<EstacionCargaBE> getEstacionAll()
+        {
+            List<EstacionCargaBE> lista = estacionLN.getEstacionAll();
+            return lista;
         }
     }
 }
