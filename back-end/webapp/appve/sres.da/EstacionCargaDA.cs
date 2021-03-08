@@ -92,6 +92,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
                 p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
+                p.Add("PI_ARCHIVO_CONTENIDO", inscripcionDoc.ARCHIVO_CONTENIDO, dbType: OracleDbType.Blob);
                 p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
                 p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
@@ -128,6 +129,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
                 p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
+                p.Add("PI_ARCHIVO_CONTENIDO", inscripcionDoc.ARCHIVO_CONTENIDO, dbType: OracleDbType.Blob);
                 p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
                 p.Add("PI_FLAG_ESTADO", inscripcionDoc.FLAG_ESTADO);
                 p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);

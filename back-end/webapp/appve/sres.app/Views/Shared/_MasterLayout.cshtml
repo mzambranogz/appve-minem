@@ -99,7 +99,6 @@
     <script type="text/javascript">
         const baseUrl = '@Url.Content("~")';
         const baseUrlApi = 'http://161.35.182.46/ApiElectromovilidad/';
-        //const baseUrlApi = 'http://localhost:8546/';
         const idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());
         const idRolLogin = @(usuario == null ? "null" : usuario.ROL == null ? "null" : usuario.ID_ROL.ToString());
         const token = '@(usuario == null ? "" : $"{usuario.TOKEN}")';

@@ -74,6 +74,7 @@ var registrarUsuario = () => {
 }
 
 var registro = (j) => {
+    debugger;
     if (j == 400) { mostrarMensajeError("Error en el registro de usuario"); }
     else if (j == 0) { mostrarMensajeError("Error, comunicarse con el administrador del sistema"); }
     else {

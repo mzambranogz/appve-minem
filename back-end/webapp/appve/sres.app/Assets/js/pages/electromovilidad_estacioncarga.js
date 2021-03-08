@@ -233,8 +233,8 @@ var guardar = () => {
     }
 
     arrEmpresa = {
-        ID_INSTITUCION: idinstitucion == 2, //solo de prueba el idinstitucion solo es un numero de prueba
-        //ID_INSTITUCION: idinstitucion == 0 ? -1 : idinstitucion, //verdadero
+        //ID_INSTITUCION: idinstitucion == 2, //solo de prueba el idinstitucion solo es un numero de prueba
+        ID_INSTITUCION: idinstitucion == 0 ? -1 : idinstitucion, //verdadero
         RUC: ruc,
         RAZON_SOCIAL: razon_social,
         CORREO: correo,
@@ -272,6 +272,7 @@ var guardar = () => {
             j ? $('#btnGuardar').parent().hide() : '';
             j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
             if (j && idinstitucion <= 0) actualizarDatosSesion();
+            else setTimeout(redireccionar, 3000);
         }
     });
 }

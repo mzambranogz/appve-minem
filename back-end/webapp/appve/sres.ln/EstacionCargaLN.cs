@@ -41,15 +41,15 @@ namespace sres.ln
                                 if (seGuardo)
                                 {
                                     iDoc.ID_ESTACION = idestacion;
-                                    if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
-                                    {
-                                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Documento");
-                                        string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
-                                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
-                                        string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
-                                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
-                                        File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
-                                    }
+                                    //if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
+                                    //{
+                                    //    string pathFormat = AppSettings.Get<string>("Path.Archivo.Documento");
+                                    //    string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
+                                    //    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                                    //    string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
+                                    //    if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                                    //    File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
+                                    //}
                                     seGuardo = estacionDa.GuardarDocumento(iDoc, cn);
                                 }
                                 else break;
@@ -64,15 +64,15 @@ namespace sres.ln
                                 if (seGuardo)
                                 {
                                     iDoc.ID_ESTACION = idestacion;                                    
-                                    if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
-                                    {
-                                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
-                                        string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
-                                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
-                                        string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
-                                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
-                                        File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
-                                    }
+                                    //if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
+                                    //{
+                                    //    string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                                    //    string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
+                                    //    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                                    //    string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
+                                    //    if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                                    //    File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
+                                    //}
                                     seGuardo = estacionDa.GuardarImagen(iDoc, cn);
                                 }
                                 else break;
