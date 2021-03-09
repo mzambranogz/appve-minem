@@ -15,6 +15,8 @@ namespace sres.ln
     public class EstacionCargaLN : BaseLN
     {
         EstacionCargaDA estacionDa = new EstacionCargaDA();
+        UsuarioDA usuDA = new UsuarioDA();
+        InstitucionDA instDA = new InstitucionDA();
 
         public bool GuardarEstacionCarga(EstacionCargaBE item)
         {
@@ -28,7 +30,7 @@ namespace sres.ln
                     int idestacion = -1;
                     if (item.INSTITUCION.ID_INSTITUCION < 0)
                     {
-                        seGuardo = estacionDa.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
+                        seGuardo = instDA.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
                         item.INSTITUCION.ID_INSTITUCION = idinstitucion;
                     }
                     if (seGuardo)
@@ -128,7 +130,7 @@ namespace sres.ln
             try
             {
                 cn.Open();
-                user = estacionDa.getInstitucion(idUsuario, cn);
+                user = usuDA.getInstitucion(idUsuario, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

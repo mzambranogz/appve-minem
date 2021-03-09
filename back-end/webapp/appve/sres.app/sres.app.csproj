@@ -356,6 +356,7 @@
     <Content Include="Assets\js\pages\electromovilidad_menu_principal.js" />
     <Content Include="Assets\js\pages\electromovilidad_consultasresultados.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacionescarga.js" />
+    <Content Include="Assets\js\pages\electromovilidad_perfil.js" />
     <Content Include="Assets\js\pages\electromovilidad_verresultado.js" />
     <Content Include="Assets\js\pages\inicio.js" />
     <Content Include="Assets\js\pages\login.js" />
@@ -715,6 +716,7 @@
     <Content Include="Views\Mantenimiento\TipoCombustible.cshtml" />
     <Content Include="Views\Electromovilidad\EstacionesCarga.cshtml" />
     <Content Include="Views\Electromovilidad\EstacionesMapa.cshtml" />
+    <Content Include="Views\Electromovilidad\Perfil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

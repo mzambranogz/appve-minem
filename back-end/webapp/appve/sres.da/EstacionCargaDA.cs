@@ -12,36 +12,7 @@ using System.Threading.Tasks;
 namespace sres.da
 {
     public class EstacionCargaDA : BaseDA
-    {
-        public bool RegistrarInstitucion(InstitucionBE entidad, out int idinstitucion, OracleConnection db) {
-            bool seGuardo = false;
-            idinstitucion = -1;
-            try
-            {
-                string sp = $"{Package.Calculo}USP_PRC_GUARDAR_INSTITUCION";
-                var p = new OracleDynamicParameters();
-                p.Add("PI_ID_INSTITUCION", entidad.ID_INSTITUCION);
-                p.Add("PI_RUC", entidad.RUC);
-                p.Add("PI_RAZON_SOCIAL", entidad.RAZON_SOCIAL);
-                p.Add("PI_CORREO", entidad.CORREO);
-                p.Add("PI_TELEFONO", entidad.TELEFONO);
-                p.Add("PI_DIRECCION", entidad.DIRECCION);
-                p.Add("PI_UPD_USUARIO", entidad.UPD_USUARIO);
-                p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
-                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
-                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                idinstitucion = (int)p.Get<dynamic>("PI_ID_GET").Value;
-                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-                seGuardo = filasAfectadas > 0 && idinstitucion != -1;
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
-
-            return seGuardo;
-        }
-
+    {      
         public bool RegistrarEstacion(EstacionCargaBE entidad, out int idestacion, OracleConnection db)
         {
             bool seGuardo = false;
@@ -198,25 +169,6 @@ namespace sres.da
             }
 
             return lista;
-        }
-
-        public UsuarioBE getInstitucion(int idUsuario, OracleConnection db)
-        {
-            UsuarioBE user = new UsuarioBE();
-            try
-            {
-                string sp = $"{Package.Calculo}USP_SEL_USUARIO_INSTITUCION";
-                var p = new OracleDynamicParameters();
-                p.Add("PI_ID_USUARIO", idUsuario);
-                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                user = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-
-            return user;
         }
 
         public EstacionCargaBE getEstacion(int idestacion, OracleConnection db)

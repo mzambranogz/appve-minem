@@ -135,5 +135,19 @@ namespace sres.app.Controllers.Api
         {
             return usuarioLN.VerificarCorreo(correo);
         }
+
+        [Route("consultarperfil")]
+        [HttpGet]
+        public UsuarioBE ConsultarPerfil(int idusuario)
+        {
+            return usuarioLN.ConsultarPerfil(idusuario);
+        }
+
+        [Route("guardarperfil")]
+        [HttpPost]
+        public bool GuardarPerfil(UsuarioBE usuario)
+        {
+            return usuarioLN.GuardarPerfil(usuario);
+        }
     }
 }

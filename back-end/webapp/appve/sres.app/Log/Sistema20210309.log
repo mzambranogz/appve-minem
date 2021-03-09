@@ -64,3 +64,5 @@ ORA-06512: en línea 1
 9/03/2021 13:10:16: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, System.String, Int32, Int32, System.String, System.String, Oracle.DataAccess.Client.OracleConnection), Línea: 76] - ORA-00933: comando SQL no terminado correctamente
 ORA-06512: en "ELECTROMOVILIDAD.PKG_ELECTROMOV_MANTENIMIENTO", línea 756
 ORA-06512: en línea 1
+9/03/2021 18:06:42: [Método: Boolean RegistrarInstitucion(sres.be.InstitucionBE, Int32 ByRef, Oracle.DataAccess.Client.OracleConnection), Línea: 24] - Referencia a objeto no establecida como instancia de un objeto.
+9/03/2021 18:08:27: [Método: Boolean RegistrarInstitucion(sres.be.InstitucionBE, Int32 ByRef, Oracle.DataAccess.Client.OracleConnection), Línea: 24] - Referencia a objeto no establecida como instancia de un objeto.

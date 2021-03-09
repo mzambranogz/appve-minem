@@ -90,5 +90,12 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        [SesionOut]
+        [Route("ver-perfil")]
+        public ActionResult Perfil()
+        {
+            return View();
+        }
     }
 }
