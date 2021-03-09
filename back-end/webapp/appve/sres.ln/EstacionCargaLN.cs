@@ -26,12 +26,13 @@ namespace sres.ln
                     bool seGuardo = true;
                     int idinstitucion = -1;
                     int idestacion = -1;
-                    if (item.INSTITUCION.ID_INSTITUCION < 0) {
+                    if (item.INSTITUCION.ID_INSTITUCION < 0)
+                    {
                         seGuardo = estacionDa.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
                         item.INSTITUCION.ID_INSTITUCION = idinstitucion;
                     }
                     if (seGuardo)
-                    {                        
+                    {
                         seGuardo = estacionDa.RegistrarEstacion(item, out idestacion, cn);
                         item.ID_ESTACION = idestacion;
                         if (item.LISTA_DOC != null)
@@ -41,15 +42,15 @@ namespace sres.ln
                                 if (seGuardo)
                                 {
                                     iDoc.ID_ESTACION = idestacion;
-                                    //if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
-                                    //{
-                                    //    string pathFormat = AppSettings.Get<string>("Path.Archivo.Documento");
-                                    //    string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
-                                    //    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
-                                    //    string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
-                                    //    if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
-                                    //    File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
-                                    //}
+                                    if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
+                                    {
+                                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Documento");
+                                        string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
+                                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                                        string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
+                                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                                        File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
+                                    }
                                     seGuardo = estacionDa.GuardarDocumento(iDoc, cn);
                                 }
                                 else break;
@@ -63,16 +64,16 @@ namespace sres.ln
                             {
                                 if (seGuardo)
                                 {
-                                    iDoc.ID_ESTACION = idestacion;                                    
-                                    //if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
-                                    //{
-                                    //    string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
-                                    //    string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
-                                    //    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
-                                    //    string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
-                                    //    if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
-                                    //    File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
-                                    //}
+                                    iDoc.ID_ESTACION = idestacion;
+                                    if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
+                                    {
+                                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                                        string pathDirectoryRelative = string.Format(pathFormat, item.UPD_USUARIO, item.ID_ESTACION);
+                                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                                        string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
+                                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                                        File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
+                                    }
                                     seGuardo = estacionDa.GuardarImagen(iDoc, cn);
                                 }
                                 else break;
@@ -104,8 +105,16 @@ namespace sres.ln
                     item.CANTIDAD_IMAGEN = item.LISTA_IMAGEN.Count;
                     string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
                     string pathDirectoryRelative = string.Format(pathFormat, item.ID_USUARIO, item.ID_ESTACION);
-                    foreach (DocumentoBE img in item.LISTA_IMAGEN)                                           
-                        img.RUTA = pathDirectoryRelative + "\\"+ img.ARCHIVO_BASE;
+                    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+
+                    foreach (DocumentoBE img in item.LISTA_IMAGEN)
+                    {
+                        string pathFile = Path.Combine(pathDirectory, img.ARCHIVO_BASE);
+                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                        pathFile = !File.Exists(pathFile) ? null : pathFile;
+                        img.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
+                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
+                    }
                 }
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
@@ -162,7 +171,7 @@ namespace sres.ln
                         img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
                         img.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
                     }
-                        
+
                 }
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

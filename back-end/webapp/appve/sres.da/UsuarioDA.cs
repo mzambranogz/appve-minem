@@ -58,7 +58,7 @@ namespace sres.da
         #endregion
 
         #region PAQUETE MANTENIMIENTO
-        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<UsuarioBE> BuscarUsuario(string busqueda, string estado, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<UsuarioBE> lista = null;
 
@@ -67,6 +67,7 @@ namespace sres.da
                     string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_USUARIO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_BUSCAR", busqueda);
+                    p.Add("PI_FLAG_ESTADO", estado);
                     p.Add("PI_REGISTROS", registros);
                     p.Add("PI_PAGINA", pagina);
                     p.Add("PI_COLUMNA", columna);
