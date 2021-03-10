@@ -54,6 +54,7 @@ namespace Logica.minem.gob.pe
             return obj;
         }
 
+
         public List<EscenarioConvencionalBE> CalcularVC(VehiculoConvencionalBE entidad)
         {
             List<EscenarioConvencionalBE> lista = new List<EscenarioConvencionalBE>();
@@ -192,13 +193,13 @@ namespace Logica.minem.gob.pe
                     {
                         for (int i = 0; i < 15; i++)
                         {
-                            if (i == 0) arrEnergiaNominalVC[i] = entidad.GASTO_COMBUSTIBLE_VC * 4 * entidad.MESES_USO_VC;
+                            if (i == 0) arrEnergiaNominalVC[i] = entidad.GASTO_COMBUSTIBLE_VC * 4 * decimal.Parse(entidad.MESES_USO_VC.ToString()); //actualizar el decimal.Parse
                             else arrEnergiaNominalVC[i] = arrEnergiaNominalVC[i - 1] * (1 + ipc) * (1 + reduccion_eficiencia_motor) * (1 + entidad.PORC_AUMENTO_COMBUSTIBLE_VC);
                         }
                     }
                     else
                     {
-                        decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                        decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12); //actualizar el decimal.Parse
                         for (int i = 0; i < 15; i++)
                         {
                             if (i == 0) arrEnergiaNominalVC[i] = (km_anual / entidad.RENDIMIENTO_VC) * entidad.PRECIO_COMBUSTIBLE_VC;
@@ -241,6 +242,7 @@ namespace Logica.minem.gob.pe
                         else arrManteContinuoNominalVC[i] = arrManteContinuoNominalVC[i - 1] * (1 + ipc);
                     }
                 }
+
 
                 //Mantenimiento continuo Neto VC
                 for (var i = 0; i < 15; i++)
@@ -362,6 +364,8 @@ namespace Logica.minem.gob.pe
             return lista;
         }
 
+
+
         public List<EscenarioElectromovilidadBE> CalcularVE(VehiculoElectricoBE entidad)
         {
             List<EscenarioElectromovilidadBE> lista = new List<EscenarioElectromovilidadBE>();
@@ -443,7 +447,7 @@ namespace Logica.minem.gob.pe
                             else arrIncentivoAcumuladoVE[i] = arrIncentivoNetoVE[i] + arrIncentivoAcumuladoVE[i - 1];
                         }
                     }
-                    else if (entidad.TIPO_INCENTIVO_VE == 1)
+                    else if (entidad.TIPO_INCENTIVO_VE == 2)
                     {
                         if (entidad.FORMA_INCENTIVO_VE == 1)
                         {
@@ -587,7 +591,7 @@ namespace Logica.minem.gob.pe
                 }
 
                 //Energia (Electricidad y combustible) Nominal VC
-                decimal km_anual_ve = (entidad.KILOMETRO_SEMANAL_VE * 52) * (entidad.MESES_USO_VE / 12);
+                decimal km_anual_ve = (entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12); //actualizar el decimal.Parse
                 decimal energia_ve = (km_anual_ve / entidad.RENDIMIENTO_VE) * entidad.TARIFA_VE;
                 for (var i = 0; i < 15; i++)
                 {
@@ -644,6 +648,7 @@ namespace Logica.minem.gob.pe
             return lista;
         }
 
+
         public List<TransportePublicoBE> ObtenerLyendas(ConsumoEnergeticoConvencionalBE entidad)
         {
             List<TransportePublicoBE> listatp = new List<TransportePublicoBE>();
@@ -688,7 +693,7 @@ namespace Logica.minem.gob.pe
                 if (entidad.P2 == "1" || entidad.P1 == "1")
                 {
                     decimal factor_rendimiento = elecLN.ListaFactor1P(17, 2, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
-                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12); //actualizar el decimal.Parse
                     vehiculo_ce = km_anual / factor_rendimiento;
                 }
 
@@ -696,7 +701,7 @@ namespace Logica.minem.gob.pe
                 for (int i = 0; i < tamanio; i++)
                 {
                     decimal rendimiento_pasajero = elecLN.ListaFactor1P(16, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
-                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO / rendimiento_pasajero;
+                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * decimal.Parse(entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO.ToString()) / rendimiento_pasajero; //actualizar el decimal.Parse
                     arrConsumoEnergetivoVC[i + 1] = consumo_energetico;
                 }
 
@@ -729,7 +734,7 @@ namespace Logica.minem.gob.pe
 
                 decimal[] arrConsumoEnergetivoVE = new decimal[5];
 
-                arrConsumoEnergetivoVE[0] = (((entidad.KILOMETRO_SEMANAL_VE * 52) * (entidad.MESES_USO_VE / 12)) / entidad.RENDIMIENTO_VE) * equivalenteenergetico;
+                arrConsumoEnergetivoVE[0] = (((entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12)) / entidad.RENDIMIENTO_VE) * equivalenteenergetico; //actualizar el decimal.Parse
 
                 for (int i = 0; i < 15; i++)
                 {
@@ -785,7 +790,7 @@ namespace Logica.minem.gob.pe
                 {
                     arrFactorEmisionVC[i] = elecLN.ListaFactor1P(14, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
                     decimal rendimiento_pasajero = elecLN.ListaFactor1P(16, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
-                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO / rendimiento_pasajero;
+                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * decimal.Parse(entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO.ToString()) / rendimiento_pasajero; //actualizar el decimal.Parse
                     arrConsumoEnergetivoVC[i] = consumo_energetico;
                 }
 
@@ -802,7 +807,7 @@ namespace Logica.minem.gob.pe
                 {
                     for (int i = 0; i < 15; i++)
                     {
-                        arrOperacionVehiculoVC[i] = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12) * entidad.FACTOR_EMISION_VC * (i + 1);
+                        arrOperacionVehiculoVC[i] = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12) * entidad.FACTOR_EMISION_VC * (i + 1); //actualizar el decimal.Parse
                     }
                 }
 
@@ -845,7 +850,7 @@ namespace Logica.minem.gob.pe
                     arrFabricacionBateriaVE[i] = fabricacion_bateria * entidad.CAPACIDAD_BATERIA_VE;
                 }
 
-                decimal operacion_vehiculo = (entidad.KILOMETRO_SEMANAL_VE * 52) * (entidad.MESES_USO_VE / 12) / entidad.RENDIMIENTO_VE * (factor_emision_consumo / (1 - perdida_transmision_distribucion));
+                decimal operacion_vehiculo = (entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12) / entidad.RENDIMIENTO_VE * (factor_emision_consumo / (1 - perdida_transmision_distribucion)); //actualizar el decimal.Parse
                 for (int i = 0; i < 15; i++)
                 {
                     arrOperacionVehiculoVE[i] = operacion_vehiculo * (i + 1);
@@ -889,7 +894,7 @@ namespace Logica.minem.gob.pe
                 //Vehiculo convencional
                 if (entidad.P1 == "1" || entidad.P2 == "1")
                 {
-                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (entidad.MESES_USO_VC / 12);
+                    decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12); //actualizar el decimal.Parse
                     decimal nox_vc = elecLN.ListaFactor2P(18, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
                     decimal co_vc = elecLN.ListaFactor2P(19, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
                     decimal pm25_vc = elecLN.ListaFactor2P(20, 1, 2, entidad.ID_TIPO_VEHICULO_VC, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
@@ -942,7 +947,6 @@ namespace Logica.minem.gob.pe
 
             return lista;
         }
-
 
         public bool GuardarResultados(ResultadosBE entidad)
         {
