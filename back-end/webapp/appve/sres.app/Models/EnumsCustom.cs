@@ -11,7 +11,7 @@ namespace sres.app.Models
         public enum Roles
         {
             ADMINISTRADOR = 1,
-            ESPECIALISTA = 2,
+            PROPIETARIO = 2,
             PUBLICO = 3
         }
 

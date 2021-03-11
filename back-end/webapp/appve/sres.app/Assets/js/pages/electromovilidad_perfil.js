@@ -2,7 +2,7 @@
 $(document).ready(() => {
     cargarComponentes();
 });
-
+//prioridad 19
 var cargarComponentes = () => {
     let url = `${baseUrl}api/usuario/consultarperfil?idusuario=${idUsuarioLogin}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
@@ -69,7 +69,7 @@ var actualizarDatos = () => {
             DIRECCION: direccion,
         };
     }
-
+    //prioridad 20
     let url = `${baseUrl}api/usuario/guardarperfil`;
     let data = { ID_USUARIO: idUsuarioLogin, NOMBRES: nombres, ID_GENERO: genero, ID_INSTITUCION: idinstitucion, INSTITUCION: arrInstitucion };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };

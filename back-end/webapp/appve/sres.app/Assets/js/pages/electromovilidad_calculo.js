@@ -975,6 +975,7 @@ var evaluar = () => {
         ANIO_CREDITO_VE: anio_credito_ve, SEGURO_VE: seguro_ve, PORCENTAJE_ANUAL_VE: porcentaje_anual_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve, TARIFA_VE: tarifa_ve,
         PRECIO_CARGADOR: precio_cargador, COSTO_INSTALACION: costo_instalacion,
     };
+
     console.log(JSON.stringify('Vehiculo electrico:'));
     console.log(JSON.stringify(data_ve));
 
