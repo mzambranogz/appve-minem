@@ -58,7 +58,7 @@ namespace sres.da
         #endregion
 
         #region PAQUETE MANTENIMIENTO
-        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<UsuarioBE> BuscarUsuario(string busqueda, string estado, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<UsuarioBE> lista = null;
 
@@ -67,6 +67,7 @@ namespace sres.da
                     string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_USUARIO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_BUSCAR", busqueda);
+                    p.Add("PI_FLAG_ESTADO", estado);
                     p.Add("PI_REGISTROS", registros);
                     p.Add("PI_PAGINA", pagina);
                     p.Add("PI_COLUMNA", columna);
@@ -262,6 +263,50 @@ namespace sres.da
             catch (Exception ex) { Log.Error(ex); }
 
             return verificacion;
+        }
+
+        public UsuarioBE getInstitucion(int idUsuario, OracleConnection db)
+        {
+            UsuarioBE user = new UsuarioBE();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_USUARIO_INSTITUCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_USUARIO", idUsuario);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                user = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return user;
+        }        
+
+        public bool GuardarPerfil(UsuarioBE usuario, OracleConnection db)
+        {
+            bool seActualizo = false;
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_GUARDAR_PERFIL";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_USUARIO", usuario.ID_USUARIO);
+                p.Add("PI_NOMBRES", usuario.NOMBRES);
+                p.Add("PI_ID_GENERO", usuario.ID_GENERO);
+                p.Add("PI_UPD_USUARIO", usuario.ID_USUARIO);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seActualizo = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return seActualizo;
         }
         #endregion
     }

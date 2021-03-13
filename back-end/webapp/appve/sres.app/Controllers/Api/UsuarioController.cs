@@ -21,9 +21,9 @@ namespace sres.app.Controllers.Api
 
         [Route("buscarusuario")]
         [HttpGet]
-        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<UsuarioBE> BuscarUsuario(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
-            return usuarioLN.BuscarUsuario(busqueda , registros, pagina, columna, orden);
+            return usuarioLN.BuscarUsuario(busqueda, estado , registros, pagina, columna, orden);
         }
 
         [Route("obtenerusuario")]
@@ -134,6 +134,20 @@ namespace sres.app.Controllers.Api
         public bool VerificarCorreo(string correo)
         {
             return usuarioLN.VerificarCorreo(correo);
+        }
+
+        [Route("consultarperfil")]
+        [HttpGet]
+        public UsuarioBE ConsultarPerfil(int idusuario)
+        {
+            return usuarioLN.ConsultarPerfil(idusuario);
+        }
+
+        [Route("guardarperfil")]
+        [HttpPost]
+        public bool GuardarPerfil(UsuarioBE usuario)
+        {
+            return usuarioLN.GuardarPerfil(usuario);
         }
     }
 }

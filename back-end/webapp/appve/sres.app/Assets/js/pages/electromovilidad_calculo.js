@@ -929,6 +929,9 @@ var evaluar = () => {
         LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
     };
 
+    console.log(data_vc);
+    console.log(JSON.stringify(data_vc));
+
     //Vehiculo electrico costo
     let p_incentivo = $('#rad-inc-si-ve').prop('checked') ? '1' : '0';
     let p_seguro_ve = $('#rad-sv-si-ve').prop('checked') ? '1' : '0';
@@ -973,35 +976,50 @@ var evaluar = () => {
         PRECIO_CARGADOR: precio_cargador, COSTO_INSTALACION: costo_instalacion,
     };
 
+    console.log(JSON.stringify('Vehiculo electrico:'));
+    console.log(JSON.stringify(data_ve));
+
     //Leyendas
     data_l ={
         LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
     }
+    console.log(JSON.stringify('leyenda:'));
+    console.log(JSON.stringify(data_l));
 
     //Consumo energetivo convencional
     data_ce_vc = {
         P1: p1, P2: p2, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, MESES_USO_VC: meses_uso_vc, ID_TIPO_COMBUSTIBLE_VC: tipo_combustible_vc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
     }
+    console.log(JSON.stringify('Consumo energetivo convencional:'));
+    console.log(JSON.stringify(data_ce_vc));
 
     //Consumo energetivo electrico
     data_ce_ve = {
         KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
     }
+    console.log(JSON.stringify('Consumo energetivo electrico:'));
+    console.log(JSON.stringify(data_ce_ve));
 
     //Emisiones Convencional
     data_em_vc = {
         P1: p1, P2: p2, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, MESES_USO_VC: meses_uso_vc, FACTOR_EMISION_VC: factor_emisionvc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
     }
+    console.log(JSON.stringify('Emisiones Convencional:'));
+    console.log(JSON.stringify(data_em_vc));
 
     //Emisiones Electrico
     data_em_ve = {
         CAPACIDAD_BATERIA_VE: capacidad_bateria_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
     }
+    console.log(JSON.stringify('Emisiones Electrico:'));
+    console.log(JSON.stringify(data_em_ve));
 
     //Contaminantes locales
     data_cm = {
         P1: p1, P2: p2, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, MESES_USO_VC: meses_uso_vc, ID_TIPO_VEHICULO_VC: tipo_vehiculo_vc, ID_TIPO_COMBUSTIBLE_VC: tipo_combustible_vc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
     }
+    console.log(JSON.stringify('Contaminantes locales:'));
+    console.log(JSON.stringify(data_cm));
 
     //end_points 7 //Octavo Final
     //Calculo

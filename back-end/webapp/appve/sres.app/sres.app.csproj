@@ -148,6 +148,7 @@
     <Content Include="AppSettings.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Assets\css\lightbox.min.css" />
     <Content Include="Assets\css\style.css" />
     <Content Include="Assets\fonts\fa-brands-400.svg" />
     <Content Include="Assets\fonts\fa-regular-400.svg" />
@@ -348,14 +349,18 @@
     <Content Include="Assets\images\tres_estrella.png" />
     <Content Include="Assets\images\tres_estrellas.png" />
     <Content Include="Assets\images\una_estrella.png" />
+    <Content Include="Assets\js\lightbox-plus-jquery.min.js" />
     <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
     <Content Include="Assets\js\pages\electromovilidad_calculo.js" />
+    <Content Include="Assets\js\pages\electromovilidad_estacioncargarevision.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacioncarga.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacionmapa.js" />
+    <Content Include="Assets\js\pages\electromovilidad_menu_administrador.js" />
     <Content Include="Assets\js\pages\electromovilidad_menu_estacioncarga.js" />
-    <Content Include="Assets\js\pages\electromovilidad_menu_principal.js" />
+    <Content Include="Assets\js\pages\electromovilidad_menu_usuariol.js" />
     <Content Include="Assets\js\pages\electromovilidad_consultasresultados.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacionescarga.js" />
+    <Content Include="Assets\js\pages\electromovilidad_perfil.js" />
     <Content Include="Assets\js\pages\electromovilidad_verresultado.js" />
     <Content Include="Assets\js\pages\inicio.js" />
     <Content Include="Assets\js\pages\login.js" />
@@ -715,6 +720,10 @@
     <Content Include="Views\Mantenimiento\TipoCombustible.cshtml" />
     <Content Include="Views\Electromovilidad\EstacionesCarga.cshtml" />
     <Content Include="Views\Electromovilidad\EstacionesMapa.cshtml" />
+    <Content Include="Views\Electromovilidad\Perfil.cshtml" />
+    <Content Include="Views\Electromovilidad\IndexAdministrador.cshtml" />
+    <Content Include="Views\Electromovilidad\IndexUsuario.cshtml" />
+    <Content Include="Views\Electromovilidad\EstacionCargaRevision.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

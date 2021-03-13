@@ -60,53 +60,61 @@ $(".columna-filtro").click(function (e) {
 });
 
 var consultar = () => {
-    let busqueda = $('#txt-descripcion').val();;
+    let busqueda = $('#txt-descripcion').val();
+    let estado = '1';
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
     let columna = $("#columna").val();
     let orden = $("#orden").val();
-    let params = { busqueda, registros, pagina, columna, orden };
+    let params = { busqueda, estado, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `${baseUrl}api/usuario/buscarusuario?${queryParams}`;
+    //let url = `${baseUrl}api/usuario/buscarusuario?${queryParams}`;
+    let url = `${baseUrlApi}api/usuario/buscarusuario?${queryParams}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(url).then(r => r.json()).then(j => {
+    fetch(url, init).then(r => r.json()).then(j => {
         let tabla = $('#tblUsuario');
         tabla.find('tbody').html('');
         $('#viewPagination').attr('style', 'display: none !important');
-        if (j.length > 0) {
-            if (j[0].CANTIDAD_REGISTROS == 0) { $('#viewPagination').hide(); $('#view-page-result').hide(); }
-            else { $('#view-page-result').show(); $('#viewPagination').show(); }
-            $('.inicio-registros').text(j[0].CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (j[0].PAGINA - 1) * j[0].CANTIDAD_REGISTROS + 1);
-            $('.fin-registros').text(j[0].TOTAL_REGISTROS < j[0].PAGINA * j[0].CANTIDAD_REGISTROS ? j[0].TOTAL_REGISTROS : j[0].PAGINA * j[0].CANTIDAD_REGISTROS);
-            $('.total-registros').text(j[0].TOTAL_REGISTROS);
-            $('.pagina').text(j[0].PAGINA);
-            $('#ir-pagina').val(j[0].PAGINA);
-            $('#ir-pagina').attr('max', j[0].TOTAL_PAGINAS);
-            $('.total-paginas').text(j[0].TOTAL_PAGINAS);
+        if (j != null) {
+            if (j.length > 0) {
+                if (j[0].CANTIDAD_REGISTROS == 0) { $('#viewPagination').hide(); $('#view-page-result').hide(); }
+                else { $('#view-page-result').show(); $('#viewPagination').show(); }
+                $('.inicio-registros').text(j[0].CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (j[0].PAGINA - 1) * j[0].CANTIDAD_REGISTROS + 1);
+                $('.fin-registros').text(j[0].TOTAL_REGISTROS < j[0].PAGINA * j[0].CANTIDAD_REGISTROS ? j[0].TOTAL_REGISTROS : j[0].PAGINA * j[0].CANTIDAD_REGISTROS);
+                $('.total-registros').text(j[0].TOTAL_REGISTROS);
+                $('.pagina').text(j[0].PAGINA);
+                $('#ir-pagina').val(j[0].PAGINA);
+                $('#ir-pagina').attr('max', j[0].TOTAL_PAGINAS);
+                $('.total-paginas').text(j[0].TOTAL_PAGINAS);
 
-            let cantidadCeldasCabecera = tabla.find('thead tr th').length;
-            let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
-            tabla.find('tbody').html(contenido);
-            //tabla.find('.btnCambiarEstado').each(x => {
-            //    let elementButton = tabla.find('.btnCambiarEstado')[x];
-            //    $(elementButton).on('click', (e) => {
-            //        e.preventDefault();
-            //        cambiarEstado(e.currentTarget);
-            //    });
-            //});
+                let cantidadCeldasCabecera = tabla.find('thead tr th').length;
+                let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
+                tabla.find('tbody').html(contenido);
+                //tabla.find('.btnCambiarEstado').each(x => {
+                //    let elementButton = tabla.find('.btnCambiarEstado')[x];
+                //    $(elementButton).on('click', (e) => {
+                //        e.preventDefault();
+                //        cambiarEstado(e.currentTarget);
+                //    });
+                //});
 
-            tabla.find('.btnEditar').each(x => {
-                let elementButton = tabla.find('.btnEditar')[x];
-                $(elementButton).on('click', (e) => {
-                    e.preventDefault();
-                    consultarUsuario(e.currentTarget);
+                tabla.find('.btnEditar').each(x => {
+                    let elementButton = tabla.find('.btnEditar')[x];
+                    $(elementButton).on('click', (e) => {
+                        e.preventDefault();
+                        consultarUsuario(e.currentTarget);
+                    });
                 });
-            });
+            } else {
+                $('#viewPagination').hide(); $('#view-page-result').hide();
+                $('.inicio-registros').text('No se encontraron resultados');
+            }    
         } else {
             $('#viewPagination').hide(); $('#view-page-result').hide();
             $('.inicio-registros').text('No se encontraron resultados');
-        }        
+        }            
     });
 };
 
@@ -197,9 +205,11 @@ var consultarUsuario = (element) => {
     cambiarPropiedadLecturaUsuario(false);
 
     let idUsuario = $(element).attr('data-id');
-    let urlUsuario = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuario}`;
+    //let urlUsuario = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuario}`;
+    let urlUsuario = `${baseUrlApi}api/usuario/GetByFilter?idUsuario=${idUsuario}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(urlUsuario)
+    fetch(urlUsuario, init)
     .then(r => r.json())
     .then (cargarDatosUsuario);
 }
@@ -246,9 +256,10 @@ var guardarUsuario = () => {
     let genero = $('#rad-01').prop('checked') ? 1 : $('#rad-02').prop('checked') ? 2 : 0;
     let flagEstado = $('#rad-e-01').prop('checked') ? '1' : $('#rad-02').prop('checked') ? '2' : '0';
 
-    let url = `${baseUrl}api/usuario/guardarusuario`;
+    //let url = `${baseUrl}api/usuario/guardarusuario`;
+    let url = `${baseUrlApi}api/usuario/insert`;
     let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, CONTRASENA: contraseña, NOMBRES: nombres, CORREO: correo, ID_ROL: idRol, ID_GENERO: genero, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(r => r.json())
@@ -261,7 +272,8 @@ var guardarUsuario = () => {
 }
 
 var cargarInformacionInicial = () => {
-    let urlListaRol = `${baseUrl}api/rol/listarrolporestado?flagEstado=1`;
+    //let urlListaRol = `${baseUrl}api/rol/listarrolporestado?flagEstado=1`;
+    let urlListaRol = `${baseUrlApi}api/rol/listarrolporestado?flagEstado=1`;
     Promise.all([
         fetch(urlListaRol),
     ])

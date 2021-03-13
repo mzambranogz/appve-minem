@@ -14,6 +14,7 @@ namespace sres.ln
     public class UsuarioLN : BaseLN
     {
         UsuarioDA usuarioDA = new UsuarioDA();
+        InstitucionDA instDA = new InstitucionDA();
 
         public List<UsuarioBE> ListaUsuario()
         {
@@ -45,14 +46,14 @@ namespace sres.ln
             return item;
         }
 
-        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<UsuarioBE> BuscarUsuario(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
             List<UsuarioBE> lista = new List<UsuarioBE>();
 
             try
             {
                 cn.Open();
-                lista = usuarioDA.BuscarUsuario(busqueda, registros, pagina, columna, orden, cn);
+                lista = usuarioDA.BuscarUsuario(busqueda, estado, registros, pagina, columna, orden, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
@@ -113,8 +114,9 @@ namespace sres.ln
             {
                 cn.Open();
                 using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
-                {                    
-                    if (usuario.ID_USUARIO <= 0 ) usuario.CONTRASENA = string.IsNullOrEmpty(usuario.CONTRASENA) ? null : Seguridad.hashSal(usuario.CONTRASENA);
+                {
+                    //if (usuario.ID_USUARIO <= 0 ) usuario.CONTRASENA = string.IsNullOrEmpty(usuario.CONTRASENA) ? null : Seguridad.hashSal(usuario.CONTRASENA);
+                    usuario.CONTRASENA = string.IsNullOrEmpty(usuario.CONTRASENA) ? null : Seguridad.hashSal(usuario.CONTRASENA);
                     seGuardo = usuarioDA.GuardarUsuario(usuario, cn);
 
                     if (seGuardo) ot.Commit();
@@ -203,6 +205,48 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return valor;
+        }
+
+        public UsuarioBE ConsultarPerfil(int idusuario)
+        {
+            UsuarioBE item = null;
+            try
+            {
+                cn.Open();
+                item = usuarioDA.ObtenerUsuario(idusuario, cn);
+                if (item != null)
+                    if (item.ID_INSTITUCION > 0)
+                        item.INSTITUCION = instDA.ObtenerInstitucion(item.ID_INSTITUCION, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public bool GuardarPerfil(UsuarioBE usuario)
+        {
+            bool seGuardo = false;
+            int idinstitucion = 0;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    seGuardo = usuarioDA.GuardarPerfil(usuario, cn);
+                    if (seGuardo)
+                        if (usuario.ID_INSTITUCION > 0)
+                            seGuardo = instDA.RegistrarInstitucion(usuario.INSTITUCION, out idinstitucion, cn);
+
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+
+            return seGuardo;
         }
 
     }

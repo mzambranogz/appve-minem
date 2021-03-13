@@ -17,12 +17,12 @@ namespace sres.app.Controllers.Api
 
         [Route("buscarobjeto")]
         [HttpGet]
-        public List<RolBE> BuscarObjeto(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<RolBE> BuscarObjeto(string busqueda, string estado, int registros, int pagina, string columna, string orden)
         {
             List<RolBE> lista = new List<RolBE>();
             try
             {
-                lista = rolLN.ListaBusquedaRol(new RolBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+                lista = rolLN.ListaBusquedaRol(new RolBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda, FLAG_ESTADO = estado });
             }
             catch (Exception ex)
             {

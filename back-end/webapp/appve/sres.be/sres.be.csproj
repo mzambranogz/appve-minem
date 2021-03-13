@@ -63,6 +63,7 @@
     <Compile Include="EscenarioElectricoConsumoEnergBE.cs" />
     <Compile Include="EscenarioElectricoEmisionesBE.cs" />
     <Compile Include="EscenarioElectromovilidadBE.cs" />
+    <Compile Include="EstacionCargaAuxBE.cs" />
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="EstacionCargaBE.cs" />
     <Compile Include="FactorAuxBE.cs" />

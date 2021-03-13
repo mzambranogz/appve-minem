@@ -82,6 +82,7 @@ namespace sres.da
                 string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_ROL";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_BUSCAR", entidad.BUSCAR);
+                p.Add("PI_FLAG_ESTADO", entidad.FLAG_ESTADO);
                 p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
                 p.Add("PI_PAGINA", entidad.PAGINA);
                 p.Add("PI_COLUMNA", entidad.ORDER_BY);

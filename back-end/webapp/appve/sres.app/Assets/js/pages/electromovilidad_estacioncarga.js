@@ -22,7 +22,6 @@ var inicio = () => {
     cargarEstacion(idestacion);
 }
 
-//end points catorceavo
 var cargarEstacion = (id) => {
 
     //let url = `http://161.35.182.46/ApiElectromovilidad/api/login/authenticate`;
@@ -34,7 +33,8 @@ var cargarEstacion = (id) => {
     //])
     //.then(r => Promise.all(r.map(v => v.json())))
     //.then(cargarDatos);
-    
+
+    //prioridad 15
     let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
     Promise.all([
         fetch(urlConsultarEstacion),
@@ -72,6 +72,7 @@ var cargarDatos = ([estacion]) => {
                 $('#fle-protocolo').data('file', estacion.LISTA_DOC[i].ARCHIVO_CONTENIDO);
                 $('#view-protocolo .btnEliminarFile').on('click', btnEliminarFileClick);
             }
+            //prioridad 16  "/api/estacioncarga/obtenerdocumento?ruta=D:\ESCRITORIO\...." 
             if (estacion.LISTA_DOC[i].ID_DOCUMENTO == 2) {
                 let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${estacion.LISTA_DOC[i].ARCHIVO_BASE}</span>`;
                 let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
@@ -208,7 +209,6 @@ var fileImagen = (e) => {
     cantidad > 0 ? $('.imagen-estacion').removeClass('d-none') : $('.imagen-estacion').addClass('d-none');
 }
 
-//end points
 var guardar = () => {
     $('.alert-add').html('');
 
@@ -233,8 +233,8 @@ var guardar = () => {
     }
 
     arrEmpresa = {
-        ID_INSTITUCION: idinstitucion == 2, //solo de prueba el idinstitucion solo es un numero de prueba
-        //ID_INSTITUCION: idinstitucion == 0 ? -1 : idinstitucion, //verdadero
+        //ID_INSTITUCION: idinstitucion == 2, //solo de prueba el idinstitucion solo es un numero de prueba
+        ID_INSTITUCION: idinstitucion == 0 ? -1 : idinstitucion, //verdadero
         RUC: ruc,
         RAZON_SOCIAL: razon_social,
         CORREO: correo,
@@ -258,7 +258,7 @@ var guardar = () => {
 
     arrDoc.push({ ID_DOCUMENTO: 1, ARCHIVO_BASE: $('#txt-protocolo').val(), ARCHIVO_CONTENIDO: $('#fle-protocolo').data('file') });
     arrDoc.push({ ID_DOCUMENTO: 2, ARCHIVO_BASE: $('#txt-certificado').val(), ARCHIVO_CONTENIDO: $('#fle-certificado').data('file') });
-    
+    //prioridad 14
     let url = `${baseUrl}api/estacioncarga/guardarestacion`;
     let data = { ID_ESTACION: idestacion == 0 ? -1 : idestacion, INSTITUCION: arrEmpresa, LONGITUD: arrUbicacion[0], LATITUD: arrUbicacion[1], DIRECCION: direccion_estacion, DESCRIPCION: descripcion, MODELO: modelo, MARCA: marca, POTENCIA: potencia, MODO_CARGA: modo_carga, 
                  TIPO_CARGADOR: tipo_cargador, TIPO_CONECTOR: tipo_conector, CANTIDAD_CONECTOR: cantidad, HORA_DESDE: hora_desde, HORA_HASTA: hora_hasta, TARIFA_SERVICIO: tarifa,
@@ -272,6 +272,7 @@ var guardar = () => {
             j ? $('#btnGuardar').parent().hide() : '';
             j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
             if (j && idinstitucion <= 0) actualizarDatosSesion();
+            else if (j) setTimeout(redireccionar, 3000);
         }
     });
 }

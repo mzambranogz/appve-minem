@@ -1,0 +1,295 @@
+﻿
+@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Estación de carga";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+    //UsuarioBE usuario_institucion = (UsuarioBE)ViewData["usuario"];
+    int idestacion = (int)ViewData["estacion"];
+}
+@section scripts_footer{
+    <script type="text/javascript">
+        var idestacion = @idestacion == null ? 0 : @idestacion;
+    </script>
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_estacioncargarevision.js")"></script>
+}
+
+<div class="container mt-4">
+    <div id="seccion-estacion" class="mt-2">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Dirección de la estación de carga:</label>
+                        <div><input type="text" id="txt-direccion-estacion" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Descripción de la estación de carga:</label>
+                        <div><textarea id="txt-descripcion" class="form-control" rows="4" readonly></textarea></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Modelo:</label>
+                        <div><input type="text" id="txt-modelo" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Marca:</label>
+                        <div><input type="text" id="txt-marca" class="form-control" readonly /></div>
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col-12">
+                        <label>Potencia:</label>
+                        <div><input type="text" id="txt-potencia" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Modo de carga:</label>
+                        <div><input type="text" id="txt-modo-carga" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Tipo de cargador:</label>
+                        <div><input type="text" id="txt-tipo-cargador" class="form-control" readonly /></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Tipo de conectores:</label>
+                        <div><input type="text" id="txt-tipo-conector" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Cantidad conectores:</label>
+                        <div><input type="text" id="txt-cantidad-conector" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Horario desde:</label>
+                        <div><input type="time" id="txt-hora-desde" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Horario hasta:</label>
+                        <div><input type="time" id="txt-hora-hasta" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Tarifa del servicio:</label>
+                        <div><input type="text" id="txt-tarifa" class="form-control" readonly /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12-col-md-12 col-lg-6">
+                        <label for="txt-foto">Fotos (<span id="cantidad-foto">0</span> de 5):</label>&nbsp;&nbsp;
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <label class="input-group-text cursor-pointer" for="file-foto"><i class="fas fa-upload mr-1"></i><a class="imagen-estacion" href="javascript:void(0);" data-toggle="modal" data-target="#modal-foto">Visualizar imagenes <i class="fas fa-camera mr-1"></i></a></label>
+                            </div>
+                        </div>
+                        @*<div class="form-group"></div>*@
+                    </div>
+                </div>
+                <div class="row" id="protocolo-doc">
+                    @*<div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group text-left">
+                            <label class="estilo-01" for="fle-protocolo">Cumplimiento de protocolo:<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-info-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-protocolo" placeholder="Subir documentos" required>
+                                <input class="d-none fil-file-control" type="file" id="fle-protocolo" accept="application/msword, application/pdf">
+                                <div class="input-group-append">
+                                    <label class="input-group-text cursor-pointer estilo-01" for="fle-protocolo"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-end" id="view-protocolo">
+                        <label class="estilo-01">&nbsp;</label>
+                        <div class="alert alert-secondary p-1 d-flex w-100">
+                            <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div>
+                        </div>
+                    </div>*@
+                </div>
+
+                <div class="row" id="certificado-doc">
+                    @*<div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group text-left">
+                            <label class="estilo-01" for="fle-certificado">Certificado de fabricante:<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-info-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-certificado" placeholder="Subir documentos" required>
+                                <input class="d-none fil-file-control" type="file" id="fle-certificado" accept="application/msword, application/pdf">
+                                <div class="input-group-append">
+                                    <label class="input-group-text cursor-pointer estilo-01" for="fle-certificado"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-end" id="view-certificado">
+                        <label class="estilo-01">&nbsp;</label>
+                        <div class="alert alert-secondary p-1 d-flex w-100 doc-certificado">
+                            <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div id='map' style='width: 100%; height: 400px;'></div>
+        </div>
+    </div>
+    <div class="row">
+        <pre id='coordenadas'></pre>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-6"></div>
+        <div class="col-md-12 col-lg-6">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-9">
+                    <span data-toggle="modal" data-target="#aprobar-revision"><a class="btn btn-primary" href="#" data-toggle="tooltip" data-placement="top" title="Dar por aprobado esta estación de carga"><i class="fas fa-check px-1"></i>Aprobar revisión</a></span>
+                    <span data-toggle="modal" data-target="#observar-revision"><a class="btn btn-warning" href="#" data-toggle="tooltip" data-placement="top" title="¿Encontró alguna observación? utilice esta opción para solicitar una corrección"><i class="fas fa-eye px-1"></i>Rechazar revisión</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 alert-add">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">Fotos</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">Imágenes de la estación de carga</h2>
+                            <div class="form-group mt-2">
+                                <p id="marco-imagenes">
+                                    @*<a rel="example_group" href="@Url.Content("~/Assets/images/005.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/005.jpg")" /></a>
+                                        <a rel="example_group" href="@Url.Content("~/Assets/images/002.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/002.jpg")" /></a>
+                                        <a rel="example_group" href="@Url.Content("~/Assets/images/003.jpg")" title=""><img class="img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/003.jpg")" /></a>
+                                        <a rel="example_group" href="@Url.Content("~/Assets/images/004.jpg")" title=""><img class="last img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/004.jpg")" /></a>
+                                        <a rel="example_group" href="@Url.Content("~/Assets/images/006.jpg")" title=""><img class="last img-fluid" width="20%" height="30%" alt="" src="@Url.Content("~/Assets/images/006.jpg")" /></a>*@
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="observar-revision" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="row modal-header bg-sres-azul text-white" style="margin: 0px;">
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        @*<h3 class="text-center"><i class="fas fa-eye"></i> Observaciones en su revisión</h3>
+                        <p class="text-center">describa sus observaciones en el siguiente campo:</p>*@
+                        <h3 class="text-center">revisión de estación de carga</h3>
+                    </div>                    
+                </div>
+                <div class="modal-body">
+                    @*<div class="row">
+                        <div class="col-sm-12-col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label for="txa-nombre-iniciativa">Observaciones:<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup4"><i class="fas fa-comment-alt"></i></span></div>
+                                    <textarea class="form-control" id="txa-observacion-detalle" aria-describedby="inputGroup4" cols="30" rows="5" maxlength="250" required placeholder="Ingrese la descripción de su observación"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@                    
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h3 class="text-center">¿Está seguro de rechazar la estación de carga?</h3>
+                            <p class="text-center">Con esta acción se rechazará todos los datos vinculados de esta estación de carga.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" id="modalObservacion">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center" id="modalObservarBoton">
+                    <a class="btn btn-info" href="#" id="observar-estacion" data-validar="3">Si, rechazar<i class="fas fa-paper-plane ml-1"></i></a>
+                    <button class="btn btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+                <div class="modal-footer justify-content-center d-none" id="pieCorrectoObservacion">
+                    <button class="btn btn-dark" type="button" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="aprobar-revision" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="row modal-header bg-sres-azul text-white" style="margin: 0px;">
+                <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="text-center">revisión de estación de carga</h3>
+                </div>
+            </div>
+            <div class="modal-body medidas-modal">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="text-center">¿Está seguro de aprobar la estación de carga?</h3>
+                        <p class="text-center">Está de acuerdo en aprobar todos los datos vinculados de esta estación de carga.</p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12" id="modalAprobacion">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center" id="modalAprobarBoton">
+                <button class="btn btn-info" type="button" id="aprobar-estacion" data-validar="2" >Si, aprobar</button>
+                <button class="btn btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+            </div>
+            <div class="modal-footer justify-content-center d-none" id="pieCorrectoAprobacion">
+                <button class="btn btn-dark" type="button" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -73,5 +73,20 @@ namespace sres.app.Controllers.Api
             List<EstacionCargaBE> lista = estacionLN.getEstacionAll();
             return lista;
         }
+
+        [Route("buscarestaciones")]
+        [HttpGet]
+        public List<EstacionCargaBE> BuscarEstaciones(string nroInforme, string propietario, string empresa, int registros, int pagina, string columna, string orden)
+        {
+            List<EstacionCargaBE> estaciones = estacionLN.BuscarEstaciones(nroInforme == "" ? 0 : Convert.ToInt32(nroInforme), propietario, empresa, registros, pagina, columna, orden);
+            return estaciones;
+        }
+
+        [Route("revisionestacion")]
+        [HttpPost]
+        public bool RevisionEstacion(EstacionCargaBE entidad)
+        {            
+            return estacionLN.RevisionEstacion(entidad);
+        }
     }
 }

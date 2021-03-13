@@ -12,36 +12,7 @@ using System.Threading.Tasks;
 namespace sres.da
 {
     public class EstacionCargaDA : BaseDA
-    {
-        public bool RegistrarInstitucion(InstitucionBE entidad, out int idinstitucion, OracleConnection db) {
-            bool seGuardo = false;
-            idinstitucion = -1;
-            try
-            {
-                string sp = $"{Package.Calculo}USP_PRC_GUARDAR_INSTITUCION";
-                var p = new OracleDynamicParameters();
-                p.Add("PI_ID_INSTITUCION", entidad.ID_INSTITUCION);
-                p.Add("PI_RUC", entidad.RUC);
-                p.Add("PI_RAZON_SOCIAL", entidad.RAZON_SOCIAL);
-                p.Add("PI_CORREO", entidad.CORREO);
-                p.Add("PI_TELEFONO", entidad.TELEFONO);
-                p.Add("PI_DIRECCION", entidad.DIRECCION);
-                p.Add("PI_UPD_USUARIO", entidad.UPD_USUARIO);
-                p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
-                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
-                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                idinstitucion = (int)p.Get<dynamic>("PI_ID_GET").Value;
-                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-                seGuardo = filasAfectadas > 0 && idinstitucion != -1;
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
-
-            return seGuardo;
-        }
-
+    {      
         public bool RegistrarEstacion(EstacionCargaBE entidad, out int idestacion, OracleConnection db)
         {
             bool seGuardo = false;
@@ -92,6 +63,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
                 p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
+                //p.Add("PI_ARCHIVO_CONTENIDO", inscripcionDoc.ARCHIVO_CONTENIDO, dbType: OracleDbType.Blob);
                 p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
                 p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
@@ -128,6 +100,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
                 p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
+                //p.Add("PI_ARCHIVO_CONTENIDO", inscripcionDoc.ARCHIVO_CONTENIDO, dbType: OracleDbType.Blob);
                 p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
                 p.Add("PI_FLAG_ESTADO", inscripcionDoc.FLAG_ESTADO);
                 p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
@@ -198,25 +171,6 @@ namespace sres.da
             return lista;
         }
 
-        public UsuarioBE getInstitucion(int idUsuario, OracleConnection db)
-        {
-            UsuarioBE user = new UsuarioBE();
-            try
-            {
-                string sp = $"{Package.Calculo}USP_SEL_USUARIO_INSTITUCION";
-                var p = new OracleDynamicParameters();
-                p.Add("PI_ID_USUARIO", idUsuario);
-                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                user = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-
-            return user;
-        }
-
         public EstacionCargaBE getEstacion(int idestacion, OracleConnection db)
         {
             EstacionCargaBE obj = new EstacionCargaBE();
@@ -274,6 +228,53 @@ namespace sres.da
             }
 
             return lista;
+        }
+
+        public List<EstacionCargaBE> BuscarEstaciones(int nroInforme, string propietario, string empresa, int registros, int pagina, string columna, string orden, OracleConnection db)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_BUSQ_ESTACIONES";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_CODIGO", nroInforme);
+                p.Add("PI_NOMBRES", propietario);
+                p.Add("PI_EMPRESA", empresa);
+                p.Add("PI_REGISTROS", registros);
+                p.Add("PI_PAGINA", pagina);
+                p.Add("PI_COLUMNA", columna);
+                p.Add("PI_ORDEN", orden);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public bool RevisionEstacion(EstacionCargaBE entidad, OracleConnection db)
+        {
+            bool v = true;
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_REVISION_ESTACION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", entidad.ID_ESTACION);
+                p.Add("PI_ID_USUARIO", entidad.ID_USUARIO);
+                p.Add("PI_FLAG_ESTADO", entidad.FLAG_ESTADO);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                v = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                v = false;
+            }
+
+            return v;
         }
     }
 }

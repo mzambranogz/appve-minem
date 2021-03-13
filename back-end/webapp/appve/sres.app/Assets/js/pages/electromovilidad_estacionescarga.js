@@ -5,7 +5,7 @@ $(document).ready(() => {
     cargarComponentes();
 });
 
-//end points doceavo
+//prioridad 17
 var cargarComponentes = () => {
     let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`;
     Promise.all([
@@ -102,7 +102,7 @@ $(document).on('click', '.imagen-estacion', (e) => {
     }
 });
 
-//end points treceavo
+//prioridad 18
 $(document).on('click', '.EliminarEstacion', (e) => {
     let id = $(`#${e.currentTarget.id}`).data('valor');
     if (id == null) return;

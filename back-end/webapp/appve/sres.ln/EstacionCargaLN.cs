@@ -15,6 +15,8 @@ namespace sres.ln
     public class EstacionCargaLN : BaseLN
     {
         EstacionCargaDA estacionDa = new EstacionCargaDA();
+        UsuarioDA usuDA = new UsuarioDA();
+        InstitucionDA instDA = new InstitucionDA();
 
         public bool GuardarEstacionCarga(EstacionCargaBE item)
         {
@@ -26,12 +28,13 @@ namespace sres.ln
                     bool seGuardo = true;
                     int idinstitucion = -1;
                     int idestacion = -1;
-                    if (item.INSTITUCION.ID_INSTITUCION < 0) {
-                        seGuardo = estacionDa.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
+                    if (item.INSTITUCION.ID_INSTITUCION < 0)
+                    {
+                        seGuardo = instDA.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
                         item.INSTITUCION.ID_INSTITUCION = idinstitucion;
                     }
                     if (seGuardo)
-                    {                        
+                    {
                         seGuardo = estacionDa.RegistrarEstacion(item, out idestacion, cn);
                         item.ID_ESTACION = idestacion;
                         if (item.LISTA_DOC != null)
@@ -63,7 +66,7 @@ namespace sres.ln
                             {
                                 if (seGuardo)
                                 {
-                                    iDoc.ID_ESTACION = idestacion;                                    
+                                    iDoc.ID_ESTACION = idestacion;
                                     if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
                                     {
                                         string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
@@ -104,8 +107,16 @@ namespace sres.ln
                     item.CANTIDAD_IMAGEN = item.LISTA_IMAGEN.Count;
                     string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
                     string pathDirectoryRelative = string.Format(pathFormat, item.ID_USUARIO, item.ID_ESTACION);
-                    foreach (DocumentoBE img in item.LISTA_IMAGEN)                                           
-                        img.RUTA = pathDirectoryRelative + "\\"+ img.ARCHIVO_BASE;
+                    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+
+                    foreach (DocumentoBE img in item.LISTA_IMAGEN)
+                    {
+                        string pathFile = Path.Combine(pathDirectory, img.ARCHIVO_BASE);
+                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                        pathFile = !File.Exists(pathFile) ? null : pathFile;
+                        img.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
+                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
+                    }
                 }
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
@@ -119,7 +130,7 @@ namespace sres.ln
             try
             {
                 cn.Open();
-                user = estacionDa.getInstitucion(idUsuario, cn);
+                user = usuDA.getInstitucion(idUsuario, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
@@ -162,7 +173,7 @@ namespace sres.ln
                         img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
                         img.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
                     }
-                        
+
                 }
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
@@ -194,6 +205,34 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;
+        }
+
+        public List<EstacionCargaBE> BuscarEstaciones(int nroInforme, string propietario, string empresa, int registros, int pagina, string columna, string orden)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = estacionDa.BuscarEstaciones(nroInforme, propietario, empresa, registros, pagina, columna, orden, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public bool RevisionEstacion(EstacionCargaBE entidad)
+        {
+            bool v = true;
+            try
+            {
+                cn.Open();
+                v = estacionDa.RevisionEstacion(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return v;
         }
     }
 }
