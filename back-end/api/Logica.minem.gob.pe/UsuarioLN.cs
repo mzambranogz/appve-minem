@@ -14,7 +14,7 @@ namespace Logica.minem.gob.pe
     public class UsuarioLN : BaseLN
     {
         UsuarioDA usuarioDA = new UsuarioDA();
-
+        InstitucionDA instDA = new InstitucionDA();
         public List<UsuarioBE> ListaUsuario()
         {
             List<UsuarioBE> lista = new List<UsuarioBE>();
@@ -285,5 +285,46 @@ namespace Logica.minem.gob.pe
             return item;
         }
 
+        public UsuarioBE ConsultarPerfil(int idusuario)
+        {
+            UsuarioBE item = null;
+            try
+            {
+                cn.Open();
+                item = usuarioDA.ObtenerUsuario(idusuario, cn);
+                if (item != null)
+                    if (item.ID_INSTITUCION > 0)
+                        item.INSTITUCION = instDA.ObtenerInstitucion(item.ID_INSTITUCION, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public bool GuardarPerfil(UsuarioBE usuario)
+        {
+            bool seGuardo = false;
+            int idinstitucion = 0;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    seGuardo = usuarioDA.GuardarPerfil(usuario, cn);
+                    if (seGuardo)
+                        if (usuario.ID_INSTITUCION > 0)
+                            seGuardo = instDA.RegistrarInstitucion(usuario.INSTITUCION, out idinstitucion, cn);
+
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+
+            return seGuardo;
+        }
     }
 }

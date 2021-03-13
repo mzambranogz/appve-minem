@@ -16,6 +16,8 @@ namespace Logica.minem.gob.pe
     public class EstacionCargaLN : BaseLN
     {
         EstacionCargaDA estacionDa = new EstacionCargaDA();
+        UsuarioDA usuDA = new UsuarioDA();
+        InstitucionDA instDA = new InstitucionDA();
 
         public bool GuardarEstacionCarga(EstacionCargaBE item)
         {
@@ -29,7 +31,7 @@ namespace Logica.minem.gob.pe
                     int idestacion = -1;
                     if (item.INSTITUCION.ID_INSTITUCION < 0)
                     {
-                        seGuardo = estacionDa.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
+                        seGuardo = instDA.RegistrarInstitucion(item.INSTITUCION, out idinstitucion, cn);
                         item.INSTITUCION.ID_INSTITUCION = idinstitucion;
                     }
                     if (seGuardo)
@@ -91,6 +93,39 @@ namespace Logica.minem.gob.pe
 
             return item.OK;
         }
+
+        public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                cn.Open();
+                lista = estacionDa.getEstacionPorUsuario(idusuario, cn);
+                foreach (EstacionCargaBE item in lista)
+                {
+                    item.LISTA_DOC = estacionDa.getAllEstacionDocumento(item, cn);
+                    item.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(item, cn);
+                    item.CANTIDAD_IMAGEN = item.LISTA_IMAGEN.Count;
+                    string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                    string pathDirectoryRelative = string.Format(pathFormat, item.ID_USUARIO, item.ID_ESTACION);
+                    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+
+                    foreach (DocumentoBE img in item.LISTA_IMAGEN)
+                    {
+                        string pathFile = Path.Combine(pathDirectory, img.ARCHIVO_BASE);
+                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                        pathFile = !File.Exists(pathFile) ? null : pathFile;
+                        img.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
+                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
+                    }
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+
         public EstacionCargaBE getEstacion(int idestacion)
         {
             EstacionCargaBE obj = new EstacionCargaBE();
@@ -148,52 +183,7 @@ namespace Logica.minem.gob.pe
             return v;
         }
 
-        public List<EstacionCargaBE> getEstacionAll()
-        {
-            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
-            try
-            {
-                cn.Open();
-                lista = estacionDa.getEstacionAll(cn);
-            }
-            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
-            return lista;
-        }
 
-        public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario)
-        {
-            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
-            try
-            {
-                cn.Open();
-                lista = estacionDa.getEstacionPorUsuario(idusuario, cn);
-                foreach (EstacionCargaBE item in lista)
-                {
-                    item.LISTA_DOC = estacionDa.getAllEstacionDocumento(item, cn);
-                    item.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(item, cn);
-                    item.CANTIDAD_IMAGEN = item.LISTA_IMAGEN.Count;
-                    string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
-                    string pathDirectoryRelative = string.Format(pathFormat, item.ID_USUARIO, item.ID_ESTACION);
-                    foreach (DocumentoBE img in item.LISTA_IMAGEN)
-                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
-                }
-            }
-            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
-
-            return lista;
-        }
-        public UsuarioBE getInstitucion(int idUsuario)
-        {
-            UsuarioBE user = new UsuarioBE();
-            try
-            {
-                cn.Open();
-                user = estacionDa.getInstitucion(idUsuario, cn);
-            }
-            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
-
-            return user;
-        }
     }
 }

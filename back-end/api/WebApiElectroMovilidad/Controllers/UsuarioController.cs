@@ -62,6 +62,20 @@ namespace WebApiElectroMovilidad.Controllers
         {
             UsuarioBE c = usuarioLN.EliminarUsuario(oUsuario);
             return c.OK;
-        }  
+        }
+
+        [Route("consultarperfil")]
+        [HttpGet]
+        public UsuarioBE ConsultarPerfil(int idusuario)
+        {
+            return usuarioLN.ConsultarPerfil(idusuario);
+        }
+
+        [Route("guardarperfil")]
+        [HttpPost]
+        public bool GuardarPerfil(UsuarioBE usuario)
+        {
+            return usuarioLN.GuardarPerfil(usuario);
+        }
     }
 }
