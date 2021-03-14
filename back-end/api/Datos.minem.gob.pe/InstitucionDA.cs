@@ -13,6 +13,8 @@ namespace Datos.minem.gob.pe
 {
     public class InstitucionDA : BaseDA
     {
+
+
         public bool RegistrarInstitucion(InstitucionBE entidad, out int idinstitucion, OracleConnection db)
         {
             bool seGuardo = false;
@@ -58,5 +60,7 @@ namespace Datos.minem.gob.pe
 
             return item;
         }
+
+
     }
 }

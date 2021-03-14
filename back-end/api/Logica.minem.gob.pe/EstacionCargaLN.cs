@@ -183,7 +183,30 @@ namespace Logica.minem.gob.pe
             return v;
         }
 
+        public List<EstacionCargaBE> getEstacionAll()
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                cn.Open();
+                lista = estacionDa.getEstacionAll(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
+            return lista;
+        }
 
+        public UsuarioBE getInstitucion(int idUsuario)
+        {
+            UsuarioBE user = new UsuarioBE();
+            try
+            {
+                cn.Open();
+                user = estacionDa.getInstitucion(idUsuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return user;
+        }
     }
 }

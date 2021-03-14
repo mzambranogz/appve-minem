@@ -15,6 +15,7 @@ namespace Logica.minem.gob.pe
     {
         UsuarioDA usuarioDA = new UsuarioDA();
         InstitucionDA instDA = new InstitucionDA();
+
         public List<UsuarioBE> ListaUsuario()
         {
             List<UsuarioBE> lista = new List<UsuarioBE>();
@@ -326,5 +327,7 @@ namespace Logica.minem.gob.pe
 
             return seGuardo;
         }
+
+
     }
 }

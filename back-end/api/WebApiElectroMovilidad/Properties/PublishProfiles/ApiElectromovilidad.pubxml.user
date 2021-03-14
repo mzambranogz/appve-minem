@@ -10,115 +10,115 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Dapper.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/Datos.minem.gob.pe.dll">
-      <publishTime>03/05/2021 12:14:33</publishTime>
+      <publishTime>03/14/2021 04:02:40</publishTime>
     </File>
     <File Include="bin/Entidad.minem.gob.pe.dll">
-      <publishTime>03/05/2021 10:49:45</publishTime>
+      <publishTime>03/14/2021 04:02:40</publishTime>
     </File>
     <File Include="bin/es/System.Net.Http.Formatting.resources.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/es/System.Web.Http.resources.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/es/System.Web.Http.WebHost.resources.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/Logica.minem.gob.pe.dll">
-      <publishTime>03/05/2021 12:14:33</publishTime>
+      <publishTime>03/14/2021 04:02:41</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.JsonWebTokens.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Logging.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Tokens.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/Oracle.DataAccess.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/System.Collections.Immutable.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/System.Reflection.Metadata.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/System.IdentityModel.Tokens.Jwt.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/System.Web.Cors.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/System.Web.Http.Cors.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="bin/Util.minem.gob.pe.dll">
-      <publishTime>03/05/2021 10:49:45</publishTime>
+      <publishTime>03/14/2021 04:02:40</publishTime>
     </File>
     <File Include="bin/WebApiElectroMovilidad.dll">
-      <publishTime>03/05/2021 12:14:39</publishTime>
+      <publishTime>03/14/2021 04:02:45</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="Plantillas/CreacionUsuario.html">
-      <publishTime>03/03/2021 11:31:31</publishTime>
+      <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/05/2021 10:49:52</publishTime>
+      <publishTime>03/14/2021 04:02:46</publishTime>
     </File>
   </ItemGroup>
 </Project>

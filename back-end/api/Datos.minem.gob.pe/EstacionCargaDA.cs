@@ -53,6 +53,49 @@ namespace Datos.minem.gob.pe
 
             return seGuardo;
         }
+		
+		public bool GuardarDocumento(DocumentoBE inscripcionDoc, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Calculo}USP_PRC_MAN_DOCUMENTO_DATA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
+                p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
+                p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
+                p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+        public bool GuardarImagen(DocumentoBE inscripcionDoc, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Calculo}USP_PRC_MAN_DOCUMENTO_IMG";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
+                p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
+                p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
+                p.Add("PI_FLAG_ESTADO", inscripcionDoc.FLAG_ESTADO);
+                p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+		
         public bool DeshabilitarImagen(int id_estacion, OracleConnection db)
         {
             bool seGuardo = true;
@@ -67,6 +110,25 @@ namespace Datos.minem.gob.pe
 
             return seGuardo;
         }
+		
+		public List<EstacionCargaBE> getEstacionAll(OracleConnection db)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_ALL_ESTACION";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+        
         public bool EliminarEstacion(int idestacion, OracleConnection db)
         {
             bool v = true;
@@ -88,6 +150,37 @@ namespace Datos.minem.gob.pe
 
             return v;
         }
+		
+		public bool RegistrarInstitucion(InstitucionBE entidad, out int idinstitucion, OracleConnection db)
+        {
+            bool seGuardo = false;
+            idinstitucion = -1;
+            try
+            {
+                string sp = $"{Package.Calculo}USP_PRC_GUARDAR_INSTITUCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", entidad.ID_INSTITUCION);
+                p.Add("PI_RUC", entidad.RUC);
+                p.Add("PI_RAZON_SOCIAL", entidad.RAZON_SOCIAL);
+                p.Add("PI_CORREO", entidad.CORREO);
+                p.Add("PI_TELEFONO", entidad.TELEFONO);
+                p.Add("PI_DIRECCION", entidad.DIRECCION);
+                p.Add("PI_UPD_USUARIO", entidad.UPD_USUARIO);
+                p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                idinstitucion = (int)p.Get<dynamic>("PI_ID_GET").Value;
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0 && idinstitucion != -1;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+            }
+
+            return seGuardo;
+        }
+		
         public List<DocumentoBE> getAllEstacionDocumento(EstacionCargaBE item, OracleConnection db)
         {
             List<DocumentoBE> lista = new List<DocumentoBE>();
@@ -124,6 +217,7 @@ namespace Datos.minem.gob.pe
 
             return lista;
         }
+
         public EstacionCargaBE getEstacion(int idestacion, OracleConnection db)
         {
             EstacionCargaBE obj = new EstacionCargaBE();
@@ -142,7 +236,8 @@ namespace Datos.minem.gob.pe
 
             return obj;
         }
-        public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario, OracleConnection db)
+		
+		public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario, OracleConnection db)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
@@ -160,48 +255,24 @@ namespace Datos.minem.gob.pe
 
             return lista;
         }
-        public bool GuardarImagen(DocumentoBE inscripcionDoc, OracleConnection db)
+		
+        public UsuarioBE getInstitucion(int idUsuario, OracleConnection db)
         {
-            bool seGuardo = false;
+            UsuarioBE user = new UsuarioBE();
             try
             {
-                string sp = $"{Package.Calculo}USP_PRC_MAN_DOCUMENTO_IMG";
+                string sp = $"{Package.Calculo}USP_SEL_USUARIO_INSTITUCION";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
-                p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
-                //p.Add("PI_ARCHIVO_CONTENIDO", inscripcionDoc.ARCHIVO_CONTENIDO, dbType: OracleDbType.Blob);
-                p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
-                p.Add("PI_FLAG_ESTADO", inscripcionDoc.FLAG_ESTADO);
-                p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
-                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
-                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-                seGuardo = filasAfectadas > 0;
+                p.Add("PI_ID_USUARIO", idUsuario);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                user = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
-            catch (Exception ex) { Log.Error(ex); }
-
-            return seGuardo;
-        }
-        public bool GuardarDocumento(DocumentoBE inscripcionDoc, OracleConnection db)
-        {
-            bool seGuardo = false;
-            try
+            catch (Exception ex)
             {
-                string sp = $"{Package.Calculo}USP_PRC_MAN_DOCUMENTO_DATA";
-                var p = new OracleDynamicParameters();
-                p.Add("PI_ID_DOCUMENTO", inscripcionDoc.ID_DOCUMENTO);
-                p.Add("PI_ID_ESTACION", inscripcionDoc.ID_ESTACION);
-                //p.Add("PI_ARCHIVO_CONTENIDO", inscripcionDoc.ARCHIVO_CONTENIDO, dbType: OracleDbType.Blob);
-                p.Add("PI_ARCHIVO_BASE", inscripcionDoc.ARCHIVO_BASE);
-                p.Add("PI_UPD_USUARIO", inscripcionDoc.UPD_USUARIO);
-                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
-                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-                seGuardo = filasAfectadas > 0;
+                Log.Error(ex);
             }
-            catch (Exception ex) { Log.Error(ex); }
 
-            return seGuardo;
+            return user;
         }
     }
 }

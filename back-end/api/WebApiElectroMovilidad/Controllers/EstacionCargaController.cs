@@ -41,7 +41,6 @@ namespace WebApiElectroMovilidad.Controllers
             return obj;
         }
 
-
         [Route("obtenerdocumento")]
         [HttpGet]
         public HttpResponseMessage ObtnerDocumento(string ruta)
@@ -61,7 +60,6 @@ namespace WebApiElectroMovilidad.Controllers
             return response;
         }
 
-        
         [Route("eliminarestacion")]
         [HttpGet]
         public bool EliminarEstacion(int idestacion)
@@ -69,5 +67,14 @@ namespace WebApiElectroMovilidad.Controllers
             bool v = estacionLN.EliminarEstacion(idestacion);
             return v;
         }
+
+        [Route("obtenerestacionall")]
+        [HttpGet]
+        public List<EstacionCargaBE> getEstacionAll()
+        {
+            List<EstacionCargaBE> lista = estacionLN.getEstacionAll();
+            return lista;
+        }
+
     }
 }

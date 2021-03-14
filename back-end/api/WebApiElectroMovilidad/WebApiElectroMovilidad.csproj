@@ -116,7 +116,6 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CasoController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\ElectromovilidadApiController.cs" />
     <Compile Include="Controllers\EstacionCargaController.cs" />
