@@ -514,6 +514,95 @@
             <button id="btnEva05" class="btn btn-primary">Evaluar</button>
         </div>
     </div>
+
+    @*<div class="row">
+        <div class="col-6 vc-rutas">
+            <div class="estilo-g">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container-input">
+                            <input type="text" id="vc-ruta-1" class="field" required>
+                            <label for="" class="label">Nombre de la ruta</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="container-input">
+                            <input type="text" id="vc-origen-1" class="field" required>
+                            <label for="" class="label">Origen</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="container-input">
+                            <input type="text" id="vc-destino-1" class="field" required>
+                            <label for="" class="label">Destino</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="container-input">
+                            <input type="text" id="vc-veces-1" class="field" required>
+                            <label for="" class="label">Veces por semana</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="container-input">
+                                    <input type="text" id="vc-kmdiario-1" class="field" required>
+                                    <label for="" class="label">Km diarios</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="container-input">
+                                    <a class="editar-mapa" href="#" data-accion="editar" id="p"><i class="fas fa-map-marked mr-1"></i></a>
+                                </div>                                    
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                        <div class="container-input">
+                            <input type="text" id="vc-kmsemanal-1" class="field" required readonly>
+                            <label for="" class="label">Km semanales</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 vc-rutas">
+            <div class="estilo-g">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <span><i class="fas fa-map-marked mr-1"></i></span>
+                                    </div>
+                                    <div class="col-9">
+                                        <span style="color: brown;">Kilómetros totales</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span style="color: blue; font-size: 2em;">0 Km</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@    
     
     <div id="seccion-07" class="d-none">
         <h4>Resultados</h4>
@@ -740,32 +829,7 @@
             <div class="col-12">
                 <hr />
             </div>
-        </div>   
-
-        <div class="row mt-3">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2" scope="col">Consumo energético</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>Reducción Total Consumo energético</th>
-                                        <td><span id="consumo-energetico-d"></span> GJ</td>
-                                    </tr>
-                                    <tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div>           
 
         <div class="row">
             <div class="container">
@@ -838,6 +902,31 @@
                 </div>
             </div>
         </div>  
+
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Consumo energético</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción Total Consumo energético</th>
+                                        <td><span id="consumo-energetico-d"></span> GJ</td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="row">
             <div class="container">
@@ -922,7 +1011,19 @@
 
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            <h2 class="estilo-04 text-sres-oscuro mb-3">Rutas registradas</h2>
+            <h2 class="estilo-04 text-sres-oscuro mb-3">Rutas</h2>
+        </div>
+    </div>
+
+    <div class="row d-none" id="rutas-frecuentes">
+        <div class="col-12 mb-2">
+            <a class="btn btn-warning" id="btn-ruta-frecuente" href="javascript:void(0)">RUTAS FRECUENTES</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-2">
+            <a class="" id="btn-copiar-ruta" data-accion="nuevo" href="javascript:void(0)"></a>
         </div>
     </div>
 
@@ -1007,25 +1108,130 @@
                 </div>
             </div>
         </div>
+        *@
+    </div>
 
-        <div class="col-6 mb-2">
+    <div class="row">
+        <div class="col-6 mb-2 vc-rutas">
+            <div class="estilo-g">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6"><div class="row"><div class="col-3"><span><i class="fas fa-map-marked mr-1"></i></span></div><div class="col-9"><span style="color: brown;">Kilómetros semanales totales</span></div></div></div>
+                            <div class="col-6 "><div class="row"><div class="col-12"><span style="color: blue; font-size: 2em;" id="totalkm">0</span><span style="color: blue; font-size: 2em;"> km</span></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-2">
+            <a class="btn btn-primary" id="aceptar-ruta" href="javascript:void(0)">ACEPTAR</a>&nbsp;&nbsp;
+            <a class="btn btn-secondary" id="cerrar-rutas" href="javascript:void(0)">ATRAS</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="alert-add"></div>
+        </div>
+    </div>
+</div>
+
+<div id="seccion-rutas-bd" class="container mt-3 d-none">
+
+    <div class="row">
+        <div class="col-12 mb-2">
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h2 class="estilo-04 text-sres-oscuro mb-3">Rutas frecuentes</h2>
+        </div>
+    </div>
+
+    <div class="row" id="rutas-bd">
+        @*<div class="col-6 mb-2">
             <div class="card" style="width: 100%;">
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Nombre de la ruta</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Casa</span></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row">
+                                <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="fas fa-tools mr-1"></i></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item estilo-01" href="${baseUrl}Electromovilidad/${x.ID_ESTACION}/Estacion"><i class="fas fa-history mr-1"></i>Editar</a>
+                                    <a class="dropdown-item estilo-01 EliminarEstacion" id="eliminar-${x.ID_ESTACION}" data-valor="${x.ID_ESTACION}" href="javascript:void(0)"><i class="fas fa-history mr-1"></i>Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
 
                     <div class="row">
                         <div class="col-6 ">
                             <div class="row">
-                                <div class="col-3"><span><i class="fas fa-map-marked mr-1"></i></span></div>
-                                <div class="col-9"><span style="color: brown;">Kilómetros totales</span></div>                                
+                                <div class="col-12"><span style="color: brown;">Origen</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Bayover</span></div>
                             </div>
                         </div>
-                        <div class="col-6 ">                            
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Destino</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">Surco</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Veces por semana</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">4</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-9"><span style="color: brown;">Km diario</span></div>
+                                <div class="col-3"><a class="editar-mapa" href="#" data-accion="editar" id="vc-1"><i class="fas fa-map-marked mr-1"></i></a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><span style="color: blue;">4Km</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 ">
+                        </div>
+                        <div class="col-6 ">
+                            <div class="row">
+                                <div class="col-12"><span style="color: brown;">Km semanal</span></div>
+                            </div>
                             <div class="row">
                                 <div class="col-12"><span style="color: blue; font-size: 2em;">40Km</span></div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>*@
@@ -1033,7 +1239,7 @@
 
     <div class="row">
         <div class="col-12 mb-2">
-            <a class="btn btn-primary" id="aceptar-ruta" href="javascript:void(0)">ACEPTAR</a>
+            <a class="btn btn-secondary" id="cerrar-rutas-bd" href="javascript:void(0)">REGRESAR</a>
         </div>
     </div>
 
@@ -1054,8 +1260,8 @@
     <div class="row">
         <div class="col-8">
             <div class="input-group">
-                <input id="veces-semana" class="form-control" placeholder="Ingrese cantidad de veces que utiliza esta ruta" />&nbsp;
-                <button id='btn-ruta' class="btn btn-primary" onclick="getCoordenadas();">Guardar ruta</button>&nbsp;
+                @*<input id="veces-semana" class="form-control" placeholder="Ingrese cantidad de veces que utiliza esta ruta" />&nbsp;*@
+                <button id='btn-distancia' class="btn btn-primary">Aceptar</button>&nbsp;
                 <button id='btn-cerrar' class="btn btn-secondary">Cerrar</button>
             </div>    
         </div>                

@@ -237,6 +237,15 @@ namespace sres.app.Controllers.Api
             return lista;
         }
 
+        [Route("obtenerrutasall")]
+        [HttpGet]
+        public List<VehiculoRutaBE> ObtenerRutasAll(int idusuario)
+        {
+            List<VehiculoRutaBE> lista = new List<VehiculoRutaBE>();
+            lista = elecLN.ObtenerRutasAll(idusuario);
+            return lista;
+        }
+
         [Route("eliminarresultado")]
         [HttpGet]
         public bool EliminarResultado(int idresultado, int idusuario)

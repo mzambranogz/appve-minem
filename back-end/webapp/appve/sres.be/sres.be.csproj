@@ -95,6 +95,7 @@
     <Compile Include="UsuarioTransportePublicoBE.cs" />
     <Compile Include="VehiculoConvencionalBE.cs" />
     <Compile Include="VehiculoElectricoBE.cs" />
+    <Compile Include="VehiculoRutaBE.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sres.ut\sres.ut.csproj">

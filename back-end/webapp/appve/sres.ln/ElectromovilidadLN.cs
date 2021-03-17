@@ -1009,6 +1009,13 @@ namespace sres.ln
                                     if (!(seGuardo = elecDA.GuardarContaminanteLocal(entidad.ID_USUARIO, idresultado, ve.index + 1, ve.value, cn).OK)) break;
                                 }
                             }
+                            if (entidad.LISTA_VEHICULO_RUTA != null && seGuardo)
+                            {
+                                foreach (var ve in entidad.LISTA_VEHICULO_RUTA.Select((value, index) => new { value, index }))
+                                {
+                                    if (!(seGuardo = elecDA.GuardarVehiculoRuta(entidad.ID_USUARIO, idresultado, ve.value, cn).OK)) break;
+                                }
+                            }
                         }                                               
                     }
 
@@ -1132,6 +1139,19 @@ namespace sres.ln
             {
                 cn.Open();
                 lista = elecDA.ObtenerContaminanteLocal(idresultado, idusuario, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<VehiculoRutaBE> ObtenerRutasAll(int idusuario)
+        {
+            List<VehiculoRutaBE> lista = new List<VehiculoRutaBE>();
+            try
+            {
+                cn.Open();
+                lista = elecDA.ObtenerRutasAll(idusuario, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

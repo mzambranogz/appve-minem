@@ -18,6 +18,7 @@ namespace sres.be
         public List<EscenarioConvencionalEmisionesBE> LISTA_EMISIONES_CONVENCIONAL { get; set; }
         public List<EscenarioElectricoEmisionesBE> LISTA_EMISIONES_ELECTRICO { get; set; }
         public List<EscenarioContaminanteLocalBE> LISTA_CONTAMINANTE_LOCAL { get; set; }
+        public List<VehiculoRutaBE> LISTA_VEHICULO_RUTA { get; set; }
         public string FLAG_ESTADO { get; set; }
         public string FECHA_REGISTRO
         {

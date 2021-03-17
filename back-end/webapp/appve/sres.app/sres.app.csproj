@@ -357,7 +357,7 @@
     <Content Include="Assets\js\pages\electromovilidad_estacionmapa.js" />
     <Content Include="Assets\js\pages\electromovilidad_menu_administrador.js" />
     <Content Include="Assets\js\pages\electromovilidad_menu_estacioncarga.js" />
-    <Content Include="Assets\js\pages\electromovilidad_menu_usuariol.js" />
+    <Content Include="Assets\js\pages\electromovilidad_menu_usuario.js" />
     <Content Include="Assets\js\pages\electromovilidad_consultasresultados.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacionescarga.js" />
     <Content Include="Assets\js\pages\electromovilidad_perfil.js" />
