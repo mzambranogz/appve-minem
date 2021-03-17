@@ -729,7 +729,7 @@ END PKG_ELECTROMOV_MANTENIMIENTO;
   BEGIN
         SELECT COUNT(*) INTO vVerificar
         FROM T_GENM_USUARIO
-        WHERE LOWER(TRANSLATE(CORREO,'Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ','AEIOUaeiou')) = LOWER(TRANSLATE(PI_EMAIL_USUARIO,'Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ','AEIOUaeiou'));
+        WHERE LOWER(TRANSLATE(CORREO,'ΑΙΝΣΪαινσϊ','AEIOUaeiou')) = LOWER(TRANSLATE(PI_EMAIL_USUARIO,'ΑΙΝΣΪαινσϊ','AEIOUaeiou'));
         PI_VERIFICAR := vVerificar;
   END USP_SEL_VERIFICAR_EMAIL;
   
@@ -742,7 +742,7 @@ END PKG_ELECTROMOV_MANTENIMIENTO;
       SELECT U.*, R.NOMBRE NOMBRE_ROL
       FROM T_GENM_USUARIO U
       INNER JOIN T_MAE_ROL R ON U.ID_ROL = R.ID_ROL
-      WHERE LOWER(TRANSLATE(U.CORREO,'Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ','AEIOUaeiou')) = LOWER(TRANSLATE(PI_CORREO,'Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ','AEIOUaeiou'));
+      WHERE LOWER(TRANSLATE(U.CORREO,'ΑΙΝΣΪαινσϊ','AEIOUaeiou')) = LOWER(TRANSLATE(PI_CORREO,'ΑΙΝΣΪαινσϊ','AEIOUaeiou'));
   END USP_SEL_USUARIO_CORREO;
 
 END PKG_ELECTROMOV_ADMIN;
@@ -1584,7 +1584,7 @@ END PKG_ELECTROMOV_CALCULO;
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_MAE_ROL R
-                    WHERE LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     R.FLAG_ESTADO = '''|| PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -1609,7 +1609,7 @@ END PKG_ELECTROMOV_CALCULO;
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_MAE_ROL R
-                        WHERE LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         R.FLAG_ESTADO = '''|| PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -1672,7 +1672,7 @@ END PKG_ELECTROMOV_CALCULO;
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_TIPO_VEHICULO_CONV R
-                    WHERE LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -1697,7 +1697,7 @@ END PKG_ELECTROMOV_CALCULO;
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_TIPO_VEHICULO_CONV R
-                        WHERE LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -1772,7 +1772,7 @@ END PKG_ELECTROMOV_CALCULO;
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_TIPO_VEHICULO_ELEC R
-                    WHERE LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -1797,7 +1797,7 @@ END PKG_ELECTROMOV_CALCULO;
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_TIPO_VEHICULO_ELEC R
-                        WHERE LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -1872,7 +1872,7 @@ END PKG_ELECTROMOV_CALCULO;
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_TIPO_TRANSPORTE
-                    WHERE LOWER(TRANSLATE(NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -1897,7 +1897,7 @@ END PKG_ELECTROMOV_CALCULO;
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_TIPO_TRANSPORTE
-                        WHERE LOWER(TRANSLATE(NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -2002,7 +2002,7 @@ END PKG_ELECTROMOV_CALCULO;
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_FORMULA F
                     INNER JOIN T_MAE_CASO C ON F.ID_CASO = C.ID_CASO
-                    WHERE LOWER(TRANSLATE(F.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(F.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     F.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -2030,7 +2030,7 @@ END PKG_ELECTROMOV_CALCULO;
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_FORMULA F
                         INNER JOIN T_MAE_CASO C ON F.ID_CASO = C.ID_CASO
-                        WHERE LOWER(TRANSLATE(F.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(F.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         F.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -2087,7 +2087,7 @@ END PKG_ELECTROMOV_CALCULO;
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_MAE_CASO
-                    WHERE LOWER(TRANSLATE(NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -2112,7 +2112,7 @@ END PKG_ELECTROMOV_CALCULO;
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_MAE_CASO
-                        WHERE LOWER(TRANSLATE(NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -2195,7 +2195,7 @@ END PKG_ELECTROMOV_CALCULO;
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_TIPO_COMBUSTIBLE R
-                    WHERE LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -2220,7 +2220,7 @@ END PKG_ELECTROMOV_CALCULO;
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_TIPO_COMBUSTIBLE R
-                        WHERE LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         R.FLAG_ESTADO = ''' || PI_FLAG_ESTADO ||'''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -2297,9 +2297,9 @@ END PKG_ELECTROMOV_CALCULO;
                     FROM T_GENM_USUARIO U
                     INNER JOIN T_MAE_ROL R ON U.ID_ROL = R.ID_ROL
                     WHERE (
-                    LOWER(TRANSLATE(U.NOMBRES,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.CORREO,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%''
+                    LOWER(TRANSLATE(U.NOMBRES,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.CORREO,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%''
                     )';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
 
@@ -2337,9 +2337,9 @@ END PKG_ELECTROMOV_CALCULO;
                         FROM T_GENM_USUARIO U
                         INNER JOIN T_MAE_ROL R ON U.ID_ROL = R.ID_ROL
                         WHERE (
-                        LOWER(TRANSLATE(U.NOMBRES,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.CORREO,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(R.NOMBRE,''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''Γ?Γ‰Γ?Γ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%''
+                        LOWER(TRANSLATE(U.NOMBRES,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.CORREO,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%''
                         )
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
