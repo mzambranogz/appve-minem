@@ -4,7 +4,8 @@ $(document).ready(() => {
 });
 //prioridad 19
 var cargarComponentes = () => {
-    let url = `${baseUrl}api/usuario/consultarperfil?idusuario=${idUsuarioLogin}`;
+    //let url = `${baseUrl}api/usuario/consultarperfil?idusuario=${idUsuarioLogin}`;
+    let url = `${baseUrlApi}api/usuario/consultarperfil?idusuario=${idUsuarioLogin}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
 
     fetch(url, init).then(r => r.json()).then(cargarDatos);
@@ -16,6 +17,7 @@ var cargarDatos = (data) => {
     $('#rad-01').prop('checked', data.ID_GENERO == 1 ? true : false);
     $('#rad-02').prop('checked', data.ID_GENERO == 2 ? true : false);
     $('#txt-user').val(data.CORREO == null ? '' : data.CORREO);
+    debugger;
     if (data.INSTITUCION == null) { $('.datos-empresa').addClass('d-none'); return; }
     idinstitucion = data.INSTITUCION.ID_INSTITUCION;
     $('#txt-ruc').val(data.INSTITUCION.RUC == null ? '' : data.INSTITUCION.RUC);
@@ -70,9 +72,10 @@ var actualizarDatos = () => {
         };
     }
     //prioridad 20
-    let url = `${baseUrl}api/usuario/guardarperfil`;
+    //let url = `${baseUrl}api/usuario/guardarperfil`;
+    let url = `${baseUrlApi}api/usuario/guardarperfil`;
     let data = { ID_USUARIO: idUsuarioLogin, NOMBRES: nombres, ID_GENERO: genero, ID_INSTITUCION: idinstitucion, INSTITUCION: arrInstitucion };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(response => {

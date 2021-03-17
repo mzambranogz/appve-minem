@@ -380,64 +380,6 @@
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
-    <Content Include="Files\Criterios\1\Imagen\criterio-11.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Criterios\2\Imagen\criterio-12.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Criterios\3\Imagen\criterio-13.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Criterios\4\Imagen\criterio-04.png" />
-    <Content Include="Files\Criterios\5\Imagen\criterio-10.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Criterios\6\Imagen\criterio-05.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Criterios\7\Imagen\criterio-03.png" />
-    <Content Include="Files\Criterios\LEER.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Insignias\1\Imagen\sres_0.png" />
-    <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
-    <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
-    <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
-    <Content Include="Files\Insignias\LEER.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\MedidaMitigacion\10\Imagen\ico_nama_verde_01.svg" />
-    <Content Include="Files\MedidaMitigacion\11\Imagen\ico_nama_verde_02.svg" />
-    <Content Include="Files\MedidaMitigacion\12\Imagen\ico_nama_azul_01.svg" />
-    <Content Include="Files\MedidaMitigacion\1\Imagen\ico_nama_amarillo_03.svg" />
-    <Content Include="Files\MedidaMitigacion\2\Imagen\ico_nama_amarillo_06.svg" />
-    <Content Include="Files\MedidaMitigacion\3\Imagen\ico_nama_amarillo_07.svg" />
-    <Content Include="Files\MedidaMitigacion\4\Imagen\ico_nama_amarillo_04.svg" />
-    <Content Include="Files\MedidaMitigacion\5\Imagen\ico_nama_amarillo_01.svg" />
-    <Content Include="Files\MedidaMitigacion\6\Imagen\ico_nama_amarillo_05.svg" />
-    <Content Include="Files\MedidaMitigacion\7\Imagen\ico_nama_amarillo_02.svg" />
-    <Content Include="Files\MedidaMitigacion\8\Imagen\ico_nama_rojo_02.svg" />
-    <Content Include="Files\MedidaMitigacion\9\Imagen\ico_nama_rojo_01.svg" />
-    <Content Include="Files\MedidaMitigacion\LEER.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Reconocimientos\10\Imagen\sres_oro_0_star.png" />
-    <Content Include="Files\Reconocimientos\11\Imagen\sres_oro_1_star.png" />
-    <Content Include="Files\Reconocimientos\12\Imagen\sres_oro_2_star.png" />
-    <Content Include="Files\Reconocimientos\13\Imagen\sres_oro_3_star.png" />
-    <Content Include="Files\Reconocimientos\1\Imagen\sres_0.png" />
-    <Content Include="Files\Reconocimientos\2\Imagen\sres_bronce_0_star.png" />
-    <Content Include="Files\Reconocimientos\3\Imagen\sres_bronce_1_star.png" />
-    <Content Include="Files\Reconocimientos\4\Imagen\sres_bronce_2_star.png" />
-    <Content Include="Files\Reconocimientos\5\Imagen\sres_bronce_3_star.png" />
-    <Content Include="Files\Reconocimientos\6\Imagen\sres_plata_0_star.png" />
-    <Content Include="Files\Reconocimientos\7\Imagen\sres_plata_1_star.png" />
-    <Content Include="Files\Reconocimientos\8\Imagen\sres_plata_2_star.png" />
-    <Content Include="Files\Reconocimientos\9\Imagen\sres_plata_3_star.png" />
-    <Content Include="Files\Reconocimientos\LEER.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Log\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -733,6 +675,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fichas\" />
+    <Folder Include="Files\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>

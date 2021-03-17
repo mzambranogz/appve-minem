@@ -35,9 +35,11 @@ var cargarEstacion = (id) => {
     //.then(cargarDatos);
 
     //prioridad 15
-    let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
     Promise.all([
-        fetch(urlConsultarEstacion),
+        fetch(urlConsultarEstacion, init),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarDatos);
@@ -46,6 +48,7 @@ var cargarEstacion = (id) => {
 var cargarDatos = ([estacion]) => {
     if (estacion == null) return;
     if (estacion.ID_ESTACION == 0) return;
+    $('#txt-direccion-estacion').val(estacion.DIRECCION);
     $('#txt-descripcion').val(estacion.DESCRIPCION);
     $('#txt-modelo').val(estacion.MODELO);
     $('#txt-marca').val(estacion.MARCA);
@@ -64,7 +67,8 @@ var cargarDatos = ([estacion]) => {
         for (var i = 0; i < estacion.LISTA_DOC.length; i++) {
             if (estacion.LISTA_DOC[i].ID_DOCUMENTO == 1) {
                 let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${estacion.LISTA_DOC[i].ARCHIVO_BASE}</span>`;
-                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
+                //let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
+                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
                 let btnEliminarFileDoc = `<a class="text-sres-verde btnEliminarFile" href="#" data-id="${estacion.LISTA_DOC[i].ID_DOCUMENTO}"><i class="fas fa-trash px-2 py-1"></i></a>`;
                 contenidoFileDoc = `<div class="alert alert-success p-1 d-flex w-100"><div class="mr-auto">${nombreFileDoc}</div><div class="ml-auto">${btnDescargaFileDoc}${btnEliminarFileDoc}</div></div>`;
                 $('#view-protocolo').html(`<label class="estilo-01">&nbsp;</label>${contenidoFileDoc}`);
@@ -75,7 +79,8 @@ var cargarDatos = ([estacion]) => {
             //prioridad 16  "/api/estacioncarga/obtenerdocumento?ruta=D:\ESCRITORIO\...." 
             if (estacion.LISTA_DOC[i].ID_DOCUMENTO == 2) {
                 let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${estacion.LISTA_DOC[i].ARCHIVO_BASE}</span>`;
-                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
+                //let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
+                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
                 let btnEliminarFileDoc = `<a class="text-sres-verde btnEliminarFile" href="#" data-id="${estacion.LISTA_DOC[i].ID_DOCUMENTO}"><i class="fas fa-trash px-2 py-1"></i></a>`;
                 contenidoFileDoc = `<div class="alert alert-success p-1 d-flex w-100"><div class="mr-auto">${nombreFileDoc}</div><div class="ml-auto">${btnDescargaFileDoc}${btnEliminarFileDoc}</div></div>`;
                 $('#view-certificado').html(`<label class="estilo-01">&nbsp;</label>${contenidoFileDoc}`);
@@ -93,12 +98,16 @@ var cargarDatos = ([estacion]) => {
         }
         let ruta_imagenes = '';
         for (var i = 0; i < estacion.LISTA_IMAGEN.length; i++) {
-            ruta_imagenes += `<a class="example-image-link" href="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            //ruta_imagenes += `<a class="example-image-link" href="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            ruta_imagenes += `<a class="example-image-link" href="${baseUrlApi}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
         }
         $('#marco-imagenes').html(ruta_imagenes);
         $('.imagen-estacion').removeClass('d-none');
     }
 
+    agregarMarker(estacion.LONGITUD, estacion.LATITUD);
+    arrUbicacion.push(estacion.LONGITUD);
+    arrUbicacion.push(estacion.LATITUD);
 }
 
 var fileDocChange = (e) => {
@@ -259,12 +268,13 @@ var guardar = () => {
     arrDoc.push({ ID_DOCUMENTO: 1, ARCHIVO_BASE: $('#txt-protocolo').val(), ARCHIVO_CONTENIDO: $('#fle-protocolo').data('file') });
     arrDoc.push({ ID_DOCUMENTO: 2, ARCHIVO_BASE: $('#txt-certificado').val(), ARCHIVO_CONTENIDO: $('#fle-certificado').data('file') });
     //prioridad 14
-    let url = `${baseUrl}api/estacioncarga/guardarestacion`;
+    //let url = `${baseUrl}api/estacioncarga/guardarestacion`;
+    let url = `${baseUrlApi}api/estacioncarga/guardarestacion`;
     let data = { ID_ESTACION: idestacion == 0 ? -1 : idestacion, INSTITUCION: arrEmpresa, LONGITUD: arrUbicacion[0], LATITUD: arrUbicacion[1], DIRECCION: direccion_estacion, DESCRIPCION: descripcion, MODELO: modelo, MARCA: marca, POTENCIA: potencia, MODO_CARGA: modo_carga, 
                  TIPO_CARGADOR: tipo_cargador, TIPO_CONECTOR: tipo_conector, CANTIDAD_CONECTOR: cantidad, HORA_DESDE: hora_desde, HORA_HASTA: hora_hasta, TARIFA_SERVICIO: tarifa,
                  ID_USUARIO: idUsuarioLogin, ID_ESTADO: 1, LISTA_IMAGEN: storedFiles, LISTA_DOC: arrDoc, UPD_USUARIO: idUsuarioLogin,
     };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
@@ -371,7 +381,7 @@ var mapa = () => {
 var agregarMarker = (lng, lat) => {
     marker = new mapboxgl.Marker({
         color: "#FF5733",
-        draggable: true
+        draggable: false
     }).setLngLat([lng, lat]).addTo(map);
 }
 

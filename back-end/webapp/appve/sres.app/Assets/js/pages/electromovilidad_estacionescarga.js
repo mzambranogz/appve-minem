@@ -7,9 +7,11 @@ $(document).ready(() => {
 
 //prioridad 17
 var cargarComponentes = () => {
-    let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`;
+    //let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`;
+    let urlConsultarTipoTransporte = `${baseUrlApi}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
     Promise.all([
-        fetch(urlConsultarTipoTransporte),
+        fetch(urlConsultarTipoTransporte, init),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarDatos);
@@ -108,7 +110,9 @@ $(document).on('click', '.EliminarEstacion', (e) => {
     if (id == null) return;
     if (id <= 0) return;
 
-    let url = `${baseUrl}api/estacioncarga/eliminarestacion?idestacion=${id}`;
+    //let url = `${baseUrl}api/estacioncarga/eliminarestacion?idestacion=${id}`;
+    let url = `${baseUrlApi}api/estacioncarga/eliminarestacion?idestacion=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
     fetch(url).then(r => r.json()).then((data) => {
         if (data) {
             alert("Estación eliminada");

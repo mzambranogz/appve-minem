@@ -458,8 +458,8 @@ var evaluarTipoVehTipoCombVC = () => {
     let tipovehiculo = $('#tipo-vehiculo-vc').val();
     let tipocombustible = $('#tipo-combustible-vc').val();
 
-    let url = `${baseUrl}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
-    //let url = `${baseUrlApi}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
+    //let url = `${baseUrl}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
+    let url = `${baseUrlApi}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
 
     fetch(url, init)
@@ -497,8 +497,10 @@ var evaluarTipoVehTipoCombCVC = () => {
     let tipovehiculo = $('#tipo-vehiculo-cvc').val();
     let tipocombustible = $('#tipo-combustible-cvc').val();    
 
-    let url = `${baseUrl}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
+    let url = `${baseUrlApi}api/calculo/obtenervaloresvctc?tipovehiculo=${tipovehiculo}&tipocombustible=${tipocombustible}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.RENDIMIENTO != null){
             $('#rendimiento-cvc').val(j.RENDIMIENTO.FACTOR);
@@ -728,8 +730,10 @@ var cambiarDepartamentoVC = () => {
     let tipo_comb = $('#tipo-combustible-vc').val();
     if (dep == 0 || tipo_veh == 0 || tipo_comb == 0) { $('#precio-combustible-vc').val(0); return; }
 
-    let url = `${baseUrl}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
-    fetch(url).then(r => r.json()).then(j => {
+    //let url = `${baseUrl}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
+    let url = `${baseUrlApi}api/calculo/obtenervalorpreciocomb?valor1=${tipo_veh}&valor2=${tipo_comb}&valor3=${dep}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+    fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.PRECIO_COMBUSTIBLE != null){
             $('#precio-combustible-vc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
@@ -760,7 +764,7 @@ var cargarComponentes = () => {
     let urlConsultarTipoCargador = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obteneralltipocargador`;    
     let urlConsultarCargadorPotencia = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obtenerallcargadorpotencia`;    
     let urlConsultarDepartamento = `http://161.35.182.46/ApiElectromovilidad/api/Departamento/obteneralldepartamento`;
-    let urlConsultarRutas = `${baseUrl}api/calculo/obtenerrutasall?idusuario=${idUsuarioLogin}`;
+    let urlConsultarRutas = `${baseUrl}api/calculo/obtenerrutasall?idusuario=${idUsuarioLogin}`; //prioridad 21
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
     Promise.all([
@@ -2237,7 +2241,7 @@ var guardarResultados = () => {
     }
     console.log(JSON.stringify(listaVehiculo));
     //new end_points //decimo
-    let url = `${baseUrl}api/calculo/guardarresultados`;
+    let url = `${baseUrl}api/calculo/guardarresultados`; //prioridad 22
     //let url = `${baseUrlApi}api/calculo/guardarresultados`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
     
