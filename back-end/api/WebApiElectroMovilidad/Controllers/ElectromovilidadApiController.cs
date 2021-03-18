@@ -256,6 +256,15 @@ namespace WebApiElectroMovilidad.Controllers
             return v;
         }
 
+        [Route("obtenerrutasall")]
+        [HttpGet]
+        public List<VehiculoRutaBE> ObtenerRutasAll(int idusuario)
+        {
+            List<VehiculoRutaBE> lista = new List<VehiculoRutaBE>();
+            lista = tipoLN.ObtenerRutasAll(idusuario);
+            return lista;
+        }
+
 
     }
 }

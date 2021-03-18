@@ -349,6 +349,39 @@ namespace Datos.minem.gob.pe
             return entidad;
         }
 
+        public VehiculoRutaBE GuardarVehiculoRuta(int idusuario, int idresultado, VehiculoRutaBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Calculo}USP_PRC_GUARDAR_VEH_RUTA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_RESULTADO", idresultado);
+                p.Add("PI_ID_USUARIO", idusuario);
+                p.Add("PI_ID_RUTA", entidad.ID_RUTA);
+                p.Add("PI_NOMBRE_RUTA", entidad.NOMBRE_RUTA);
+                p.Add("PI_NOMBRE_ORIGEN", entidad.NOMBRE_ORIGEN);
+                p.Add("PI_NOMBRE_DESTINO", entidad.NOMBRE_DESTINO);
+                p.Add("PI_VECES_SEMANAL", entidad.VECES_SEMANA);
+                p.Add("PI_KM_DIARIO", entidad.KM_DIARIO);
+                p.Add("PI_KM_SEMANAL", entidad.KM_SEMANAL);
+                p.Add("PI_ORIGEN", entidad.ORIGEN);
+                p.Add("PI_DESTINO", entidad.DESTINO);
+                p.Add("PI_FLAG_ESTADO", entidad.FLAG_ESTADO);
+                p.Add("PI_UPD_USUARIO", idusuario);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
         public List<TransportePublicoBE> ObtenerLeyenda(int idresultado, int idusuario, OracleConnection db)
         {
             List<TransportePublicoBE> lista = new List<TransportePublicoBE>();
@@ -548,6 +581,25 @@ namespace Datos.minem.gob.pe
             }
 
             return seGuardo;
+        }
+
+        public List<VehiculoRutaBE> ObtenerRutasAll(int idusuario, OracleConnection db)
+        {
+            List<VehiculoRutaBE> lista = new List<VehiculoRutaBE>();
+            try
+            {
+                string sp = $"{Package.Calculo}USP_SEL_LISTA_VEH_RUTA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_USUARIO", idusuario);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<VehiculoRutaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
         }
 
 
