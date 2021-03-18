@@ -755,16 +755,17 @@ var cargarComponentes = () => {
     //let urlConsultarTipoCargador = `${baseUrl}api/tipocargador/obteneralltipocargador`;
     //let urlConsultarCargadorPotencia = `${baseUrl}api/tipocargador/obtenerallcargadorpotencia`;
     //let urlConsultarDepartamento = `${baseUrl}api/departamento/obteneralldepartamento`;
+    //let urlConsultarRutas = `${baseUrl}api/calculo/obtenerrutasall?idusuario=${idUsuarioLogin}`; //prioridad 21
 
-    let urlConsultarTipoTransporte = `http://161.35.182.46/ApiElectromovilidad/api/TipoTransporte/obtenerall`;    
-    let urlConsultarTipoCombustible = `http://161.35.182.46/ApiElectromovilidad/api/TipoCombustible/obtenerall`;    
-    let urlConsultarTipoVehiculoConvencional = `http://161.35.182.46/ApiElectromovilidad/api/TipoVehiculoConvencional/obtenerall`;    
-    let urlConsultarTipoVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/TipovehiculoElectrico/obtenerall`;    
-    let urlConsultarModeloVehiculoElectrico = `http://161.35.182.46/ApiElectromovilidad/api/modelovehiculo/obtenerall`;    
-    let urlConsultarTipoCargador = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obteneralltipocargador`;    
-    let urlConsultarCargadorPotencia = `http://161.35.182.46/ApiElectromovilidad/api/TipoCargador/obtenerallcargadorpotencia`;    
-    let urlConsultarDepartamento = `http://161.35.182.46/ApiElectromovilidad/api/Departamento/obteneralldepartamento`;
-    let urlConsultarRutas = `${baseUrl}api/calculo/obtenerrutasall?idusuario=${idUsuarioLogin}`; //prioridad 21
+    let urlConsultarTipoTransporte = `${baseUrlApi}api/TipoTransporte/obtenerall`;    
+    let urlConsultarTipoCombustible = `${baseUrlApi}api/TipoCombustible/obtenerall`;    
+    let urlConsultarTipoVehiculoConvencional = `${baseUrlApi}api/TipoVehiculoConvencional/obtenerall`;    
+    let urlConsultarTipoVehiculoElectrico = `${baseUrlApi}api/TipovehiculoElectrico/obtenerall`;    
+    let urlConsultarModeloVehiculoElectrico = `${baseUrlApi}api/modelovehiculo/obtenerall`;    
+    let urlConsultarTipoCargador = `${baseUrlApi}api/TipoCargador/obteneralltipocargador`;    
+    let urlConsultarCargadorPotencia = `${baseUrlApi}api/TipoCargador/obtenerallcargadorpotencia`;    
+    let urlConsultarDepartamento = `${baseUrlApi}api/Departamento/obteneralldepartamento`;
+    let urlConsultarRutas = `${baseUrlApi}api/calculo/obtenerrutasall?idusuario=${idUsuarioLogin}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
     Promise.all([
@@ -1356,6 +1357,7 @@ var mostrar_contaminante_local = () => {
 }
 
 var mostrarRutas = (e) => {
+    $('#seccion-principal').addClass('d-none');
     $('#seccion-menu-ruta').removeClass('d-none');
     validar_escenario = $(`#${e.target.id}`).data('validar');
     validarCopiarRuta();
@@ -1924,11 +1926,11 @@ var aceptarRuta = () => {
             actualizarArrayRuta(id, i);     
     });
     $('#seccion-menu-ruta').addClass('d-none');
+    $('#seccion-principal').removeClass('d-none');
     mostrarKm();
 }
 
 var actualizarArrayRuta = (id, i) => {
-    debugger;
     retornarArrayRutaTemp()[i].NOMBRE_RUTA = $(`#ruta-${id}`).val() == null ? "" : $(`#ruta-${id}`).val();
     retornarArrayRutaTemp()[i].NOMBRE_ORIGEN = $(`#origen-${id}`).val() == null ? "" : $(`#origen-${id}`).val();;
     retornarArrayRutaTemp()[i].NOMBRE_DESTINO = $(`#destino-${id}`).val() == null ? "" : $(`#destino-${id}`).val();
@@ -1961,6 +1963,7 @@ var atrasRuta = () => {
     });
     calcularTotal();
     $('#seccion-menu-ruta').addClass('d-none'); 
+    $('#seccion-principal').removeClass('d-none');
 }
 
 var atrasRutaFrecuente = () => {
@@ -2241,8 +2244,8 @@ var guardarResultados = () => {
     }
     console.log(JSON.stringify(listaVehiculo));
     //new end_points //decimo
-    let url = `${baseUrl}api/calculo/guardarresultados`; //prioridad 22
-    //let url = `${baseUrlApi}api/calculo/guardarresultados`;
+    //let url = `${baseUrl}api/calculo/guardarresultados`; //prioridad 22
+    let url = `${baseUrlApi}api/calculo/guardarresultados`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
     
     fetch(url, init)

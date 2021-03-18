@@ -108,41 +108,50 @@ var cargarMarker = (data) => {
     if (data == null) return;
     if (data.length > 0) {
         data.map((x, y) => {
+            color_estado = x.ID_ESTADO == 1 ? "#FF5733" : "#3C53B0";
             var m = new mapboxgl.Marker({
-                color: "#FF5733",
+                //color: "#FF5733",
+                color: color_estado,
                 draggable: false
             })
-            //.setLngLat([x.LONGITUD, x.LATITUD])
-            //.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-            //.setHTML(
-            //    '<h3>' +
-            //      "hola" +
-            //      '</h3><p>' +
-            //      "ven a tu casa" +
-            //      '</p>'
-            //  )
-            //)
-            //.addTo(map);
 
-            m.setLngLat([x.LONGITUD, x.LATITUD]);
-
-            let horario = `<span>Abierto desde 09:00 a.m. hasta las 22:00 p.m.</span>`;
-            let direccion = `<span>Av. Angamos Este Nro. 1803</span><br />`;
-            let descripcion = `<span>Tottus es una cadena chilena de supermercados e hipermercados perteneciente al grupo chileno Falabella</span><br />`;
-            let titulo = `<h4>Tottus</h4>`;
-            let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
-
-            let contentImg = `<div class="col-12"><img class="img-fluid" src="${baseUrl}Files/Usuario/1/Estacion/1/Imagen/1.jpeg" width="20%" /></div>`;
-
-            let html = `<div class="row mt-2">${content}${contentImg}</div>`;
+            m.setLngLat([x.LONGITUD, x.LATITUD]);            
+            
+            let html = `<div class="row mt-2" id="img-${x.ID_ESTACION}"></div>`;
 
             var popup = new mapboxgl.Popup(
 	            //{ offset: [28,0] }
             ).setHTML(html);
 
             popup.on('open', function () {
-                alert("entre");
-                $('#cerca').html("vete a tu casa");
+                $(`#img-${x.ID_ESTACION}`).html(``);
+                let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`;
+                let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+                fetch(urlConsultarEstacion, init)
+                .then(v => v.json())
+                .then(x => {
+                    debugger;
+                    let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
+                    let direccion = `<span>${x.DIRECCION}</span><br />`;
+                    let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
+                    let titulo = `<h4>${x.NOMBRE_INSTITUCION}</h4>`;
+                    let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
+
+                    let imagenes = '';
+                    if (x.LISTA_IMAGEN != null) {                        
+                        for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
+                            imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+                        }
+                    }                    
+
+                    let contentImg = `<div class="col-12">${imagenes}</div>`;
+
+                    $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
+                });
+
+                
+
                 console.log('popup was opened'+ x.ID_ESTACION);
             });
 

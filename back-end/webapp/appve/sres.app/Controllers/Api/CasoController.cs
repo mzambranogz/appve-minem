@@ -21,11 +21,11 @@ namespace sres.app.Controllers.Api
             return casoln.ListaCasoFactor(new CasoBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda == null ? "" : busqueda });
         }
 
-        [Route("obtenerallcaso")]
-        [HttpGet]
-        public List<CasoBE> ListaCaso()
-        {
-            return casoln.ListaCaso();
-        }
+        //[Route("obtenerallcaso")]
+        //[HttpGet]
+        //public List<CasoBE> ListaCaso()
+        //{
+        //    return casoln.ListaCaso();
+        //}
     }
 }

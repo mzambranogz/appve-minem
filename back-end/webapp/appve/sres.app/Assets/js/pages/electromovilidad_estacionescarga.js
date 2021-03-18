@@ -24,7 +24,8 @@ var cargarDatos = ([listaDatos]) => {
             let lista = [];
             if (x.LISTA_IMAGEN.length > 0) {
                 x.LISTA_IMAGEN.map((w,z) => {
-                    lista.push({ID_IMAGEN: w.ID_DOCUMENTO, RUTA: `${baseUrl}${w.RUTA}`});
+                    //lista.push({ID_IMAGEN: w.ID_DOCUMENTO, RUTA: `${baseUrl}${w.RUTA}`});
+                    lista.push({ID_IMAGEN: w.ID_DOCUMENTO, RUTA: `${baseUrlApi}${w.RUTA}`});
                 });
             }
             imagenes.push({ ID_ESTACION: x.ID_ESTACION, LISTA_IMAGEN: lista });
@@ -44,7 +45,7 @@ var cargarDatos = ([listaDatos]) => {
                         
             let seccion_foto_direccion = `<div class="row">`;
             seccion_foto_direccion += `<div class="col-6 "><div class="row"><div class="col-9"><span style="color: brown;">Fotos</span></div><div class="col-3"><a class="imagen-estacion" id="estacion-${x.ID_ESTACION}" href="javascript:void(0);" data-valor="${x.ID_ESTACION}" data-toggle="modal" data-target="#modal-foto"><i class="fas fa-camera mr-1"></i></a></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_IMAGEN} de 5</span></div></div></div>`;
-            seccion_foto_direccion += `<div class="col-6 "><div class="row"><div class="col-9"><span style="color: brown;">Dirección</span></div><div class="col-3"><a href="#"><i class="fas fa-map-marked mr-1"></i></a></div></div><div class="row"><div class="col-12"><span style="color: blue;">Av. Javier Prado 536</span></div></div></div>`;
+            seccion_foto_direccion += `<div class="col-6 "><div class="row"><div class="col-9"><span style="color: brown;">Dirección</span></div><div class="col-3"><a href="#"><i class="fas fa-map-marked mr-1"></i></a></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DIRECCION}</span></div></div></div>`;
             seccion_foto_direccion += `<div class="col-12"><hr /></div></div>`;           
                         
             let seccion_potencia_modo_carga = `<div class="row">`;

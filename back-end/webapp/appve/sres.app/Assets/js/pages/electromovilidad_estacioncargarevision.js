@@ -25,7 +25,6 @@ var cargarEstacion = (id) => {
 var cargarDatos = ([estacion]) => {
     if (estacion == null) return;
     if (estacion.ID_ESTACION == 0) return;
-    debugger;
     mapa(estacion.LATITUD, estacion.LONGITUD);
     $('#txt-direccion-estacion').val(estacion.DIRECCION);
     $('#txt-descripcion').val(estacion.DESCRIPCION);
@@ -144,14 +143,14 @@ var mapa = (lat, lng) => {
 
     marker = new mapboxgl.Marker({
         color: "#FF5733",
-        draggable: true
+        draggable: false
     }).setLngLat([lng, lat]).addTo(map);
 
 }
 
 var revisionEstacion = (e) => {
     let flg = $(`#${e.target.id}`).data("validar");
-    let url = `${baseUrl}api/estacioncarga/revisionestacion`;
+    let url = `${baseUrl}api/estacioncarga/revisionestacion`; //prioridad 24
     let data = { ID_ESTACION: idestacion, FLAG_ESTADO: `${flg}`, ID_USUARIO: idUsuarioLogin, UPD_USUARIO: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 

@@ -3,6 +3,7 @@ var rutas = "";
 var marker;
 var arrTempUbicacion = [], arrUbicacion = [];
 var mapboxgl, map;
+//var currentMarkers=[];
 $(document).ready(() => {
     $('#btnGuardar').on('click', (e) => guardar());
     $('#fle-protocolo').on('change', fileDocChange);
@@ -23,16 +24,6 @@ var inicio = () => {
 }
 
 var cargarEstacion = (id) => {
-
-    //let url = `http://161.35.182.46/ApiElectromovilidad/api/login/authenticate`;
-    //let data = {Username: "carlos@grupo-zuniga.com", Password: "Flavio2019"};
-    //let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
-    //Promise.all([
-    //    fetch(url, init),
-    //])
-    //.then(r => Promise.all(r.map(v => v.json())))
-    //.then(cargarDatos);
 
     //prioridad 15
     //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
@@ -105,7 +96,6 @@ var cargarDatos = ([estacion]) => {
         $('.imagen-estacion').removeClass('d-none');
     }
 
-    agregarMarker(estacion.LONGITUD, estacion.LATITUD);
     arrUbicacion.push(estacion.LONGITUD);
     arrUbicacion.push(estacion.LATITUD);
 }
@@ -289,7 +279,8 @@ var guardar = () => {
 
 var actualizarDatosSesion = () => 
 {
-    let url = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuarioLogin}`;
+    //let url = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuarioLogin}`;
+    let url = `${baseUrlApi}api/usuario/GetByFilter?idUsuario=${idUsuarioLogin}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)
@@ -310,6 +301,7 @@ var ActualizarSesion = (data) => {
 }
 
 var cargarSesion = (d) => {
+    debugger;
     let data = { ID_USUARIO: d.ID_USUARIO, NOMBRES: d.NOMBRES, ID_ROL: d.ID_ROL, NOMBRE_ROL: d.NOMBRE_ROL, ID_INSTITUCION: d.ID_INSTITUCION, PROPIETARIO: d.PROPIETARIO, ROL: {ID_ROL: d.ID_ROL, NOMBRE: d.NOMBRE_ROL}, TOKEN: token};
 
     let url = `${baseUrl}Login/Validar`;
@@ -369,20 +361,38 @@ var mapa = () => {
         if (marker != undefined) eliminarMarker();
         let coord = JSON.stringify(e.lngLat);
         coord = JSON.parse(coord);
-        //let lng = coord["lng"];
-        //let lat = coord["lat"];
-        //agregarMarker(lng, lat);
         agregarMarker(coord.lng, coord.lat);
         arrTempUbicacion.push(coord.lng);
         arrTempUbicacion.push(coord.lat);
-    });   
+    });       
+    
 }
 
 var agregarMarker = (lng, lat) => {
     marker = new mapboxgl.Marker({
         color: "#FF5733",
-        draggable: false
-    }).setLngLat([lng, lat]).addTo(map);
+        draggable: true
+    }).setLngLat([lng, lat]).addTo(map);   
+
+    //currentMarkers.push(marker);
+    
+    //marker.on('dragstart', function (e) {
+    //    //marker.remove();
+    //    if (currentMarkers!==null) {
+    //        for (var i = currentMarkers.length - 1; i >= 0; i--) {
+    //            currentMarkers[i].remove();
+    //        }
+    //    }
+    //}); 
+
+    //marker.on('dragend', function (e) {
+    //    arrTempUbicacion = [];
+    //    if (marker != undefined) eliminarMarker();
+    //    var lngLat = marker.getLngLat();
+    //    agregarMarker(lngLat.lng, lngLat.lat);
+    //    arrTempUbicacion.push(lngLat.lng);
+    //    arrTempUbicacion.push(lngLat.lat);
+    //});  
 }
 
 //eliminar marker

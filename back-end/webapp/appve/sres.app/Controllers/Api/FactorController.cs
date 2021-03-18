@@ -14,12 +14,12 @@ namespace sres.app.Controllers.Api
     {
         FactorLN factorLN = new FactorLN();
 
-        [Route("obtenerallfactor")]
-        [HttpGet]
-        public List<FactorBE> ListaFactor(int idcaso)
-        {
-            return factorLN.ListaFactor(idcaso);
-        }
+        //[Route("obtenerallfactor")]
+        //[HttpGet]
+        //public List<FactorBE> ListaFactor(int idcaso)
+        //{
+        //    return factorLN.ListaFactor(idcaso);
+        //}
 
         [Route("obtenerfactorvalor")]
         [HttpGet]

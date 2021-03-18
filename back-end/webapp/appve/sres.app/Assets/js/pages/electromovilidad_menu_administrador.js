@@ -14,7 +14,7 @@ var consultar = () => {
     let params = { nroInforme, propietario, empresa, registros, pagina, columna, orden};
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `${baseUrl}api/estacioncarga/buscarestaciones?${queryParams}`;
+    let url = `${baseUrl}api/estacioncarga/buscarestaciones?${queryParams}`; //prioridad 23
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblEstaciones');
@@ -50,7 +50,6 @@ var renderizar = (data, cantidadCeldas) => {
 
     if (deboRenderizar) {
         contenido = data.map((x, i) => {
-            debugger;
             let fechaRegistro = new Date(x.REG_FECHA);
             let formatoCodigo = '00000000';
 
@@ -60,7 +59,7 @@ var renderizar = (data, cantidadCeldas) => {
             let colEmpresa = `<td data-encabezado="Progreso"><div class="text-limi-1">${x.NOMBRE_INSTITUCION}</div></td>`;
             let colFechaRegistro = `<td class="text-center" data-encabezado="Fecha Fin">${fechaRegistro.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             //let colEstado = `<td data-encabezado="Estado"><b class="text-sres-verde">${x.NOMBRE_ESTADO}</b></td>`;
-            let colEstado = `<td class="text-center" data-encabezado="Estado"><div class="badge badge-${x.ID_ESTADO == 0 ? 'danger' : x.FLAG_ESTADO == 2 ? 'success' : 'warning'} p-1"><i class="fas fa-times-circle mr-1"></i><small class="estilo-01">${x.NOMBRE_ESTADO}</small></div></td>`;
+            let colEstado = `<td class="text-center" data-encabezado="Estado"><div class="badge badge-${x.ID_ESTADO == 3 ? 'danger' : x.ID_ESTADO == 2 ? 'success' : 'warning'} p-1"><i class="fas fa-times-circle mr-1"></i><small class="estilo-01">${x.NOMBRE_ESTADO}</small></div></td>`;
             let btnDetalles = `<a class="dropdown-item estilo-01 btnEditar" href="${baseUrl}Electromovilidad/${x.ID_ESTACION}/revision-estacion-de-carga"><i class="fas fa-edit mr-1"></i>Revisar</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100"><a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a><div class="dropdown-menu">${btnDetalles}</div></div></td>`;
             let fila = `<tr>${colNro}${colNroInforme}${colNombres}${colEmpresa}${colFechaRegistro}${colEstado}${colOpciones}</tr>`;
