@@ -13,24 +13,34 @@ var Regresar = () => {
 
 //end_points onceavo
 var cargarComponentes = () => {
-        let urlConsultarLeyenda = `${baseUrl}api/calculo/obtenerleyenda?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
-        let urlConsultarCostoVC = `${baseUrl}api/calculo/obtenercostovc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
-        let urlConsultarCostoVE = `${baseUrl}api/calculo/obtenercostove?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
-        let urlConsultarConsumoVC = `${baseUrl}api/calculo/obtenerconsumovc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
-        let urlConsultarConsumoVE = `${baseUrl}api/calculo/obtenerconsumove?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
-        let urlConsultarEmisionesVC = `${baseUrl}api/calculo/obteneremisionesvc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
-        let urlConsultarEmisionesVE = `${baseUrl}api/calculo/obteneremisionesve?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;      
-        let urlConsultarContaminanteLocal = `${baseUrl}api/calculo/obtenercontaminantelocal?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        //let urlConsultarLeyenda = `${baseUrl}api/calculo/obtenerleyenda?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        //let urlConsultarCostoVC = `${baseUrl}api/calculo/obtenercostovc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        //let urlConsultarCostoVE = `${baseUrl}api/calculo/obtenercostove?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        //let urlConsultarConsumoVC = `${baseUrl}api/calculo/obtenerconsumovc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        //let urlConsultarConsumoVE = `${baseUrl}api/calculo/obtenerconsumove?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        //let urlConsultarEmisionesVC = `${baseUrl}api/calculo/obteneremisionesvc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        //let urlConsultarEmisionesVE = `${baseUrl}api/calculo/obteneremisionesve?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;      
+        //let urlConsultarContaminanteLocal = `${baseUrl}api/calculo/obtenercontaminantelocal?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+
+        let urlConsultarLeyenda = `${baseUrlApi}api/calculo/obtenerleyenda?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        let urlConsultarCostoVC = `${baseUrlApi}api/calculo/obtenercostovc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        let urlConsultarCostoVE = `${baseUrlApi}api/calculo/obtenercostove?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        let urlConsultarConsumoVC = `${baseUrlApi}api/calculo/obtenerconsumovc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        let urlConsultarConsumoVE = `${baseUrlApi}api/calculo/obtenerconsumove?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        let urlConsultarEmisionesVC = `${baseUrlApi}api/calculo/obteneremisionesvc?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        let urlConsultarEmisionesVE = `${baseUrlApi}api/calculo/obteneremisionesve?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;      
+        let urlConsultarContaminanteLocal = `${baseUrlApi}api/calculo/obtenercontaminantelocal?idresultado=${idresultado}&idusuario=${idUsuarioLogin}`;
+        let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
         Promise.all([
-            fetch(urlConsultarLeyenda),
-            fetch(urlConsultarCostoVC),
-            fetch(urlConsultarCostoVE),
-            fetch(urlConsultarConsumoVC),
-            fetch(urlConsultarConsumoVE),
-            fetch(urlConsultarEmisionesVC),
-            fetch(urlConsultarEmisionesVE),
-            fetch(urlConsultarContaminanteLocal),
+            fetch(urlConsultarLeyenda, init),
+            fetch(urlConsultarCostoVC, init),
+            fetch(urlConsultarCostoVE, init),
+            fetch(urlConsultarConsumoVC, init),
+            fetch(urlConsultarConsumoVE, init),
+            fetch(urlConsultarEmisionesVC, init),
+            fetch(urlConsultarEmisionesVE, init),
+            fetch(urlConsultarContaminanteLocal, init),
         ])
         .then(r => Promise.all(r.map(v => v.json())))
         .then(cargarListas);

@@ -3,7 +3,7 @@
     $('#catidad-rgistros').on('change', (e) => cambiarPagina());
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
-    $('#btnCerrar').on('click', (e) => cerrarFormulario());
+    //$('#btnCerrar').on('click', (e) => cerrarFormulario());
     $('#btnGuardar').on('click', (e) => guardar());
 });
 
@@ -60,16 +60,19 @@ $(".columna-filtro").click(function (e) {
 
 var consultar = () => {
     let busqueda = $('#txt-descripcion').val() == null ? '' : $('#txt-descripcion').val();
+    let estado = '1';
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
     let columna = $("#columna").val();
     let orden = $("#orden").val();
-    let params = { busqueda, registros, pagina, columna, orden };
+    let params = { busqueda, estado, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `${baseUrl}api/rol/buscarobjeto?${queryParams}`;
+    //let url = `${baseUrl}api/rol/buscarobjeto?${queryParams}`;
+    let url = `${baseUrlApi}api/rol/buscarobjeto?${queryParams}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(url).then(r => r.json()).then(j => {
+    fetch(url, init).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
         tabla.find('tbody').html('');
         $('#viewPagination').attr('style', 'display: none !important');
@@ -142,8 +145,11 @@ var consultarObjeto = (element) => {
     $('#exampleModalLabel').html('ACTUALIZAR ROL');
 
     let id = $(element).attr('data-id');
-    let url = `${baseUrl}api/rol/obtenerobjeto?id=${id}`;
-    fetch(url)
+    //let url = `${baseUrl}api/rol/obtenerobjeto?id=${id}`;
+    let url = `${baseUrlApi}api/rol/obtenerobjeto?id=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+    fetch(url, init)
     .then(r => r.json())
     .then(j => {
         cargarDatos(j);
@@ -170,9 +176,10 @@ var guardar = () => {
 
     let id = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
-    let url = `${baseUrl}api/rol/guardarobjeto`;
+    //let url = `${baseUrl}api/rol/guardarobjeto`;
+    let url = `${baseUrlApi}api/rol/guardarobjeto`;
     let data = { ID_ROL: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
     fetch(url, init)
     .then(r => r.json())
     .then(j => {

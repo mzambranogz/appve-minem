@@ -1,10 +1,18 @@
 ﻿var storedFiles = [];
 var rutas = "";
+var marker;
+var arrTempUbicacion = [], arrUbicacion = [];
+var mapboxgl, map;
+//var currentMarkers=[];
 $(document).ready(() => {
     $('#btnGuardar').on('click', (e) => guardar());
     $('#fle-protocolo').on('change', fileDocChange);
     $('#fle-certificado').on('change', fileDocChange);
     $('#file-foto').on('change', fileImagen);
+    $('#btnUbicacion').on('click', abrirUbicacion);
+    $('#btnGuardarU').on('click', guardarUbicacion);
+    $('#btnCerrarU').on('click', cerrarUbicacion);
+    mapa();
     inicio();
 });
 
@@ -15,22 +23,14 @@ var inicio = () => {
     cargarEstacion(idestacion);
 }
 
-//end points catorceavo
 var cargarEstacion = (id) => {
 
-    //let url = `http://161.35.182.46/ApiElectromovilidad/api/login/authenticate`;
-    //let data = {Username: "carlos@grupo-zuniga.com", Password: "Flavio2019"};
-    //let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
-    //Promise.all([
-    //    fetch(url, init),
-    //])
-    //.then(r => Promise.all(r.map(v => v.json())))
-    //.then(cargarDatos);
-    
-    let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    //prioridad 15
+    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
     Promise.all([
-        fetch(urlConsultarEstacion),
+        fetch(urlConsultarEstacion, init),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarDatos);
@@ -39,6 +39,7 @@ var cargarEstacion = (id) => {
 var cargarDatos = ([estacion]) => {
     if (estacion == null) return;
     if (estacion.ID_ESTACION == 0) return;
+    $('#txt-direccion-estacion').val(estacion.DIRECCION);
     $('#txt-descripcion').val(estacion.DESCRIPCION);
     $('#txt-modelo').val(estacion.MODELO);
     $('#txt-marca').val(estacion.MARCA);
@@ -57,7 +58,8 @@ var cargarDatos = ([estacion]) => {
         for (var i = 0; i < estacion.LISTA_DOC.length; i++) {
             if (estacion.LISTA_DOC[i].ID_DOCUMENTO == 1) {
                 let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${estacion.LISTA_DOC[i].ARCHIVO_BASE}</span>`;
-                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
+                //let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
+                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
                 let btnEliminarFileDoc = `<a class="text-sres-verde btnEliminarFile" href="#" data-id="${estacion.LISTA_DOC[i].ID_DOCUMENTO}"><i class="fas fa-trash px-2 py-1"></i></a>`;
                 contenidoFileDoc = `<div class="alert alert-success p-1 d-flex w-100"><div class="mr-auto">${nombreFileDoc}</div><div class="ml-auto">${btnDescargaFileDoc}${btnEliminarFileDoc}</div></div>`;
                 $('#view-protocolo').html(`<label class="estilo-01">&nbsp;</label>${contenidoFileDoc}`);
@@ -65,9 +67,11 @@ var cargarDatos = ([estacion]) => {
                 $('#fle-protocolo').data('file', estacion.LISTA_DOC[i].ARCHIVO_CONTENIDO);
                 $('#view-protocolo .btnEliminarFile').on('click', btnEliminarFileClick);
             }
+            //prioridad 16  "/api/estacioncarga/obtenerdocumento?ruta=D:\ESCRITORIO\...." 
             if (estacion.LISTA_DOC[i].ID_DOCUMENTO == 2) {
                 let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${estacion.LISTA_DOC[i].ARCHIVO_BASE}</span>`;
-                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
+                //let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
+                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
                 let btnEliminarFileDoc = `<a class="text-sres-verde btnEliminarFile" href="#" data-id="${estacion.LISTA_DOC[i].ID_DOCUMENTO}"><i class="fas fa-trash px-2 py-1"></i></a>`;
                 contenidoFileDoc = `<div class="alert alert-success p-1 d-flex w-100"><div class="mr-auto">${nombreFileDoc}</div><div class="ml-auto">${btnDescargaFileDoc}${btnEliminarFileDoc}</div></div>`;
                 $('#view-certificado').html(`<label class="estilo-01">&nbsp;</label>${contenidoFileDoc}`);
@@ -85,12 +89,15 @@ var cargarDatos = ([estacion]) => {
         }
         let ruta_imagenes = '';
         for (var i = 0; i < estacion.LISTA_IMAGEN.length; i++) {
-            ruta_imagenes += `<a class="example-image-link" href="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            //ruta_imagenes += `<a class="example-image-link" href="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            ruta_imagenes += `<a class="example-image-link" href="${baseUrlApi}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
         }
         $('#marco-imagenes').html(ruta_imagenes);
         $('.imagen-estacion').removeClass('d-none');
     }
 
+    arrUbicacion.push(estacion.LONGITUD);
+    arrUbicacion.push(estacion.LATITUD);
 }
 
 var fileDocChange = (e) => {
@@ -201,7 +208,6 @@ var fileImagen = (e) => {
     cantidad > 0 ? $('.imagen-estacion').removeClass('d-none') : $('.imagen-estacion').addClass('d-none');
 }
 
-//end points
 var guardar = () => {
     $('.alert-add').html('');
 
@@ -214,6 +220,8 @@ var guardar = () => {
     let direccion = $('#txt-direccion').val();
 
     let message = [];
+    if ($('#txt-direccion-estacion').val().trim() == "") message.push("Debe ingresar la dirección de la estación de carga");
+    if (arrUbicacion.length == 0) message.push("No ha seleccionado la ubicacion para la estación de carga");
     if (storedFiles.length == 0) message.push("Debe subir al menos una imagen de la estación de carga");
     if ($('#fle-protocolo').data('file') == undefined) message.push("Debe subir cumplimiento de protocolo");
     if ($('#fle-certificado').data('file') == undefined) message.push("Debe subir el certificado de fabricante");
@@ -224,7 +232,8 @@ var guardar = () => {
     }
 
     arrEmpresa = {
-        ID_INSTITUCION: idinstitucion == 0 ? -1 : idinstitucion,
+        //ID_INSTITUCION: idinstitucion == 2, //solo de prueba el idinstitucion solo es un numero de prueba
+        ID_INSTITUCION: idinstitucion == 0 ? -1 : idinstitucion, //verdadero
         RUC: ruc,
         RAZON_SOCIAL: razon_social,
         CORREO: correo,
@@ -233,6 +242,7 @@ var guardar = () => {
         UPD_USUARIO: idUsuarioLogin,
     };
 
+    let direccion_estacion = $('#txt-direccion-estacion').val();
     let descripcion = $('#txt-descripcion').val();
     let modelo = $('#txt-modelo').val();
     let marca = $('#txt-marca').val();
@@ -247,19 +257,176 @@ var guardar = () => {
 
     arrDoc.push({ ID_DOCUMENTO: 1, ARCHIVO_BASE: $('#txt-protocolo').val(), ARCHIVO_CONTENIDO: $('#fle-protocolo').data('file') });
     arrDoc.push({ ID_DOCUMENTO: 2, ARCHIVO_BASE: $('#txt-certificado').val(), ARCHIVO_CONTENIDO: $('#fle-certificado').data('file') });
-    
-    let url = `${baseUrl}api/estacioncarga/guardarestacion`;
-    let data = { ID_ESTACION: idestacion == 0 ? -1 : idestacion, INSTITUCION: arrEmpresa, DESCRIPCION: descripcion, MODELO: modelo, MARCA: marca, POTENCIA: potencia, MODO_CARGA: modo_carga, 
+    //prioridad 14
+    //let url = `${baseUrl}api/estacioncarga/guardarestacion`;
+    let url = `${baseUrlApi}api/estacioncarga/guardarestacion`;
+    let data = { ID_ESTACION: idestacion == 0 ? -1 : idestacion, INSTITUCION: arrEmpresa, LONGITUD: arrUbicacion[0], LATITUD: arrUbicacion[1], DIRECCION: direccion_estacion, DESCRIPCION: descripcion, MODELO: modelo, MARCA: marca, POTENCIA: potencia, MODO_CARGA: modo_carga, 
                  TIPO_CARGADOR: tipo_cargador, TIPO_CONECTOR: tipo_conector, CANTIDAD_CONECTOR: cantidad, HORA_DESDE: hora_desde, HORA_HASTA: hora_hasta, TARIFA_SERVICIO: tarifa,
                  ID_USUARIO: idUsuarioLogin, ID_ESTADO: 1, LISTA_IMAGEN: storedFiles, LISTA_DOC: arrDoc, UPD_USUARIO: idUsuarioLogin,
     };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
         if (j != null) {
             j ? $('#btnGuardar').parent().hide() : '';
-            j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: `${baseUrl}Electromovilidad/menu-estacion-carga` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+            j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+            if (j && idinstitucion <= 0) actualizarDatosSesion();
+            else if (j) setTimeout(redireccionar, 3000);
         }
     });
 }
+
+var actualizarDatosSesion = () => 
+{
+    //let url = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuarioLogin}`;
+    let url = `${baseUrlApi}api/usuario/GetByFilter?idUsuario=${idUsuarioLogin}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+    fetch(url, init)
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else return 0;
+    })
+    .then(ActualizarSesion)
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+        return 0;
+    });
+}
+
+var ActualizarSesion = (data) => {
+    if (data == 0 || data == null) { Console.log("Ocurrió un error al traer los datos para actualizar la sesión"); }
+    else cargarSesion(data);
+}
+
+var cargarSesion = (d) => {
+    debugger;
+    let data = { ID_USUARIO: d.ID_USUARIO, NOMBRES: d.NOMBRES, ID_ROL: d.ID_ROL, NOMBRE_ROL: d.NOMBRE_ROL, ID_INSTITUCION: d.ID_INSTITUCION, PROPIETARIO: d.PROPIETARIO, ROL: {ID_ROL: d.ID_ROL, NOMBRE: d.NOMBRE_ROL}, TOKEN: token};
+
+    let url = `${baseUrl}Login/Validar`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(validarredireccionar)
+}
+
+var validarredireccionar = (data) => {
+    if (data.success)
+        setTimeout(redireccionar, 3000);        
+    else
+        mostrarMensajeError("Ocurrió un problema");
+}
+
+var redireccionar = () => {
+    location.href = `${baseUrl}Electromovilidad`;
+}
+
+var mapa = () => {
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia3phcmtsb3oiLCJhIjoiY2tsaDRoenNjMjRjcDJ2cXR4a2FrOHFtMSJ9.IubP7nyb7i-2Rvoyg_bLlA';
+    //var map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-77.03101439999999, -12.016025599999999],
+        zoom: 7
+    });
+
+    var nav = new mapboxgl.NavigationControl({
+        showCompass: true,
+        showZoom: true,
+        visualizePitch: true
+    });
+    map.addControl(nav);
+
+    map.addControl(new mapboxgl.FullscreenControl());
+    map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    }));
+
+    //map.on('mousemove', function (e) {
+    //    document.getElementById('coordenadas').innerHTML = JSON.stringify(e.lngLat);
+    //});
+
+    $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
+    $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
+
+
+    map.on('click', function (e) {
+        arrTempUbicacion = [];
+        if (marker != undefined) eliminarMarker();
+        let coord = JSON.stringify(e.lngLat);
+        coord = JSON.parse(coord);
+        agregarMarker(coord.lng, coord.lat);
+        arrTempUbicacion.push(coord.lng);
+        arrTempUbicacion.push(coord.lat);
+    });       
+    
+}
+
+var agregarMarker = (lng, lat) => {
+    marker = new mapboxgl.Marker({
+        color: "#FF5733",
+        draggable: true
+    }).setLngLat([lng, lat]).addTo(map);   
+
+    //currentMarkers.push(marker);
+    
+    //marker.on('dragstart', function (e) {
+    //    //marker.remove();
+    //    if (currentMarkers!==null) {
+    //        for (var i = currentMarkers.length - 1; i >= 0; i--) {
+    //            currentMarkers[i].remove();
+    //        }
+    //    }
+    //}); 
+
+    //marker.on('dragend', function (e) {
+    //    arrTempUbicacion = [];
+    //    if (marker != undefined) eliminarMarker();
+    //    var lngLat = marker.getLngLat();
+    //    agregarMarker(lngLat.lng, lngLat.lat);
+    //    arrTempUbicacion.push(lngLat.lng);
+    //    arrTempUbicacion.push(lngLat.lat);
+    //});  
+}
+
+//eliminar marker
+var eliminarMarker = () => {
+    marker.remove();
+}
+
+var abrirUbicacion = () => {
+    if (arrUbicacion.length > 0) {
+        arrTempUbicacion = arrUbicacion;
+        agregarMarker(arrUbicacion[0], arrUbicacion[1]);
+    }    
+    $("#modal-ubicacion").modal("show");
+}
+
+var guardarUbicacion = () => {    
+    if (arrTempUbicacion.length > 0) {
+        //arrUbicacion = arrTempUbicacion;
+        arrUbicacion = [];
+        arrUbicacion.push(marker._lngLat.lng);
+        arrUbicacion.push(marker._lngLat.lat);
+        $('#modal-ubicacion').modal("hide");
+    } else {
+        alert("No ha seleccionado ninguna ubicación");
+    }
+}
+
+var cerrarUbicacion = () => {    
+    $('#modal-ubicacion').modal("hide");
+}
+
+$("#modal-ubicacion").on("hidden.bs.modal", function () {
+    if (arrTempUbicacion.length > 0) {
+        arrTempUbicacion = [];
+        marker.remove();
+    }
+});

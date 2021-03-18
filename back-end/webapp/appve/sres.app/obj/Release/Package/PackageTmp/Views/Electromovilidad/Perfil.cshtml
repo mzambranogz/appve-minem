@@ -1,0 +1,152 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Estación de carga";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/plugins/counter.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/electromovilidad_perfil.js")"></script>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-md-12 col-sm-12 mb-5 mb-lg-0"></div>
+        <div class="col-lg-8 col-md-12 col-sm-12 mb-5 mb-lg-0">
+            <div class="row mt-4">
+                <div class="col-12 wow fadeIn">
+                    <div class="h4 estilo-03">Actualiza tu información</div>
+                    <form class="pt-4" id="frmPerfil" autocomplete="off">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-nombre-completo">Nombre completo</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
+                                        <input class="form-control estilo-01" type="text" name="txt-nombre-completo" id="txt-nombre-completo" placeholder="ingrese su nombre completo" maxlength="100" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="mlt-gei">Género</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-shield-alt"></i></span></div>
+                                        <div class="form-control" style="height:85px; overflow-y: auto;">
+                                            <div class="col-auto my-1">
+                                                <div class="custom-control custom-radio mr-sm-2">
+                                                    <input class="custom-control-input" type="radio" name="rad-estado" id="rad-01">
+                                                    <label class="custom-control-label badge badge-actor-02" for="rad-01"><i class="fas fa-check-circle mr-1"></i>Masculino</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto my-1">
+                                                <div class="custom-control custom-radio mr-sm-2">
+                                                    <input class="custom-control-input" type="radio" name="rad-estado" id="rad-02">
+                                                    <label class="custom-control-label badge badge-actor-aprobado" for="rad-02"><i class="fas fa-times-circle mr-1"></i>Femenino</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-user">Correo electrónico</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
+                                        <input class="form-control estilo-01" type="email" name="txt-user" id="txt-user" placeholder="Ingresar correo electrónico" maxlength="50" title="Ingrese una dirección de correo válida." readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="rayado pt-2 mb-3"></div>
+                            </div>
+                        </div>
+
+                        <div class="row datos-empresa">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-user">Número de ruc</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
+                                        <input class="form-control estilo-01" type="text" name="txt-ruc" id="txt-ruc" placeholder="Ingrese su ruc" maxlength="11">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row datos-empresa">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-user">Razón social</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
+                                        <input class="form-control estilo-01" type="text" name="txt-razon-social" id="txt-razon-social" placeholder="Ingrese la razón social" maxlength="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row datos-empresa">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-user">Correo electrónico de la empresa</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
+                                        <input class="form-control estilo-01" type="text" name="txt-correo-empresa" id="txt-correo-empresa" placeholder="Ingrese el correo electrónico" maxlength="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row datos-empresa">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-user">Teléfono</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
+                                        <input class="form-control estilo-01" type="text" name="txt-telefono" id="txt-telefono" placeholder="Ingrese el teléfono" maxlength="12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row datos-empresa">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-user">Dirección de la empresa</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
+                                        <input class="form-control estilo-01" type="text" name="txt-direccion" id="txt-direccion" placeholder="Ingrese su ruc" maxlength="50">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row datos-empresa">
+                            <div class="col-sm-12">
+                                <div class="rayado pt-2 mb-3"></div>
+                            </div>
+                        </div>
+
+                        <div class="row registrar-usuario">
+                            <div class="col-sm-12 col-md-3">
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <button class="btn-lg btn-sres-verde w-100" type="submit"><i class="fas fa-paper-plane px-1"></i>Actualizar</button>
+                                @*<p class="py-4 mb-0 text-center estilo-01">¿Ya tiene una cuenta?&nbsp;<a class="text-sres-verde" href="@Url.Action("Index","Login")">Ingrese ahora <br></a><a class="text-sres-verde" href="@Url.Action("RecuperarContraseña", "Login")">¿Olvidó su contraseña?</a></p>*@
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-12 col-sm-12 mb-5 mb-lg-0"></div>
+        @*@Html.Partial("_SRES_Documentation")*@
+    </div>
+</div>

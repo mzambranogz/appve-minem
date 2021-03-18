@@ -4,9 +4,13 @@ $(document).ready(() => {
 });
 
 var cargarComponentes = () => {
-    let urlConsultarResultados = `${baseUrl}api/calculo/obtenerallresultados?idusuario=${idUsuarioLogin}`;
+    //end_points 12
+    //let urlConsultarResultados = `${baseUrl}api/calculo/obtenerallresultados?idusuario=${idUsuarioLogin}`;
+    let urlConsultarResultados = `${baseUrlApi}api/calculo/obtenerallresultados?idusuario=${idUsuarioLogin}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
     Promise.all([
-        fetch(urlConsultarResultados),
+        fetch(urlConsultarResultados, init),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarListas);
@@ -38,8 +42,12 @@ $(document).on('click', '.EliminarResultado', (e) => {
     if (id == null) return;
     if (id <= 0) return;
 
-    let url = `${baseUrl}api/calculo/eliminarresultado?idresultado=${id}&idusuario=${idUsuarioLogin}`;
-    fetch(url).then(r => r.json()).then((data) => {
+    //end_points 13
+    //let url = `${baseUrl}api/calculo/eliminarresultado?idresultado=${id}&idusuario=${idUsuarioLogin}`;
+    let url = `${baseUrlApi}api/calculo/eliminarresultado?idresultado=${id}&idusuario=${idUsuarioLogin}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+    fetch(url, init).then(r => r.json()).then((data) => {
         if (data) {
             alert("Resultado eliminado");
             cargarComponentes();

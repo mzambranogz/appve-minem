@@ -64,7 +64,7 @@ var consultar = () => {
     let orden = $("#orden").val();
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
-    let url = `${baseUrl}api/caso/buscar?${queryParams}`;
+    let url = `${baseUrl}api/caso/buscar?${queryParams}`; //prioridad 25
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -143,8 +143,11 @@ var traerValores = (e) => {
     $('#btnGuardar').next().html('Cancelar');
     let id = $(e).attr('data-factor');
     let nom = $(e).attr('data-nomfactor');
-    let url = `${baseUrl}api/factor/obtenerfactorvalor?id=${id}`;
-    fetch(url)
+    //let url = `${baseUrl}api/factor/obtenerfactorvalor?id=${id}`;
+    let url = `${baseUrlApi}api/factor/obtenerfactorvalor?id=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+    fetch(url, init)
     .then(r => r.json())
     .then(j => {
         cargarDatos(j, id, nom);
@@ -217,7 +220,8 @@ var cargarDatos = (data, id_factor, nom) => {
 
 var guardar = () => {
     factor_data = [];
-    let url = `${baseUrl}api/factor/guardarfactorvalor`;
+    //let url = `${baseUrl}api/factor/guardarfactorvalor`;
+    let url = `${baseUrlApi}api/factor/guardarfactorvalor`;
 
     $('#tbl-factor').find('tbody').find('tr').each((x, y) => {
         let id_factor = $(y).data('factor');
@@ -240,7 +244,7 @@ var guardar = () => {
     });
 
     let data = { LISTA_FAC_DATA: factor_data, USUARIO_GUARDAR: idUsuarioLogin };
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
     fetch(url, init)
     .then(r => r.json())
     .then(j => {

@@ -209,6 +209,7 @@
     <Content Include="Assets\images\caso_06.png" />
     <Content Include="Assets\images\cinta.png" />
     <Content Include="Assets\images\clave.png" />
+    <Content Include="Assets\images\close.png" />
     <Content Include="Assets\images\colaboradores.png" />
     <Content Include="Assets\images\convocatoria.png" />
     <Content Include="Assets\images\criterio-01.png" />
@@ -287,7 +288,10 @@
     <Content Include="Assets\images\ico_nama_rojo_02.svg" />
     <Content Include="Assets\images\ico_nama_verde_01.svg" />
     <Content Include="Assets\images\ico_nama_verde_02.svg" />
+    <Content Include="Assets\images\img-p1.png" />
+    <Content Include="Assets\images\img-p2.png" />
     <Content Include="Assets\images\lazo.png" />
+    <Content Include="Assets\images\loading.gif" />
     <Content Include="Assets\images\log-sres-blanco.png" />
     <Content Include="Assets\images\login-left.png" />
     <Content Include="Assets\images\logo-blockchain-blanco.png" />
@@ -296,6 +300,7 @@
     <Content Include="Assets\images\logo-minem.jpg" />
     <Content Include="Assets\images\logo-nama-blanco.png" />
     <Content Include="Assets\images\logo-pnud-blanco.png" />
+    <Content Include="Assets\images\logo-principal.svg" />
     <Content Include="Assets\images\logo_gef.jpg" />
     <Content Include="Assets\images\logo_gef.png" />
     <Content Include="Assets\images\logo_gef.svg" />
@@ -305,6 +310,7 @@
     <Content Include="Assets\images\logo_pnud.png" />
     <Content Include="Assets\images\logo_pnud.svg" />
     <Content Include="Assets\images\mrv-iso.png" />
+    <Content Include="Assets\images\next.png" />
     <Content Include="Assets\images\oro.png" />
     <Content Include="Assets\images\paneles.png" />
     <Content Include="Assets\images\participantes.png" />
@@ -312,6 +318,7 @@
     <Content Include="Assets\images\plata.png" />
     <Content Include="Assets\images\preguntas_frecuentes.png" />
     <Content Include="Assets\images\preguntas_frecuentes_email.jpg" />
+    <Content Include="Assets\images\prev.png" />
     <Content Include="Assets\images\proceso.png" />
     <Content Include="Assets\images\reconocimientos.png" />
     <Content Include="Assets\images\rees-iso.png" />

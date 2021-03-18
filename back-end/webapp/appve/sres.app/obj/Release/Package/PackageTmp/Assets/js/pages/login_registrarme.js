@@ -46,7 +46,8 @@ var registrarUsuario = () => {
     let message = [];
     if (nombres.trim() == "") message.push("Debe ingresar su nombre completo");
     if (genero == 0) message.push("Debe seleccionar su género");
-    if (!(/[a-zñ]/.test($("#txt-pswd").val().trim()) && /[A-ZÑ]/.test($("#txt-pswd").val().trim()) && /[0-9]/.test($("#txt-pswd").val().trim()) && /\W/.test($("#txt-pswd").val().trim()))) arr.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es)");
+    if (!(/[a-zñ]/.test($("#txt-pswd").val().trim()) && /[A-ZÑ]/.test($("#txt-pswd").val().trim()) && /[0-9]/.test($("#txt-pswd").val().trim()) && /\W/.test($("#txt-pswd").val().trim()))) message.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es)");
+    if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($("#txt-user").val()))) message.push("Ingrese un correo electrónico válido");
     if (contraseña != reContraseña) message.push("Las contraseñas ingresadas no coinciden");
     if (!aceptarTerminosYCondiciones) message.push("Debe aceptar los términos y condiciones");
 

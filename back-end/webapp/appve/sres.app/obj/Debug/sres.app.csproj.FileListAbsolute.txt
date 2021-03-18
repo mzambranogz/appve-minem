@@ -550,15 +550,6 @@ D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\roslyn\System.Ref
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\roslyn\vbc.exe
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\roslyn\VBCSCompiler.exe
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\roslyn\VBCSCompiler.exe.config
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\Criterios\1\Imagen\criterio-11.png
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\Criterios\2\Imagen\criterio-12.png
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\Criterios\3\Imagen\criterio-13.png
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\Criterios\5\Imagen\criterio-10.png
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\Criterios\6\Imagen\criterio-05.png
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\Criterios\LEER.txt
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\Insignias\LEER.txt
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\MedidaMitigacion\LEER.txt
-D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Files\Reconocimientos\LEER.txt
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Log\LEER.txt
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Assets\documentos\2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI (TCO2).pdf
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\Assets\documentos\3° Criterios para alcanzar Categorías y Estrellas de recocnocimiento de energía sostenible.pdf

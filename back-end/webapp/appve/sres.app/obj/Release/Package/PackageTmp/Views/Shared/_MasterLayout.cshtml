@@ -15,18 +15,18 @@
     <meta name="msapplication-TileImage" content="@Url.Content("~/Assets/images/favicon/ms-icon-144x144.png")">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#2E58A6">
-    <meta property="og:title" content="SRES | Plataforma del Sello de Reconocimiento de Energía Sostenible">
+    <meta property="og:title" content="Electromovilidad">
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://grupo-zuniga.com/proyectos/sres/">
     <meta property="og:image" content="http://grupo-zuniga.com/proyectos/sres/images/sres-iso.png">
-    <meta property="og:description" content="El Sello de Reconocimiento de Energía sostenible (SRES) es un distintivo otorgada por el &lt;b&gt;Ministerio de Energía y Minas del Perú&lt;/b&gt; a través de su órgano directivo la Dirección General de Eficiencia Energética, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.">
-    <title>Plataforma del Sello de Reconocimiento de Energía Sostenible | @ViewBag.Titulo</title>
-    <meta name="description" content="El Sello de Reconocimiento de Energía sostenible (SRES) es un distintivo otorgada por el &lt;b&gt;Ministerio de Energía y Minas del Perú&lt;/b&gt; a través de su órgano directivo la Dirección General de Eficiencia Energética, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.">
+    <meta property="og:description" content="Vehìculos eléctricos para la reducción de GEI.">
+    <title>Electromovilidad | @ViewBag.Titulo</title>
+    <meta name="description" content="Vehìculos eléctricos para la reducción de GEI.">
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="@Url.Content("~/Assets/images/favicon/favicon-32x32.png")" sizes="32x32">
     <link rel="icon" type="image/png" href="@Url.Content("~/Assets/images/favicon/favicon-16x16.png")" sizes="16x16">
     <link rel="mask-icon" href="@Url.Content("~/Assets/images/favicon/safari-pinned-tab.svg")" color="#5bbad5">
-    <link rel="shortcut icon" href="@Url.Content("~/Assets/images/favicon/favicon.ico")">
+    <link rel="shortcut icon" href="@Url.Content("~/Assets/images/logo-principal.svg")">
     <meta name="msapplication-config" content="@Url.Content("~/Assets/images/favicon/browserconfig.xml")">
     <meta name="theme-color" content="#ffffff">
     @*<script src="https://www.google.com/recaptcha/api.js?render=6Ldrz64ZAAAAAI1-XbefHCEBr8VMOgCPZhOPOI_7"></script>*@
@@ -82,6 +82,91 @@
             background-color: #fff;
             color: #244C9C;
         }
+
+        .mapboxgl-popup {
+            max-width: 400px !important;
+          }
+
+        .estilo-g {
+            padding: 20px 15px;
+            border: 1px solid #CEC4C4;
+            border-radius: 3px;
+            margin-top: 20px;
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        :root {
+                --color-blue: #1a73e8;
+                --color-gray: #9e9e9e;
+            }
+
+            .container-input {
+                padding-top: 20px;
+                position: relative;
+                margin-bottom: 5px;
+            }
+
+            .field {
+                border: none;
+                outline: none;
+                box-shadow: 0 1px var(--color-gray);
+                padding: 8px 3px;
+                background-color: transparent;
+                transition: all .3s;
+                display: block;
+                width: 100%;
+            }
+
+            :not(.style-2) > .field:focus {
+                box-shadow: 0 2px var(--color-blue);
+            }
+
+            .style-2 > .border-bottom:before, .style-2 > .border-bottom:after {
+                content: '';
+                display: block;
+                height: 2px;
+                width: 0;
+                background-color: var(--color-blue);
+                position: absolute;
+                bottom: -2px;
+                transition: width .3s;
+            }
+
+            .style-2 > .border-bottom:before {
+                right: 50%;
+            }
+
+            .style-2 > .border-bottom:after {
+                left: 50%;
+            }
+
+            .style-2 > .field:focus ~ .border-bottom:before, .style-2 > .field:focus ~ .border-bottom:after {
+                width: 50%;
+            }
+
+            .label {
+                position: absolute;
+                left: 0;
+                top: 20px;
+                color: var(--color-gray);
+                padding: 8px 3px;
+                z-index: -1;
+                transition: all .3s;
+            }
+
+            .field:focus ~ .label, .field:valid ~ .label {
+                top: 0;
+                font-size: .8rem;
+            }
+
+            .field:focus ~ .label {
+                color: var(--color-blue);
+            }
     </style>
 
 </head>
@@ -99,7 +184,6 @@
     <script type="text/javascript">
         const baseUrl = '@Url.Content("~")';
         const baseUrlApi = 'http://161.35.182.46/ApiElectromovilidad/';
-        //const baseUrlApi = 'http://localhost:8546/';
         const idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());
         const idRolLogin = @(usuario == null ? "null" : usuario.ROL == null ? "null" : usuario.ID_ROL.ToString());
         const token = '@(usuario == null ? "" : $"{usuario.TOKEN}")';
