@@ -30,6 +30,7 @@ namespace Logica.minem.gob.pe
 
             return lista;
         }
+
         public List<CasoBE> ListaCaso()
         {
             List<CasoBE> lista = new List<CasoBE>();

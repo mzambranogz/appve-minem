@@ -208,5 +208,35 @@ namespace Logica.minem.gob.pe
 
             return user;
         }
+
+        public List<EstacionCargaBE> BuscarEstaciones(int nroInforme, string propietario, string empresa, int registros, int pagina, string columna, string orden)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = estacionDa.BuscarEstaciones(nroInforme, propietario, empresa, registros, pagina, columna, orden, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public bool RevisionEstacion(EstacionCargaBE entidad)
+        {
+            bool v = true;
+            try
+            {
+                cn.Open();
+                v = estacionDa.RevisionEstacion(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return v;
+        }
+
+
     }
 }

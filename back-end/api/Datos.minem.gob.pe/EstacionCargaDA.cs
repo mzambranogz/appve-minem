@@ -274,5 +274,54 @@ namespace Datos.minem.gob.pe
 
             return user;
         }
+
+        public List<EstacionCargaBE> BuscarEstaciones(int nroInforme, string propietario, string empresa, int registros, int pagina, string columna, string orden, OracleConnection db)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_BUSQ_ESTACIONES";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_CODIGO", nroInforme);
+                p.Add("PI_NOMBRES", propietario);
+                p.Add("PI_EMPRESA", empresa);
+                p.Add("PI_REGISTROS", registros);
+                p.Add("PI_PAGINA", pagina);
+                p.Add("PI_COLUMNA", columna);
+                p.Add("PI_ORDEN", orden);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public bool RevisionEstacion(EstacionCargaBE entidad, OracleConnection db)
+        {
+            bool v = true;
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_REVISION_ESTACION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ESTACION", entidad.ID_ESTACION);
+                p.Add("PI_ID_USUARIO", entidad.ID_USUARIO);
+                p.Add("PI_FLAG_ESTADO", entidad.FLAG_ESTADO);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                v = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                v = false;
+            }
+
+            return v;
+        }
+
+
     }
 }
