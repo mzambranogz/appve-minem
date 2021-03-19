@@ -2,7 +2,8 @@
 @using sres.be
 @{
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
-    string rol = usuario == null ? "" : usuario.ROL == null ? "" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.PUBLICO ? "Público" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.PROPIETARIO ? "Propietario" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.ADMINISTRADOR ? "Administrador" : ""; //Temporal hasta que pasen por API el nombre de rol
+    //string rol = usuario == null ? "" : usuario.ROL == null ? "" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.PUBLICO ? "Público" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.PROPIETARIO ? "Propietario" : usuario.ROL.ID_ROL == (int)EnumsCustom.Roles.ADMINISTRADOR ? "Administrador" : ""; //Temporal hasta que pasen por API el nombre de rol
+    string rol = usuario == null ? "" : usuario.ROL == null ? "" : usuario.ROL.NOMBRE;
 }
 <div class="container-fluid menu d-print-none">
     <div class="container">
@@ -29,9 +30,15 @@
                             <li class="nav-item btn barra barra-convocatoria"><a class="nav-link wow slideInUp" href="@Url.Action("estaciones-de-carga", "Electromovilidad")" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>MIS ESTACIONES DE CARGA</a></li>
                         }
                         @*<li class="nav-item btn barra barra-convocatoria"><a class="nav-link wow slideInUp" href="@Url.Action("estaciones-de-carga", "Electromovilidad")" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>MIS ESTACIONES DE CARGA</a></li>*@
-                        <li class="nav-item btn barra barra-categoria"><a class="nav-link wow slideInUp" href="@Url.Action("mis-consultas-y-resultados", "Electromovilidad")" data-wow-delay=".6s"><i class="fas fa-network-wired fa-lg mr-1"></i>MIS CONSULTAS Y RESULTADOS</a></li>
+                        if (usuario.ID_ROL == (int)EnumsCustom.Roles.PUBLICO || usuario.ID_ROL == (int)EnumsCustom.Roles.PROPIETARIO)
+                        {
+                            <li class="nav-item btn barra barra-categoria"><a class="nav-link wow slideInUp" href="@Url.Action("mis-consultas-y-resultados", "Electromovilidad")" data-wow-delay=".6s"><i class="fas fa-network-wired fa-lg mr-1"></i>MIS CONSULTAS Y RESULTADOS</a></li>
+                        }
                         <li class="nav-item btn barra barra-reconocimiento"><a class="nav-link wow slideInUp" href="javascript:void(0)" data-wow-delay=".7s"><i class="fas fa-trophy fa-lg mr-1"></i>MANUAL</a></li>
-                        <li class="nav-item btn barra barra-bandeja"><a class="nav-link wow slideInUp" href="@Url.Action("ver-perfil", "Electromovilidad")" data-wow-delay=".5s"><i class="fas fa-inbox fa-lg mr-1"></i>MI PERFIL</a></li>
+                        if (usuario.ID_ROL == (int)EnumsCustom.Roles.PUBLICO || usuario.ID_ROL == (int)EnumsCustom.Roles.PROPIETARIO)
+                        {
+                            <li class="nav-item btn barra barra-bandeja"><a class="nav-link wow slideInUp" href="@Url.Action("ver-perfil", "Electromovilidad")" data-wow-delay=".5s"><i class="fas fa-inbox fa-lg mr-1"></i>MI PERFIL</a></li>
+                        }
                     }
                 </ul>
                     
@@ -50,7 +57,7 @@
                                 @if (usuario.ID_ROL != (int)EnumsCustom.Roles.PUBLICO && usuario.ID_ROL != (int)EnumsCustom.Roles.PROPIETARIO)
                                 {
                                     <a class="dropdown-item estilo-01" href="@Url.Action("TablaMantenimiento", "Mantenimiento")"><i class="fas fa-cogs mr-1"></i>Mantenimiento de tablas</a>
-                                    <a class="dropdown-item estilo-01" href="@Url.Action("Index","Reporte")"><i class="fas fa-clipboard mr-1"></i>Reportes</a>
+                                    @*<a class="dropdown-item estilo-01" href="@Url.Action("Index","Reporte")"><i class="fas fa-clipboard mr-1"></i>Reportes</a>*@
                                 }
                                 <a class="dropdown-item estilo-01" href="@Url.Action("Cambiar-contrasena", "Convocatoria")"><i class="fas fa-key mr-1"></i>Cambiar contraseña</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item estilo-01" href="@Url.Action("Salir", "Login")"><i class="fas fa-sign-out-alt mr-1"></i>Salir del sistema</a>

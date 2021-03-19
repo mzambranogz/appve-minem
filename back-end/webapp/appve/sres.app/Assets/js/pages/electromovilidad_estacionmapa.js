@@ -152,7 +152,7 @@ var evaluarCoordenadas = (coord) => {
 //navigator.geolocation.getCurrentPosition(geoSuccess);
 
 var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
-    let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`;
+    let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`; //prioridad 26
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)
@@ -182,7 +182,7 @@ var cargarMarker = (data) => {
 
             popup.on('open', function () {
                 $(`#img-${x.ID_ESTACION}`).html(``);
-                let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`;
+                let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`; //prioridad 27
                 let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
                 fetch(urlConsultarEstacion, init)

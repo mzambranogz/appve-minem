@@ -14,9 +14,12 @@ var inicio = () => {
 }
 
 var cargarEstacion = (id) => {
-    let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
     Promise.all([
-        fetch(urlConsultarEstacion),
+        fetch(urlConsultarEstacion, init),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarDatos);
@@ -54,7 +57,8 @@ var cargarDatos = ([estacion]) => {
 
                 let tituloDoc = `<label class="estilo-01">Cumplimiento de protocolo:</label>`;
                 let nombreFileDoc = `<input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-protocolo" value="${estacion.LISTA_DOC[i].ARCHIVO_BASE}" readonly>`;
-                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
                 let fileDoc = `<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>${nombreFileDoc}${btnDescargaDoc}</div>`;
                 let contenidoFileDoc = `<div class="col-lg-12 col-md-12 col-sm-12">${tituloDoc}${fileDoc}</div>`;
                 $('#protocolo-doc').html(contenidoFileDoc);
@@ -72,7 +76,8 @@ var cargarDatos = ([estacion]) => {
 
                 let tituloDoc = `<label class="estilo-01">Certificado de fabricante:</label>`;
                 let nombreFileDoc = `<input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-certificado" value="${estacion.LISTA_DOC[i].ARCHIVO_BASE}" readonly>`;
-                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
                 let fileDoc = `<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>${nombreFileDoc}${btnDescargaDoc}</div>`;
                 let contenidoFileDoc = `<div class="col-lg-12 col-md-12 col-sm-12"><div class="form-group text-left">${tituloDoc}${fileDoc}</div></div>`;
                 $('#certificado-doc').html(contenidoFileDoc);
@@ -87,7 +92,8 @@ var cargarDatos = ([estacion]) => {
         }
         let ruta_imagenes = '';
         for (var i = 0; i < estacion.LISTA_IMAGEN.length; i++) {
-            ruta_imagenes += `<a class="example-image-link" href="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            //ruta_imagenes += `<a class="example-image-link" href="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            ruta_imagenes += `<a class="example-image-link" href="${baseUrlApi}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
         }
         $('#marco-imagenes').html(ruta_imagenes);
         $('.imagen-estacion').removeClass('d-none');
@@ -150,7 +156,8 @@ var mapa = (lat, lng) => {
 
 var revisionEstacion = (e) => {
     let flg = $(`#${e.target.id}`).data("validar");
-    let url = `${baseUrl}api/estacioncarga/revisionestacion`; //prioridad 24
+    //let url = `${baseUrl}api/estacioncarga/revisionestacion`; //prioridad 24
+    let url = `${baseUrlApi}api/estacioncarga/revisionestacion`;
     let data = { ID_ESTACION: idestacion, FLAG_ESTADO: `${flg}`, ID_USUARIO: idUsuarioLogin, UPD_USUARIO: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 

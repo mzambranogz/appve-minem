@@ -64,7 +64,9 @@ var consultar = () => {
     let orden = $("#orden").val();
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
-    let url = `${baseUrl}api/caso/buscar?${queryParams}`; //prioridad 25
+    //let url = `${baseUrl}api/caso/buscar?${queryParams}`; //prioridad 25
+    let url = `${baseUrlApi}api/caso/buscar?${queryParams}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
