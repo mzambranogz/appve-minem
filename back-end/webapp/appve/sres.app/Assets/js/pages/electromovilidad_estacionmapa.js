@@ -1,10 +1,8 @@
 ﻿var mapboxgl, map;
+var minLng, minLtd, maxLng, maxLtd;
 
 $(document).ready(() => {
     mapa();
-    cargarComponentes();
-
-    
 });
 
 var mapa = () => {
@@ -15,6 +13,13 @@ var mapa = () => {
         center: [-77.03101439999999, -12.016025599999999],
         zoom: 7
     });
+
+    var coord = map.getBounds();
+    minLng = coord._sw.lng;
+    minLtd = coord._sw.lat;
+    maxLng = coord._ne.lng;
+    maxLtd = coord._ne.lat;
+    cargarComponentes(minLng, minLtd, maxLng, maxLtd);    
 
     var nav = new mapboxgl.NavigationControl({
         showCompass: true,
@@ -47,10 +52,61 @@ var mapa = () => {
 
     $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
     $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
+      
+    map.on('zoomend', function () {
+        var bounds = map.getBounds();
+        evaluarCoordenadas(bounds);
+        //console.log('A zoomend event occurred.');
+    });
 
-    
+    map.on('dragend', function () {
+        var bounds = map.getBounds();
+        evaluarCoordenadas(bounds);
+        //console.log('A dragend event occurred.');
+    });
 
+    map.on('touchstart', function () {
+        var bounds = map.getBounds();
+        evaluarCoordenadas(bounds);
+        //console.log('A touchstart event occurred.');
+    });
 
+    map.on('rotateend', function () {
+        var bounds = map.getBounds();
+        evaluarCoordenadas(bounds);
+        //console.log('A rotateend event occurred.');
+    });
+
+    map.on('boxzoomend', function () {
+        console.log('A boxzoomend event occurred.');
+    });
+
+}
+
+var evaluarCoordenadas = (coord) => {
+    if (coord._sw.lng < minLng && (-81.33531256420639 < coord._sw.lng || minLng > -81.33531256420639)) {
+        console.log("minimo Lng nuevo valor entre: {0} : {1}", coord._sw.lng, minLng);
+        cargarComponentes(coord._sw.lng, minLtd, minLng, maxLtd);
+        minLng = coord._sw.lng;        
+    }
+
+    if (coord._ne.lng > maxLng && (-68.64771000999576 > coord._ne.lng || maxLng < -68.64771000999576)) {
+        console.log("maximo Lng nuevo valor entre: {0} : {1}", maxLng, coord._ne.lng);
+        cargarComponentes(maxLng, minLtd, coord._ne.lng, maxLtd);
+        maxLng = coord._ne.lng;
+    }
+
+    if (coord._sw.lat < minLtd && (-18.35532317840149 < coord._sw.lat || minLtd > -18.35532317840149)) {
+        console.log("minimo Lat nuevo valor entre: {0} : {1}", coord._sw.lat, minLtd);
+        cargarComponentes(minLng, coord._sw.lat, maxLng, minLtd);
+        minLtd = coord._sw.lat;
+    }
+
+    if (coord._ne.lat > maxLtd && (-0.03322135965653 > coord._ne.lat || maxLtd < -0.03322135965653)) {
+        console.log("maximo Lat nuevo valor entre: {0} : {1}", maxLtd, coord._ne.lat);
+        cargarComponentes(minLng, maxLtd, maxLng, coord._ne.lat);
+        maxLtd = coord._ne.lat;
+    }
 }
 
 //FORMA 1 PARA UBICAR EN EL MAPA (SEGUNDA OPCION)
@@ -95,8 +151,8 @@ var mapa = () => {
 //};
 //navigator.geolocation.getCurrentPosition(geoSuccess);
 
-var cargarComponentes = () => {
-    let url = `${baseUrl}api/estacioncarga/obtenerestacionall`;
+var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
+    let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)
@@ -105,8 +161,9 @@ var cargarComponentes = () => {
 }
 
 var cargarMarker = (data) => {
-    if (data == null) return;
+    if (data == null) return;    
     if (data.length > 0) {
+        console.log(`nuevo end point estacion: ${data.ID_ESTACION}`);
         data.map((x, y) => {
             color_estado = x.ID_ESTADO == 1 ? "#FF5733" : "#3C53B0";
             var m = new mapboxgl.Marker({
@@ -157,9 +214,6 @@ var cargarMarker = (data) => {
 
             m.setPopup(popup);
             m.addTo(map);
-
-            
-
             //m.togglePopup();
         });
     }

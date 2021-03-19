@@ -194,13 +194,13 @@ namespace sres.ln
             return v;
         }
 
-        public List<EstacionCargaBE> getEstacionAll()
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
             {
                 cn.Open();
-                lista = estacionDa.getEstacionAll(cn);
+                lista = estacionDa.getEstacionAll(minLng, maxLng, minLat, maxLat, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

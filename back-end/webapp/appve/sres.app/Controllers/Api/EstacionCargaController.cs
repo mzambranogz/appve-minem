@@ -68,9 +68,9 @@ namespace sres.app.Controllers.Api
 
         [Route("obtenerestacionall")]
         [HttpGet]
-        public List<EstacionCargaBE> getEstacionAll()
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat)
         {
-            List<EstacionCargaBE> lista = estacionLN.getEstacionAll();
+            List<EstacionCargaBE> lista = estacionLN.getEstacionAll(minLng, maxLng, minLat, maxLat);
             return lista;
         }
 
