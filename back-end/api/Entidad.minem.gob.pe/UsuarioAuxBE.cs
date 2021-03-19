@@ -9,6 +9,6 @@ namespace Entidad.minem.gob.pe
     public partial class UsuarioBE
     {
         public string CONTRASENA_NUEVO { get; set; }
-
+        public string NOMBRE_ROL { get; set; }
     }
 }

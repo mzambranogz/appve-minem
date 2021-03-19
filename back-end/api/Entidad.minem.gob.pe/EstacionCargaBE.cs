@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidad.minem.gob.pe
 {
-    public class EstacionCargaBE : BaseBE
+    public partial class EstacionCargaBE : BaseBE
     {
         public int ID_ESTACION { get; set; }
         public int ID_USUARIO { get; set; }
