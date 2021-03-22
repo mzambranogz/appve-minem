@@ -1,0 +1,11 @@
+22/03/2021 09:57:58: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:57:58: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:57:58: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:57:58: [Método: Void Open(), Línea: 0] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:57:58: [Método: Boolean ValidarUsuario(System.String, System.String, Entidad.minem.gob.pe.UsuarioBE ByRef), Línea: 155] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:59:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:59:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:59:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:59:37: [Método: Void Open(), Línea: 0] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 09:59:37: [Método: Boolean ValidarUsuario(System.String, System.String, Entidad.minem.gob.pe.UsuarioBE ByRef), Línea: 155] - ORA-12170: TNS:Se ha producido un timeout de conexión
+22/03/2021 17:50:58: [Método: Boolean GuardarEstacionCarga(Entidad.minem.gob.pe.EstacionCargaBE), Línea: 32] - Referencia a objeto no establecida como instancia de un objeto.
