@@ -383,6 +383,7 @@
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
+    <Content Include="Assets\js\scriptUtil.js" />
     <Content Include="Files\Criterios\1\Imagen\criterio-11.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -45,14 +45,14 @@ var cargarDatos = ([estacion]) => {
     $('#txt-marca').val(estacion.MARCA);
     $('#txt-descripcion').val(estacion.DESCRIPCION);
     $('#cantidad-foto').html(estacion.CANTIDAD_IMAGEN);
-    $('#txt-potencia').val(estacion.POTENCIA);
+    $('#txt-potencia').val(formatoMilesDecimales(estacion.POTENCIA));
     $('#txt-modo-carga').val(estacion.MODO_CARGA);
     $('#txt-tipo-cargador').val(estacion.TIPO_CARGADOR);
     $('#txt-tipo-conector').val(estacion.TIPO_CONECTOR);
-    $('#txt-cantidad-conector').val(estacion.CANTIDAD_CONECTOR);
+    $('#txt-cantidad-conector').val(formatoMilesEnteros(estacion.CANTIDAD_CONECTOR));
     $('#txt-hora-desde').val(estacion.HORA_DESDE);
     $('#txt-hora-hasta').val(estacion.HORA_HASTA);
-    $('#txt-tarifa').val(estacion.TARIFA_SERVICIO);
+    $('#txt-tarifa').val(formatoMilesDecimales(estacion.TARIFA_SERVICIO));
 
     if (estacion.LISTA_DOC != null){
         for (var i = 0; i < estacion.LISTA_DOC.length; i++) {
@@ -222,6 +222,18 @@ var guardar = () => {
     let message = [];
     if ($('#txt-direccion-estacion').val().trim() == "") message.push("Debe ingresar la dirección de la estación de carga");
     if (arrUbicacion.length == 0) message.push("No ha seleccionado la ubicacion para la estación de carga");
+    if ($('#txt-descripcion').val().trim() == "") message.push("Debe ingresar una descripción");
+    if ($('#txt-modelo').val().trim() == "") message.push("Debe ingresar el modelo");
+    if ($('#txt-marca').val().trim() == "") message.push("Debe ingresar la marca");
+    if ($('#txt-potencia').val().trim() == "") message.push("Debe ingresar la potencia");
+    if ($('#txt-modo-carga').val().trim() == "") message.push("Debe ingresar el modo de carga");
+    if ($('#txt-tipo-cargador').val().trim() == "") message.push("Debe ingresar el tipo de cargador");
+    if ($('#txt-tipo-conector').val().trim() == "") message.push("Debe ingresar el tipo de conector");
+    if ($('#txt-cantidad-conector').val().trim() == "") message.push("Debe ingresar la cantidad de conectores");
+    if ($('#txt-hora-desde').val().trim() == "") message.push("Debe ingresar la hora desde la apertura de la estación de carga");
+    if ($('#txt-hora-hasta').val().trim() == "") message.push("Debe ingresar la hora hasta el cierre de la estación de carga");
+    if ($('#txt-tarifa').val().trim() == "") message.push("Debe ingresar la tarifa");
+
     if (storedFiles.length == 0) message.push("Debe subir al menos una imagen de la estación de carga");
     if ($('#fle-protocolo').data('file') == undefined) message.push("Debe subir cumplimiento de protocolo");
     if ($('#fle-certificado').data('file') == undefined) message.push("Debe subir el certificado de fabricante");
@@ -267,16 +279,16 @@ var guardar = () => {
     console.log(data);
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 
-    console.log(init);
+    //console.log(init);
 
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
         if (j != null) {
-            j ? $('#btnGuardar').parent().hide() : '';
-            j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
-            if (j && idinstitucion <= 0) actualizarDatosSesion();
-            else if (j) setTimeout(redireccionar, 3000);
+            j == true ? $('#btnGuardar').parent().hide() : '';
+            j == true ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+            if (j == true && idinstitucion <= 0) actualizarDatosSesion();
+            else if (j == true) setTimeout(redireccionar, 3000);
         }
     });
 }

@@ -845,3 +845,14 @@ D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\obj\Debug\Rdl
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\obj\Debug\RdlCompile.compiled
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\obj\Debug\sres.app.dll
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\obj\Debug\sres.app.pdb
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\Microsoft.SqlServer.Types.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\de\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\es\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\fr\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\it\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\ja\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\ko\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\pt\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\ru\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\local\appve\sres.app\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll

@@ -152,7 +152,8 @@ var evaluarCoordenadas = (coord) => {
 //navigator.geolocation.getCurrentPosition(geoSuccess);
 
 var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
-    let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`; //prioridad 26
+    //let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`; //prioridad 26
+    let url = `${baseUrlApi}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)
@@ -162,16 +163,15 @@ var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
 
 var cargarMarker = (data) => {
     if (data == null) return;    
-    if (data.length > 0) {
-        console.log(`nuevo end point estacion: ${data.ID_ESTACION}`);
+    if (data.length > 0) {        
         data.map((x, y) => {
+            console.log(`nuevo end point estacion: ${x.ID_ESTACION}`);
             color_estado = x.ID_ESTADO == 1 ? "#FF5733" : "#3C53B0";
             var m = new mapboxgl.Marker({
                 //color: "#FF5733",
                 color: color_estado,
                 draggable: false
             })
-
             m.setLngLat([x.LONGITUD, x.LATITUD]);            
             
             let html = `<div class="row mt-2" id="img-${x.ID_ESTACION}"></div>`;
@@ -182,13 +182,15 @@ var cargarMarker = (data) => {
 
             popup.on('open', function () {
                 $(`#img-${x.ID_ESTACION}`).html(``);
-                let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`; //prioridad 27
+                //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`; //prioridad 27
+                //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`;
+                //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionmovil?idestacion=${x.ID_ESTACION}`; //para movil prioridad 29
+                let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`; // para web prioridad 30
                 let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
                 fetch(urlConsultarEstacion, init)
                 .then(v => v.json())
                 .then(x => {
-                    debugger;
                     let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
                     let direccion = `<span>${x.DIRECCION}</span><br />`;
                     let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
@@ -198,16 +200,15 @@ var cargarMarker = (data) => {
                     let imagenes = '';
                     if (x.LISTA_IMAGEN != null) {                        
                         for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
-                            imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+                            //imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+                            imagenes += `<a class="example-image-link" href="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
                         }
                     }                    
 
                     let contentImg = `<div class="col-12">${imagenes}</div>`;
 
                     $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
-                });
-
-                
+                });               
 
                 console.log('popup was opened'+ x.ID_ESTACION);
             });

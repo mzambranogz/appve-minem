@@ -387,6 +387,7 @@
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
+    <Content Include="Assets\js\scriptUtil.js" />
     <Content Include="Global.asax" />
     <Content Include="Log\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

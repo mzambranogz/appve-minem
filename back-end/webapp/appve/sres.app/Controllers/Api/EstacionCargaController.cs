@@ -31,11 +31,35 @@ namespace sres.app.Controllers.Api
             return lista;
         }
 
+        [Route("obtenerestacionesporusuarioweb")]
+        [HttpGet]
+        public List<EstacionCargaBE> getEstacionPorUsuarioWeb(int idusuario)
+        {
+            List<EstacionCargaBE> lista = estacionLN.getEstacionPorUsuarioWeb(idusuario);
+            return lista;
+        }
+
         [Route("obtenerestacion")]
         [HttpGet]
         public EstacionCargaBE getEstacion(int idestacion)
         {
             EstacionCargaBE obj = estacionLN.getEstacion(idestacion);
+            return obj;
+        }
+
+        [Route("obtenerestacionmovil")]
+        [HttpGet]
+        public EstacionCargaBE getEstacionMovil(int idestacion)
+        {
+            EstacionCargaBE obj = estacionLN.getEstacionMovil(idestacion);
+            return obj;
+        }
+
+        [Route("obtenerestacionweb")]
+        [HttpGet]
+        public EstacionCargaBE getEstacionWeb(int idestacion)
+        {
+            EstacionCargaBE obj = estacionLN.getEstacionWeb(idestacion);
             return obj;
         }
 
