@@ -91,6 +91,29 @@ namespace WebApiElectroMovilidad.Controllers
             return estacionLN.RevisionEstacion(entidad);
         }
 
+        [Route("obtenerestacionesporusuarioweb")]
+        [HttpGet]
+        public List<EstacionCargaBE> getEstacionPorUsuarioWeb(int idusuario)
+        {
+            List<EstacionCargaBE> lista = estacionLN.getEstacionPorUsuarioWeb(idusuario);
+            return lista;
+        }
+
+        [Route("obtenerestacionmovil")]
+        [HttpGet]
+        public EstacionCargaBE getEstacionMovil(int idestacion)
+        {
+            EstacionCargaBE obj = estacionLN.getEstacionMovil(idestacion);
+            return obj;
+        }
+
+        [Route("obtenerestacionweb")]
+        [HttpGet]
+        public EstacionCargaBE getEstacionWeb(int idestacion)
+        {
+            EstacionCargaBE obj = estacionLN.getEstacionWeb(idestacion);
+            return obj;
+        }
 
     }
 }

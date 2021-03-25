@@ -241,6 +241,87 @@ namespace Logica.minem.gob.pe
             return v;
         }
 
+        public List<EstacionCargaBE> getEstacionPorUsuarioWeb(int idusuario)
+        {
+            List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+            try
+            {
+                cn.Open();
+                lista = estacionDa.getEstacionPorUsuario(idusuario, cn);
+                foreach (EstacionCargaBE item in lista)
+                {
+                    item.LISTA_DOC = estacionDa.getAllEstacionDocumento(item, cn);
+                    item.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(item, cn);
+                    item.CANTIDAD_IMAGEN = item.LISTA_IMAGEN.Count;
+                    string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                    string pathDirectoryRelative = string.Format(pathFormat, item.ID_USUARIO, item.ID_ESTACION);
+
+                    foreach (DocumentoBE img in item.LISTA_IMAGEN)
+                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public EstacionCargaBE getEstacionMovil(int idestacion)
+        {
+            EstacionCargaBE obj = new EstacionCargaBE();
+            try
+            {
+                cn.Open();
+                obj = estacionDa.getEstacion(idestacion, cn);
+                if (obj != null && obj.ID_ESTACION > 0)
+                {
+                    obj.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(obj, cn);
+                    obj.CANTIDAD_IMAGEN = obj.LISTA_IMAGEN.Count;
+
+                    foreach (DocumentoBE img in obj.LISTA_IMAGEN)
+                    {
+                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                        string pathDirectoryRelative = string.Format(pathFormat, obj.ID_USUARIO, obj.ID_ESTACION);
+                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                        string pathFile = Path.Combine(pathDirectory, img.ARCHIVO_BASE);
+                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                        pathFile = !File.Exists(pathFile) ? null : pathFile;
+                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
+                        img.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
+                    }
+
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return obj;
+        }
+
+        public EstacionCargaBE getEstacionWeb(int idestacion)
+        {
+            EstacionCargaBE obj = new EstacionCargaBE();
+            try
+            {
+                cn.Open();
+                obj = estacionDa.getEstacion(idestacion, cn);
+                if (obj != null && obj.ID_ESTACION > 0)
+                {
+                    obj.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(obj, cn);
+                    obj.CANTIDAD_IMAGEN = obj.LISTA_IMAGEN.Count;
+
+                    foreach (DocumentoBE img in obj.LISTA_IMAGEN)
+                    {
+                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                        string pathDirectoryRelative = string.Format(pathFormat, obj.ID_USUARIO, obj.ID_ESTACION);
+                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
+                    }
+
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return obj;
+        }
+
 
     }
 }
