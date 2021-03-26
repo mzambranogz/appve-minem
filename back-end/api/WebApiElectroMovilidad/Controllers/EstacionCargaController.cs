@@ -115,5 +115,13 @@ namespace WebApiElectroMovilidad.Controllers
             return obj;
         }
 
+        [Route("obtenerestacionrevision")]
+        [HttpGet]
+        public EstacionCargaBE getEstacionRevision(int idestacion)
+        {
+            EstacionCargaBE obj = estacionLN.getEstacionRevision(idestacion);
+            return obj;
+        }
+
     }
 }

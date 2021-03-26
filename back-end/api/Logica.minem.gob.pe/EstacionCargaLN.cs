@@ -322,6 +322,40 @@ namespace Logica.minem.gob.pe
             return obj;
         }
 
+        public EstacionCargaBE getEstacionRevision(int idestacion)
+        {
+            EstacionCargaBE obj = new EstacionCargaBE();
+            try
+            {
+                cn.Open();
+                obj = estacionDa.getEstacion(idestacion, cn);
+                if (obj != null && obj.ID_ESTACION > 0)
+                {
+                    obj.LISTA_DOC = estacionDa.getAllEstacionDocumento(obj, cn);
+                    obj.LISTA_IMAGEN = estacionDa.getAllEstacionImagen(obj, cn);
+                    obj.CANTIDAD_IMAGEN = obj.LISTA_IMAGEN.Count;
+
+                    foreach (DocumentoBE doc in obj.LISTA_DOC)
+                    {
+                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Documento");
+                        string pathDirectoryRelative = string.Format(pathFormat, obj.ID_USUARIO, obj.ID_ESTACION);
+                        doc.RUTA = pathDirectoryRelative + "\\" + doc.ARCHIVO_BASE;
+                    }
+
+                    foreach (DocumentoBE img in obj.LISTA_IMAGEN)
+                    {
+                        string pathFormat = AppSettings.Get<string>("Path.Archivo.Imagen");
+                        string pathDirectoryRelative = string.Format(pathFormat, obj.ID_USUARIO, obj.ID_ESTACION);
+                        img.RUTA = pathDirectoryRelative + "\\" + img.ARCHIVO_BASE;
+                    }
+
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return obj;
+        }
+
 
     }
 }
