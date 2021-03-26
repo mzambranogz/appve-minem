@@ -1,5 +1,6 @@
 ﻿var mapboxgl, map;
 var minLng, minLtd, maxLng, maxLtd;
+var arrMarkers = [];
 
 $(document).ready(() => {
     mapa();
@@ -77,8 +78,10 @@ var mapa = () => {
         //console.log('A rotateend event occurred.');
     });
 
-    map.on('boxzoomend', function () {
-        console.log('A boxzoomend event occurred.');
+    map.on('resize', function () {
+        var bounds = map.getBounds();
+        evaluarCoordenadas(bounds);
+        //console.log('A resize event occurred.');
     });
 
 }
@@ -182,41 +185,69 @@ var cargarMarker = (data) => {
 
             popup.on('open', function () {
                 $(`#img-${x.ID_ESTACION}`).html(``);
-                //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`; //prioridad 27
-                //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`;
-                //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionmovil?idestacion=${x.ID_ESTACION}`; //para movil prioridad 29
-                let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`; // para web prioridad 30
-                let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+                let v = arrMarkers.find(z => { return z.ID_ESTACION == x.ID_ESTACION; }) == undefined ? false : true;
+                if (v) {
+                    let obj = arrMarkers.find(z => { return z.ID_ESTACION == x.ID_ESTACION; });
+                    cargarArrMarker(obj);
+                } else {
+                    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`; //prioridad 27
+                    //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`;
+                    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionmovil?idestacion=${x.ID_ESTACION}`; //para movil prioridad 29
+                    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`; // para web prioridad 30
+                    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-                fetch(urlConsultarEstacion, init)
-                .then(v => v.json())
-                .then(x => {
-                    let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
-                    let direccion = `<span>${x.DIRECCION}</span><br />`;
-                    let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
-                    let titulo = `<h4>${x.NOMBRE_INSTITUCION}</h4>`;
-                    let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
+                    fetch(urlConsultarEstacion, init)
+                    .then(v => v.json())
+                    .then(x => {
+                        let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
+                        let direccion = `<span>${x.DIRECCION}</span><br />`;
+                        let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
+                        let titulo = `<h4>${x.NOMBRE_INSTITUCION}</h4>`;
+                        let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
 
-                    let imagenes = '';
-                    if (x.LISTA_IMAGEN != null) {                        
-                        for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
-                            //imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
-                            imagenes += `<a class="example-image-link" href="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+                        let imagenes = '';
+                        if (x.LISTA_IMAGEN != null) {
+                            for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
+                                //imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+                                imagenes += `<a class="example-image-link" href="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+                            }
                         }
-                    }                    
 
-                    let contentImg = `<div class="col-12">${imagenes}</div>`;
+                        let contentImg = `<div class="col-12">${imagenes}</div>`;
 
-                    $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
-                });               
+                        $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
+                        arrMarkers.push(x);
+                    });
+                    
+                    console.log('popup was opened' + x.ID_ESTACION);
+                }
 
-                console.log('popup was opened'+ x.ID_ESTACION);
+                
             });
 
             m.setPopup(popup);
             m.addTo(map);
             //m.togglePopup();
         });
+    }    
+}
+
+var cargarArrMarker = (x) => {
+    let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
+    let direccion = `<span>${x.DIRECCION}</span><br />`;
+    let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
+    let titulo = `<h4>${x.NOMBRE_INSTITUCION}</h4>`;
+    let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
+
+    let imagenes = '';
+    if (x.LISTA_IMAGEN != null) {
+        for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
+            //imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            imagenes += `<a class="example-image-link" href="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+        }
     }
-    
+
+    let contentImg = `<div class="col-12">${imagenes}</div>`;
+
+    $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
 }

@@ -63,6 +63,14 @@ namespace sres.app.Controllers.Api
             return obj;
         }
 
+        [Route("obtenerestacionrevision")]
+        [HttpGet]
+        public EstacionCargaBE getEstacionRevision(int idestacion)
+        {
+            EstacionCargaBE obj = estacionLN.getEstacionRevision(idestacion);
+            return obj;
+        }
+
         [Route("obtenerdocumento")]
         [HttpGet]
         public HttpResponseMessage ObtnerDocumento(string ruta)

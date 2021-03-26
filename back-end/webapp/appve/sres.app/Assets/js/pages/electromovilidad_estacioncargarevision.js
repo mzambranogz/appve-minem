@@ -15,7 +15,10 @@ var inicio = () => {
 
 var cargarEstacion = (id) => {
     //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
-    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionrevision?idestacion=${id}`; //prioridad 31
+
+    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${id}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     Promise.all([
@@ -134,18 +137,14 @@ var mapa = (lat, lng) => {
     $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
 
 
-    map.on('click', function (e) {
-        arrTempUbicacion = [];
-        if (marker != undefined) eliminarMarker();
-        let coord = JSON.stringify(e.lngLat);
-        coord = JSON.parse(coord);
-        //let lng = coord["lng"];
-        //let lat = coord["lat"];
-        //agregarMarker(lng, lat);
-        agregarMarker(coord.lng, coord.lat);
-        arrTempUbicacion.push(coord.lng);
-        arrTempUbicacion.push(coord.lat);
-    });   
+    //map.on('click', function (e) {
+    //    arrTempUbicacion = [];
+    //    let coord = JSON.stringify(e.lngLat);
+    //    coord = JSON.parse(coord);
+    //    agregarMarker(coord.lng, coord.lat);
+    //    arrTempUbicacion.push(coord.lng);
+    //    arrTempUbicacion.push(coord.lat);
+    //});   
 
     marker = new mapboxgl.Marker({
         color: "#FF5733",
