@@ -18,13 +18,13 @@
     <div id="seccion-01">
         <div class="row">
             <label>¿Eres dueño/a de un vehículo que usa combustible?</label>&nbsp;&nbsp;
-            <input id="rad-e1-si" type="radio" name="rad-e1" />Si&nbsp;
-            <input id="rad-e1-no" type="radio" name="rad-e1" />No
+            <input id="rad-e1-si" type="radio" name="rad-e1" value="1" />Si&nbsp;
+            <input id="rad-e1-no" type="radio" name="rad-e1" value="0" />No
         </div>
         <div class="row">
             <label>¿Pretendes renovar o comprar un nuevo vehículo que usa combustible?</label>&nbsp;&nbsp;
-            <input id="rad-e2-si" type="radio" name="rad-e2" />Si&nbsp;
-            <input id="rad-e2-no" type="radio" name="rad-e2" />No
+            <input id="rad-e2-si" type="radio" name="rad-e2" value="1" />Si&nbsp;
+            <input id="rad-e2-no" type="radio" name="rad-e2" value="0" />No
         </div>
         <div class="row">
             <label>¿Usas servicio(s) de transporte?</label>&nbsp;&nbsp;
@@ -73,7 +73,31 @@
         <div class="row">
             <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <select id="cbo-departamento-vc"></select>
+        </div>                
+
+        @*<div class="row">
+            <label>¿Conoces tu gasto en combustible semanal?</label>&nbsp;&nbsp;
+            <input id="rad-gcs-si-vc" type="radio" name="rad-gcs-vc" value="1" />Si&nbsp;
+            <input id="rad-gcs-no-vc" type="radio" name="rad-gcs-vc" value="0" />No
         </div>
+        <div id="gasto-comb-vc" class="ml-5">
+            <label>Combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="gasto-vc" type="text" class="decimal-miles-positivo" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>S/año</small>
+        </div>*@
+
+        <div class="row">
+            <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="kilometro-sem-vc" type="text" class="decimal-miles-positivo" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btnAdd-vc" data-validar="vc" class="btn btn-primary" href="javascript:void(0);" data-toggle="modal" data-target="#modal-rutas">Agregar ruta</a>
+        </div>
+        <div class="row">
+            <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="meses-vc"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+            <small>meses/año</small>
+        </div>
+
         <div class="row">
             <label>Configuración avanzada</label>&nbsp;&nbsp;
             <input id="rad-ca-si-vc" type="radio" name="rad-ca-vc" value="1" />Si&nbsp;
@@ -100,40 +124,21 @@
                 <input id="factor-emision-vc" type="text" class="" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>kgCO2e/km</small>
             </div>
-        </div>
-
-        <div class="row">
-            <label>Mantenimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="mantenimiento-vc" type="text" class="decimal-miles-positivo" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>S/año</small>
-        </div>
-        <div class="row">
-            <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="seguro-vc" type="text" class="decimal-miles-positivo" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>S/año</small>
-        </div>
-
-        <div class="row">
-            <label>¿Conoces tu gasto en combustible semanal?</label>&nbsp;&nbsp;
-            <input id="rad-gcs-si-vc" type="radio" name="rad-gcs-vc" value="1" />Si&nbsp;
-            <input id="rad-gcs-no-vc" type="radio" name="rad-gcs-vc" value="0" />No
-        </div>
-        <div id="gasto-comb-vc" class="ml-5">
-            <label>Combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="gasto-vc" type="text" class="decimal-miles-positivo" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>S/año</small>
-        </div>
-
-        <div class="row">
-            <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="kilometro-sem-vc" type="text" class="decimal-miles-positivo" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a id="btnAdd-vc" data-validar="vc" class="btn btn-primary" href="javascript:void(0);" data-toggle="modal" data-target="#modal-rutas">Agregar ruta</a>
-        </div>
-        <div class="row">
-            <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="meses-vc"></select>&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>meses/año</small>
+            <div class="row">
+                <label>Mantenimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="mantenimiento-vc" type="text" class="decimal-miles-positivo" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>S/año</small>
+            </div>
+            <div class="row">
+                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="seguro-vc" type="text" class="decimal-miles-positivo" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>S/año</small>
+            </div>
+            <div class="row">
+                <label>Gasto en combustible semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="gasto-vc" type="text" class="decimal-miles-positivo" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>S/año</small>
+            </div>
         </div>
         
         <div class="row">
@@ -155,36 +160,9 @@
         <div class="row">
             <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <select id="cbo-departamento-cvc"></select>
-        </div>
-        <div class="row">
-            <label>Configuración avanzada</label>&nbsp;&nbsp;
-            <input id="rad-ca-si-cvc" type="radio" name="rad-ca-cvc" value="1" />Si&nbsp;
-            <input id="rad-ca-no-cvc" type="radio" name="rad-ca-cvc" value="0" />No
-        </div>
-        <div id="configuracion-cvc" class="ml-5">
-            <div class="row">
-                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="rendimiento-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small id="unidad-rend-cvc">km/galón</small>
-            </div>
-            <div class="row">
-                <label>Precio combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="precio-combustible-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small id="precio-comb-cvc">s/m3</small>
-            </div>
-            <div class="row">
-                <label>% Aumento anual combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="porc-anual-combustible-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>%</small>
-            </div>
-            <div class="row">
-                <label>Factor de emisión asociado</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="factor-emision-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>kgCO2e/km</small>
-            </div>
-        </div>        
+        </div>     
 
-        <div class="row">
+        @*<div class="row">
             <label>¿Conoces tu gasto en combustible semanal?</label>&nbsp;&nbsp;
             <input id="rad-gcs-si-cvc" type="radio" name="rad-gcs-cvc" value="1" />Si&nbsp;
             <input id="rad-gcs-no-cvc" type="radio" name="rad-gcs-cvc" value="0" />No
@@ -193,7 +171,7 @@
             <label>Combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input id="gasto-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
             <small>S/año</small>
-        </div>
+        </div>*@
 
         <div class="row">
             <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -207,11 +185,11 @@
             <small>meses/año</small>
         </div>
 
-        <div class="row">
+        @*<div class="row">
             <label>Costo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input id="costo-veh-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
             <small>soles</small>
-        </div>
+        </div>*@
         <div class="row">
             <label>Tipo de compra</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <select id="tipo-compra-cvc"></select>
@@ -233,7 +211,7 @@
             </div>
         </div>
 
-        <div class="row">
+        @*<div class="row">
             <label>¿Contratas un seguro para tu vehículo?</label>&nbsp;&nbsp;
             <input id="rad-sv-si-cvc" type="radio" name="rad-sv-cvc" value="1" />Si&nbsp;
             <input id="rad-sv-no-cvc" type="radio" name="rad-sv-cvc" value="0" />No
@@ -244,7 +222,50 @@
                 <input id="seguro-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>S/año</small>
             </div>
-        </div>        
+        </div>*@   
+        
+        <div class="row">
+            <label>Configuración avanzada</label>&nbsp;&nbsp;
+            <input id="rad-ca-si-cvc" type="radio" name="rad-ca-cvc" value="1" />Si&nbsp;
+            <input id="rad-ca-no-cvc" type="radio" name="rad-ca-cvc" value="0" />No
+        </div>
+        <div id="configuracion-cvc" class="ml-5">
+            <div class="row">
+                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="rendimiento-cvc" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small id="unidad-rend-cvc">km/galón</small>
+            </div>
+            <div class="row">
+                <label>Precio combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="precio-combustible-cvc" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small id="precio-comb-cvc">s/m3</small>
+            </div>
+            <div class="row">
+                <label>% Aumento anual combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="porc-anual-combustible-cvc" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+            <div class="row">
+                <label>Factor de emisión asociado</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="factor-emision-cvc" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>kgCO2e/km</small>
+            </div>
+            <div class="row">
+                <label>Costo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="costo-veh-cvc" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>soles</small>
+            </div>
+            <div class="row">
+                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="seguro-cvc" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>S/año</small>
+            </div>
+            <div class="row">
+                <label>Gasto en combustible semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="gasto-cvc" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>S/año</small>
+            </div>
+        </div>     
 
         <div class="row">            
             <button id="btnReg03" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
@@ -363,23 +384,9 @@
             <select id="modelo-ve"></select>
         </div>
         <div class="row">
-            <label>Configuración avanzada</label>&nbsp;&nbsp;
-            <input id="rad-ca-si-ve" type="radio" name="rad-ca-ve" value="1" />Si&nbsp;
-            <input id="rad-ca-no-ve" type="radio" name="rad-ca-ve" value="0" />No
-        </div>
-        <div id="configuracion-ve" class="ml-5">
-            <div class="row">
-                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="rendimiento-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small id="unidad-rend-ve">km/kWh</small>
-            </div>
-            <div class="row">
-                <label>Capacidad batería</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="bateria-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>kWh</small>
-            </div>
-        </div>        
-
+            <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="cbo-departamento"></select>
+        </div>  
         <div id="sec-precio-instalacion-ve" class="d-none">
             <div class="row">
                 <label>Tipo de cargador</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -401,19 +408,14 @@
                 <input id="costo-instalacion" type="text" />&nbsp;&nbsp;
                 <small>soles</small>
             </div>
-        </div>
+        </div>      
         
-
-        <div class="row">
-            <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="cbo-departamento"></select>
-        </div>
-        <div class="row">
+        @*<div class="row">
             <label>Configuración avanzada tarifa</label>&nbsp;&nbsp;
             <input id="rad-t-si-ve" type="radio" name="rad-t-ve" value="1" />Si&nbsp;
             <input id="rad-t-no-ve" type="radio" name="rad-t-ve" value="0" />No
-        </div>
-        <div id="tarifa-e-ve" class="ml-5">
+        </div>*@
+        @*<div id="tarifa-e-ve" class="ml-5">
             <div class="row">
                 <label>Tarifa eléctrica</label>&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="tarifa-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
@@ -424,7 +426,7 @@
                 <input id="porc-aual-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>%</small>
             </div>
-        </div>
+        </div>*@
 
         <div class="row">
             <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -438,11 +440,11 @@
             <small>meses/año</small>
         </div>
 
-        <div class="row">
+        @*<div class="row">
             <label>Costo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input id="costo-veh-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
             <small>soles</small>
-        </div>
+        </div>*@
         <div class="row">
             <label>Tipo de compra</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <select id="tipo-compra-ve"></select>
@@ -464,7 +466,7 @@
             </div>
         </div>
 
-        <div class="row">
+        @*<div class="row">
             <label>¿Contratas un seguro para tu vehículo?</label>&nbsp;&nbsp;
             <input id="rad-sv-si-ve" type="radio" name="rad-sv-ve" value="1" />Si&nbsp;
             <input id="rad-sv-no-ve" type="radio" name="rad-sv-ve" value="0" />No
@@ -475,7 +477,7 @@
                 <input id="seguro-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>soles/año</small>
             </div>
-        </div>
+        </div>*@
 
         <div class="row">
             <label>¿Existe un incentivo ecónomico a la compra de tu vehículo eléctrico?</label>&nbsp;&nbsp;
@@ -511,6 +513,44 @@
                 <small>soles</small>
             </div>
         </div>
+
+        <div class="row">
+            <label>Configuración avanzada</label>&nbsp;&nbsp;
+            <input id="rad-ca-si-ve" type="radio" name="rad-ca-ve" value="1" />Si&nbsp;
+            <input id="rad-ca-no-ve" type="radio" name="rad-ca-ve" value="0" />No
+        </div>
+        <div id="configuracion-ve" class="ml-5">
+            <div class="row">
+                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="rendimiento-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small id="unidad-rend-ve">km/kWh</small>
+            </div>
+            <div class="row">
+                <label>Capacidad batería</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="bateria-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>kWh</small>
+            </div>
+            <div class="row">
+                <label>Tarifa eléctrica</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="tarifa-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>soles/kWh</small>
+            </div>
+            <div class="row">
+                <label>% aumento anual de electricidad</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="porc-aual-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>%</small>
+            </div>
+            <div class="row">
+                <label>Costo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="costo-veh-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>soles</small>
+            </div>
+            <div class="row">
+                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="seguro-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>soles/año</small>
+            </div>
+        </div> 
 
         <div class="row">
             <button id="btnReg05" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
