@@ -357,10 +357,22 @@ var evaluar5 = () => {
     let tm = $('#tipo-vehiculo-ve').val() == 1 ? $('#modelo-ve').val() > 0 ? true : false : true;
     let rendimiento = $('#rendimiento-ve').val() >= 0 ? true : false;
     let capacidad_bateria = $('#bateria-ve').val() >= 0 ? true: false;
-    let tipo_cargador = $('#tipo-cargador').val() > 0 ? true: false;
-    let potencia = tipo_cargador ? $('#tipo-cargador').val() == 100 ? validar('#txt-potencia') : $('#cbo-potencia').val() > 0 ? true : false : false;
-    let precio_cargador = validar('#precio-cargador');
-    let costo_instalacion = validar('#costo-instalacion');
+    let tipo_cargador = false, potencia = false, precio_cargador = false, costo_instalacion = false
+    if ($('#tipo-vehiculo-ve').val() > 1) {
+        tipo_cargador = true;
+        potencia = true;
+        precio_cargador = validar('#precio-cargador');
+        costo_instalacion = validar('#costo-instalacion');
+    } else {
+        tipo_cargador = $('#tipo-cargador').val() > 0 ? true: false;
+        potencia = tipo_cargador ? $('#tipo-cargador').val() == 100 ? validar('#txt-potencia') : $('#cbo-potencia').val() > 0 ? true : false : false;
+        precio_cargador = validar('#precio-cargador');
+        costo_instalacion = validar('#costo-instalacion');
+    }
+    //let tipo_cargador = $('#tipo-cargador').val() > 0 ? true: false;
+    //let potencia = tipo_cargador ? $('#tipo-cargador').val() == 100 ? validar('#txt-potencia') : $('#cbo-potencia').val() > 0 ? true : false : false;
+    //let precio_cargador = validar('#precio-cargador');
+    //let costo_instalacion = validar('#costo-instalacion');
     let departamento = $('#cbo-departamento').val() > 0 ? true : false;
     let tarifa = validar('#tarifa-ve');
     let porc_anual_elec = validar('#porc-aual-ve');
@@ -551,8 +563,18 @@ var cambiarCongINC = () => {
 //end_points //Cuarto
 var cambiarVE = () => {
     if ($('#tipo-vehiculo-ve').val() == 0) { $('#modelo-ve').parent().addClass('d-none'); $('#modelo-ve').val(0); return; }
-    if ($('#tipo-vehiculo-ve').val() > 1) {$('#modelo-ve').parent().addClass('d-none'); $('#modelo-ve').val(0); }
-    else $('#modelo-ve').parent().removeClass('d-none');
+    if ($('#tipo-vehiculo-ve').val() > 1) {
+        $('#modelo-ve').parent().addClass('d-none'); 
+        $('#sec-precio-instalacion-ve').addClass('d-none')
+        $('#modelo-ve').val(0);
+        $('#tipo-cargador').val(0);
+        cambiarTC()
+    }
+    else {
+        $('#modelo-ve').parent().removeClass('d-none');
+        $('#sec-precio-instalacion-ve').removeClass('d-none')
+        $('#costo-veh-ve').val('0')
+    }
 
     if ($('#tipo-vehiculo-ve').val() > 1){
         //let url = `${baseUrl}api/calculo/obtenervalorestve?valor1=${$('#tipo-vehiculo-ve').val()}`;
@@ -609,7 +631,12 @@ var cambiarMVE = () => {
 }
 
 var cambiarTC = () => {
-    if ($('#tipo-cargador').val() == 0) { $('#cbo-potencia').parent().addClass('d-none'); return; }
+    if ($('#tipo-cargador').val() == 0) { 
+        $('#cbo-potencia').parent().addClass('d-none'); 
+        $('#precio-cargador').val('0');
+        $('#costo-instalacion').val('0');
+        return; 
+    }
     $('#cbo-potencia').parent().removeClass('d-none')
     if ($('#tipo-cargador').val() == 100){
         $('#cbo-potencia').addClass('d-none');

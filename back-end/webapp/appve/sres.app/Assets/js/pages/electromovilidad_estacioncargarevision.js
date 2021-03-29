@@ -15,10 +15,9 @@ var inicio = () => {
 
 var cargarEstacion = (id) => {
     //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
-    //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${id}`;
-    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionrevision?idestacion=${id}`; //prioridad 31
-
-    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${id}`;
+    //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${id}`; 
+    //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${id}`;
+    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionrevision?idestacion=${id}`; //prioridad 31
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     Promise.all([
