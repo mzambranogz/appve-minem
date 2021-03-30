@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
+using Util.minem.gob.pe;
 using WebApiElectroMovilidad.Models;
 
 namespace WebApiElectroMovilidad.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/rol")]
     public class RolController : ApiController
     {
@@ -24,6 +26,7 @@ namespace WebApiElectroMovilidad.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex);
                 lista = null;
             }
             return lista;
@@ -56,6 +59,7 @@ namespace WebApiElectroMovilidad.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex);
                 f = false;
             }
             return f;
@@ -72,6 +76,7 @@ namespace WebApiElectroMovilidad.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex);
                 lista = null;
             }
             return lista;

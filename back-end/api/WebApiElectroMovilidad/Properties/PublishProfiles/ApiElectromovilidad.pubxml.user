@@ -106,7 +106,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/19/2021 20:01:02</publishTime>
     </File>
     <File Include="bin/WebApiElectroMovilidad.dll">
-      <publishTime>03/30/2021 11:30:30</publishTime>
+      <publishTime>03/30/2021 11:43:58</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>03/13/2021 19:45:03</publishTime>

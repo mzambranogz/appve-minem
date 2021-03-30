@@ -12,6 +12,7 @@ using System.Web;
 
 namespace WebApiElectroMovilidad.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/factor")]
     public class FactorController : ApiController
     {

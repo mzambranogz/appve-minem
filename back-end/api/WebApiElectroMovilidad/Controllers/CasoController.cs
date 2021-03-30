@@ -8,6 +8,7 @@ using WebApiElectroMovilidad.Models;
 
 namespace WebApiElectroMovilidad.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/caso")]
     public class CasoController : ApiController
     {
