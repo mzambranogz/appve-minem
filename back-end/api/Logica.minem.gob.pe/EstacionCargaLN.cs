@@ -339,7 +339,10 @@ namespace Logica.minem.gob.pe
                     {
                         string pathFormat = AppSettings.Get<string>("Path.Archivo.Documento");
                         string pathDirectoryRelative = string.Format(pathFormat, obj.ID_USUARIO, obj.ID_ESTACION);
-                        doc.RUTA = pathDirectoryRelative + "\\" + doc.ARCHIVO_BASE;
+                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                        string pathFile = Path.Combine(pathDirectory, doc.ARCHIVO_BASE);
+                        pathFile = !File.Exists(pathFile) ? null : pathFile;
+                        doc.RUTA = !File.Exists(pathFile) ? "" : pathFile;
                     }
 
                     foreach (DocumentoBE img in obj.LISTA_IMAGEN)
