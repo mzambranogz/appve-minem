@@ -1,9 +1,7 @@
 ﻿using Entidad.minem.gob.pe;
 using Logica.minem.gob.pe;
 using System.Collections.Generic;
-using System.Net;
 using System.Web.Http;
-using WebApiElectroMovilidad.Models;
 
 namespace WebApiElectroMovilidad.Controllers
 {
