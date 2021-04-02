@@ -36,8 +36,8 @@ $(document).ready(() => {
     $('input[name="rad-gcs-vc"]').on('change', (e) => cambiarCongGCVC());
     $('input[name="rad-ca-cvc"]').on('change', (e) => cambiarCongCVC());
     $('input[name="rad-gcs-cvc"]').on('change', (e) => cambiarCongGCCVC());
-    $('input[name="rad-sv-cvc"]').on('change', (e) => cambiarSeguroCVC());
-    $('input[name="rad-sv-ve"]').on('change', (e) => cambiarSeguroCVE());
+    //$('input[name="rad-sv-cvc"]').on('change', (e) => cambiarSeguroCVC());
+    //$('input[name="rad-sv-ve"]').on('change', (e) => cambiarSeguroCVE());
     $('input[name="rad-ca-ve"]').on('change', (e) => cambiarCongVE());
     $('input[name="rad-t-ve"]').on('change', (e) => cambiarCongTE());
     $('input[name="rad-inc-ve"]').on('change', (e) => cambiarCongINC());
@@ -209,7 +209,7 @@ var inicio = () => {
     $('#rad-gcs-no-cvc').prop('checked', true);
     cambiarCongGCCVC();
     $('#rad-sv-no-cvc').prop('checked', true);
-    cambiarSeguroCVC()
+    //cambiarSeguroCVC()
     cambiarTipoCompraCVC();
     cambiarVE();
     //Compra Vehiculo Electrico
@@ -219,13 +219,37 @@ var inicio = () => {
     $('#rad-t-no-ve').prop('checked', true);
     cambiarCongTE();
     cambiarTipoCompraCVE();
-    $('#rad-sv-no-ve').prop('checked', true);
-    cambiarSeguroCVE();
+    //$('#rad-sv-no-ve').prop('checked', true);
+    //cambiarSeguroCVE();
     $('#rad-inc-no-ve').prop('checked', true);
     cambiarCongINC();
     //cambiarTI();
     //cambiarFI();
 }
+
+$(document).on('change mousedown mousemove', '#mantenimiento-vc', () => {
+    $('#valor-mantenimiento-vc').html(formatoMiles($('#mantenimiento-vc').val()));
+});
+
+$(document).on('change mousedown mousemove', '#seguro-vc', () => {
+    $('#valor-seguro-vc').html(formatoMiles($('#seguro-vc').val()));
+});
+
+$(document).on('change mousedown mousemove', '#seguro-cvc', () => {
+    $('#valor-seguro-cvc').html(formatoMiles($('#seguro-cvc').val()));
+});
+
+$(document).on('change mousedown mousemove', '#costo-veh-cvc', () => {
+    $('#valor-costo-veh-cvc').html(formatoMiles($('#costo-veh-cvc').val()));
+});
+
+$(document).on('change mousedown mousemove', '#costo-veh-ve', () => {
+    $('#valor-costo-veh-ve').html(formatoMiles($('#costo-veh-ve').val()));
+});
+
+$(document).on('change mousedown mousemove', '#seguro-ve', () => {
+    $('#valor-seguro-ve').html(formatoMiles($('#seguro-ve').val()));
+});
 
 var comenzar = () => {
     let p1 = $('#rad-e1-si').prop('checked') ? true : $('#rad-e1-no').prop('checked') ? true : false; 
@@ -291,7 +315,7 @@ var siguiente2 = () => {
     //let gasto_comb = $('#rad-gcs-si-vc').prop('checked') ? $('#gasto-vc').val() >= 0 ? true : false : true;
     let gasto_comb = $('#rad-ca-si-vc').prop('checked') ? validar('#gasto-vc') : true;
     let kilometros = validar('#kilometro-sem-vc');
-    let meses = $('#meses-vc').val() > 0 ? true : false;
+    let meses = $('#rad-ca-si-vc').prop('checked') ? $('#meses-vc').val() > 0 ? true : false : true;
     if (!(tv && tc && dp && rendimiento && precio_comb && porc_comb && factor_emision && mantenimiento && seguro && gasto_comb && kilometros && meses))  {alert('Debe completar todos los campos'); return;}
 
     $('#seccion-03').addClass('d-none');
@@ -318,7 +342,7 @@ var siguiente3 = () => {
     //let gasto_comb = $('#rad-gcs-si-cvc').prop('checked') ? $('#gasto-cvc').val() >= 0 ? true : false : true;
     let gasto_comb = $('#rad-ca-si-cvc').prop('checked') ? validar('#gasto-cvc') : true;
     let kilometros = validar('#kilometro-sem-cvc');
-    let meses = $('#meses-cvc').val() > 0 ? true : false;
+    let meses = $('#rad-ca-si-cvc').prop('checked') ? $('#meses-cvc').val() > 0 ? true : false : true;
     //let costo_vehiculo = $('#costo-veh-cvc').val() >= 0 ? true : false;
     let costo_vehiculo = $('#rad-ca-si-cvc').prop('checked') ? validar('#costo-veh-cvc') : true;
     let tipo_compra = $('#tipo-compra-cvc').val() > 0 ? true : false;
@@ -365,6 +389,7 @@ var evaluar5 = () => {
     let tm = $('#tipo-vehiculo-ve').val() == 1 ? $('#modelo-ve').val() > 0 ? true : false : true;
     let rendimiento = $('#rendimiento-ve').val() >= 0 ? true : false;
     let capacidad_bateria = $('#bateria-ve').val() >= 0 ? true: false;
+    let recambio = $('#rad-ca-si-ve').prop('checked') ? $('#anio-recambio-ve').val() > 0 ? true : false : true;
     let tipo_cargador = false, potencia = false, precio_cargador = false, costo_instalacion = false
     if ($('#tipo-vehiculo-ve').val() > 1) {
         tipo_cargador = true;
@@ -385,7 +410,7 @@ var evaluar5 = () => {
     let tarifa = $('#rad-ca-si-ve').prop('checked') ? validar('#tarifa-ve') : true;
     let porc_anual_elec = $('#rad-ca-si-ve').prop('checked') ? validar('#porc-aual-ve') : true;
     let kilometros = validar('#kilometro-sem-ve');
-    let meses = $('#meses-ve').val() > 0 ? true : false;
+    let meses = $('#rad-ca-si-ve').prop('checked') ? $('#meses-ve').val() > 0 ? true : false : true;
     let costo_vehiculo = $('#rad-ca-si-ve').prop('checked') ? validar('#costo-veh-ve') : true;
     let tipo_compra = $('#tipo-compra-ve').val() > 0 ? true : false;
     let financiamiento = $('#tipo-compra-ve').val() == 2 ? costo_vehiculo : $('#tipo-compra-ve').val() == 1 ? $('#tasa-interes-ve').val() >= 0 && $('#anio-credito-ve').val() > 0 && $('#cuota-inicial-ve').val() >= 0 ? true : false : false;
@@ -393,7 +418,7 @@ var evaluar5 = () => {
     let seguro = $('#rad-ca-si-ve').prop('checked') ? validar('#seguro-ve') : true;
     let incentivo = $('#rad-inc-si-ve').prop('checked') ? $('#tipo-incentivo').val() == 1 ? $('#horizonte').val() > 0 && validar('#cuota-inc-anual') ? true : false : $('#tipo-incentivo').val() == 2 ? $('#forma-incentivo').val() > 0 ? $('#forma-incentivo').val() == 1 ? validar('#porcentaje-inc') : $('#forma-incentivo').val() == 2 ? validar('#valor-inc-unico') : false : false : false : true;
 
-    if (!(tve && tm && rendimiento && capacidad_bateria && tipo_cargador && potencia && precio_cargador && costo_instalacion && departamento && tarifa && porc_anual_elec && kilometros && meses && costo_vehiculo && tipo_compra && financiamiento && seguro && incentivo))  {alert('Debe completar todos los campos'); return;}
+    if (!(tve && tm && rendimiento && capacidad_bateria && tipo_cargador && potencia && precio_cargador && costo_instalacion && departamento && tarifa && porc_anual_elec && kilometros && meses && costo_vehiculo && tipo_compra && financiamiento && seguro && incentivo && recambio))  {alert('Debe completar todos los campos'); return;}
 
     //alert("correcto");
 
@@ -444,7 +469,7 @@ var cambiarCongCVC = () => {
         $('#precio-combustible-cvc').val(precio_combustible_cvc_g);
         $('#porc-anual-combustible-cvc').val(2);
         $('#factor-emision-cvc').val(factor_emision_cvc_g);
-        $('#costo-veh-cvc').val(precio_vehiculo_cvc_g);
+        $('#costo-veh-cvc').val(formatoMiles(precio_vehiculo_cvc_g));
     }
 }
 
@@ -547,6 +572,7 @@ var evaluarTipoVehTipoCombCVC = () => {
         }
         if (j.PRECIO_VEHICULO != null){
             $('#costo-veh-cvc').val(j.PRECIO_VEHICULO.FACTOR);
+            $('#valor-costo-veh-cvc').html(formatoMiles(j.PRECIO_VEHICULO.FACTOR));
             precio_vehiculo_cvc_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
         }   
         $('#porc-anual-combustible-cvc').val(2);
@@ -563,6 +589,8 @@ var cambiarCongVE = () => {
         $('#tarifa-ve').val(tarifa_electricidad_g);
         $('#porc-aual-ve').val(0);
         $('#costo-veh-ve').val(precio_vehiculo_ve_g);
+        $('#valor-costo-veh-ve').html(formatoMiles(precio_vehiculo_ve_g));
+        $('#anio-recambio-ve').val(8);
     }
 }
 
@@ -587,7 +615,13 @@ var cambiarCongINC = () => {
 
 //end_points //Cuarto
 var cambiarVE = () => {
-    if ($('#tipo-vehiculo-ve').val() == 0) { $('#modelo-ve').parent().addClass('d-none'); $('#modelo-ve').val(0); return; }
+    if ($('#tipo-vehiculo-ve').val() == 0) { 
+        $('#modelo-ve').parent().addClass('d-none'); 
+        $('#modelo-ve').val(0); 
+        $('#sec-precio-instalacion-ve').addClass('d-none')
+        $('#costo-veh-ve').val('0')
+        return; 
+    }
     if ($('#tipo-vehiculo-ve').val() > 1) {
         $('#modelo-ve').parent().addClass('d-none'); 
         $('#sec-precio-instalacion-ve').addClass('d-none')
@@ -621,6 +655,7 @@ var cambiarVE = () => {
 
             if (j.PRECIO_VEHICULO != null){
                 $('#costo-veh-ve').val(j.PRECIO_VEHICULO.FACTOR);
+                $('#valor-costo-veh-ve').html(formatoMiles(j.PRECIO_VEHICULO.FACTOR));
                 precio_vehiculo_ve_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
             }
         });
@@ -650,6 +685,7 @@ var cambiarMVE = () => {
 
         if (j.PRECIO_VEHICULO != null){
             $('#costo-veh-ve').val(j.PRECIO_VEHICULO.FACTOR);
+            $('#valor-costo-veh-ve').html(formatoMiles(j.PRECIO_VEHICULO.FACTOR));
             precio_vehiculo_ve_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
         }
     });
@@ -880,6 +916,8 @@ var cargarListas = ([listaTipoTransporte, listaTipoCombustible, listaTipoVehicul
     $('#meses-02').html(meses);
     $('#meses-03').html(meses);
     $('#meses-04').html(meses);
+    $('#anio-recambio-ve').html(meses);
+    $('#anio-recambio-ve').val(8);
 
     let tipocompra = `<option value="0">seleccione</option><option value="1">Financiada</option><option value="2">Directa</option>`;
     $('#tipo-compra-cvc').html(tipocompra);
@@ -1051,12 +1089,13 @@ var evaluar = () => {
     let precio_cargador = parseFloat($('#precio-cargador').val().replace(/,/gi, ''));
     let costo_instalacion = parseFloat($('#costo-instalacion').val().replace(/,/gi, ''));
     let capacidad_bateria_ve = $('#bateria-ve').val().replace(/,/gi, '');
+    let anio_recambio = $('#anio-recambio-ve').val();
 
     data_ve = { 
         P_INCENTIVO: p_incentivo, P_SEGURO_VE: p_seguro_ve, COSTO_VEHICULO_VE: costo_vehiculo_ve, TIPO_INCENTIVO_VE: tipo_incentivo, HORIZONTE: horizonte, CUOTA_INCENTIVO_ANUAL: cuota_incentivo_anual,
         FORMA_INCENTIVO_VE: forma_incentivo, PORCENTAJE_INCENTIVO: porcentaje_incentivo, INCENTIVO_UNICO: incentivo_unico, TIPO_COMPRA_VE: tipo_compra_ve, PORC_CUOTA_INICIAL_VE: porc_cuota_inicial_ve, TASA_INTERES_VE: tasa_interes_ve,
         ANIO_CREDITO_VE: anio_credito_ve, SEGURO_VE: seguro_ve, PORCENTAJE_ANUAL_VE: porcentaje_anual_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve, TARIFA_VE: tarifa_ve,
-        PRECIO_CARGADOR: precio_cargador, COSTO_INSTALACION: costo_instalacion,
+        PRECIO_CARGADOR: precio_cargador, COSTO_INSTALACION: costo_instalacion, ANIO_RECAMBIO: anio_recambio,
     };
 
     console.log(JSON.stringify('Vehiculo electrico:'));
@@ -1159,7 +1198,6 @@ var evaluar = () => {
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarVCVE);
-
 }
 
 var cargarVCVE = ([listaVC, listaVE, listaleyenda, listaVCCE, listaVECE, listaEMVC, listaEMVE, listaCM]) => {
@@ -2424,7 +2462,7 @@ var limpiarCVC = () => {
     $('#seguro-cvc').val('0');
     cambiarCongCVC();
     cambiarCongGCCVC();
-    cambiarSeguroCVC();
+    //cambiarSeguroCVC();
     cambiarTipoCompraCVC();
 }
 

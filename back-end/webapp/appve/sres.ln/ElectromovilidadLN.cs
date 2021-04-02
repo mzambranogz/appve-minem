@@ -118,8 +118,8 @@ namespace sres.ln
                     decimal primera_carga = (entidad.COSTO_VEHICULO_VC - cuota_inicial) * (1 + entidad.TASA_INTERES_VC);
                     for (int i = 0; i < entidad.ANIO_CREDITO_VC; i++)
                     {
-                        if (i == 0) arrCargaFinancieraNominalVC[i] = primera_carga / entidad.ANIO_CREDITO_VC;
-                        else arrCargaFinancieraNominalVC[i] = (primera_carga / entidad.ANIO_CREDITO_VC) * (1 + ipc);
+                        if (i == 0) arrCargaFinancieraNominalVC[i] = entidad.ANIO_CREDITO_VC == 0 ? 0 : primera_carga / entidad.ANIO_CREDITO_VC; //update 01-04
+                        else arrCargaFinancieraNominalVC[i] = entidad.ANIO_CREDITO_VC == 0 ? 0 : (primera_carga / entidad.ANIO_CREDITO_VC) * (1 + ipc); //update 01-04
                     }
                 }
                 else if (entidad.TIPO_COMPRA_VC == 2)
@@ -458,17 +458,24 @@ namespace sres.ln
                 }
 
                 //Recambio bateria Nominal VE
-                arrRecambioNominalVE[7] = entidad.COSTO_VEHICULO_VE * recambio_bateria;
-
-                //Recambio bateria Neto VE
-                arrRecambioNetoVE[7] = arrRecambioNominalVE[7] / Convert.ToDecimal(Math.Pow(Convert.ToDouble(1 + tasa_descuento), -1 + 8));
-
-                //Recambio bateria Acumulado VE
-                for (var i = 7; i < 15; i++)
+                if (entidad.ANIO_RECAMBIO > 0)
                 {
-                    if (i == 7) arrRecambioAcumuladoVE[i] = arrRecambioNetoVE[i];
-                    else arrRecambioAcumuladoVE[i] = arrRecambioNetoVE[i] + arrRecambioAcumuladoVE[i - 1];
+                    //arrRecambioNominalVE[7] = entidad.COSTO_VEHICULO_VE * recambio_bateria;
+                    int anio_recambio = entidad.ANIO_RECAMBIO - 1;
+                    arrRecambioNominalVE[anio_recambio] = entidad.COSTO_VEHICULO_VE * recambio_bateria;
+
+                    //Recambio bateria Neto VE
+                    //arrRecambioNetoVE[7] = arrRecambioNominalVE[7] / Convert.ToDecimal(Math.Pow(Convert.ToDouble(1 + tasa_descuento), -1 + 8));
+                    arrRecambioNetoVE[anio_recambio] = arrRecambioNominalVE[anio_recambio] / Convert.ToDecimal(Math.Pow(Convert.ToDouble(1 + tasa_descuento), -1 + entidad.ANIO_RECAMBIO));
+
+                    //Recambio bateria Acumulado VE
+                    for (var i = anio_recambio; i < 15; i++)
+                    {
+                        if (i == anio_recambio) arrRecambioAcumuladoVE[i] = arrRecambioNetoVE[i];
+                        else arrRecambioAcumuladoVE[i] = arrRecambioNetoVE[i] + arrRecambioAcumuladoVE[i - 1];
+                    }
                 }
+                
 
                 //Mantenimiento continuo Nominal VE
                 decimal mantenim_20kmve = entidad.COSTO_VEHICULO_VE * porc_20kmve;
@@ -531,8 +538,8 @@ namespace sres.ln
                     decimal primera_carga = (entidad.COSTO_VEHICULO_VE - cuota_inicial) * (1 + entidad.TASA_INTERES_VE);
                     for (int i = 0; i < entidad.ANIO_CREDITO_VE; i++)
                     {
-                        if (i == 0) arrCargaFinancieraNominalVE[i] = primera_carga / entidad.ANIO_CREDITO_VE;
-                        else arrCargaFinancieraNominalVE[i] = (primera_carga / entidad.ANIO_CREDITO_VE) * (1 + ipc);
+                        if (i == 0) arrCargaFinancieraNominalVE[i] = entidad.ANIO_CREDITO_VE == 0 ? 0 : primera_carga / entidad.ANIO_CREDITO_VE;
+                        else arrCargaFinancieraNominalVE[i] = entidad.ANIO_CREDITO_VE == 0 ? 0 :(primera_carga / entidad.ANIO_CREDITO_VE) * (1 + ipc);
                     }
                 }
                 else if (entidad.TIPO_COMPRA_VE == 2)
@@ -589,7 +596,7 @@ namespace sres.ln
 
                 //Energia (Electricidad y combustible) Nominal VC
                 decimal km_anual_ve = (entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12); //actualizar el decimal.Parse
-                decimal energia_ve = (km_anual_ve / entidad.RENDIMIENTO_VE) * entidad.TARIFA_VE;
+                decimal energia_ve = entidad.RENDIMIENTO_VE == 0 ? 0 : (km_anual_ve / entidad.RENDIMIENTO_VE) * entidad.TARIFA_VE;
                 for (var i = 0; i < 15; i++)
                 {
                     if (i == 0) arrEnergiaNominalVE[i] = energia_ve;
@@ -689,14 +696,14 @@ namespace sres.ln
                 if (entidad.P2 == "1" || entidad.P1 == "1") {
                     decimal factor_rendimiento = elecLN.ListaFactor1P(17, 2, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
                     decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12); //actualizar el decimal.Parse
-                    vehiculo_ce = km_anual / factor_rendimiento;
+                    vehiculo_ce = factor_rendimiento == 0 ? 0 : km_anual / factor_rendimiento;
                 }                
 
                 arrConsumoEnergetivoVC[0] = vehiculo_ce;
                 for (int i = 0; i < tamanio; i++)   
                 {
                     decimal rendimiento_pasajero = elecLN.ListaFactor1P(16, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
-                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * decimal.Parse(entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO.ToString()) / rendimiento_pasajero; //actualizar el decimal.Parse
+                    decimal consumo_energetico = rendimiento_pasajero == 0 ? 0 : entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * decimal.Parse(entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO.ToString()) / rendimiento_pasajero; //actualizar el decimal.Parse
                     arrConsumoEnergetivoVC[i+1] = consumo_energetico;
                 }
 
@@ -729,7 +736,7 @@ namespace sres.ln
 
                 decimal[] arrConsumoEnergetivoVE = new decimal[5];
 
-                arrConsumoEnergetivoVE[0] = (((entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12)) / entidad.RENDIMIENTO_VE) * equivalenteenergetico; //actualizar el decimal.Parse
+                arrConsumoEnergetivoVE[0] = entidad.RENDIMIENTO_VE == 0 ? 0 : (((entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12)) / entidad.RENDIMIENTO_VE) * equivalenteenergetico; //actualizar el decimal.Parse
 
                 for (int i = 0; i < 15; i++)
                 {
@@ -785,7 +792,7 @@ namespace sres.ln
                 {
                     arrFactorEmisionVC[i] = elecLN.ListaFactor1P(14, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
                     decimal rendimiento_pasajero = elecLN.ListaFactor1P(16, 8, entidad.LISTA_SERVICIO_PUBLICO[i].ID_TIPO_TRANSPORTE).FACTOR;
-                    decimal consumo_energetico = entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * decimal.Parse(entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO.ToString()) / rendimiento_pasajero; //actualizar el decimal.Parse
+                    decimal consumo_energetico = rendimiento_pasajero == 0 ? 0 : entidad.LISTA_SERVICIO_PUBLICO[i].KILOMETRO_SEMANAL * 4 * decimal.Parse(entidad.LISTA_SERVICIO_PUBLICO[i].MESES_USO.ToString()) / rendimiento_pasajero; //actualizar el decimal.Parse
                     arrConsumoEnergetivoVC[i] = consumo_energetico;
                 }
 
@@ -845,7 +852,7 @@ namespace sres.ln
                     arrFabricacionBateriaVE[i] = fabricacion_bateria * entidad.CAPACIDAD_BATERIA_VE;
                 }
 
-                decimal operacion_vehiculo = (entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12) / entidad.RENDIMIENTO_VE * (factor_emision_consumo / (1 - perdida_transmision_distribucion)); //actualizar el decimal.Parse
+                decimal operacion_vehiculo = entidad.RENDIMIENTO_VE == 0 ? 0 :(entidad.KILOMETRO_SEMANAL_VE * 52) * (decimal.Parse(entidad.MESES_USO_VE.ToString()) / 12) / entidad.RENDIMIENTO_VE * (factor_emision_consumo / (1 - perdida_transmision_distribucion)); //actualizar el decimal.Parse
                 for (int i = 0; i < 15; i++)
                 {
                     arrOperacionVehiculoVE[i] = operacion_vehiculo * (i + 1);

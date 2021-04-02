@@ -29,5 +29,6 @@ namespace sres.be
         public decimal TARIFA_VE { get; set; }
         public decimal PRECIO_CARGADOR { get; set; }
         public decimal COSTO_INSTALACION { get; set; }
+        public int ANIO_RECAMBIO { get; set; }
     }
 }
