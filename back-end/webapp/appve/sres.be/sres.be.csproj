@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActividadEconomicaBE.cs" />
     <Compile Include="AnnoBE.cs" />
     <Compile Include="BaseBE.cs" />
     <Compile Include="CargadorPotenciaBE.cs" />

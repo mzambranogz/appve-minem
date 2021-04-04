@@ -68,7 +68,7 @@ var consultar = () => {
     let url = `${baseUrlApi}api/caso/buscar?${queryParams}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(url).then(r => r.json()).then(j => {
+    fetch(url, init).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
         tabla.find('tbody').html('');
         $('#viewPagination').attr('style', 'display: none !important');

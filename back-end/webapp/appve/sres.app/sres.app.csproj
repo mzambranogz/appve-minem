@@ -392,37 +392,6 @@
     <Content Include="Log\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Mailing\AprobacionRequesitos.html" />
-    <Content Include="Mailing\CoordinacionConvocatoria.html" />
-    <Content Include="Mailing\CreacionConvocatoria.html" />
-    <Content Include="Mailing\DocSolicitadosConvocatoria.html" />
-    <Content Include="Mailing\FiltradoConvocatoria.html" />
-    <Content Include="Mailing\FinalizacionConvocatoria.html" />
-    <Content Include="Mailing\InformeFinal.html" />
-    <Content Include="Mailing\InformeFinalConvocatoria.html" />
-    <Content Include="Mailing\InformePreConvocatoria.html" />
-    <Content Include="Mailing\InformePreliminar.html" />
-    <Content Include="Mailing\InscripcionAnulacion.html" />
-    <Content Include="Mailing\InscripcionConvocatoria.html" />
-    <Content Include="Mailing\DeshabilitarUsuario.html" />
-    <Content Include="Mailing\AprobacionUsuario.html" />
-    <Content Include="Mailing\CreacionUsuario.html" />
-    <Content Include="Mailing\LevantamientoObsConvocatoria.html" />
-    <Content Include="Mailing\LevantamientoObservacion.html" />
-    <Content Include="Mailing\ObservacionRequisitos.html" />
-    <Content Include="Mailing\PostulacionConvocatoria.html" />
-    <Content Include="Mailing\RecopilacionInfConvocatoria.html" />
-    <Content Include="Mailing\RecuperarClave.html" />
-    <Content Include="Mailing\ResultadosConvocatoria.html" />
-    <Content Include="Mailing\RevisionN1Convocatoria.html" />
-    <Content Include="Mailing\RevisionN2Convocatoria.html" />
-    <Content Include="Mailing\RevisionReqConvocatoria.html" />
-    <Content Include="Reportes\ReporteConvocatoriaXEmpresa.aspx" />
-    <Content Include="Reportes\ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx" />
-    <Content Include="Reportes\ReporteEstadisticoReconocimientoXConvocatoria.aspx" />
-    <Content Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx" />
-    <Content Include="Reportes\ReportePostulacionesXSectorSubSector.aspx" />
-    <Content Include="Reportes\ReporteReconocimientoXConvocatoriaEmpresa.aspx" />
     <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosAntPenales.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -468,7 +437,6 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reportes\ReporteEstadisticoTipoEmpresaXConvocatoria.aspx" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">
@@ -496,10 +464,8 @@
     <Compile Include="Controllers\Api\UsuarioTransportePublicoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ElectromovilidadController.cs" />
-    <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />
-    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\_Base\SesionIn.cs" />
     <Compile Include="Controllers\_Base\SesionOut.cs" />
     <Compile Include="Global.asax.cs">
@@ -507,49 +473,6 @@
     </Compile>
     <Compile Include="Models\EnumsCustom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reportes\ReporteConvocatoriaXEmpresa.aspx.cs">
-      <DependentUpon>ReporteConvocatoriaXEmpresa.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reportes\ReporteConvocatoriaXEmpresa.aspx.designer.cs">
-      <DependentUpon>ReporteConvocatoriaXEmpresa.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx.cs">
-      <DependentUpon>ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reportes\ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx.designer.cs">
-      <DependentUpon>ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\ReporteEstadisticoReconocimientoXConvocatoria.aspx.cs">
-      <DependentUpon>ReporteEstadisticoReconocimientoXConvocatoria.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reportes\ReporteEstadisticoReconocimientoXConvocatoria.aspx.designer.cs">
-      <DependentUpon>ReporteEstadisticoReconocimientoXConvocatoria.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx.cs">
-      <DependentUpon>ReporteEstadisticoTipoPostulanteXConvocatoria.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx.designer.cs">
-      <DependentUpon>ReporteEstadisticoTipoPostulanteXConvocatoria.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\ReportePostulacionesXSectorSubSector.aspx.cs">
-      <DependentUpon>ReportePostulacionesXSectorSubSector.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reportes\ReportePostulacionesXSectorSubSector.aspx.designer.cs">
-      <DependentUpon>ReportePostulacionesXSectorSubSector.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\ReporteReconocimientoXConvocatoriaEmpresa.aspx.cs">
-      <DependentUpon>ReporteReconocimientoXConvocatoriaEmpresa.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reportes\ReporteReconocimientoXConvocatoriaEmpresa.aspx.designer.cs">
-      <DependentUpon>ReporteReconocimientoXConvocatoriaEmpresa.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Repositorio\ReporteRepositorio.cs" />
     <Compile Include="Response\GoogleResponse.cs" />
     <Compile Include="Service References\ServicioPIDE\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -557,13 +480,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="Reportes\ReporteEstadisticoTipoEmpresaXConvocatoria.aspx.cs">
-      <DependentUpon>ReporteEstadisticoTipoEmpresaXConvocatoria.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reportes\ReporteEstadisticoTipoEmpresaXConvocatoria.aspx.designer.cs">
-      <DependentUpon>ReporteEstadisticoTipoEmpresaXConvocatoria.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -572,7 +488,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Mantenimiento\TablaMantenimiento.cshtml" />
     <Content Include="Views\Mantenimiento\Usuario.cshtml" />
@@ -631,22 +546,9 @@
     <Content Include="Assets\fonts\gothamroundedmedium.otf" />
     <Content Include="Assets\fonts\gothamroundedmedium.ttf" />
     <Content Include="Assets\fonts\gothamroundedmedium.woff" />
-    <Content Include="Assets\documentos\2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI %28TCO2%29.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\documentos\3° Criterios para alcanzar Categorías y Estrellas de recocnocimiento de energía sostenible.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\documentos\SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\documentos\descargar-reconocimiento.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <Content Include="Views\Shared\CambiarClave.cshtml" />
     <Content Include="Views\Login\RecuperarContraseña.cshtml" />
-    <Content Include="Views\Reporte\Index.cshtml" />
     <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -682,8 +584,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Fichas\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Assets\documentos\" />
     <Folder Include="Files\" />
+    <Folder Include="Mailing\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>
@@ -700,24 +604,6 @@
       <Project>{BE003476-6364-45C9-9F5E-C199F6153859}</Project>
       <Name>sres.ut</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="App_Data\Reportes\Certificado.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App_Data\Reportes\rptReportePostulacionesXSectorSubsector.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteConvocatoriaXEmpresa.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReconocimientoEmpresa.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

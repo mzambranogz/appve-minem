@@ -274,8 +274,9 @@ var guardarUsuario = () => {
 var cargarInformacionInicial = () => {
     //let urlListaRol = `${baseUrl}api/rol/listarrolporestado?flagEstado=1`;
     let urlListaRol = `${baseUrlApi}api/rol/listarrolporestado?flagEstado=1`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
     Promise.all([
-        fetch(urlListaRol),
+        fetch(urlListaRol, init),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(([listaRol]) => {
