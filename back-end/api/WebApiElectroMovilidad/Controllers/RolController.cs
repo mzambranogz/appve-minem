@@ -41,6 +41,7 @@ namespace WebApiElectroMovilidad.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex);
                 ent = null;
             }
             return ent;

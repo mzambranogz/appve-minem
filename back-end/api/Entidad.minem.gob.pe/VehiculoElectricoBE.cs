@@ -29,5 +29,6 @@ namespace Entidad.minem.gob.pe
         public decimal TARIFA_VE { get; set; }
         public decimal PRECIO_CARGADOR { get; set; }
         public decimal COSTO_INSTALACION { get; set; }
+        public int ANIO_RECAMBIO { get; set; }
     }
 }
