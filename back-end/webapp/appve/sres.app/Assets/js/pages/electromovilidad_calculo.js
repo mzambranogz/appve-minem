@@ -1302,7 +1302,7 @@ var grafico_costo = () => {
 
         var options = {
             chart: {
-                title: 'Electrificación de flota - TCO',
+                title: 'Comparativa entre movilidad convencional vs eléctrico',
                 //subtitle: 'in millions of dollars (USD)'
             },
             width: 900,
@@ -1328,7 +1328,7 @@ var grafico_costo_por_anio = () => {
         ]);
 
         var options = {
-            title: 'Comparación TCO',
+            title: 'Comparación – Costo total de propiedad (TCO)',
             width: 900,
             height: 800,
             tooltip: { isHtml: true },
@@ -1379,7 +1379,7 @@ var grafico_consumo_energ = () => {
         ]);
 
         var options = {
-            title: 'Consumo Energético Total',
+            title: 'Consumo energético total en GJ',
             width: 900,
             height: 800,
             tooltip: { isHtml: true },
@@ -1403,7 +1403,7 @@ var grafico_consumo_energ_total = () => {
         ]);
 
         var options = {
-            title: 'Consumo Energético Total',
+            title: 'Consumo energético total en GJ',
             width: 900,
             height: 800,
             tooltip: { isHtml: true },
@@ -1427,7 +1427,7 @@ var grafico_emisiones = () => {
         ]);
 
         var options = {
-            title: 'Emisiones GEI Totales',
+            title: 'Emisiones GEI totales en kgCO₂e',
             width: 900,
             height: 800,
             tooltip: { isHtml: true },

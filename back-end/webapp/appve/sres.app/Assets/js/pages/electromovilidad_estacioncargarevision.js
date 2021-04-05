@@ -61,7 +61,9 @@ var cargarDatos = ([estacion]) => {
                 let tituloDoc = `<label class="estilo-01">Cumplimiento de protocolo:</label>`;
                 let nombreFileDoc = `<input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-protocolo" value="${estacion.LISTA_DOC[i].ARCHIVO_BASE}" readonly>`;
                 //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
-                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="javascript:void(0)" onClick="mostrarDocumento(1)" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                docprotocolo = `${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}`;
                 let fileDoc = `<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>${nombreFileDoc}${btnDescargaDoc}</div>`;
                 let contenidoFileDoc = `<div class="col-lg-12 col-md-12 col-sm-12">${tituloDoc}${fileDoc}</div>`;
                 $('#protocolo-doc').html(contenidoFileDoc);
@@ -81,7 +83,7 @@ var cargarDatos = ([estacion]) => {
                 let nombreFileDoc = `<input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-certificado" value="${estacion.LISTA_DOC[i].ARCHIVO_BASE}" readonly>`;
                 //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
                 //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
-                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="javascript:void(0)" onClick="mostrarDocumento()" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="javascript:void(0)" onClick="mostrarDocumento(2)" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
                 doccertificado = `${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}`;
                 let fileDoc = `<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>${nombreFileDoc}${btnDescargaDoc}</div>`;
                 let contenidoFileDoc = `<div class="col-lg-12 col-md-12 col-sm-12"><div class="form-group text-left">${tituloDoc}${fileDoc}</div></div>`;
@@ -106,38 +108,22 @@ var cargarDatos = ([estacion]) => {
 
 }
 
-var mostrarDocumento = () => {
-    debugger;
-    let init = { method: 'GET', headers: { 'Content-Type':'text/html', 'Authorization': `Bearer ${token}`}};
-    fetch(doccertificado, init)
-    .then(r => {
-        debugger;
-        if (r.status == 200) return r.text();
-        //window.open(doccertificado, "_blank");
-    })
-    .then(j => {
-        debugger;
-        console.log(j);
-        /*var binary = '';
-        var bytes = new Uint8Array(j);
-        var len = bytes.byteLength;
-        for (var i = 0; i < len; i++) {
-            binary += String.fromCharCode( bytes[ i ] );
-        }*/
-        //let base64 = window.btoa( binary );
-        
-        let base64 = window.btoa(unescape(encodeURIComponent( j )));
+var mostrarDocumento = (opc) => {
+    let url = "";
+    if (opc == 1) url = docprotocolo
+    else url = doccertificado
 
-        //const url = window.URL.createObjectURL(new  Blob([base64]));
-        const link = document.createElement("a");
-        link.href = `data: application/octect-stream;base64;${base64}`;
-        //link.href = url;
-        link.setAttribute("download", "a.pdf");
-        document.body.appendChild(link);
-        link.click();
+    let init = { method: 'GET', headers: { 'Content-Type':'text/html', 'Authorization': `Bearer ${token}`}};
+    fetch(url, init)
+    .then((r) => r.blob())
+    .then(j => {
+        //console.log(j);
+        let urlBlob = window.URL.createObjectURL(j);
+        window.open(urlBlob, '_blank');
+    })
+    .finally(() => {
 
     });
-    //window.open(doccertificado, "_blank");
 }
 
 var mapa = (lat, lng) => {
