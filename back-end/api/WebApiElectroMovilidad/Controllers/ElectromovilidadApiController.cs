@@ -257,6 +257,13 @@ namespace WebApiElectroMovilidad.Controllers
             return lista;
         }
 
-
+        [Route("obtenerfactoremisionporrendimiento")]
+        [HttpGet]
+        public ElectromovilidadBE ObtenerFactorEmision(int valor1, int tipoveh, decimal rendimiento)
+        {
+            ElectromovilidadBE obj = new ElectromovilidadBE();
+            obj.FACTOR_EMISION = tipoLN.ObtenerFactorEmision(valor1, tipoveh, rendimiento);
+            return obj;
+        }
     }
 }

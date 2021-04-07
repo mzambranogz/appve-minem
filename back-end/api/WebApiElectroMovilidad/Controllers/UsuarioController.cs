@@ -76,5 +76,12 @@ namespace WebApiElectroMovilidad.Controllers
             return usuarioLN.GuardarPerfil(usuario);
         }
 
+        [Route("verificarcorreo")]
+        [HttpGet]
+        public bool VerificarCorreo(string correo)
+        {
+            return usuarioLN.VerificarCorreo(correo);
+        }
+
     }
 }

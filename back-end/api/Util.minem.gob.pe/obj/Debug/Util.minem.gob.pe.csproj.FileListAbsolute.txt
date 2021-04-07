@@ -12,3 +12,4 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\bin\D
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\bin\Debug\Util.minem.gob.pe.pdb
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\obj\Debug\Util.minem.gob.pe.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\obj\Debug\Util.minem.gob.pe.pdb
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\obj\Debug\Util.minem.gob.pe.csprojResolveAssemblyReference.cache
