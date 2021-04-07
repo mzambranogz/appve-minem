@@ -76,6 +76,8 @@ $(document).ready(() => {
     $('#btn-copiar-ruta').on('click', (e) => copiarRuta());
     $('#btn-ruta-frecuente').on('click', (e) => mostrarRutasBD());
     $('#cerrar-rutas-bd').on('click', (e) => atrasRutaFrecuente())
+    $('#rendimiento-vc').on('keyup', (e) => obtenerFactorEmisionVC());
+    $('#rendimiento-cvc').on('keyup', (e) => obtenerFactorEmisionCVC());
 });
 
 var mapa = () => {
@@ -828,6 +830,78 @@ var cambiarDepartamentoVC = () => {
             $('#precio-comb-vc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
             precio_combustible_vc_g = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
         }
+    });
+}
+
+var obtenerFactorEmisionVC = () => {
+    if ($('#tipo-vehiculo-vc').val() == 0 || $('#tipo-combustible-vc').val() == 0) return;
+    if ($('#rendimiento-vc').val().length >= 2) {
+        setTimeout(obtenerFactorVC, 1500);
+    }      
+}
+var obtenerFactorEmisionCVC = () => {
+    if ($('#tipo-vehiculo-cvc').val() == 0 || $('#tipo-combustible-cvc').val() == 0) return;
+    if ($('#rendimiento-cvc').val().length >= 2) {
+        setTimeout(obtenerFactorCVC, 1500);
+    }      
+}
+
+
+var obtenerFactorVC = () => {
+    let tipovehiculo = $('#tipo-vehiculo-vc').val();
+    let tipocombustible = $('#tipo-combustible-vc').val();
+    let rendimiento = parseFloat($('#rendimiento-vc').val().replace(/,/gi, ''));
+
+    let url = `${baseUrl}api/calculo/obtenerfactoremisionporrendimiento?valor1=${tipocombustible}&tipoveh=${tipovehiculo}&rendimiento=${rendimiento}`; //end point 33
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init)
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else if (response.status == 401) return 401;
+        else return 0;
+    })
+    .then(j => {
+        if (j == 401) { console.log("No tiene autorización para realizar este proceso"); }
+        else if (j == 0) { console.log("Error"); }
+        else {
+            if (j == null) return;
+            if (j.FACTOR_EMISION != null){
+                $(`#factor-emision-vc`).val(j.FACTOR_EMISION.FACTOR);           
+            }
+        }        
+    })
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+    });
+}
+
+var obtenerFactorCVC = () => {
+    let tipovehiculo = $('#tipo-vehiculo-cvc').val();
+    let tipocombustible = $('#tipo-combustible-cvc').val();
+    let rendimiento = parseFloat($('#rendimiento-cvc').val().replace(/,/gi, ''));
+
+    let url = `${baseUrl}api/calculo/obtenerfactoremisionporrendimiento?valor1=${tipocombustible}&tipoveh=${tipovehiculo}&rendimiento=${rendimiento}`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
+
+    fetch(url, init)
+    .then(response => {
+        if (response.status == 200) return response.json();
+        else if (response.status == 401) return 401;
+        else return 0;
+    })
+    .then(j => {
+        if (j == 401) { console.log("No tiene autorización para realizar este proceso"); }
+        else if (j == 0) { console.log("Error"); }
+        else {
+            if (j == null) return;
+            if (j.FACTOR_EMISION != null){
+                $(`#factor-emision-cvc`).val(j.FACTOR_EMISION.FACTOR);           
+            }
+        }        
+    })
+    .catch(error => {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
     });
 }
 

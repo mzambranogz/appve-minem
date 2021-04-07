@@ -19,20 +19,19 @@ var limpiarFormulario = () => {
 var verificarcorreo = () => {
     //Deshabilitado porque se debe comprobar si desde la API se verificara el correo que estan usando, si existe o no
 
-    //let correo = $('#txt-user').val().trim(), validar = false;
-    //let urlVerificarCorreo = `${baseUrl}api/usuario/verificarcorreo?correo=${correo}`;
+    let correo = $('#txt-user').val().trim(), validar = false;
+    let urlVerificarCorreo = `${baseUrl}api/usuario/verificarcorreo?correo=${correo}`; //end point 32
 
-    //fetch(urlVerificarCorreo)
-    //.then(r => r.json())
-    //.then((data) => {
-    //    if (data) {
-    //        $('form > .row:last').alert({ type: 'danger', title: 'Error', message: "Encontramos que su correo electrónico se encuentra registrado, por favor ingrese otro correo electrónico" });
-            
-    //    }else
-    //        registrarUsuario();
-    //});
+    fetch(urlVerificarCorreo)
+    .then(r => r.json())
+    .then((data) => {
+        if (data) {
+            $('form > .row:last').alert({ type: 'danger', title: 'Error', message: "Encontramos que su correo electrónico se encuentra registrado, por favor ingrese otro correo electrónico" });
+        } else
+            registrarUsuario();
+    });
     
-    registrarUsuario();
+    //registrarUsuario();
 }
 
 var registrarUsuario = () => {

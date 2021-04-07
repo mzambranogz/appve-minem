@@ -1177,5 +1177,93 @@ namespace sres.ln
 
             return seGuardo;
         }
+
+        public FactorDataBE ObtenerFactorEmision(int valor1, int tipoveh, decimal rendimiento)
+        {
+            FactorDataBE fd = new FactorDataBE();
+            try
+            {
+                decimal ch4ar2 = Convert.ToDecimal(AppSettings.Get<string>("CH4.AR2"));
+                decimal n2oar2 = Convert.ToDecimal(AppSettings.Get<string>("N2O.AR2"));
+                decimal gasohol = Convert.ToDecimal(AppSettings.Get<string>("Gasohol"));
+                decimal diesel = Convert.ToDecimal(AppSettings.Get<string>("Diesel"));
+                decimal co2 = ListaFactor1P(26, 2, valor1).FACTOR;
+                decimal ch4 = ListaFactor1P(27, 2, valor1).FACTOR;
+                decimal n2o = ListaFactor1P(28, 2, valor1).FACTOR;
+                decimal poder_calorico = ListaFactor1P(29, 2, valor1).FACTOR;
+
+                decimal fe = 0;
+                if (valor1 == 1)
+                {
+                    if ((tipoveh == 1 || tipoveh == 2))
+                    {
+                        fe = ((1 / ((rendimiento / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = (fe - fe * gasohol) / 1000;
+                    }
+                    else if (tipoveh == 3)
+                    {
+                        fe = ((1 / ((80 / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = (fe - fe * gasohol) / 1000;
+                    }
+                    else if (tipoveh == 4)
+                    {
+                        fe = ((1 / ((120 / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = (fe - fe * gasohol) / 1000;
+                    }
+                }
+                else if (valor1 == 2)
+                {
+                    if ((tipoveh == 1 || tipoveh == 2))
+                    {
+                        fe = ((1 / ((rendimiento / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = (fe - fe * diesel) / 1000;
+                    }
+                    else if (tipoveh == 3)
+                    {
+                        fe = 0;
+                    }
+                    else if (tipoveh == 4)
+                    {
+                        fe = 0;
+                    }
+                }
+                else if (valor1 == 3 || valor1 == 4)
+                {
+                    if ((tipoveh == 1 || tipoveh == 2))
+                    {
+                        fe = ((1 / ((rendimiento / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = fe / 1000;
+                    }
+                    else if (tipoveh == 3)
+                    {
+                        fe = Convert.ToDecimal(0.087);
+                    }
+                    else if (tipoveh == 4)
+                    {
+                        fe = Convert.ToDecimal(0.058);
+                    }
+                }
+                //else if (valor1 == 4)
+                //{
+                //    if ((tipoveh == 1 || tipoveh == 2))
+                //    {
+                //        fe = ((1 / ((rendimiento / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                //        fe = fe / 1000;
+                //    }
+                //    else if (tipoveh == 3)
+                //    {
+                //        fe = Convert.ToDecimal(0.087);
+                //    }
+                //    else if (tipoveh == 4)
+                //    {
+                //        fe = Convert.ToDecimal(0.058);
+                //    }
+                //}
+                fd.FACTOR = fe;
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return fd;
+        }
     }
 }

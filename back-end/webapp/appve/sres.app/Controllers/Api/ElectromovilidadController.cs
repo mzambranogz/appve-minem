@@ -7,6 +7,7 @@ using System.Web.Http;
 using sres.be;
 using sres.ln;
 using sres.ut;
+using System.Configuration;
 
 namespace sres.app.Controllers.Api
 {
@@ -252,6 +253,15 @@ namespace sres.app.Controllers.Api
         {
             bool v = elecLN.EliminarResultado(idresultado, idusuario);
             return v;
+        }
+
+        [Route("obtenerfactoremisionporrendimiento")]
+        [HttpGet]
+        public ElectromovilidadBE ObtenerFactorEmision(int valor1, int tipoveh, decimal rendimiento)
+        {
+            ElectromovilidadBE obj = new ElectromovilidadBE();
+            obj.FACTOR_EMISION = elecLN.ObtenerFactorEmision(valor1, tipoveh, rendimiento);
+            return obj;
         }
     }
 }
