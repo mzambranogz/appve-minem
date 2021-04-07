@@ -348,5 +348,29 @@ namespace Logica.minem.gob.pe
 
             return seGuardo;
         }
+
+        public int NuevaClave(UsuarioBE usuario)
+        {
+            int estado = 0;
+            bool cambio = false;
+            try
+            {
+                cn.Open();
+                if (estado == 0)
+                {
+                    usuario.CONTRASENA_NUEVO = string.IsNullOrEmpty(usuario.CONTRASENA_NUEVO) ? null : Seguridad.hashSal(usuario.CONTRASENA_NUEVO);
+                    estado = usuario.CONTRASENA_NUEVO == null ? 1 : 0;
+                    if (estado == 0)
+                    {
+                        cambio = usuarioDA.CambiarClave(usuario.ID_USUARIO, usuario.CONTRASENA_NUEVO, cn);
+                        estado = cambio ? 2 : 1;
+                    }
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return estado;
+        }
+
     }
 }

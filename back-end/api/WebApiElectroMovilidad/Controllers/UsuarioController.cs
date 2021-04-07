@@ -89,9 +89,9 @@ namespace WebApiElectroMovilidad.Controllers
             return usuarioLN.VerificarCorreo(correo);
         }
 
-        [Route("enviarlinkrecuperarcontraseña")]
+        [Route("enviarlinkrecuperarcontrasenia")]
         [HttpGet]
-        public Dictionary<string, object> EnviarLinkRecuperarContraseña(string correo, int flagrecuperar)
+        public Dictionary<string, object> EnviarLinkRecuperarContrasenia(string correo, int flagrecuperar)
         {
             UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo);
 
@@ -161,5 +161,22 @@ namespace WebApiElectroMovilidad.Controllers
             }
 
         }
+
+        [Route("nuevaclaveusuario")]
+        [HttpPost]
+        public int NuevaClave(UsuarioBE usuario)
+        {
+            int estado = 0;
+            try
+            {
+                estado = usuarioLN.NuevaClave(usuario);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return estado;
+        }
+
     }
 }
