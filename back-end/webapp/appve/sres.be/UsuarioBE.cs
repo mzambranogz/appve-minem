@@ -18,6 +18,7 @@ namespace sres.be
         public int ID_INSTITUCION { get; set; }
         public string PROPIETARIO { get; set; }
         public InstitucionBE INSTITUCION { get; set; }
+        public int FLAG_RECUPERAR { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }

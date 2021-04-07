@@ -180,7 +180,7 @@ namespace sres.app.Controllers
             return View();
         }
 
-        public ActionResult RecuperarContraseña()
+        public ActionResult RecuperarContrasena()
         {
             return View();
         }
@@ -188,11 +188,8 @@ namespace sres.app.Controllers
         [Route("CambiarContraseña/{idUsuario}")]
         public ActionResult CambiarContraseña(int idUsuario)
         {
-            UsuarioBE usuario = usuarioLN.ObtenerUsuario(idUsuario);
-
-            if (usuario == null) return HttpNotFound();
-
-            return View("CambiarClave");
+            ViewData["idusuario"] = idUsuario;
+            return View("ContrasenaNuevo");
         }
     }
 }

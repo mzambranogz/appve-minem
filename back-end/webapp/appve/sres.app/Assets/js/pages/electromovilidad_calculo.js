@@ -450,6 +450,7 @@ var cambiarCongVC = () => {
         $('#precio-combustible-vc').val(precio_combustible_vc_g);
         $('#porc-anual-combustible-vc').val(2);
         $('#factor-emision-vc').val(factor_emision_vc);
+        $('#meses-vc').val(12);
     }
 }
 
@@ -472,6 +473,7 @@ var cambiarCongCVC = () => {
         $('#porc-anual-combustible-cvc').val(2);
         $('#factor-emision-cvc').val(factor_emision_cvc_g);
         $('#costo-veh-cvc').val(formatoMiles(precio_vehiculo_cvc_g));
+        $('#meses-cvc').val(12);
     }
 }
 
@@ -593,6 +595,7 @@ var cambiarCongVE = () => {
         $('#costo-veh-ve').val(precio_vehiculo_ve_g);
         $('#valor-costo-veh-ve').html(formatoMiles(precio_vehiculo_ve_g));
         $('#anio-recambio-ve').val(8);
+        $('#meses-ve').val(12);
     }
 }
 
@@ -992,6 +995,9 @@ var cargarListas = ([listaTipoTransporte, listaTipoCombustible, listaTipoVehicul
     $('#meses-04').html(meses);
     $('#anio-recambio-ve').html(meses);
     $('#anio-recambio-ve').val(8);
+    $('#meses-vc').val(12);
+    $('#meses-cvc').val(12);
+    $('#meses-ve').val(12);
 
     let tipocompra = `<option value="0">seleccione</option><option value="1">Financiada</option><option value="2">Directa</option>`;
     $('#tipo-compra-cvc').html(tipocompra);

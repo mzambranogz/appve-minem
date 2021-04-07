@@ -3,9 +3,7 @@
     e.preventDefault();
     let correo = $('#txt-user').val();
 
-    let url = `${baseUrl}api/usuario/enviarlinkrecuperarcontraseña?correo=${correo}`;
-
-    //$('#verificacion-mrv').modal('show');
+    let url = `${baseUrl}api/usuario/enviarlinkrecuperarcontraseña?correo=${correo}&flagrecuperar=2`; //end point 34
 
     fetch(url)
     .then(r => r.json())
@@ -13,7 +11,6 @@
 };
 
 var responseEnvioMail = (data) => {
-    //$('#verificacion-mrv').modal('hide');
     let success = data.success;
     let message = data.message;
 

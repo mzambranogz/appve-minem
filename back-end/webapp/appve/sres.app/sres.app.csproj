@@ -227,6 +227,7 @@
     <Content Include="Assets\images\prev.png" />
     <Content Include="Assets\images\sin-foto.png" />
     <Content Include="Assets\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Assets\js\pages\login_contrasenanuevo.js" />
     <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
     <Content Include="Assets\js\pages\electromovilidad_calculo.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacioncargarevision.js" />
@@ -262,6 +263,7 @@
     <Content Include="Log\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Mailing\RecuperarClave.html" />
     <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosAntPenales.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -418,7 +420,7 @@
     <Content Include="Assets\fonts\gothamroundedmedium.woff" />
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <Content Include="Views\Shared\CambiarClave.cshtml" />
-    <Content Include="Views\Login\RecuperarContraseña.cshtml" />
+    <Content Include="Views\Login\RecuperarContrasena.cshtml" />
     <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -446,6 +448,7 @@
     <Content Include="Views\Electromovilidad\IndexAdministrador.cshtml" />
     <Content Include="Views\Electromovilidad\IndexUsuario.cshtml" />
     <Content Include="Views\Electromovilidad\EstacionCargaRevision.cshtml" />
+    <Content Include="Views\Login\ContrasenaNuevo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -457,7 +460,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\documentos\" />
     <Folder Include="Files\" />
-    <Folder Include="Mailing\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>

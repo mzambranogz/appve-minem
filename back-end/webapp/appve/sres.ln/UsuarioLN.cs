@@ -249,5 +249,49 @@ namespace sres.ln
             return seGuardo;
         }
 
+        public bool ActualizarRecuperar(UsuarioBE usuario)
+        {
+            bool seGuardo = false;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    seGuardo = usuarioDA.ActualizarRecuperar(usuario, cn);
+
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+
+            return seGuardo;
+        }
+
+        public int NuevaClave(UsuarioBE usuario)
+        {
+            int estado = 0;
+            bool cambio = false;
+            try
+            {
+                cn.Open();
+                if (estado == 0)
+                {
+                    usuario.CONTRASENA_NUEVO = string.IsNullOrEmpty(usuario.CONTRASENA_NUEVO) ? null : Seguridad.hashSal(usuario.CONTRASENA_NUEVO);
+                    estado = usuario.CONTRASENA_NUEVO == null ? 1 : 0;
+                    if (estado == 0)
+                    {
+                        cambio = usuarioDA.CambiarClave(usuario.ID_USUARIO, usuario.CONTRASENA_NUEVO, cn);
+                        estado = cambio ? 2 : 1;
+                    }
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return estado;
+        }
+
     }
 }
