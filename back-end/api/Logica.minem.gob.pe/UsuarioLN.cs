@@ -328,6 +328,25 @@ namespace Logica.minem.gob.pe
             return seGuardo;
         }
 
+        public bool ActualizarRecuperar(UsuarioBE usuario)
+        {
+            bool seGuardo = false;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    seGuardo = usuarioDA.ActualizarRecuperar(usuario, cn);
 
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+
+            return seGuardo;
+        }
     }
 }

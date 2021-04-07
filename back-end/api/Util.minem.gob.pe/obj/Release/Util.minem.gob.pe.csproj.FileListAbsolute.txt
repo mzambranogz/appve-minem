@@ -13,3 +13,5 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\bin\R
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\obj\Release\Util.minem.gob.pe.csprojResolveAssemblyReference.cache
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\obj\Release\Util.minem.gob.pe.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\obj\Release\Util.minem.gob.pe.pdb
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\bin\Release\Newtonsoft.Json.dll
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\Util.minem.gob.pe\bin\Release\Newtonsoft.Json.xml
