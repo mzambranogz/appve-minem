@@ -446,10 +446,10 @@ var cambiarCongVC = () => {
     if (v) $('#configuracion-vc').removeClass('d-none');
     else {
         $('#configuracion-vc').addClass('d-none');
-        $('#rendimiento-vc').val(rendimiento_vc_g);
-        $('#precio-combustible-vc').val(precio_combustible_vc_g);
+        $('#rendimiento-vc').val(formatoMiles(Math.round(rendimiento_vc_g * 100)/100));
+        $('#precio-combustible-vc').val(formatoMiles(Math.round(precio_combustible_vc_g * 100)/100));
         $('#porc-anual-combustible-vc').val(2);
-        $('#factor-emision-vc').val(factor_emision_vc);
+        $('#factor-emision-vc').val(formatoMiles(Math.round(factor_emision_vc * 100)/100));
         $('#meses-vc').val(12);
     }
 }
@@ -468,11 +468,11 @@ var cambiarCongCVC = () => {
     if (v) $('#configuracion-cvc').removeClass('d-none');
     else {
         $('#configuracion-cvc').addClass('d-none');
-        $('#rendimiento-cvc').val(rendimiento_cvc_g);
-        $('#precio-combustible-cvc').val(precio_combustible_cvc_g);
+        $('#rendimiento-cvc').val(formatoMiles(Math.round(rendimiento_cvc_g * 100)/100));
+        $('#precio-combustible-cvc').val(formatoMiles(Math.round(precio_combustible_cvc_g * 100)/100));
         $('#porc-anual-combustible-cvc').val(2);
-        $('#factor-emision-cvc').val(factor_emision_cvc_g);
-        $('#costo-veh-cvc').val(formatoMiles(precio_vehiculo_cvc_g));
+        $('#factor-emision-cvc').val(formatoMiles(Math.round(factor_emision_cvc_g * 100)/100));
+        $('#costo-veh-cvc').val(formatoMiles(Math.round(precio_vehiculo_cvc_g * 100)/100));
         $('#meses-cvc').val(12);
     }
 }
@@ -537,12 +537,12 @@ var evaluarTipoVehTipoCombVC = () => {
         else {
             if (j == null) return;
             if (j.RENDIMIENTO != null){
-                $('#rendimiento-vc').val(j.RENDIMIENTO.FACTOR);
+                $('#rendimiento-vc').val( formatoMiles(Math.round(j.RENDIMIENTO.FACTOR * 100)/100) );
                 $('#unidad-rend-vc').html(j.RENDIMIENTO.UNIDAD);
                 rendimiento_vc_g = parseFloat(j.RENDIMIENTO.FACTOR);          
             }
             if (j.FACTOR_EMISION != null){
-                $('#factor-emision-vc').val(j.FACTOR_EMISION.FACTOR);
+                $('#factor-emision-vc').val(formatoMiles(Math.round(j.FACTOR_EMISION.FACTOR* 100)/100));
                 factor_emision_vc = parseFloat(j.FACTOR_EMISION.FACTOR);           
             }
             $('#porc-anual-combustible-vc').val(2);
@@ -566,16 +566,16 @@ var evaluarTipoVehTipoCombCVC = () => {
     fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.RENDIMIENTO != null){
-            $('#rendimiento-cvc').val(j.RENDIMIENTO.FACTOR);
+            $('#rendimiento-cvc').val(formatoMiles(Math.round(j.RENDIMIENTO.FACTOR * 100)/100));
             $('#unidad-rend-cvc').html(j.RENDIMIENTO.UNIDAD);
             rendimiento_cvc_g = parseFloat(j.RENDIMIENTO.FACTOR);           
         }
         if (j.FACTOR_EMISION != null){
-            $('#factor-emision-cvc').val(j.FACTOR_EMISION.FACTOR);
+            $('#factor-emision-cvc').val(formatoMiles(Math.round(j.FACTOR_EMISION.FACTOR * 100)/100));
             factor_emision_cvc_g = parseFloat(j.FACTOR_EMISION.FACTOR);           
         }
         if (j.PRECIO_VEHICULO != null){
-            $('#costo-veh-cvc').val(j.PRECIO_VEHICULO.FACTOR);
+            $('#costo-veh-cvc').val(formatoMiles(Math.round(j.PRECIO_VEHICULO.FACTOR * 100)/100));
             $('#valor-costo-veh-cvc').html(formatoMiles(j.PRECIO_VEHICULO.FACTOR));
             precio_vehiculo_cvc_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
         }   
@@ -588,12 +588,12 @@ var cambiarCongVE = () => {
     if (v) $('#configuracion-ve').removeClass('d-none');
     else {
         $('#configuracion-ve').addClass('d-none');
-        $('#rendimiento-ve').val(rendimiento_ve_g);
-        $('#bateria-ve').val(capacidad_bateria_g);
-        $('#tarifa-ve').val(tarifa_electricidad_g);
+        $('#rendimiento-ve').val(formatoMiles(Math.round(rendimiento_ve_g * 100)/100));
+        $('#bateria-ve').val(formatoMiles(Math.round(capacidad_bateria_g * 100)/100));
+        $('#tarifa-ve').val(formatoMiles(Math.round(tarifa_electricidad_g * 100)/100));
         $('#porc-aual-ve').val(0);
-        $('#costo-veh-ve').val(precio_vehiculo_ve_g);
-        $('#valor-costo-veh-ve').html(formatoMiles(precio_vehiculo_ve_g));
+        $('#costo-veh-ve').val(formatoMiles(Math.round(precio_vehiculo_ve_g * 100)/100));
+        $('#valor-costo-veh-ve').html(formatoMiles(Math.round(precio_vehiculo_ve_g * 100)/100));
         $('#anio-recambio-ve').val(8);
         $('#meses-ve').val(12);
     }
@@ -648,18 +648,18 @@ var cambiarVE = () => {
         fetch(url, init).then(r => r.json()).then(j => {
             if (j == null) return;
             if (j.RENDIMIENTO != null){
-                $('#rendimiento-ve').val(j.RENDIMIENTO.FACTOR);
+                $('#rendimiento-ve').val(formatoMiles(Math.round(j.RENDIMIENTO.FACTOR * 100)/100));
                 $('#unidad-rend-ve').html(j.RENDIMIENTO.UNIDAD);
                 rendimiento_ve_g = parseFloat(j.RENDIMIENTO.FACTOR);           
             }
 
             if (j.CAPACIDAD_BATERIA != null){
-                $('#bateria-ve').val(j.CAPACIDAD_BATERIA.FACTOR);
+                $('#bateria-ve').val(formatoMiles(Math.round(j.CAPACIDAD_BATERIA.FACTOR * 100)/100));
                 capacidad_bateria_g = parseFloat(j.CAPACIDAD_BATERIA.FACTOR);           
             }
 
             if (j.PRECIO_VEHICULO != null){
-                $('#costo-veh-ve').val(j.PRECIO_VEHICULO.FACTOR);
+                $('#costo-veh-ve').val(formatoMiles(Math.round(j.PRECIO_VEHICULO.FACTOR * 100)/100));
                 $('#valor-costo-veh-ve').html(formatoMiles(j.PRECIO_VEHICULO.FACTOR));
                 precio_vehiculo_ve_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
             }
@@ -678,19 +678,19 @@ var cambiarMVE = () => {
     fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.RENDIMIENTO != null){
-            $('#rendimiento-ve').val(j.RENDIMIENTO.FACTOR);
+            $('#rendimiento-ve').val(formatoMiles(Math.round(j.RENDIMIENTO.FACTOR * 100)/100));
             $('#unidad-rend-ve').html(j.RENDIMIENTO.UNIDAD);
             rendimiento_ve_g = parseFloat(j.RENDIMIENTO.FACTOR);           
         }
 
         if (j.CAPACIDAD_BATERIA != null){
-            $('#bateria-ve').val(j.CAPACIDAD_BATERIA.FACTOR);
+            $('#bateria-ve').val(formatoMiles(Math.round(j.CAPACIDAD_BATERIA.FACTOR * 100)/100));
             capacidad_bateria_g = parseFloat(j.CAPACIDAD_BATERIA.FACTOR);           
         }
 
         if (j.PRECIO_VEHICULO != null){
-            $('#costo-veh-ve').val(j.PRECIO_VEHICULO.FACTOR);
-            $('#valor-costo-veh-ve').html(formatoMiles(j.PRECIO_VEHICULO.FACTOR));
+            $('#costo-veh-ve').val(formatoMiles(Math.round(j.PRECIO_VEHICULO.FACTOR * 100)/100));
+            $('#valor-costo-veh-ve').html(formatoMiles(Math.round(j.PRECIO_VEHICULO.FACTOR * 100)/100));
             precio_vehiculo_ve_g = parseFloat(j.PRECIO_VEHICULO.FACTOR);           
         }
     });
@@ -729,12 +729,12 @@ var cambiarCP = () => {
     fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.PRECIO_CARGADOR != null){
-            $('#precio-cargador').val(j.PRECIO_CARGADOR.FACTOR);
+            $('#precio-cargador').val(formatoMiles(Math.round(j.PRECIO_CARGADOR.FACTOR * 100)/100));
             precio_cargador_g = parseFloat(j.PRECIO_CARGADOR.FACTOR);          
         }
 
         if (j.COSTO_INSTALACION != null){
-            $('#costo-instalacion').val(j.COSTO_INSTALACION.FACTOR);
+            $('#costo-instalacion').val(formatoMiles(Math.round(j.COSTO_INSTALACION.FACTOR * 100)/100));
             costo_instalacion_g = parseFloat(j.COSTO_INSTALACION.FACTOR);           
         }
     });
@@ -751,7 +751,7 @@ var cambiarDP = () => {
     fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.TARIFA_ELECTRICIDAD != null){
-            $('#tarifa-ve').val(j.TARIFA_ELECTRICIDAD.FACTOR/100);
+            $('#tarifa-ve').val(formatoMiles(Math.round(j.TARIFA_ELECTRICIDAD.FACTOR * 100)/10000));
             tarifa_electricidad_g = parseFloat(j.TARIFA_ELECTRICIDAD.FACTOR)/100;          
         }
         $('#porc-aual-ve').val(0);
@@ -809,7 +809,7 @@ var cambiarDepartamentoCVC = () => {
     fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.PRECIO_COMBUSTIBLE != null){
-            $('#precio-combustible-cvc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
+            $('#precio-combustible-cvc').val(formatoMiles(Math.round(j.PRECIO_COMBUSTIBLE.FACTOR * 100)/100));
             $('#precio-comb-cvc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
             precio_combustible_cvc_g = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
         }
@@ -829,7 +829,7 @@ var cambiarDepartamentoVC = () => {
     fetch(url, init).then(r => r.json()).then(j => {
         if (j == null) return;
         if (j.PRECIO_COMBUSTIBLE != null){
-            $('#precio-combustible-vc').val(j.PRECIO_COMBUSTIBLE.FACTOR);
+            $('#precio-combustible-vc').val(formatoMiles(Math.round(j.PRECIO_COMBUSTIBLE.FACTOR * 100)/100));
             $('#precio-comb-vc').html(j.PRECIO_COMBUSTIBLE.UNIDAD);
             precio_combustible_vc_g = parseFloat(j.PRECIO_COMBUSTIBLE.FACTOR);           
         }
@@ -871,7 +871,7 @@ var obtenerFactorVC = () => {
         else {
             if (j == null) return;
             if (j.FACTOR_EMISION != null){
-                $(`#factor-emision-vc`).val(j.FACTOR_EMISION.FACTOR);           
+                $(`#factor-emision-vc`).val(formatoMiles(Math.round(j.FACTOR_EMISION.FACTOR * 100)/100));           
             }
         }        
     })
@@ -901,7 +901,7 @@ var obtenerFactorCVC = () => {
         else {
             if (j == null) return;
             if (j.FACTOR_EMISION != null){
-                $(`#factor-emision-cvc`).val(j.FACTOR_EMISION.FACTOR);           
+                $(`#factor-emision-cvc`).val(formatoMiles(Math.round(j.FACTOR_EMISION.FACTOR * 100)/100));           
             }
         }        
     })

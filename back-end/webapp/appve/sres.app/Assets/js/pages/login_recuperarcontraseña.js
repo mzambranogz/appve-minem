@@ -6,6 +6,8 @@
     //let url = `${baseUrl}api/usuario/enviarlinkrecuperarcontraseña?correo=${correo}&flagrecuperar=2`; //end point 34
     let url = `${baseUrlApi}api/usuario/enviarlinkrecuperarcontrasenia?correo=${correo}&flagrecuperar=2`; //end point 34
 
+    console.log(url);
+
     fetch(url)
     .then(r => r.json())
     .then(responseEnvioMail);

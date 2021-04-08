@@ -17,17 +17,17 @@
 
     <div id="seccion-01">
         <div class="row">
-            <label>¿Eres dueño/a de un vehículo que usa combustible?</label>&nbsp;&nbsp;
+            <label>Actualmente ¿tienes un vehículo de combustión?</label>&nbsp;&nbsp;
             <input id="rad-e1-si" type="radio" name="rad-e1" value="1" />Si&nbsp;
             <input id="rad-e1-no" type="radio" name="rad-e1" value="0" />No
         </div>
         <div class="row">
-            <label>¿Pretendes renovar o comprar un nuevo vehículo que usa combustible?</label>&nbsp;&nbsp;
+            <label>O, ¿estas pensando comprar un nuevo vehículo de combustión?</label>&nbsp;&nbsp;
             <input id="rad-e2-si" type="radio" name="rad-e2" value="1" />Si&nbsp;
             <input id="rad-e2-no" type="radio" name="rad-e2" value="0" />No
         </div>
         <div class="row">
-            <label>¿Usas servicio(s) de transporte?</label>&nbsp;&nbsp;
+            <label>¿Usas uno o más servicios de transporte (Buses, taxis, etc)?</label>&nbsp;&nbsp;
             <input id="rad-e3-si" type="radio" name="rad-e3" />Si&nbsp;
             <input id="rad-e3-no" type="radio" name="rad-e3" />No
         </div>
@@ -97,7 +97,7 @@
                 <input id="kilometro-sem-vc" type="text" class="decimal-miles-positivo form-control" value="0" />&nbsp;&nbsp;
             </div>
             <div class="col-6">
-                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br>
+                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>¿No lo sabes? Puedes estimar tu recorrido aquí</small><br>
                 <a id="btnAdd-vc" data-validar="vc" class="btn btn-primary" href="javascript:void(0);" data-toggle="modal" data-target="#modal-rutas">Agregar ruta</a>
             </div>
         </div>        
@@ -111,24 +111,26 @@
         </div>
         <div id="configuracion-vc" class="ml-5">
             <div class="row">
-                <div class="col-6"><label>Gasto de mantenimiento anual</label>&nbsp;&nbsp;<small>(De 0.00 a 7,000.00 soles)</small></div><div class="col-6"></div>
-                <div class="col-4">
-                    <input type="range" class="form-range" min="0" max="7000" step="1" value="1000" id="mantenimiento-vc" style="width:100%">
+                <div class="col-6"><label>Gasto de mantenimiento anual</label>&nbsp;&nbsp;<small>Soles/año</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="0" max="7000" step="1" value="1000" id="mantenimiento-vc" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="3,000.00" id="mantenimiento-vc">
                 </div>
-                <div class="col-2">
+                @*<div class="col-2">
                     <small id="valor-mantenimiento-vc">1,000</small>&nbsp;&nbsp;<small>Soles/año</small>
-                </div>            
+                </div>*@            
                 <div class="col-6"></div>    
                 @*<input id="mantenimiento-vc" type="text" class="decimal-miles-positivo" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;*@                
             </div>
             <div class="row">
-                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(De 0.00 a 2,000.00 soles)</small></div><div class="col-6"></div>
-                <div class="col-4">
-                    <input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-vc" style="width:100%">
+                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(Soles/año)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-vc" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="1,000.00" id="seguro-vc">
                 </div>
-                <div class="col-2">
+                @*<div class="col-2">
                     <small id="valor-seguro-vc">500</small>&nbsp;&nbsp;<small>Soles/año</small>
-                </div>
+                </div>*@
                 <div class="col-6"></div>
                 @*<input id="seguro-vc" type="text" class="decimal-miles-positivo" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;*@
             </div>
@@ -157,14 +159,14 @@
             <div class="row">
                 <div class="col-6">
                     <label>% Aumento anual combustible</label>&nbsp;&nbsp;(<small>%</small>)
-                    <input id="porc-anual-combustible-vc" type="text" class="form-control" />&nbsp;&nbsp;                  
+                    <input id="porc-anual-combustible-vc" type="text" class="form-control decimal-miles-positivo" />&nbsp;&nbsp;                  
                 </div><div class="col-6"></div>
             </div>
 
             <div class="row">
                 <div class="col-6">
                     <label>Factor de emisión asociado</label>&nbsp;&nbsp;(<small>kgCO2e/km</small>)
-                    <input id="factor-emision-vc" type="text" class="form-control" />&nbsp;&nbsp;                  
+                    <input id="factor-emision-vc" type="text" class="form-control decimal-miles-positivo" />&nbsp;&nbsp;                  
                 </div><div class="col-6"></div>
             </div>            
             
@@ -209,10 +211,10 @@
         <div class="row">
             <div class="col-6">
                 <label>Kilómetros semanal</label>&nbsp;&nbsp;<small>km/semana</small>
-                <input id="kilometro-sem-cvc" type="text" class="form-control" value="0" />
+                <input id="kilometro-sem-cvc" type="text" class="form-control decimal-miles-positivo" value="0" />
             </div>            
             <div class="col-6">
-                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br>
+                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>¿No lo sabes? Puedes estimar tu recorrido aquí</small><br>
                 <button id="btnAdd-cvc" data-validar="cvc" class="btn btn-primary">Agregar ruta</button>
             </div>            
         </div>        
@@ -227,7 +229,7 @@
             <div class="row">
                 <div class="col-6">
                     <label>Tasa de interés</label>&nbsp;&nbsp;(<small>%</small>)
-                    <input id="tasa-interes-cvc" type="text" value="0" class="form-control" />
+                    <input id="tasa-interes-cvc" type="text" value="0" class="form-control decimal-miles-positivo" />
                 </div><div class="col-6"></div>                       
             </div>
             <div class="row">
@@ -239,7 +241,7 @@
             <div class="row">
                 <div class="col-6">
                     <label>% cuota inicial</label>&nbsp;&nbsp;(<small>%</small>)
-                    <input id="cuota-inicial-cvc" type="text" class="form-control" value="0" />  
+                    <input id="cuota-inicial-cvc" type="text" class="form-control decimal-miles-positivo" value="0" />  
                 </div><div class="col-6"></div>
             </div>
         </div>
@@ -254,13 +256,14 @@
         <div id="configuracion-cvc" class="ml-5 mt-2">
 
             <div class="row">
-                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(De 0.00 a 2,000.00 soles)</small></div><div class="col-6"></div>
-                <div class="col-4">
-                    <input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-cvc" style="width:100%">
+                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(Soles)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-cvc" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="500.00" id="seguro-cvc">
                 </div>
-                <div class="col-2">
+                @*<div class="col-2">
                     <small id="valor-seguro-cvc">500</small>&nbsp;&nbsp;<small>soles/año</small>
-                </div>
+                </div>*@
                 <div class="col-6"></div>
             </div>
 
@@ -272,13 +275,14 @@
             </div>
 
             <div class="row">
-                <div class="col-6"><label>Costo del vehículo</label>&nbsp;&nbsp;<small>(De 1.00 a 300,000.00 soles)</small></div><div class="col-6"></div>
-                <div class="col-4">
-                    <input type="range" class="form-range" min="1" max="300000" step="1" value="0" id="costo-veh-cvc" style="width:100%">
+                <div class="col-6"><label>Costo del vehículo</label>&nbsp;&nbsp;<small>(Soles)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="1" max="300000" step="1" value="0" id="costo-veh-cvc" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="0" id="costo-veh-cvc">
                 </div>
-                <div class="col-2">
+                @*<div class="col-2">
                     <small id="valor-costo-veh-cvc">0</small>&nbsp;&nbsp;<small>soles</small>
-                </div>
+                </div>*@
                 <div class="col-6"></div>
             </div>
 
@@ -292,21 +296,21 @@
             <div class="row">
                 <div class="col-6">
                     <label>Precio combustible</label>&nbsp;&nbsp;(<small id="precio-comb-cvc">soles</small>)
-                    <input id="precio-combustible-cvc" type="text" value="0" class="form-control" />  
+                    <input id="precio-combustible-cvc" type="text" value="0" class="form-control decimal-miles-positivo" />  
                 </div><div class="col-6"></div>                              
             </div>
 
             <div class="row">
                 <div class="col-6">
                     <label>% Aumento anual combustible</label>&nbsp;&nbsp;(<small>%</small>)
-                    <input id="porc-anual-combustible-cvc" type="text" value="0" class="form-control" />
+                    <input id="porc-anual-combustible-cvc" type="text" value="0" class="form-control decimal-miles-positivo" />
                 </div><div class="col-6"></div>
             </div>
 
             <div class="row">
                 <div class="col-6">
                     <label>Factor de emisión asociado</label>&nbsp;&nbsp;(<small>kgCO2e/km</small>)
-                    <input id="factor-emision-cvc" type="text" value="0" class="form-control" />
+                    <input id="factor-emision-cvc" type="text" value="0" class="form-control decimal-miles-positivo" />
                 </div><div class="col-6"></div>
             </div>
 
@@ -498,13 +502,13 @@
             <div class="row">
                 <div class="col-6">
                     <label>Precio cargador</label>&nbsp;&nbsp;(<small>soles</small>)
-                    <input id="precio-cargador" type="text" class="form-control" value="0" />
+                    <input id="precio-cargador" type="text" class="form-control decimal-miles-positivo" value="0" />
                 </div><div class="col-6"></div>         
             </div>
             <div class="row">
                 <div class="col-6">
                     <label>Costo instalación</label>&nbsp;&nbsp;(<small>soles</small>)
-                    <input id="costo-instalacion" type="text" class="form-control" value="0" />  
+                    <input id="costo-instalacion" type="text" class="form-control decimal-miles-positivo" value="0" />  
                 </div><div class="col-6"></div>                              
             </div>
         </div>      
@@ -530,10 +534,10 @@
         <div class="row">
             <div class="col-6">
                 <label>Kilómetros semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
-                <input id="kilometro-sem-ve" type="text" class="form-control" value="0" /> 
+                <input id="kilometro-sem-ve" type="text" class="form-control decimal-miles-positivo" value="0" /> 
             </div>
             <div class="col-6">
-                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
+                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>¿No lo sabes? Puedes estimar tu recorrido aquí</small><br />
                 <button id="btnAdd-ve" data-validar="ve" class="btn btn-primary">Agregar ruta</button>
             </div>
         </div>
@@ -555,7 +559,7 @@
             <div class="row">
                 <div class="col-6">
                     <label>Tasa de interés</label>&nbsp;&nbsp;(<small>%</small>)
-                    <input id="tasa-interes-ve" type="text" class="form-control" value="0" /> 
+                    <input id="tasa-interes-ve" type="text" class="form-control decimal-miles-positivo" value="0" /> 
                 </div><div class="col-6"></div> 
             </div>
 
@@ -569,7 +573,7 @@
             <div class="row">
                 <div class="col-6">
                     <label>% cuota inicial</label>&nbsp;&nbsp;(<small>%</small>)
-                    <input id="cuota-inicial-ve" type="text" class="form-control" value="0" /> 
+                    <input id="cuota-inicial-ve" type="text" class="form-control decimal-miles-positivo" value="0" /> 
                 </div><div class="col-6"></div>         
             </div>
         </div>
@@ -599,8 +603,8 @@
 
             <div class="row">
                 <div class="col-6">
-                    <label>Cuota incentivo anual</label>&nbsp;&nbsp;(<small>soles/año</small>)
-                    <input id="cuota-inc-anual" type="text" class="form-control" value="0" />    
+                    <label>Cuota incentivo anual</label>&nbsp;&nbsp;(<small>Soles/año</small>)
+                    <input id="cuota-inc-anual" type="text" class="form-control decimal-miles-positivo" value="0" />    
                 </div><div class="col-6"></div>                            
             </div>
 
@@ -614,12 +618,12 @@
             <div class="row">
                 <div class="col-6"></div><div class="col-6"></div>
                 <label>Porcentaje</label>&nbsp;&nbsp;(<small>%</small>)
-                <input id="porcentaje-inc" type="text" class="form-control" value="0" />                
+                <input id="porcentaje-inc" type="text" class="form-control decimal-miles-positivo" value="0" />                
             </div>
             <div class="row">
                 <div class="col-6"></div><div class="col-6"></div>
-                <label>Valor incentivo único</label>&nbsp;&nbsp;(<small>soles</small>)
-                <input id="valor-inc-unico" type="text" class="form-control" value="0" />                
+                <label>Valor incentivo único</label>&nbsp;&nbsp;(<small>Soles</small>)
+                <input id="valor-inc-unico" type="text" class="form-control decimal-miles-positivo" value="0" />                
             </div>
         </div>
 
@@ -634,13 +638,14 @@
         <div id="configuracion-ve" class="ml-5">
 
             <div class="row">
-                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(De 0.00 a 2,000.00 soles)</small></div><div class="col-6"></div>
-                <div class="col-4">
-                    <input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-ve" style="width:100%">
+                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(Soles/año)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-ve" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="500.00" id="seguro-ve">
                 </div>
-                <div class="col-2">
+                @*<div class="col-2">
                     <small id="valor-seguro-ve">500</small>&nbsp;&nbsp;<small>soles/año</small>
-                </div>
+                </div>*@
                 <div class="col-6"></div>
             </div>
 
@@ -652,27 +657,28 @@
             </div>
 
             <div class="row">
-                <div class="col-6"><label>Costo del vehículo</label>&nbsp;&nbsp;<small>(De 1.00 a 300,000.00 soles)</small></div><div class="col-6"></div>
-                <div class="col-4">
-                    <input type="range" class="form-range" min="1" max="300000" step="1" value="0" id="costo-veh-ve" style="width:100%">
+                <div class="col-6"><label>Costo del vehículo</label>&nbsp;&nbsp;<small>(Soles)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="1" max="300000" step="1" value="0" id="costo-veh-ve" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="0.00" id="costo-veh-ve">
                 </div>
-                <div class="col-2">
+                @*<div class="col-2">
                     <small id="valor-costo-veh-ve">0</small>&nbsp;&nbsp;<small>soles</small>
-                </div>
+                </div>*@
                 <div class="col-6"></div>
             </div>
 
             <div class="row">
                 <div class="col-6">
                     <label>Rendimiento</label>&nbsp;&nbsp;(<small id="unidad-rend-ve">km/kWh</small>)
-                    <input id="rendimiento-ve" type="text" class="form-control" value="0" /> 
+                    <input id="rendimiento-ve" type="text" class="form-control decimal-miles-positivo" value="0" /> 
                 </div><div class="col-6"></div>           
             </div>
 
             <div class="row">
                 <div class="col-6">
                     <label>Capacidad batería</label>&nbsp;&nbsp;(<small>kWh</small>)
-                    <input id="bateria-ve" type="text" class="form-control" value="0" />  
+                    <input id="bateria-ve" type="text" class="form-control decimal-miles-positivo" value="0" />  
                 </div><div class="col-6"></div>       
             </div>
 
@@ -685,15 +691,15 @@
 
             <div class="row">
                 <div class="col-6">
-                    <label>Tarifa eléctrica</label>&nbsp;&nbsp;(<small>soles/kWh</small>)
-                    <input id="tarifa-ve" type="text" class="form-control" value="0" />
+                    <label>Tarifa eléctrica</label>&nbsp;&nbsp;(<small>Soles/kWh</small>)
+                    <input id="tarifa-ve" type="text" class="form-control decimal-miles-positivo" value="0" />
                 </div><div class="col-6"></div>
             </div>
 
             <div class="row">
                 <div class="col-6">
                     <label>% aumento anual de electricidad</label>&nbsp;&nbsp;(<small>%</small>)
-                    <input id="porc-aual-ve" type="text" class="form-control" value="0" />
+                    <input id="porc-aual-ve" type="text" class="form-control decimal-miles-positivo" value="0" />
                 </div><div class="col-6"></div>                
             </div>
 
