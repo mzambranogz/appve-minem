@@ -151,3 +151,4 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Cors.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.Cors.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\System.Web.Http.Cors.xml
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Mailing\RecuperarClave.html

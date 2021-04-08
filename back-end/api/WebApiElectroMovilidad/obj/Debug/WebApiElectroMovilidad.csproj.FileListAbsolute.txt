@@ -204,3 +204,4 @@ D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.csprojResolveAssemblyReference.cache
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.dll
 D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\obj\Debug\WebApiElectroMovilidad.pdb
+D:\Eduardo\Electromovilidad\Git\appve-minem\back-end\api\WebApiElectroMovilidad\bin\Mailing\RecuperarClave.html

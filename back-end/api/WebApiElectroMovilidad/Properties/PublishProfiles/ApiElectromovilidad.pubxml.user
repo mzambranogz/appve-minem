@@ -30,6 +30,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/Logica.minem.gob.pe.dll">
       <publishTime>04/07/2021 09:38:49</publishTime>
     </File>
+    <File Include="bin/Mailing/RecuperarClave.html">
+      <publishTime>04/08/2021 00:26:13</publishTime>
+    </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>03/19/2021 03:01:54</publishTime>
     </File>
@@ -106,10 +109,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/07/2021 09:31:20</publishTime>
     </File>
     <File Include="bin/WebApiElectroMovilidad.dll">
-      <publishTime>04/07/2021 09:39:48</publishTime>
+      <publishTime>04/08/2021 00:44:36</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>03/13/2021 19:45:03</publishTime>
+    </File>
+    <File Include="Mailing/RecuperarClave.html">
+      <publishTime>04/08/2021 00:26:13</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>03/13/2021 19:45:03</publishTime>
@@ -118,7 +124,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/13/2021 19:45:03</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/07/2021 09:31:34</publishTime>
+      <publishTime>04/08/2021 00:44:37</publishTime>
     </File>
   </ItemGroup>
 </Project>
