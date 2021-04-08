@@ -107,6 +107,66 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\images\bg-login.png" />
+    <Content Include="Assets\images\bg-mantenimientos.png" />
+    <Content Include="Assets\images\bg-registro.png" />
+    <Content Include="Assets\images\bg-reportes.png" />
+    <Content Include="Assets\images\clave.png" />
+    <Content Include="Assets\images\close.png" />
+    <Content Include="Assets\images\faq.png" />
+    <Content Include="Assets\images\favicon\android-chrome-192x192.png" />
+    <Content Include="Assets\images\favicon\android-chrome-512x512.png" />
+    <Content Include="Assets\images\favicon\android-icon-144x144.png" />
+    <Content Include="Assets\images\favicon\android-icon-192x192.png" />
+    <Content Include="Assets\images\favicon\android-icon-36x36.png" />
+    <Content Include="Assets\images\favicon\android-icon-48x48.png" />
+    <Content Include="Assets\images\favicon\android-icon-72x72.png" />
+    <Content Include="Assets\images\favicon\android-icon-96x96.png" />
+    <Content Include="Assets\images\favicon\apple-icon-114x114.png" />
+    <Content Include="Assets\images\favicon\apple-icon-120x120.png" />
+    <Content Include="Assets\images\favicon\apple-icon-144x144.png" />
+    <Content Include="Assets\images\favicon\apple-icon-152x152.png" />
+    <Content Include="Assets\images\favicon\apple-icon-180x180.png" />
+    <Content Include="Assets\images\favicon\apple-icon-57x57.png" />
+    <Content Include="Assets\images\favicon\apple-icon-60x60.png" />
+    <Content Include="Assets\images\favicon\apple-icon-72x72.png" />
+    <Content Include="Assets\images\favicon\apple-icon-76x76.png" />
+    <Content Include="Assets\images\favicon\apple-icon-precomposed.png" />
+    <Content Include="Assets\images\favicon\apple-icon.png" />
+    <Content Include="Assets\images\favicon\apple-touch-icon.png" />
+    <Content Include="Assets\images\favicon\browserconfig.xml" />
+    <Content Include="Assets\images\favicon\favicon-16x16.png" />
+    <Content Include="Assets\images\favicon\favicon-32x32.png" />
+    <Content Include="Assets\images\favicon\favicon-96x96.png" />
+    <Content Include="Assets\images\favicon\favicon.ico" />
+    <Content Include="Assets\images\favicon\ms-icon-144x144.png" />
+    <Content Include="Assets\images\favicon\ms-icon-150x150.png" />
+    <Content Include="Assets\images\favicon\ms-icon-310x310.png" />
+    <Content Include="Assets\images\favicon\ms-icon-70x70.png" />
+    <Content Include="Assets\images\img-p1.png" />
+    <Content Include="Assets\images\img-p2.png" />
+    <Content Include="Assets\images\loading.gif" />
+    <Content Include="Assets\images\log-sres-blanco.png" />
+    <Content Include="Assets\images\login-left.png" />
+    <Content Include="Assets\images\logo-blockchain-blanco.png" />
+    <Content Include="Assets\images\logo-gef-blanco.png" />
+    <Content Include="Assets\images\logo-minem-blanco.png" />
+    <Content Include="Assets\images\logo-minem.jpg" />
+    <Content Include="Assets\images\logo-nama-blanco.png" />
+    <Content Include="Assets\images\logo-pnud-blanco.png" />
+    <Content Include="Assets\images\logo-principal.svg" />
+    <Content Include="Assets\images\logo_gef.jpg" />
+    <Content Include="Assets\images\logo_gef.png" />
+    <Content Include="Assets\images\logo_gef.svg" />
+    <Content Include="Assets\images\logo_mrv_new_negro.png" />
+    <Content Include="Assets\images\logo_mrv_new_negro.svg" />
+    <Content Include="Assets\images\logo_pnud.jpg" />
+    <Content Include="Assets\images\logo_pnud.png" />
+    <Content Include="Assets\images\logo_pnud.svg" />
+    <Content Include="Assets\images\mrv-iso.png" />
+    <Content Include="Assets\images\next.png" />
+    <Content Include="Assets\images\password-level-47px.png" />
+    <Content Include="Assets\images\sin-foto.png" />
     <Content Include="Global.asax" />
     <Content Include="Mailing\RecuperarClave.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -142,6 +202,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Assets\images\favicon\manifest.json" />
+    <Content Include="Assets\images\favicon\site.webmanifest" />
+    <Content Include="Assets\images\ps22E9.tmp" />
     <None Include="Properties\PublishProfiles\ApiElectromovilidad.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
