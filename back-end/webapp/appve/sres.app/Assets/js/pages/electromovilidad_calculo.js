@@ -855,7 +855,8 @@ var obtenerFactorVC = () => {
     let tipocombustible = $('#tipo-combustible-vc').val();
     let rendimiento = parseFloat($('#rendimiento-vc').val().replace(/,/gi, ''));
 
-    let url = `${baseUrl}api/calculo/obtenerfactoremisionporrendimiento?valor1=${tipocombustible}&tipoveh=${tipovehiculo}&rendimiento=${rendimiento}`; //end point 33
+    //let url = `${baseUrl}api/calculo/obtenerfactoremisionporrendimiento?valor1=${tipocombustible}&tipoveh=${tipovehiculo}&rendimiento=${rendimiento}`; //end point 33
+    let url = `${baseUrlApi}api/calculo/obtenerfactoremisionporrendimiento?valor1=${tipocombustible}&tipoveh=${tipovehiculo}&rendimiento=${rendimiento}`; //end point 33
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
 
     fetch(url, init)
@@ -884,7 +885,8 @@ var obtenerFactorCVC = () => {
     let tipocombustible = $('#tipo-combustible-cvc').val();
     let rendimiento = parseFloat($('#rendimiento-cvc').val().replace(/,/gi, ''));
 
-    let url = `${baseUrl}api/calculo/obtenerfactoremisionporrendimiento?valor1=${tipocombustible}&tipoveh=${tipovehiculo}&rendimiento=${rendimiento}`;
+    //let url = `${baseUrl}api/calculo/obtenerfactoremisionporrendimiento?valor1=${tipocombustible}&tipoveh=${tipovehiculo}&rendimiento=${rendimiento}`;
+    let url = `${baseUrlApi}api/calculo/obtenerfactoremisionporrendimiento?valor1=${tipocombustible}&tipoveh=${tipovehiculo}&rendimiento=${rendimiento}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
 
     fetch(url, init)

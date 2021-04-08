@@ -3,7 +3,8 @@
     e.preventDefault();
     let correo = $('#txt-user').val();
 
-    let url = `${baseUrl}api/usuario/enviarlinkrecuperarcontraseña?correo=${correo}&flagrecuperar=2`; //end point 34
+    //let url = `${baseUrl}api/usuario/enviarlinkrecuperarcontraseña?correo=${correo}&flagrecuperar=2`; //end point 34
+    let url = `${baseUrlApi}api/usuario/enviarlinkrecuperarcontrasenia?correo=${correo}&flagrecuperar=2`; //end point 34
 
     fetch(url)
     .then(r => r.json())
@@ -13,11 +14,24 @@
 var responseEnvioMail = (data) => {
     let success = data.success;
     let message = data.message;
-
-    if (success == true) $('form > *:last').alert({ type: 'success', title: 'Validando credenciales', message, close: { time: 3000 } });
-    else $('form > *:last').alert({ type: 'danger', title: 'Validando credenciales', message, close: { time: 3000 } });
+    if (success == true) {
+        $('form > *:last').alert({ type: 'success', title: 'Bien hecho', message});
+        setTimeout(redirigir, 5000);
+    }
+    else {
+        $('form > *:last').alert({ type: 'danger', title: 'Error', message });
+        setTimeout(limpiarAlert, 2500);
+    } 
 
 };
+
+var redirigir = () => {
+    location.href = `${baseUrl}Login`;
+}
+
+var limpiarAlert = () => {
+    $('form > *:last').remove();
+}
 
 $(document).ready(() => {
     $('#frmLogin').submit(enviarMail);
