@@ -160,6 +160,7 @@ namespace sres.da
                 p.Add("PI_CORREO", usuario.CORREO);
                 p.Add("PI_CONTRASENA", usuario.CONTRASENA);
                 p.Add("PI_ID_ROL", usuario.ID_ROL);
+                p.Add("PI_TIPO_REGISTRO", usuario.TIPO_REGISTRO);
                 p.Add("PI_FLAG_ESTADO", usuario.FLAG_ESTADO);
                 p.Add("PI_UPD_USUARIO", usuario.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);

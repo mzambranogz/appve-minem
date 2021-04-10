@@ -258,7 +258,7 @@ var guardarUsuario = () => {
 
     //let url = `${baseUrl}api/usuario/guardarusuario`;
     let url = `${baseUrlApi}api/usuario/insert`;
-    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, CONTRASENA: contraseña, NOMBRES: nombres, CORREO: correo, ID_ROL: idRol, ID_GENERO: genero, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, CONTRASENA: contraseña, NOMBRES: nombres, CORREO: correo, ID_ROL: idRol, ID_GENERO: genero, TIPO_REGISTRO: 1, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 
     fetch(url, init)

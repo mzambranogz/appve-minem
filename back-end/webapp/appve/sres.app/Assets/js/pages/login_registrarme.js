@@ -59,7 +59,7 @@ var registrarUsuario = () => {
 
     //let url = `${baseUrl}api/usuario/guardarusuario`;
     let url = `${baseUrlApi}api/usuario/insert`;
-    let data = { ID_USUARIO: -1, NOMBRES: nombres, ID_GENERO: genero, CORREO: correo, CONTRASENA: contraseña, ID_ROL: 3, FLAG_ESTADO: '1'};
+    let data = { ID_USUARIO: -1, NOMBRES: nombres, ID_GENERO: genero, CORREO: correo, CONTRASENA: contraseña, ID_ROL: 3, TIPO_REGISTRO: 1, FLAG_ESTADO: '1'};
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
