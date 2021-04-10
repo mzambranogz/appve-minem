@@ -843,9 +843,12 @@ namespace Logica.minem.gob.pe
             try
             {
                 decimal fabricacion_bateria = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionbateria"));
-                decimal fabricacion_vehiculo = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionvehiculo"));
                 decimal factor_emision_consumo = Convert.ToDecimal(AppSettings.Get<string>("dato.factoremisionconsumo"));
                 decimal perdida_transmision_distribucion = Convert.ToDecimal(AppSettings.Get<string>("dato.perdidatransmisiondistribucion"));
+                decimal fabricacion_vehiculo = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionvehiculo"));
+                decimal fabricacion_moto = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionmotoelectrica"));
+                decimal fabricacion_scooter = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionscooterelectrico"));
+                decimal fabricacion_bici = Convert.ToDecimal(AppSettings.Get<string>("dato.fabricacionbicielectrica"));
 
                 decimal[] arrFabricacionBateriaVE = new decimal[15];
                 decimal[] arrOperacionVehiculoVE = new decimal[15];
@@ -865,7 +868,9 @@ namespace Logica.minem.gob.pe
 
                 for (int i = 0; i < 15; i++)
                 {
-                    arrFabricacionVehiculoVE[i] = fabricacion_vehiculo;
+                    int tipo_veh = entidad.TIPO_VEHICULO_ELECTRICO_VE;
+                    decimal fabricacion = tipo_veh == 1 ? fabricacion_vehiculo : tipo_veh == 2 ? fabricacion_moto : tipo_veh == 3 ? fabricacion_scooter : fabricacion_bici;
+                    arrFabricacionVehiculoVE[i] = fabricacion;
                 }
 
                 for (int i = 0; i < 15; i++)

@@ -19,6 +19,7 @@ namespace Entidad.minem.gob.pe
         public string PROPIETARIO { get; set; }
         public InstitucionBE INSTITUCION { get; set; }
         public int FLAG_RECUPERAR { get; set; }
+        public int TIPO_REGISTRO { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }
