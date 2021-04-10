@@ -8,6 +8,7 @@ namespace sres.be
 {
     public class EmisionesElectricoBE : BaseBE
     {
+        public int TIPO_VEHICULO_ELECTRICO_VE { get; set; }
         public decimal CAPACIDAD_BATERIA_VE { get; set; }
         public decimal KILOMETRO_SEMANAL_VE { get; set; }
         public int MESES_USO_VE { get; set; }

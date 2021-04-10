@@ -1043,7 +1043,7 @@ var evaluar = () => {
     //let p_seguro_vc = $('#rad-sv-si-cvc').prop('checked') ? '1' : '0';
     let p_seguro_vc = $('#seguro-cvc').val() == "" ? '0' : $('#seguro-cvc').val().replace(/,/gi, '') > 0 ? '1' : '0';
     //let p_gasto_combustible = p2 == '1' ? $('#rad-gcs-si-cvc').prop('checked') ? '1' : '0' : p1 == '1' ? $('#rad-gcs-si-vc').prop('checked') ? '1' : '0' : '0';
-    let p_gasto_combustible = p2 == '1' ? $('#gasto-cvc').val() == "" ? '0' : $('#gasto-cvc').val().replace(/,/gi, '') > 0 ? '1' : '0' : p1 == '1' ? $('#gasto-vc').val() == "" ? '0' : $('#gasto-vc').val().replace(/,/gi, '') > 0 ? '1' : '0' : '0';
+    let p_gasto_combustible = p2 == '1' ? $('#gasto-cvc').val() == "" ? '0' : $('#gasto-cvc').val().replace(/,/gi, '') > 0 ? '1' : '0' : p1 == '1' ? $('#gasto-vc').val().replace(/,/gi, '') == "" ? '0' : $('#gasto-vc').val().replace(/,/gi, '') > 0 ? '1' : '0' : '0';
     let costo_vehiculo_vc = 0, meses_uso_vc = 0, porc_aumento_comb_vc = 0, tipo_compra_vc = 0;
     let porc_cuota_inicial_vc = 0, tasa_interes_vc = 0, anio_credito_vc = 0, seguro_vc = 0;
     let gasto_combustible_vc = 0, precio_combustible_vc = 0, kilometro_semanal_vc = 0, rendimiento_vc = 0, mantenimiento_vc = 0;
@@ -1172,6 +1172,7 @@ var evaluar = () => {
     let costo_instalacion = parseFloat($('#costo-instalacion').val().replace(/,/gi, ''));
     let capacidad_bateria_ve = $('#bateria-ve').val().replace(/,/gi, '');
     let anio_recambio = $('#anio-recambio-ve').val();
+    let tipo_vehiculo_electrico_ve = $('#tipo-vehiculo-ve').val()
 
     data_ve = { 
         P_INCENTIVO: p_incentivo, P_SEGURO_VE: p_seguro_ve, COSTO_VEHICULO_VE: costo_vehiculo_ve, TIPO_INCENTIVO_VE: tipo_incentivo, HORIZONTE: horizonte, CUOTA_INCENTIVO_ANUAL: cuota_incentivo_anual,
@@ -1213,7 +1214,7 @@ var evaluar = () => {
 
     //Emisiones Electrico
     data_em_ve = {
-        CAPACIDAD_BATERIA_VE: capacidad_bateria_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
+        TIPO_VEHICULO_ELECTRICO_VE: tipo_vehiculo_electrico_ve, CAPACIDAD_BATERIA_VE: capacidad_bateria_ve, KILOMETRO_SEMANAL_VE: km_semanal_ve, MESES_USO_VE: meses_ve, RENDIMIENTO_VE: rendimiento_ve,
     }
     console.log(JSON.stringify('Emisiones Electrico:'));
     console.log(JSON.stringify(data_em_ve));
