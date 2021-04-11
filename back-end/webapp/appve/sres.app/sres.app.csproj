@@ -227,7 +227,6 @@
     <Content Include="Assets\images\prev.png" />
     <Content Include="Assets\images\sin-foto.png" />
     <Content Include="Assets\js\lightbox-plus-jquery.min.js" />
-    <Content Include="Assets\js\pages\login_contrasenanuevo.js" />
     <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
     <Content Include="Assets\js\pages\electromovilidad_calculo.js" />
     <Content Include="Assets\js\pages\electromovilidad_estacioncargarevision.js" />
@@ -242,6 +241,7 @@
     <Content Include="Assets\js\pages\electromovilidad_verresultado.js" />
     <Content Include="Assets\js\pages\inicio.js" />
     <Content Include="Assets\js\pages\login.js" />
+    <Content Include="Assets\js\pages\login_contrasenanuevo.js" />
     <Content Include="Assets\js\pages\login_recuperarcontraseña.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
