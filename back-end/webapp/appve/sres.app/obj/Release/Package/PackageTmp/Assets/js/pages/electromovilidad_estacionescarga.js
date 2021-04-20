@@ -1,14 +1,19 @@
-﻿var imagenes = [];
+﻿var map;
+var imagenes = [];
+var arrCoordenadas = [];
+var marker = [];
 $(document).ready(() => {
     $('.imagen-estacion').on('click', (e) => mostrarImagen(e));
     //$('#btnNuevaEstacion').on('click', (e) => nuevaEstacion());
     cargarComponentes();
+    mapa();
 });
 
 //prioridad 17
 var cargarComponentes = () => {
     //let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`;
-    let urlConsultarTipoTransporte = `${baseUrlApi}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`;
+    //let urlConsultarTipoTransporte = `${baseUrlApi}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`; //para app movil
+    let urlConsultarTipoTransporte = `${baseUrlApi}api/estacioncarga/obtenerestacionesporusuarioweb?idusuario=${idUsuarioLogin}`; //para web prioridad 28
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
     Promise.all([
         fetch(urlConsultarTipoTransporte, init),
@@ -45,7 +50,7 @@ var cargarDatos = ([listaDatos]) => {
                         
             let seccion_foto_direccion = `<div class="row">`;
             seccion_foto_direccion += `<div class="col-6 "><div class="row"><div class="col-9"><span style="color: brown;">Fotos</span></div><div class="col-3"><a class="imagen-estacion" id="estacion-${x.ID_ESTACION}" href="javascript:void(0);" data-valor="${x.ID_ESTACION}" data-toggle="modal" data-target="#modal-foto"><i class="fas fa-camera mr-1"></i></a></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_IMAGEN} de 5</span></div></div></div>`;
-            seccion_foto_direccion += `<div class="col-6 "><div class="row"><div class="col-9"><span style="color: brown;">Dirección</span></div><div class="col-3"><a href="#"><i class="fas fa-map-marked mr-1"></i></a></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DIRECCION}</span></div></div></div>`;
+            seccion_foto_direccion += `<div class="col-6 "><div class="row"><div class="col-9"><span style="color: brown;">Dirección</span></div><div class="col-3"><a href="javascript:void(0)" id="coordenada-${x.ID_ESTACION}" data-valor="${x.ID_ESTACION}" class="coordenada-estacion" data-toggle="modal" data-target="#modal-ubicacion"><i class="fas fa-map-marked mr-1"></i></a></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DIRECCION}</span></div></div></div>`;
             seccion_foto_direccion += `<div class="col-12"><hr /></div></div>`;           
                         
             let seccion_potencia_modo_carga = `<div class="row">`;
@@ -68,6 +73,12 @@ var cargarDatos = ([listaDatos]) => {
             seccion_tarifa_protocolo += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cumplimiento del protocolo</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">Si</span></div></div>`;
             seccion_tarifa_protocolo += `</div></div>`;
 
+            arrCoordenadas.push({
+                ID_ESTACION: x.ID_ESTACION,
+                LONGITUD: x.LONGITUD,
+                LATITUD: x.LATITUD
+            });
+
             return `<div class="col-6 mb-2"><div class="card" style="width: 100%;"><div class="card-body">${seccion_titulo}${seccion_modelo_marca}${seccion_foto_direccion}${seccion_potencia_modo_carga}${seccion_tipo_cargador_cantidad}${hora_desde_hasta}${seccion_tarifa_protocolo}</div></div></div>`;   
         }).join('');
         $('#seccion-estacion').html(estaciones);
@@ -76,6 +87,34 @@ var cargarDatos = ([listaDatos]) => {
         $('#sin-estacion').removeClass('d-none');
         $('#seccion-estacion').html('');
     }
+}
+
+var mapa = () => {
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia3phcmtsb3oiLCJhIjoiY2tsaDRoenNjMjRjcDJ2cXR4a2FrOHFtMSJ9.IubP7nyb7i-2Rvoyg_bLlA';
+    map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-77.03101439999999, -12.016025599999999],
+        zoom: 7
+    });  
+
+    var nav = new mapboxgl.NavigationControl({
+        showCompass: true,
+        showZoom: true,
+        visualizePitch: true
+    });
+    map.addControl(nav);
+
+    map.addControl(new mapboxgl.FullscreenControl());
+    map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    }));
+
+    $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
+    $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
 }
 
 //var mostrarImagen = (e) => {
@@ -102,6 +141,20 @@ $(document).on('click', '.imagen-estacion', (e) => {
             ruta_imagenes += `<a class="example-image-link" href="${objeto.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${objeto.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
         }
         $('#marco-imagenes').html(ruta_imagenes);
+    }
+});
+
+$(document).on('click', '.coordenada-estacion', (e) => {
+    if (marker.length > 0) marker.remove();
+    let id = $(`#${e.currentTarget.id}`).data('valor');
+    let v = arrCoordenadas.find(x => { return x.ID_ESTACION == id; }) == undefined ? false : true;
+    if (v) {        
+        let objeto = arrCoordenadas.find(x => { return x.ID_ESTACION == id; });
+        marker = new mapboxgl.Marker({
+            color: "#FF5733",
+            draggable: false
+        }).setLngLat([objeto.LONGITUD, objeto.LATITUD]).addTo(map);
+        map.setCenter([objeto.LONGITUD, objeto.LATITUD]);
     }
 });
 

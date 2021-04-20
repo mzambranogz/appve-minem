@@ -3,6 +3,7 @@ var rutas = "";
 var marker;
 var arrTempUbicacion = [], arrUbicacion = [];
 var mapboxgl, map;
+var docprotocolo = "", doccertificado = "";
 //var currentMarkers=[];
 $(document).ready(() => {
     $('#btnGuardar').on('click', (e) => guardar());
@@ -45,21 +46,23 @@ var cargarDatos = ([estacion]) => {
     $('#txt-marca').val(estacion.MARCA);
     $('#txt-descripcion').val(estacion.DESCRIPCION);
     $('#cantidad-foto').html(estacion.CANTIDAD_IMAGEN);
-    $('#txt-potencia').val(estacion.POTENCIA);
+    $('#txt-potencia').val(formatoMilesDecimales(estacion.POTENCIA));
     $('#txt-modo-carga').val(estacion.MODO_CARGA);
     $('#txt-tipo-cargador').val(estacion.TIPO_CARGADOR);
     $('#txt-tipo-conector').val(estacion.TIPO_CONECTOR);
-    $('#txt-cantidad-conector').val(estacion.CANTIDAD_CONECTOR);
+    $('#txt-cantidad-conector').val(formatoMilesEnteros(estacion.CANTIDAD_CONECTOR));
     $('#txt-hora-desde').val(estacion.HORA_DESDE);
     $('#txt-hora-hasta').val(estacion.HORA_HASTA);
-    $('#txt-tarifa').val(estacion.TARIFA_SERVICIO);
+    $('#txt-tarifa').val(formatoMilesDecimales(estacion.TARIFA_SERVICIO));
 
     if (estacion.LISTA_DOC != null){
         for (var i = 0; i < estacion.LISTA_DOC.length; i++) {
             if (estacion.LISTA_DOC[i].ID_DOCUMENTO == 1) {
                 let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${estacion.LISTA_DOC[i].ARCHIVO_BASE}</span>`;
                 //let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
-                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
+                //let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
+                let btnDescargaFileDoc = `<a class="text-sres-verde" href="javascript:void(0)" onClick="mostrarDocumento(1)"><i class="fas fa-download px-2 py-1"></i></a>`; //end points
+                docprotocolo = `${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}`;
                 let btnEliminarFileDoc = `<a class="text-sres-verde btnEliminarFile" href="#" data-id="${estacion.LISTA_DOC[i].ID_DOCUMENTO}"><i class="fas fa-trash px-2 py-1"></i></a>`;
                 contenidoFileDoc = `<div class="alert alert-success p-1 d-flex w-100"><div class="mr-auto">${nombreFileDoc}</div><div class="ml-auto">${btnDescargaFileDoc}${btnEliminarFileDoc}</div></div>`;
                 $('#view-protocolo').html(`<label class="estilo-01">&nbsp;</label>${contenidoFileDoc}`);
@@ -71,7 +74,9 @@ var cargarDatos = ([estacion]) => {
             if (estacion.LISTA_DOC[i].ID_DOCUMENTO == 2) {
                 let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${estacion.LISTA_DOC[i].ARCHIVO_BASE}</span>`;
                 //let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
-                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
+                //let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}"><i class="fas fa-download px-2 py-1"></i></a>`;
+                let btnDescargaFileDoc = `<a class="text-sres-verde" href="javascript:void(0)" onClick="mostrarDocumento(2)"><i class="fas fa-download px-2 py-1"></i></a>`;
+                doccertificado = `${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}`;
                 let btnEliminarFileDoc = `<a class="text-sres-verde btnEliminarFile" href="#" data-id="${estacion.LISTA_DOC[i].ID_DOCUMENTO}"><i class="fas fa-trash px-2 py-1"></i></a>`;
                 contenidoFileDoc = `<div class="alert alert-success p-1 d-flex w-100"><div class="mr-auto">${nombreFileDoc}</div><div class="ml-auto">${btnDescargaFileDoc}${btnEliminarFileDoc}</div></div>`;
                 $('#view-certificado').html(`<label class="estilo-01">&nbsp;</label>${contenidoFileDoc}`);
@@ -222,6 +227,18 @@ var guardar = () => {
     let message = [];
     if ($('#txt-direccion-estacion').val().trim() == "") message.push("Debe ingresar la dirección de la estación de carga");
     if (arrUbicacion.length == 0) message.push("No ha seleccionado la ubicacion para la estación de carga");
+    if ($('#txt-descripcion').val().trim() == "") message.push("Debe ingresar una descripción");
+    if ($('#txt-modelo').val().trim() == "") message.push("Debe ingresar el modelo");
+    if ($('#txt-marca').val().trim() == "") message.push("Debe ingresar la marca");
+    if ($('#txt-potencia').val().trim() == "") message.push("Debe ingresar la potencia");
+    if ($('#txt-modo-carga').val().trim() == "") message.push("Debe ingresar el modo de carga");
+    if ($('#txt-tipo-cargador').val().trim() == "") message.push("Debe ingresar el tipo de cargador");
+    if ($('#txt-tipo-conector').val().trim() == "") message.push("Debe ingresar el tipo de conector");
+    if ($('#txt-cantidad-conector').val().trim() == "") message.push("Debe ingresar la cantidad de conectores");
+    if ($('#txt-hora-desde').val().trim() == "") message.push("Debe ingresar la hora desde la apertura de la estación de carga");
+    if ($('#txt-hora-hasta').val().trim() == "") message.push("Debe ingresar la hora hasta el cierre de la estación de carga");
+    if ($('#txt-tarifa').val().trim() == "") message.push("Debe ingresar la tarifa");
+
     if (storedFiles.length == 0) message.push("Debe subir al menos una imagen de la estación de carga");
     if ($('#fle-protocolo').data('file') == undefined) message.push("Debe subir cumplimiento de protocolo");
     if ($('#fle-certificado').data('file') == undefined) message.push("Debe subir el certificado de fabricante");
@@ -264,15 +281,20 @@ var guardar = () => {
                  TIPO_CARGADOR: tipo_cargador, TIPO_CONECTOR: tipo_conector, CANTIDAD_CONECTOR: cantidad, HORA_DESDE: hora_desde, HORA_HASTA: hora_hasta, TARIFA_SERVICIO: tarifa,
                  ID_USUARIO: idUsuarioLogin, ID_ESTADO: 1, LISTA_IMAGEN: storedFiles, LISTA_DOC: arrDoc, UPD_USUARIO: idUsuarioLogin,
     };
+    //console.log(data);
+    //console.log(JSON.stringify(data));
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
+
+    //console.log(init);
+
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
         if (j != null) {
-            j ? $('#btnGuardar').parent().hide() : '';
-            j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
-            if (j && idinstitucion <= 0) actualizarDatosSesion();
-            else if (j) setTimeout(redireccionar, 3000);
+            j == true ? $('#btnGuardar').parent().hide() : '';
+            j == true ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardó su estación de carga exitosamente.', close: { time: 4000 }, url: '' }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+            if (j == true && idinstitucion <= 0) actualizarDatosSesion();
+            else if (j == true) setTimeout(redireccionar, 3000);
         }
     });
 }
@@ -430,3 +452,21 @@ $("#modal-ubicacion").on("hidden.bs.modal", function () {
         marker.remove();
     }
 });
+
+var mostrarDocumento = (opc) => {
+    let url = "";
+    if (opc == 1) url = docprotocolo
+    else url = doccertificado
+
+    let init = { method: 'GET', headers: { 'Content-Type':'text/html', 'Authorization': `Bearer ${token}`}};
+    fetch(url, init)
+    .then((r) => r.blob())
+    .then(j => {
+        //console.log(j);
+        let urlBlob = window.URL.createObjectURL(j);
+        window.open(urlBlob, '_blank');
+    })
+    .finally(() => {
+
+    });
+}

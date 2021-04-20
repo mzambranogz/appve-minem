@@ -19,20 +19,20 @@ var limpiarFormulario = () => {
 var verificarcorreo = () => {
     //Deshabilitado porque se debe comprobar si desde la API se verificara el correo que estan usando, si existe o no
 
-    //let correo = $('#txt-user').val().trim(), validar = false;
-    //let urlVerificarCorreo = `${baseUrl}api/usuario/verificarcorreo?correo=${correo}`;
+    let correo = $('#txt-user').val().trim(), validar = false;
+    //let urlVerificarCorreo = `${baseUrl}api/usuario/verificarcorreo?correo=${correo}`; //end point 32
+    let urlVerificarCorreo = `${baseUrlApi}api/usuario/verificarcorreo?correo=${correo}`; //end point 32
 
-    //fetch(urlVerificarCorreo)
-    //.then(r => r.json())
-    //.then((data) => {
-    //    if (data) {
-    //        $('form > .row:last').alert({ type: 'danger', title: 'Error', message: "Encontramos que su correo electrónico se encuentra registrado, por favor ingrese otro correo electrónico" });
-            
-    //    }else
-    //        registrarUsuario();
-    //});
+    fetch(urlVerificarCorreo)
+    .then(r => r.json())
+    .then((data) => {
+        if (data) {
+            $('form > .row:last').alert({ type: 'danger', title: 'Error', message: "Encontramos que su correo electrónico se encuentra registrado, por favor ingrese otro correo electrónico" });
+        } else
+            registrarUsuario();
+    });
     
-    registrarUsuario();
+    //registrarUsuario();
 }
 
 var registrarUsuario = () => {
@@ -46,10 +46,11 @@ var registrarUsuario = () => {
     let message = [];
     if (nombres.trim() == "") message.push("Debe ingresar su nombre completo");
     if (genero == 0) message.push("Debe seleccionar su género");
-    if (!(/[a-zñ]/.test($("#txt-pswd").val().trim()) && /[A-ZÑ]/.test($("#txt-pswd").val().trim()) && /[0-9]/.test($("#txt-pswd").val().trim()) && /\W/.test($("#txt-pswd").val().trim()))) message.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es)");
+    //if (!(/[a-zñ]/.test($("#txt-pswd").val().trim()) && /[A-ZÑ]/.test($("#txt-pswd").val().trim()) && /[0-9]/.test($("#txt-pswd").val().trim()) && /\W/.test($("#txt-pswd").val().trim()))) message.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es)");
     if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($("#txt-user").val()))) message.push("Ingrese un correo electrónico válido");
+    if (contraseña.trim().length < 6) message.push("Las contraseñas deben ser mayor o igual a 6 caracteres");
     if (contraseña != reContraseña) message.push("Las contraseñas ingresadas no coinciden");
-    if (!aceptarTerminosYCondiciones) message.push("Debe aceptar los términos y condiciones");
+    //if (!aceptarTerminosYCondiciones) message.push("Debe aceptar los términos y condiciones");
 
     if (message.length > 0) {
         $('form > .row:last').alert({ type: 'danger', title: 'Error', message: message.join("<br>") });
@@ -58,7 +59,7 @@ var registrarUsuario = () => {
 
     //let url = `${baseUrl}api/usuario/guardarusuario`;
     let url = `${baseUrlApi}api/usuario/insert`;
-    let data = { ID_USUARIO: -1, NOMBRES: nombres, ID_GENERO: genero, CORREO: correo, CONTRASENA: contraseña, ID_ROL: 3, FLAG_ESTADO: '1'};
+    let data = { ID_USUARIO: -1, NOMBRES: nombres, ID_GENERO: genero, CORREO: correo, CONTRASENA: contraseña, ID_ROL: 3, TIPO_REGISTRO: 1, FLAG_ESTADO: '1'};
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)

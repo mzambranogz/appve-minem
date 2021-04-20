@@ -17,17 +17,17 @@
 
     <div id="seccion-01">
         <div class="row">
-            <label>¿Eres dueño/a de un vehículo que usa combustible?</label>&nbsp;&nbsp;
-            <input id="rad-e1-si" type="radio" name="rad-e1" />Si&nbsp;
-            <input id="rad-e1-no" type="radio" name="rad-e1" />No
+            <label>Actualmente ¿tienes un vehículo de combustión?</label>&nbsp;&nbsp;
+            <input id="rad-e1-si" type="radio" name="rad-e1" value="1" />Si&nbsp;
+            <input id="rad-e1-no" type="radio" name="rad-e1" value="0" />No
         </div>
         <div class="row">
-            <label>¿Pretendes renovar o comprar un nuevo vehículo que usa combustible?</label>&nbsp;&nbsp;
-            <input id="rad-e2-si" type="radio" name="rad-e2" />Si&nbsp;
-            <input id="rad-e2-no" type="radio" name="rad-e2" />No
+            <label>O, ¿estas pensando comprar un nuevo vehículo de combustión?</label>&nbsp;&nbsp;
+            <input id="rad-e2-si" type="radio" name="rad-e2" value="1" />Si&nbsp;
+            <input id="rad-e2-no" type="radio" name="rad-e2" value="0" />No
         </div>
         <div class="row">
-            <label>¿Usas servicio(s) de transporte?</label>&nbsp;&nbsp;
+            <label>¿Usas uno o más servicios de transporte (Buses, taxis, etc)?</label>&nbsp;&nbsp;
             <input id="rad-e3-si" type="radio" name="rad-e3" />Si&nbsp;
             <input id="rad-e3-no" type="radio" name="rad-e3" />No
         </div>
@@ -39,216 +39,295 @@
     <div id="seccion-02" class="d-none">
         <h3>Seleciona hasta 4 tipos de transporte más utilizados</h3>
         <div class="row">
-            <label>Servicio transporte 01</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="servicio-01"></select>
+            <div class="col-6">
+                <label>Servicio transporte 01</label>&nbsp;&nbsp;
+                <select id="servicio-01" class="form-control" ></select>
+            </div><div class="col-6"></div>
         </div>
         <div class="row">
-            <label>Servicio transporte 02</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="servicio-02"></select>
+            <div class="col-6">
+                <label>Servicio transporte 02</label>&nbsp;&nbsp;
+                <select id="servicio-02" class="form-control" ></select>
+            </div><div class="col-6"></div>
         </div>
         <div class="row">
-            <label>Servicio transporte 03</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="servicio-03"></select>
+            <div class="col-6">
+                <label>Servicio transporte 03</label>&nbsp;&nbsp;
+                <select id="servicio-03" class="form-control" ></select>
+            </div><div class="col-6"></div>
         </div>
         <div class="row">
-            <label>Servicio transporte 04</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="servicio-04"></select>
+            <div class="col-6">
+                <label>Servicio transporte 04</label>&nbsp;&nbsp;
+                <select id="servicio-04" class="form-control" ></select>
+            </div><div class="col-6"></div>
         </div>
-        <div class="row">
-            <button id="btnReg01" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
-            <button id="btnSig01" class="btn btn-primary">Siguiente</button>            
+        <div class="row mt-3">
+            <div class="col-6">
+                <button id="btnReg01" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+                <button id="btnSig01" class="btn btn-primary">Siguiente</button> 
+            </div><div class="col-6"></div>         
         </div>
     </div>
 
     <div id="seccion-03" class="d-none">
         <h3>Características del vehículo propio</h3>
         <div class="row">
-            <label>Tipo de vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="tipo-vehiculo-vc"></select>
+            <div class="col-6">
+                <label>Tipo de vehículo</label>&nbsp;&nbsp;
+                <select id="tipo-vehiculo-vc" class="form-control"></select>
+            </div><div class="col-6"></div>          
         </div>
         <div class="row">
-            <label>Tipo de combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="tipo-combustible-vc"></select>
+            <div class="col-6">
+                <label>Tipo de combustible</label>&nbsp;&nbsp;
+                <select id="tipo-combustible-vc" class="form-control"></select>
+            </div><div class="col-6"></div>            
         </div>
         <div class="row">
-            <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="cbo-departamento-vc"></select>
+            <div class="col-6">
+                <label>Departamento</label>&nbsp;&nbsp;
+                <select id="cbo-departamento-vc" class="form-control"></select>
+            </div><div class="col-6"></div>            
         </div>
+
         <div class="row">
-            <label>Configuración avanzada</label>&nbsp;&nbsp;
-            <input id="rad-ca-si-vc" type="radio" name="rad-ca-vc" value="1" />Si&nbsp;
-            <input id="rad-ca-no-vc" type="radio" name="rad-ca-vc" value="0" />No
+            <div class="col-6">
+                <label>Kilómetros recorridos</label>&nbsp;&nbsp;(<small>km/semana</small>)
+                <input id="kilometro-sem-vc" type="text" class="decimal-miles-positivo form-control" value="0" />&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>¿No lo sabes? Puedes estimar tu recorrido aquí</small><br>
+                <a id="btnAdd-vc" data-validar="vc" class="btn btn-primary" href="javascript:void(0);" data-toggle="modal" data-target="#modal-rutas">Agregar ruta</a>
+            </div>
+        </div>        
+
+        <div class="row">
+            <div class="col-6">
+                <label>Configuración avanzada</label>&nbsp;&nbsp;
+                <input id="rad-ca-si-vc" type="radio" name="rad-ca-vc" value="1" />Si&nbsp;
+                <input id="rad-ca-no-vc" type="radio" name="rad-ca-vc" value="0" />No
+            </div><div class="col-6"></div>            
         </div>
         <div id="configuracion-vc" class="ml-5">
             <div class="row">
-                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="rendimiento-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small id="unidad-rend-vc">km/galón</small>
+                <div class="col-6"><label>Gasto de mantenimiento anual</label>&nbsp;&nbsp;<small>Soles/año</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="0" max="7000" step="1" value="1000" id="mantenimiento-vc" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="3,000.00" id="mantenimiento-vc">
+                </div>
+                @*<div class="col-2">
+                    <small id="valor-mantenimiento-vc">1,000</small>&nbsp;&nbsp;<small>Soles/año</small>
+                </div>*@            
+                <div class="col-6"></div>    
+                @*<input id="mantenimiento-vc" type="text" class="decimal-miles-positivo" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;*@                
             </div>
             <div class="row">
-                <label>Precio combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="precio-combustible-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small id="precio-comb-vc">s/m3</small>
+                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(Soles/año)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-vc" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="1,000.00" id="seguro-vc">
+                </div>
+                @*<div class="col-2">
+                    <small id="valor-seguro-vc">500</small>&nbsp;&nbsp;<small>Soles/año</small>
+                </div>*@
+                <div class="col-6"></div>
+                @*<input id="seguro-vc" type="text" class="decimal-miles-positivo" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;*@
             </div>
+
             <div class="row">
-                <label>% Aumento anual combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="porc-anual-combustible-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>%</small>
-            </div>
+                <div class="col-6">
+                    <label>Meses de uso por año</label>&nbsp;&nbsp;(<small>meses/año</small>)
+                    <select id="meses-vc" class="form-control"></select>&nbsp;&nbsp;                   
+                </div><div class="col-6"></div>
+            </div>            
+
             <div class="row">
-                <label>Factor de emisión asociado</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="factor-emision-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>kgCO2e/km</small>
+                <div class="col-6">
+                    <label>Rendimiento</label>&nbsp;&nbsp;(<small id="unidad-rend-vc">km/galón</small>)
+                    <input id="rendimiento-vc" type="text" class="form-control decimal-miles-positivo" />&nbsp;&nbsp;                  
+                </div><div class="col-6"></div>
             </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Precio combustible</label>&nbsp;&nbsp;(<small id="precio-comb-vc">soles</small>)
+                    <input id="precio-combustible-vc" type="text" class="form-control decimal-miles-positivo" />&nbsp;&nbsp;
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>% Aumento anual combustible</label>&nbsp;&nbsp;(<small>%</small>)
+                    <input id="porc-anual-combustible-vc" type="text" class="form-control decimal-miles-positivo" />&nbsp;&nbsp;                  
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Factor de emisión asociado</label>&nbsp;&nbsp;(<small>kgCO2e/km</small>)
+                    <input id="factor-emision-vc" type="text" class="form-control decimal-miles-positivo" />&nbsp;&nbsp;                  
+                </div><div class="col-6"></div>
+            </div>            
+            
+            <div class="row">
+                <div class="col-6"><label>¿Conoce el gasto de su combustible?, si es así ingrese el gasto semanal</label></div><div class="col-6"></div>
+                <div class="col-6">
+                    <label>Gasto semanal de combustible</label>&nbsp;&nbsp;(<small>Soles/año</small>)    
+                    <input id="gasto-vc" type="text" class="decimal-miles-positivo form-control" value="0" />              
+                </div><div class="col-6"></div>
+            </div>                      
         </div>
 
-        <div class="row">
-            <label>Mantenimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="mantenimiento-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>S/año</small>
-        </div>
-        <div class="row">
-            <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="seguro-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>S/año</small>
-        </div>
-
-        <div class="row">
-            <label>¿Conoces tu gasto en combustible semanal?</label>&nbsp;&nbsp;
-            <input id="rad-gcs-si-vc" type="radio" name="rad-gcs-vc" value="1" />Si&nbsp;
-            <input id="rad-gcs-no-vc" type="radio" name="rad-gcs-vc" value="0" />No
-        </div>
-        <div id="gasto-comb-vc" class="ml-5">
-            <label>Combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="gasto-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>S/año</small>
-        </div>
-
-        <div class="row">
-            <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="kilometro-sem-vc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a id="btnAdd-vc" data-validar="vc" class="btn btn-primary" href="javascript:void(0);" data-toggle="modal" data-target="#modal-rutas">Agregar ruta</a>
-        </div>
-        <div class="row">
-            <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="meses-vc"></select>&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>meses/año</small>
-        </div>
-        
-        <div class="row">
-            <button id="btnReg02" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
-            <button id="btnSig02" class="btn btn-primary">Siguiente</button>            
+        <div class="row mt-3">
+            <div class="col-12">
+                <button id="btnReg02" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+                <button id="btnSig02" class="btn btn-primary">Siguiente</button>  
+            </div>                      
         </div>
     </div>
 
     <div id="seccion-04" class="d-none">
         <h3>Características del vehículo a combustible nuevo</h3>
         <div class="row">
-            <label>Tipo de vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="tipo-vehiculo-cvc"></select>
+            <div class="col-6">
+                <label>Tipo de vehículo</label>&nbsp;&nbsp;
+                <select id="tipo-vehiculo-cvc" class="form-control"></select>
+            </div><div class="col-6"></div>            
         </div>
         <div class="row">
-            <label>Tipo de combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="tipo-combustible-cvc"></select>
+            <div class="col-6">
+                <label>Tipo de combustible</label>&nbsp;&nbsp;
+                <select id="tipo-combustible-cvc" class="form-control"></select>
+            </div><div class="col-6"></div>            
         </div>
         <div class="row">
-            <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="cbo-departamento-cvc"></select>
+            <div class="col-6">
+                <label>Departamento</label>&nbsp;&nbsp;
+                <select id="cbo-departamento-cvc" class="form-control"></select>
+            </div><div class="col-6"></div>            
         </div>
+
         <div class="row">
-            <label>Configuración avanzada</label>&nbsp;&nbsp;
-            <input id="rad-ca-si-cvc" type="radio" name="rad-ca-cvc" value="1" />Si&nbsp;
-            <input id="rad-ca-no-cvc" type="radio" name="rad-ca-cvc" value="0" />No
-        </div>
-        <div id="configuracion-cvc" class="ml-5">
-            <div class="row">
-                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="rendimiento-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small id="unidad-rend-cvc">km/galón</small>
-            </div>
-            <div class="row">
-                <label>Precio combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="precio-combustible-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small id="precio-comb-cvc">s/m3</small>
-            </div>
-            <div class="row">
-                <label>% Aumento anual combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="porc-anual-combustible-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>%</small>
-            </div>
-            <div class="row">
-                <label>Factor de emisión asociado</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="factor-emision-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>kgCO2e/km</small>
-            </div>
+            <div class="col-6">
+                <label>Kilómetros semanal</label>&nbsp;&nbsp;<small>km/semana</small>
+                <input id="kilometro-sem-cvc" type="text" class="form-control decimal-miles-positivo" value="0" />
+            </div>            
+            <div class="col-6">
+                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>¿No lo sabes? Puedes estimar tu recorrido aquí</small><br>
+                <button id="btnAdd-cvc" data-validar="cvc" class="btn btn-primary">Agregar ruta</button>
+            </div>            
         </div>        
 
         <div class="row">
-            <label>¿Conoces tu gasto en combustible semanal?</label>&nbsp;&nbsp;
-            <input id="rad-gcs-si-cvc" type="radio" name="rad-gcs-cvc" value="1" />Si&nbsp;
-            <input id="rad-gcs-no-cvc" type="radio" name="rad-gcs-cvc" value="0" />No
+            <div class="col-6">
+                <label>Tipo de compra</label>&nbsp;&nbsp;
+                <select id="tipo-compra-cvc" class="form-control"></select>
+            </div><div class="col-6"></div>            
         </div>
-        <div id="gasto-comb-cvc" class="ml-5">
-            <label>Combustible</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="gasto-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>S/año</small>
-        </div>
-
-        <div class="row">
-            <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="kilometro-sem-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id="btnAdd-cvc" data-validar="cvc" class="btn btn-primary">Agregar ruta</button>
-        </div>
-        <div class="row">
-            <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="meses-cvc"></select>&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>meses/año</small>
-        </div>
-
-        <div class="row">
-            <label>Costo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="costo-veh-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>soles</small>
-        </div>
-        <div class="row">
-            <label>Tipo de compra</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="tipo-compra-cvc"></select>
-        </div>
-        <div id="financiado-cvc" class="ml-5">
+        <div id="financiado-cvc" class="ml-5 mt-3">
             <div class="row">
-                <label>Tasa de interés</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="tasa-interes-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>%</small>
+                <div class="col-6">
+                    <label>Tasa de interés</label>&nbsp;&nbsp;(<small>%</small>)
+                    <input id="tasa-interes-cvc" type="text" value="0" class="form-control decimal-miles-positivo" />
+                </div><div class="col-6"></div>                       
             </div>
             <div class="row">
-                <label>Años de crédito</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="anio-credito-cvc"></select>
+                <div class="col-6">
+                    <label>Años de crédito</label>&nbsp;&nbsp;
+                    <select id="anio-credito-cvc" class="form-control"></select>
+                </div><div class="col-6"></div>                
             </div>
             <div class="row">
-                <label>% cuota inicial</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="cuota-inicial-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>%</small>
+                <div class="col-6">
+                    <label>% cuota inicial</label>&nbsp;&nbsp;(<small>%</small>)
+                    <input id="cuota-inicial-cvc" type="text" class="form-control decimal-miles-positivo" value="0" />  
+                </div><div class="col-6"></div>
             </div>
         </div>
-
-        <div class="row">
-            <label>¿Contratas un seguro para tu vehículo?</label>&nbsp;&nbsp;
-            <input id="rad-sv-si-cvc" type="radio" name="rad-sv-cvc" value="1" />Si&nbsp;
-            <input id="rad-sv-no-cvc" type="radio" name="rad-sv-cvc" value="0" />No
+        
+        <div class="row mt-3">
+            <div class="col-6">
+                <label>Configuración avanzada</label>&nbsp;&nbsp;
+                <input id="rad-ca-si-cvc" type="radio" name="rad-ca-cvc" value="1" />Si&nbsp;
+                <input id="rad-ca-no-cvc" type="radio" name="rad-ca-cvc" value="0" />No
+            </div><div class="col-6"></div>            
         </div>
-        <div id="seguro-veh-cvc" class="ml-5">
+        <div id="configuracion-cvc" class="ml-5 mt-2">
+
             <div class="row">
-                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="seguro-cvc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>S/año</small>
+                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(Soles)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-cvc" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="500.00" id="seguro-cvc">
+                </div>
+                @*<div class="col-2">
+                    <small id="valor-seguro-cvc">500</small>&nbsp;&nbsp;<small>soles/año</small>
+                </div>*@
+                <div class="col-6"></div>
             </div>
-        </div>        
 
-        <div class="row">            
-            <button id="btnReg03" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
-            <button id="btnSig03" class="btn btn-primary">Siguiente</button>
+            <div class="row">
+                <div class="col-6">
+                    <label>Meses de uso por año</label>&nbsp;&nbsp;(<small>meses/año</small>)
+                    <select id="meses-cvc" class="form-control"></select>
+                </div><div class="col-6"></div>                
+            </div>
+
+            <div class="row">
+                <div class="col-6"><label>Costo del vehículo</label>&nbsp;&nbsp;<small>(Soles)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="1" max="300000" step="1" value="0" id="costo-veh-cvc" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="0" id="costo-veh-cvc">
+                </div>
+                @*<div class="col-2">
+                    <small id="valor-costo-veh-cvc">0</small>&nbsp;&nbsp;<small>soles</small>
+                </div>*@
+                <div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Rendimiento</label>&nbsp;&nbsp;(<small id="unidad-rend-cvc">km/galón</small>)
+                    <input id="rendimiento-cvc" type="text" value="0" class="form-control decimal-miles-positivo"/>
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Precio combustible</label>&nbsp;&nbsp;(<small id="precio-comb-cvc">soles</small>)
+                    <input id="precio-combustible-cvc" type="text" value="0" class="form-control decimal-miles-positivo" />  
+                </div><div class="col-6"></div>                              
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>% Aumento anual combustible</label>&nbsp;&nbsp;(<small>%</small>)
+                    <input id="porc-anual-combustible-cvc" type="text" value="0" class="form-control decimal-miles-positivo" />
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Factor de emisión asociado</label>&nbsp;&nbsp;(<small>kgCO2e/km</small>)
+                    <input id="factor-emision-cvc" type="text" value="0" class="form-control decimal-miles-positivo" />
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6"><label>¿Conoce el gasto de su combustible?, si es así ingrese el gasto semanal</label></div><div class="col-6"></div>
+                <div class="col-6">
+                    <label>Gasto semanal de combustible</label>&nbsp;&nbsp;(<small>Soles/año</small>)
+                    <input id="gasto-cvc" type="text" class="decimal-miles-positivo form-control" value="0" />
+                </div><div class="col-6"></div>
+            </div>
+        </div>     
+
+        <div class="row mt-3"> 
+            <div class="col-12">
+                <button id="btnReg03" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+                <button id="btnSig03" class="btn btn-primary">Siguiente</button>
+            </div>
         </div>
     </div>
 
@@ -256,161 +335,190 @@
         <h3>Servicios de transporte</h3>
         <div id="transporte-01" class="d-none">
             <div class="row">
-                <label>Transporte utilizado 01</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="tipo-transporte-01" disabled></select>
+                <div class="col-6">
+                    <label>Transporte utilizado 01</label>&nbsp;&nbsp;
+                    <select id="tipo-transporte-01" class="form-control" disabled></select>
+                </div><div class="col-6"></div>
             </div>
             <div class="row">
-                <label>Costo en movilidad semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="costo-movilidad-01" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>Soles/semana</small>
+                <div class="col-6">
+                    <label>Costo en movilidad semanal</label>&nbsp;&nbsp;(<small>soles/semana</small>)
+                    <input id="costo-movilidad-01" type="text" class="form-control" />
+                </div><div class="col-6"></div>
             </div>
             <div class="row">
-                <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="kilometros-01" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="btnAdd-t1" data-validar="t1" class="btn btn-primary">Agregar ruta</button>
+                <div class="col-6">
+                    <label>Kilometraje semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
+                    <input id="kilometros-01" type="text" class="form-control" />
+                </div>
+                <div class="col-6">
+                    <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
+                    <button id="btnAdd-t1" data-validar="t1" class="btn btn-primary">Agregar ruta</button>
+                </div>  
             </div>
             <div class="row">
-                <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="meses-01"></select>&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>meses/año</small>
+                <div class="col-6">
+                    <label>Meses de uso por año</label>&nbsp;&nbsp;(<small>meses/año</small>)
+                    <select id="meses-01" class="form-control"></select> 
+                </div><div class="col-6"></div>                               
             </div><br /><br />
         </div>
 
         <div id="transporte-02" class="d-none">
             <div class="row">
-                <label>Transporte utilizado 02</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="tipo-transporte-02" disabled></select>
+                <div class="col-6">
+                    <label>Transporte utilizado 02</label>&nbsp;&nbsp;
+                    <select id="tipo-transporte-02" class="form-control" disabled></select>
+                </div><div class="col-6"></div>
             </div>
             <div class="row">
-                <label>Costo en movilidad semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="costo-movilidad-02" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>Soles/semana</small>
+                <div class="col-6">
+                    <label>Costo en movilidad semanal</label>&nbsp;&nbsp;(<small>soles/semana</small>)
+                    <input id="costo-movilidad-02" type="text" class="form-control" />
+                </div><div class="col-6"></div>                
             </div>
             <div class="row">
-                <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="kilometros-02" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="btnAdd-t2" data-validar="t2" class="btn btn-primary">Agregar ruta</button>
+                <div class="col-6">
+                    <label>Kilometraje semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
+                    <input id="kilometros-02" type="text" class="form-control" />
+                </div>
+                <div class="col-6">
+                    <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
+                    <button id="btnAdd-t2" data-validar="t2" class="btn btn-primary">Agregar ruta</button>
+                </div>
             </div>
             <div class="row">
-                <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="meses-02"></select>&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>meses/año</small>
+                <div class="col-6">
+                    <label>Meses de uso por año</label>&nbsp;&nbsp;(<small>meses/año</small>)
+                    <select id="meses-02" class="form-control"></select>
+                </div><div class="col-6"></div>
             </div><br /><br />
         </div>
         
         <div id="transporte-03" class="d-none">
             <div class="row">
-                <label>Transporte utilizado 03</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="tipo-transporte-03" disabled></select>
+                <div class="col-6">
+                    <label>Transporte utilizado 03</label>&nbsp;&nbsp;
+                    <select id="tipo-transporte-03" class="form-control" disabled></select>
+                </div><div class="col-6"></div>
             </div>
             <div class="row">
-                <label>Costo en movilidad semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="costo-movilidad-03" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>Soles/semana</small>
+                <div class="col-6">
+                    <label>Costo en movilidad semanal</label>&nbsp;&nbsp;(<small>soles/semana</small>)
+                    <input id="costo-movilidad-03" type="text" class="form-control" />
+                </div><div class="col-6"></div>
             </div>
             <div class="row">
-                <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="kilometros-03" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="btnAdd-t3" data-validar="t3" class="btn btn-primary">Agregar ruta</button>
+                <div class="col-6">
+                    <label>Kilometraje semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
+                    <input id="kilometros-03" type="text" class="form-control" />
+                </div>
+                <div class="col-6">
+                    <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
+                    <button id="btnAdd-t3" data-validar="t3" class="btn btn-primary">Agregar ruta</button>
+                </div>
             </div>
             <div class="row">
-                <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="meses-03"></select>&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>meses/año</small>
+                <div class="col-6">
+                    <label>Meses de uso por año</label>&nbsp;&nbsp;(<small>meses/año</small>)
+                    <select id="meses-03" class="form-control"></select>
+                </div><div class="col-6"></div>
             </div><br /><br />
         </div>    
         
         <div id="transporte-04" class="d-none">
             <div class="row">
-                <label>Transporte utilizado 04</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="tipo-transporte-04" disabled></select>
+                <div class="col-6">
+                    <label>Transporte utilizado 04</label>&nbsp;&nbsp;
+                    <select id="tipo-transporte-04" class="form-control" disabled></select>
+                </div><div class="col-6"></div>
             </div>
             <div class="row">
-                <label>Costo en movilidad semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="costo-movilidad-04" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>Soles/semana</small>
+                <div class="col-6">
+                    <label>Costo en movilidad semanal</label>&nbsp;&nbsp;(<small>Soles/semana</small>)
+                    <input id="costo-movilidad-04" type="text" class="form-control" />
+                </div><div class="col-6"></div>                
             </div>
             <div class="row">
-                <label>Kilometraje semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="kilometros-04" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="btnAdd-t4" data-validar="t4" class="btn btn-primary">Agregar ruta</button>
+                <div class="col-6">
+                    <label>Kilometraje semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
+                    <input id="kilometros-04" type="text" class="form-control" />
+                </div>
+                <div class="col-6">
+                    <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
+                    <button id="btnAdd-t4" data-validar="t4" class="btn btn-primary">Agregar ruta</button>
+                </div>
             </div>
             <div class="row">
-                <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="meses-04"></select>&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>meses/año</small>
+                <div class="col-6">
+                    <label>Meses de uso por año</label>&nbsp;&nbsp;(<small>meses/año</small>)
+                    <select id="meses-04" class="form-control"></select>  
+                </div><div class="col-6"></div>            
             </div><br /><br />
         </div>
 
         <div class="row">
-            <button id="btnReg04" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
-            <button id="btnSig04" class="btn btn-primary">Siguiente</button>
+            <div class="col-6">
+                <button id="btnReg04" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+                <button id="btnSig04" class="btn btn-primary">Siguiente</button>
+            </div><div class="col-6"></div>
         </div>
     </div>
 
     <div id="seccion-06" class="d-none">
         <h3>Caracterización de movilidad eléctrica</h3>
         <div class="row">
-            <label>Tipo de vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="tipo-vehiculo-ve"></select>
+            <div class="col-6">
+                <label>Tipo de vehículo</label>&nbsp;&nbsp;
+                <select id="tipo-vehiculo-ve" class="form-control"></select>
+            </div><div class="col-6"></div>            
         </div>
         <div class="row">
-            <label>Modelo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="modelo-ve"></select>
+            <div class="col-6">
+                <label>Modelo del vehículo</label>&nbsp;&nbsp;
+                <select id="modelo-ve" class="form-control"></select>
+            </div><div class="col-6"></div>            
         </div>
         <div class="row">
-            <label>Configuración avanzada</label>&nbsp;&nbsp;
-            <input id="rad-ca-si-ve" type="radio" name="rad-ca-ve" value="1" />Si&nbsp;
-            <input id="rad-ca-no-ve" type="radio" name="rad-ca-ve" value="0" />No
-        </div>
-        <div id="configuracion-ve" class="ml-5">
+            <div class="col-6">
+                <label>Departamento</label>&nbsp;&nbsp;
+                <select id="cbo-departamento" class="form-control"></select>
+            </div><div class="col-6"></div>            
+        </div>  
+        <div id="sec-precio-instalacion-ve" class="d-none">
             <div class="row">
-                <label>Rendimiento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="rendimiento-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small id="unidad-rend-ve">km/kWh</small>
+                <div class="col-6">
+                    <label>Tipo de cargador</label>&nbsp;&nbsp;
+                    <select id="tipo-cargador" class="form-control"></select>
+                </div><div class="col-6"></div>                
             </div>
             <div class="row">
-                <label>Capacidad batería</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="bateria-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>kWh</small>
+                <div class="col-6">
+                    <label>Potencia instalada</label>&nbsp;&nbsp;(<small>kw</small>)
+                    <select id="cbo-potencia" class="form-control"></select>
+                    <input id="txt-potencia" type="text" />  
+                </div><div class="col-6"></div>                              
             </div>
-        </div>        
-
-        <div class="row">
-            <label>Tipo de cargador</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="tipo-cargador"></select>
-        </div>
-        <div class="row">
-            <label>Potencia instalada</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="cbo-potencia"></select>&nbsp;&nbsp;
-            <input id="txt-potencia" type="text" />&nbsp;&nbsp;
-            <small>kw</small>
-        </div>
-        <div class="row">
-            <label>Precio cargador</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="precio-cargador" type="text" />&nbsp;&nbsp;
-            <small>soles</small>
-        </div>
-        <div class="row">
-            <label>Costo instalación</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="costo-instalacion" type="text" />&nbsp;&nbsp;
-            <small>soles</small>
-        </div>
-
-        <div class="row">
-            <label>Departamento</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="cbo-departamento"></select>
-        </div>
-        <div class="row">
+            <div class="row">
+                <div class="col-6">
+                    <label>Precio cargador</label>&nbsp;&nbsp;(<small>soles</small>)
+                    <input id="precio-cargador" type="text" class="form-control decimal-miles-positivo" value="0" />
+                </div><div class="col-6"></div>         
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label>Costo instalación</label>&nbsp;&nbsp;(<small>soles</small>)
+                    <input id="costo-instalacion" type="text" class="form-control decimal-miles-positivo" value="0" />  
+                </div><div class="col-6"></div>                              
+            </div>
+        </div>      
+        
+        @*<div class="row">
             <label>Configuración avanzada tarifa</label>&nbsp;&nbsp;
             <input id="rad-t-si-ve" type="radio" name="rad-t-ve" value="1" />Si&nbsp;
             <input id="rad-t-no-ve" type="radio" name="rad-t-ve" value="0" />No
-        </div>
-        <div id="tarifa-e-ve" class="ml-5">
+        </div>*@
+        @*<div id="tarifa-e-ve" class="ml-5">
             <div class="row">
                 <label>Tarifa eléctrica</label>&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="tarifa-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
@@ -421,97 +529,199 @@
                 <input id="porc-aual-ve" type="text" value="0" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>%</small>
             </div>
-        </div>
+        </div>*@
 
         <div class="row">
-            <label>Kilómetros semanal</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="kilometro-sem-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>km/semana</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id="btnAdd-ve" data-validar="ve" class="btn btn-primary">Agregar ruta</button>
-        </div>
-        <div class="row">
-            <label>Meses de uso por año</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="meses-ve"></select>&nbsp;&nbsp;&nbsp;&nbsp;
-            <small>meses/año</small>
+            <div class="col-6">
+                <label>Kilómetros semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
+                <input id="kilometro-sem-ve" type="text" class="form-control decimal-miles-positivo" value="0" /> 
+            </div>
+            <div class="col-6">
+                <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>¿No lo sabes? Puedes estimar tu recorrido aquí</small><br />
+                <button id="btnAdd-ve" data-validar="ve" class="btn btn-primary">Agregar ruta</button>
+            </div>
         </div>
 
-        <div class="row">
+        @*<div class="row">
             <label>Costo del vehículo</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input id="costo-veh-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
             <small>soles</small>
-        </div>
+        </div>*@
+
         <div class="row">
-            <label>Tipo de compra</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="tipo-compra-ve"></select>
+            <div class="col-6">
+                <label>Tipo de compra</label>&nbsp;&nbsp;
+                <select id="tipo-compra-ve" class="form-control"></select>
+            </div><div class="col-6"></div>
         </div>
-        <div id="financiado-ve" class="ml-5">
+
+        <div id="financiado-ve" class="ml-5 mt-2">
             <div class="row">
-                <label>Tasa de interés</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="tasa-interes-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>%</small>
+                <div class="col-6">
+                    <label>Tasa de interés</label>&nbsp;&nbsp;(<small>%</small>)
+                    <input id="tasa-interes-ve" type="text" class="form-control decimal-miles-positivo" value="0" /> 
+                </div><div class="col-6"></div> 
             </div>
+
             <div class="row">
-                <label>Años de crédito</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="anio-credito-ve"></select>
+                <div class="col-6">
+                    <label>Años de crédito</label>&nbsp;&nbsp;
+                    <select id="anio-credito-ve" class="form-control"></select>
+                </div><div class="col-6"></div>
             </div>
+
             <div class="row">
-                <label>% cuota inicial</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="cuota-inicial-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>%</small>
+                <div class="col-6">
+                    <label>% cuota inicial</label>&nbsp;&nbsp;(<small>%</small>)
+                    <input id="cuota-inicial-ve" type="text" class="form-control decimal-miles-positivo" value="0" /> 
+                </div><div class="col-6"></div>         
             </div>
         </div>
 
-        <div class="row">
-            <label>¿Contratas un seguro para tu vehículo?</label>&nbsp;&nbsp;
-            <input id="rad-sv-si-ve" type="radio" name="rad-sv-ve" value="1" />Si&nbsp;
-            <input id="rad-sv-no-ve" type="radio" name="rad-sv-ve" value="0" />No
-        </div>
-        <div id="seguro-veh-ve" class="ml-5">
-            <div class="row">
-                <label>Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="seguro-ve" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>soles/año</small>
-            </div>
+        <div class="row mt-2">
+            <div class="col-6">
+                <label>¿Existe un incentivo ecónomico?</label>&nbsp;&nbsp;
+                <input id="rad-inc-si-ve" type="radio" name="rad-inc-ve" value="1" />Si&nbsp;
+                <input id="rad-inc-no-ve" type="radio" name="rad-inc-ve" value="0" />No
+            </div><div class="col-6"></div>            
         </div>
 
-        <div class="row">
-            <label>¿Existe un incentivo ecónomico a la compra de tu vehículo eléctrico?</label>&nbsp;&nbsp;
-            <input id="rad-inc-si-ve" type="radio" name="rad-inc-ve" value="1" />Si&nbsp;
-            <input id="rad-inc-no-ve" type="radio" name="rad-inc-ve" value="0" />No
-        </div>
         <div id="incentivo-ve" class="ml-5">
             <div class="row">
-                <label>Tipo incentivo</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="tipo-incentivo"></select>
+                <div class="col-6">
+                    <label>Tipo incentivo</label>&nbsp;&nbsp;
+                    <select id="tipo-incentivo" class="form-control"></select>
+                </div><div class="col-6"></div>                
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Horizonte aplicación</label>&nbsp;&nbsp;
+                    <select id="horizonte" class="form-control"></select>
+                </div><div class="col-6"></div>                
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Cuota incentivo anual</label>&nbsp;&nbsp;(<small>Soles/año</small>)
+                    <input id="cuota-inc-anual" type="text" class="form-control decimal-miles-positivo" value="0" />    
+                </div><div class="col-6"></div>                            
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Forma de incentivo</label>&nbsp;&nbsp;
+                    <select id="forma-incentivo" class="form-control" ></select>
+                </div><div class="col-6"></div>                
+            </div>
+
+            <div class="row">
+                <div class="col-6"></div><div class="col-6"></div>
+                <label>Porcentaje</label>&nbsp;&nbsp;(<small>%</small>)
+                <input id="porcentaje-inc" type="text" class="form-control decimal-miles-positivo" value="0" />                
             </div>
             <div class="row">
-                <label>Horizonte aplicación</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="horizonte"></select>
-            </div>
-            <div class="row">
-                <label>Cuota incentivo anual</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="cuota-inc-anual" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>soles/año</small>
-            </div>
-            <div class="row">
-                <label>Forma de incentivo</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="forma-incentivo"></select>
-            </div>
-            <div class="row">
-                <label>Porcentaje</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="porcentaje-inc" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>%</small>
-            </div>
-            <div class="row">
-                <label>Valor incentivo único</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="valor-inc-unico" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>soles</small>
+                <div class="col-6"></div><div class="col-6"></div>
+                <label>Valor incentivo único</label>&nbsp;&nbsp;(<small>Soles</small>)
+                <input id="valor-inc-unico" type="text" class="form-control decimal-miles-positivo" value="0" />                
             </div>
         </div>
 
         <div class="row">
-            <button id="btnReg05" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
-            <button id="btnEva05" class="btn btn-primary">Evaluar</button>
+            <div class="col-6">
+                <label>Configuración avanzada</label>&nbsp;&nbsp;
+                <input id="rad-ca-si-ve" type="radio" name="rad-ca-ve" value="1" />Si&nbsp;
+                <input id="rad-ca-no-ve" type="radio" name="rad-ca-ve" value="0" />No
+            </div><div class="col-6"></div>            
+        </div>
+
+        <div id="configuracion-ve" class="ml-5">
+
+            <div class="row">
+                <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(Soles/año)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-ve" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="500.00" id="seguro-ve">
+                </div>
+                @*<div class="col-2">
+                    <small id="valor-seguro-ve">500</small>&nbsp;&nbsp;<small>soles/año</small>
+                </div>*@
+                <div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Meses de uso por año</label>&nbsp;&nbsp;(<small>meses/año</small>)
+                    <select id="meses-ve" class="form-control"></select>
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6"><label>Costo del vehículo</label>&nbsp;&nbsp;<small>(Soles)</small></div><div class="col-6"></div>
+                <div class="col-6">
+                    @*<input type="range" class="form-range" min="1" max="300000" step="1" value="0" id="costo-veh-ve" style="width:100%">*@
+                    <input type="text" class="form-control decimal-miles-positivo" value="0.00" id="costo-veh-ve">
+                </div>
+                @*<div class="col-2">
+                    <small id="valor-costo-veh-ve">0</small>&nbsp;&nbsp;<small>soles</small>
+                </div>*@
+                <div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Rendimiento</label>&nbsp;&nbsp;(<small id="unidad-rend-ve">km/kWh</small>)
+                    <input id="rendimiento-ve" type="text" class="form-control decimal-miles-positivo" value="0" /> 
+                </div><div class="col-6"></div>           
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Capacidad batería</label>&nbsp;&nbsp;(<small>kWh</small>)
+                    <input id="bateria-ve" type="text" class="form-control decimal-miles-positivo" value="0" />  
+                </div><div class="col-6"></div>       
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Año de recambio de batería</label>&nbsp;&nbsp;
+                    <select id="anio-recambio-ve" class="form-control"></select>
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Tarifa eléctrica</label>&nbsp;&nbsp;(<small>Soles/kWh</small>)
+                    <input id="tarifa-ve" type="text" class="form-control decimal-miles-positivo" value="0" />
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>% aumento anual de electricidad</label>&nbsp;&nbsp;(<small>%</small>)
+                    <input id="porc-aual-ve" type="text" class="form-control decimal-miles-positivo" value="0" />
+                </div><div class="col-6"></div>                
+            </div>
+
+            @*<div class="row">
+                <div class="col-6">
+                    <label>Costo del vehículo</label>&nbsp;&nbsp;(<small>soles</small>)
+                    <input id="costo-veh-ve" type="text" class="form-control" value="0" />
+                </div><div class="col-6"></div>
+            </div>*@
+            @*<div class="row">
+                <div class="col-6">
+                    <label>Seguro</label>&nbsp;&nbsp;(<small>soles/año</small>)
+                    <input id="seguro-ve" type="text" class="form-control" value="0" />
+                </div><div class="col-6"></div>
+            </div>*@
+        </div> 
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <button id="btnReg05" class="btn btn-primary">Regresar</button>&nbsp;&nbsp;
+                <button id="btnEva05" class="btn btn-primary">Evaluar</button>
+            </div><div class="col-6"></div>
         </div>
     </div>
     
@@ -540,7 +750,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
                             <table class="table">
                                 <tr>
-                                    <th>Ahorro económico</th>
+                                    <th>Ahorro económico total</th>
                                     <td>S/ <span id="ahorro-economico-d"></span></td>
                                 </tr>
                             </table>
@@ -564,10 +774,10 @@
 
         <div class="row">
             <div class="col-6">
-                <h4>Escenario Movilidad Convencional</h4>
+                <h4>Escenario movilidad convencional</h4>
             </div>
             <div class="col-6">
-                <h4>Escenario Electromovilidad</h4>
+                <h4>Escenario movilidad eléctrica</h4>
             </div>
             <div class="col-12">
                 <hr />
@@ -786,7 +996,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th colspan="2" scope="col">Reducción de contaminantes locales totales</th>
+                                        <th colspan="2" scope="col">Reducción de contaminantes locales totales en 15 años</th>
                                     </tr>
                                 </thead>
                                 <tbody>

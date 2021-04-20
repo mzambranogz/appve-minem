@@ -14,10 +14,26 @@
 <div class="container mt-5">
     <div id="seccion-resultados">
         <h4>Resultados</h4>
+        @**--- Grafico TCO ---*@
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="linechart_material"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @**--- Lista año evaluacion ---*@
         <div class="row">
             <label>Años evaluación</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <select id="anio_evaluacion"></select>
         </div>
+
+        @**--- Ahorro economico ---*@
         <div class="row mt-2">
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -25,7 +41,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
                             <table class="table">
                                 <tr>
-                                    <th>Ahorro económico</th>
+                                    <th>Ahorro económico total</th>
                                     <td>S/ <span id="ahorro-economico-d"></span></td>
                                 </tr>
                             </table>
@@ -34,6 +50,21 @@
                 </div>
             </div>
         </div>
+
+        @**--- Gráfico TCO ---*@
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="columnchart_values"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @**--- Tabla Movilidad convencional VS Electromovilidad ---*@
         <div class="row">
             <div class="col-6">
                 <h4>Escenario Movilidad Convencional</h4>
@@ -213,43 +244,9 @@
                 <hr />
             </div>
         </div>
-        <div class="row">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
-                            <div class="logros chart" id="linechart_material"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
-        <div class="row mt-3">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2" scope="col">Consumo energético</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>Reducción Total Consumo energético</th>
-                                        <td><span id="consumo-energetico-d"></span> GJ</td>
-                                    </tr>
-                                    <tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        @**--- Total GEI ---*@
         <div class="row">
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -275,39 +272,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
-                            <div class="logros chart" id="columnchart_values"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
-                            <div class="logros chart" id="consumo_energetico"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
-                            <div class="logros chart" id="consumo_energetico_total"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @**--- Gráfico GEI reducido ---*@
         <div class="row">
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -320,6 +285,7 @@
             </div>
         </div>
 
+        @**--- Total contaminantes locales ---*@
         <div class="row">
             <div class="container">
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -328,7 +294,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th colspan="2" scope="col">Reducción de contaminantes locales totales</th>
+                                        <th colspan="2" scope="col">Reducción de contaminantes locales totales en 15 años</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -350,6 +316,58 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @**--- Total Consumo energético ---*@
+        <div class="row mt-3">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" scope="col">Consumo energético</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Reducción Total Consumo energético</th>
+                                        <td><span id="consumo-energetico-d"></span> GJ</td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @**--- Grafico Consumo energético por tipo de transportes y vehiculos ---*@       
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="consumo_energetico"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @**--- Grafico Consumo energético Vehiculo convencional VS Electromovilidad ---*@
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                            <div class="logros chart" id="consumo_energetico_total"></div>
                         </div>
                     </div>
                 </div>

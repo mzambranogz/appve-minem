@@ -13,6 +13,9 @@ var Lista_convencional = [], Lista_electrico = [], Lista_leyenda = [], Lista_con
 
 var rendimiento_vc_g = 0, precio_combustible_vc_g = 0, factor_emision_vc = 0, rendimiento_cvc_g = 0, precio_combustible_cvc_g = 0, factor_emision_cvc_g = 0, precio_vehiculo_cvc_g = 0;
 var rendimiento_ve_g = 0, capacidad_bateria_g = 0, precio_cargador_g = 0, costo_instalacion_g = 0, precio_vehiculo_ve_g = 0, precio_vehiculo_ve_g = 0, tarifa_electricidad_g = 0;
+var tasa_interes_g = 10.00, anio_credito_g = 5, cuota_inicial_g = 10.00
+var tasa_interes_temp_g = 0, anio_credito_temp_g = 0, cuota_inicial_temp_g = 0
+var kilometro_g = 0
 
 $(document).ready(() => {
     //configuracion();
@@ -320,6 +323,8 @@ var siguiente2 = () => {
     let meses = $('#rad-ca-si-vc').prop('checked') ? $('#meses-vc').val() > 0 ? true : false : true;
     if (!(tv && tc && dp && rendimiento && precio_comb && porc_comb && factor_emision && mantenimiento && seguro && gasto_comb && kilometros && meses))  {alert('Debe completar todos los campos'); return;}
 
+    $('#kilometro-sem-ve').val($('#kilometro-sem-vc').val())
+
     $('#seccion-03').addClass('d-none');
     if ($('#rad-e2-si').prop('checked')) $('#seccion-04').removeClass('d-none');
     else if ($('#rad-e3-si').prop('checked')) $('#seccion-05').removeClass('d-none');
@@ -353,6 +358,15 @@ var siguiente3 = () => {
     let seguro = $('#rad-ca-si-cvc').prop('checked') ? validar('#seguro-cvc') : true;
 
     if (!(tv && tc && dp && rendimiento && precio_comb && porc_comb && factor_emision && gasto_comb && kilometros && meses && costo_vehiculo && tipo_compra && financiamiento && seguro))  {alert('Debe completar todos los campos'); return;}
+
+    $('#kilometro-sem-ve').val($('#kilometro-sem-cvc').val())
+    if ($('#tipo-compra-cvc').val() == 1) {
+        tasa_interes_temp_g = $('#tasa-interes-cvc').val()
+        anio_credito_temp_g = $('#anio-credito-cvc').val()
+        cuota_inicial_temp_g = $('#cuota-inicial-cvc').val()
+        $('#tipo-compra-ve').val(0)
+        cambiarTipoCompraCVE()
+    }
 
     $('#seccion-04').addClass('d-none');
     if ($('#rad-e3-si').prop('checked')) $('#seccion-05').removeClass('d-none');
@@ -505,12 +519,23 @@ var cambiarSeguroCVE = () => {
 }
 
 var cambiarTipoCompraCVC = () => {
-    if ($('#tipo-compra-cvc').val() == 0 || $('#tipo-compra-cvc').val() == 2) $('#financiado-cvc').addClass('d-none');
+    if ($('#tipo-compra-cvc').val() == 0 || $('#tipo-compra-cvc').val() == 2) {
+        $('#financiado-cvc').addClass('d-none');
+        $('#tasa-interes-cvc').val(tasa_interes_g)
+        $('#anio-credito-cvc').val(anio_credito_g)
+        $('#cuota-inicial-cvc').val(cuota_inicial_g)
+    }
     else $('#financiado-cvc').removeClass('d-none');
 }
 
 var cambiarTipoCompraCVE = () => {
-    if ($('#tipo-compra-ve').val() == 0 || $('#tipo-compra-ve').val() == 2) $('#financiado-ve').addClass('d-none');
+    if ($('#tipo-compra-ve').val() == 0 || $('#tipo-compra-ve').val() == 2) {
+        let tc = $('#tipo-compra-cvc').val() == 1
+        $('#financiado-ve').addClass('d-none');
+        $('#tasa-interes-ve').val(tc ? tasa_interes_temp_g : tasa_interes_g)
+        $('#anio-credito-ve').val(tc ? anio_credito_temp_g : anio_credito_g)
+        $('#cuota-inicial-ve').val(tc ? cuota_inicial_temp_g : cuota_inicial_g)
+    }
     else $('#financiado-ve').removeClass('d-none');
 }
 

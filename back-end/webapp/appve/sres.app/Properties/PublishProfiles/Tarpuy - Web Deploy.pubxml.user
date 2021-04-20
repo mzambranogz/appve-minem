@@ -14,7 +14,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/04/2021 12:39:48</publishTime>
     </File>
     <File Include="AppSettings.config">
-      <publishTime>03/03/2021 13:42:15</publishTime>
+      <publishTime>04/09/2021 21:31:14</publishTime>
     </File>
     <File Include="Assets/css/lightbox.min.css">
       <publishTime>07/10/2020 20:21:28</publishTime>
@@ -788,25 +788,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/04/2021 12:39:48</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_calculo.js">
-      <publishTime>03/18/2021 11:10:38</publishTime>
+      <publishTime>04/09/2021 22:11:22</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_consultasresultados.js">
       <publishTime>03/05/2021 23:32:35</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_estacioncarga.js">
-      <publishTime>03/18/2021 13:23:23</publishTime>
+      <publishTime>04/05/2021 13:59:51</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_estacioncargarevision.js">
-      <publishTime>03/18/2021 13:42:26</publishTime>
+      <publishTime>04/05/2021 13:43:43</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_estacionescarga.js">
-      <publishTime>03/18/2021 12:09:41</publishTime>
+      <publishTime>03/26/2021 08:14:00</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_estacionmapa.js">
-      <publishTime>03/17/2021 22:10:44</publishTime>
+      <publishTime>03/26/2021 07:27:31</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_menu_administrador.js">
-      <publishTime>03/18/2021 13:45:01</publishTime>
+      <publishTime>03/19/2021 10:24:58</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_menu_estacioncarga.js">
       <publishTime>03/09/2021 14:34:29</publishTime>
@@ -815,22 +815,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/23/2021 16:25:45</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_perfil.js">
-      <publishTime>03/17/2021 14:19:22</publishTime>
+      <publishTime>03/22/2021 23:19:17</publishTime>
     </File>
     <File Include="Assets/js/pages/electromovilidad_verresultado.js">
-      <publishTime>03/05/2021 23:31:01</publishTime>
+      <publishTime>04/05/2021 16:26:09</publishTime>
     </File>
     <File Include="Assets/js/pages/inicio.js">
       <publishTime>01/04/2021 12:39:48</publishTime>
     </File>
     <File Include="Assets/js/pages/login.js">
-      <publishTime>03/17/2021 12:28:58</publishTime>
+      <publishTime>03/22/2021 13:31:34</publishTime>
+    </File>
+    <File Include="Assets/js/pages/login_contrasenanuevo.js">
+      <publishTime>04/07/2021 23:03:52</publishTime>
     </File>
     <File Include="Assets/js/pages/login_recuperarcontraseña.js">
-      <publishTime>01/04/2021 12:39:48</publishTime>
+      <publishTime>04/08/2021 09:24:30</publishTime>
     </File>
     <File Include="Assets/js/pages/login_registrarme.js">
-      <publishTime>03/09/2021 17:13:51</publishTime>
+      <publishTime>04/09/2021 23:06:40</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento.js">
       <publishTime>01/04/2021 12:39:48</publishTime>
@@ -857,10 +860,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/26/2021 18:59:18</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_usuario.js">
-      <publishTime>03/09/2021 14:15:29</publishTime>
+      <publishTime>04/09/2021 23:20:05</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_valoresfactor.js">
-      <publishTime>03/18/2021 13:46:24</publishTime>
+      <publishTime>04/04/2021 15:49:26</publishTime>
     </File>
     <File Include="Assets/js/pages/reporte.js">
       <publishTime>01/04/2021 12:39:48</publishTime>
@@ -873,6 +876,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Assets/js/script.js">
       <publishTime>03/01/2021 23:56:04</publishTime>
+    </File>
+    <File Include="Assets/js/scriptUtil.js">
+      <publishTime>03/22/2021 23:44:02</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>01/04/2021 12:39:48</publishTime>
@@ -904,6 +910,12 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/Dapper.dll">
       <publishTime>01/04/2021 12:39:47</publishTime>
     </File>
+    <File Include="bin/de/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:26:06</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:25:54</publishTime>
+    </File>
     <File Include="bin/es/System.Net.Http.Formatting.resources.dll">
       <publishTime>01/04/2021 12:39:47</publishTime>
     </File>
@@ -930,6 +942,18 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="bin/es/System.Web.Webpages.resources.dll">
       <publishTime>01/04/2021 12:39:47</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:27:18</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:26:02</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:25:22</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:27:16</publishTime>
     </File>
     <File Include="bin/Log/LEER.txt">
       <publishTime>01/04/2021 12:39:49</publishTime>
@@ -967,6 +991,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/Microsoft.ReportViewer.WebForms.DLL">
       <publishTime>04/01/2020 10:09:51</publishTime>
     </File>
+    <File Include="bin/Microsoft.SqlServer.Types.dll">
+      <publishTime>02/21/2014 05:28:46</publishTime>
+    </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>01/04/2021 12:39:48</publishTime>
     </File>
@@ -974,7 +1001,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/04/2021 12:39:48</publishTime>
     </File>
     <File Include="bin/Oracle.DataAccess.dll">
-      <publishTime>05/24/2017 12:46:16</publishTime>
+      <publishTime>04/13/2021 01:13:58</publishTime>
+    </File>
+    <File Include="bin/pt/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:25:24</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>01/04/2021 12:39:47</publishTime>
@@ -1012,6 +1042,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>01/04/2021 12:39:47</publishTime>
     </File>
+    <File Include="bin/ru/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:25:46</publishTime>
+    </File>
     <File Include="bin/SqlServerTypes/x64/msvcr120.dll">
       <publishTime>01/04/2021 12:39:49</publishTime>
     </File>
@@ -1025,19 +1058,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/04/2021 12:39:49</publishTime>
     </File>
     <File Include="bin/sres.app.dll">
-      <publishTime>03/18/2021 14:09:42</publishTime>
+      <publishTime>04/13/2021 01:16:34</publishTime>
     </File>
     <File Include="bin/sres.be.dll">
-      <publishTime>03/18/2021 14:09:40</publishTime>
+      <publishTime>04/13/2021 00:27:16</publishTime>
     </File>
     <File Include="bin/sres.da.dll">
-      <publishTime>03/18/2021 14:09:40</publishTime>
+      <publishTime>04/13/2021 01:16:32</publishTime>
     </File>
     <File Include="bin/sres.ln.dll">
-      <publishTime>03/18/2021 14:09:40</publishTime>
+      <publishTime>04/13/2021 01:16:33</publishTime>
     </File>
     <File Include="bin/sres.ut.dll">
-      <publishTime>03/18/2021 14:09:39</publishTime>
+      <publishTime>04/13/2021 00:27:16</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/04/2021 12:39:47</publishTime>
@@ -1065,6 +1098,12 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="bin/System.Web.Webpages.Razor.dll">
       <publishTime>01/04/2021 12:39:47</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:27:58</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>02/21/2014 05:28:10</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>01/04/2021 12:39:49</publishTime>
@@ -1133,7 +1172,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/04/2021 12:39:49</publishTime>
     </File>
     <File Include="Mailing/RecuperarClave.html">
-      <publishTime>01/04/2021 12:39:49</publishTime>
+      <publishTime>04/07/2021 01:45:10</publishTime>
     </File>
     <File Include="Mailing/ResultadosConvocatoria.html">
       <publishTime>01/04/2021 12:39:49</publishTime>
@@ -1214,16 +1253,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/28/2021 21:33:56</publishTime>
     </File>
     <File Include="Views/Electromovilidad/EstacionCarga.cshtml">
-      <publishTime>03/17/2021 11:50:10</publishTime>
+      <publishTime>03/22/2021 22:25:34</publishTime>
     </File>
     <File Include="Views/Electromovilidad/EstacionCargaRevision.cshtml">
       <publishTime>03/11/2021 14:35:06</publishTime>
     </File>
     <File Include="Views/Electromovilidad/EstacionesCarga.cshtml">
-      <publishTime>03/03/2021 18:10:27</publishTime>
+      <publishTime>03/26/2021 08:00:53</publishTime>
     </File>
     <File Include="Views/Electromovilidad/EstacionesMapa.cshtml">
-      <publishTime>03/17/2021 10:41:46</publishTime>
+      <publishTime>03/18/2021 21:32:18</publishTime>
     </File>
     <File Include="Views/Electromovilidad/Index.cshtml">
       <publishTime>03/17/2021 09:16:42</publishTime>
@@ -1232,10 +1271,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/10/2021 00:01:12</publishTime>
     </File>
     <File Include="Views/Electromovilidad/IndexUsuario.cshtml">
-      <publishTime>03/10/2021 00:01:17</publishTime>
+      <publishTime>04/08/2021 09:49:42</publishTime>
     </File>
     <File Include="Views/Electromovilidad/MenuElectromovilidad.cshtml">
-      <publishTime>03/18/2021 11:02:37</publishTime>
+      <publishTime>04/08/2021 12:19:14</publishTime>
     </File>
     <File Include="Views/Electromovilidad/MenuEstacionCarga.cshtml">
       <publishTime>03/04/2021 10:41:54</publishTime>
@@ -1244,19 +1283,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/09/2021 18:35:11</publishTime>
     </File>
     <File Include="Views/Electromovilidad/VerResultado.cshtml">
-      <publishTime>03/02/2021 00:55:07</publishTime>
+      <publishTime>04/05/2021 16:26:18</publishTime>
     </File>
     <File Include="Views/Inicio/Index.cshtml">
       <publishTime>01/04/2021 12:39:49</publishTime>
     </File>
+    <File Include="Views/Login/ContrasenaNuevo.cshtml">
+      <publishTime>04/07/2021 03:34:33</publishTime>
+    </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>03/01/2021 22:48:21</publishTime>
+      <publishTime>04/07/2021 00:42:16</publishTime>
+    </File>
+    <File Include="Views/Login/RecuperarContrasena.cshtml">
+      <publishTime>04/07/2021 00:47:00</publishTime>
     </File>
     <File Include="Views/Login/RecuperarContraseña.cshtml">
       <publishTime>01/04/2021 12:39:49</publishTime>
     </File>
     <File Include="Views/Login/Registrarme.cshtml">
-      <publishTime>03/02/2021 00:11:23</publishTime>
+      <publishTime>04/07/2021 23:37:56</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Anno.cshtml">
       <publishTime>01/04/2021 12:39:49</publishTime>
@@ -1268,7 +1313,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/04/2021 12:39:49</publishTime>
     </File>
     <File Include="Views/Mantenimiento/TablaMantenimiento.cshtml">
-      <publishTime>02/25/2021 14:55:59</publishTime>
+      <publishTime>04/04/2021 16:08:17</publishTime>
     </File>
     <File Include="Views/Mantenimiento/TipoCombustible.cshtml">
       <publishTime>03/09/2021 23:44:36</publishTime>
@@ -1301,10 +1346,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/04/2021 12:39:49</publishTime>
     </File>
     <File Include="Views/Shared/_MasterLayout.cshtml">
-      <publishTime>03/18/2021 14:07:06</publishTime>
+      <publishTime>03/22/2021 14:01:45</publishTime>
     </File>
     <File Include="Views/Shared/_Menu.cshtml">
-      <publishTime>03/17/2021 11:37:16</publishTime>
+      <publishTime>04/04/2021 16:18:17</publishTime>
     </File>
     <File Include="Views/Shared/_MenuBottom.cshtml">
       <publishTime>01/04/2021 12:39:49</publishTime>
@@ -1328,7 +1373,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/04/2021 12:39:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/18/2021 14:09:46</publishTime>
+      <publishTime>04/13/2021 00:27:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

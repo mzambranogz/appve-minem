@@ -201,6 +201,9 @@
     <Content Include="Assets\images\favicon\ms-icon-310x310.png" />
     <Content Include="Assets\images\favicon\ms-icon-70x70.png" />
     <Content Include="Assets\images\favicon\site.webmanifest" />
+    <Content Include="Assets\images\home-icon-carro-inicio.svg" />
+    <Content Include="Assets\images\home-icon-estaciones-carga.svg" />
+    <Content Include="Assets\images\home-icon-mapa-estaciones.svg" />
     <Content Include="Assets\images\img-p1.png" />
     <Content Include="Assets\images\img-p2.png" />
     <Content Include="Assets\images\loading.gif" />

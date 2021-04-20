@@ -14,9 +14,11 @@ var consultar = () => {
     let params = { nroInforme, propietario, empresa, registros, pagina, columna, orden};
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `${baseUrl}api/estacioncarga/buscarestaciones?${queryParams}`; //prioridad 23
+    //let url = `${baseUrl}api/estacioncarga/buscarestaciones?${queryParams}`; //prioridad 23
+    let url = `${baseUrlApi}api/estacioncarga/buscarestaciones?${queryParams}`; //prioridad 23
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
-    fetch(url).then(r => r.json()).then(j => {
+    fetch(url, init).then(r => r.json()).then(j => {
         let tabla = $('#tblEstaciones');
         tabla.find('tbody').html('');
         $('#viewPagination').attr('style', 'display: none !important');

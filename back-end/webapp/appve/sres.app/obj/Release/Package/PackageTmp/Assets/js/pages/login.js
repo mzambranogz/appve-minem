@@ -46,7 +46,7 @@ var mostrarMensajeError = (msj) => {
 }
 
 var cargarSesion = (d) => {
-    let data = { ID_USUARIO: d.ID_USUARIO, NOMBRES: d.NOMBRES, ID_ROL: d.ID_ROL, ROL: {ID_ROL: d.ID_ROL}, ID_INSTITUCION: d.ID_INSTITUCION, PROPIETARIO: d.PROPIETARIO, TOKEN: d.TOKEN, TOKEN_EXPIRACION: d.TOKEN_EXPIRACION};
+    let data = { ID_USUARIO: d.ID_USUARIO, NOMBRES: d.NOMBRES, ID_ROL: d.ID_ROL, NOMBRE_ROL: d.NOMBRE_ROL, ROL: { ID_ROL: d.ID_ROL, NOMBRE: d.NOMBRE_ROL }, ID_INSTITUCION: d.ID_INSTITUCION, PROPIETARIO: d.PROPIETARIO, TOKEN: d.TOKEN, TOKEN_EXPIRACION: d.TOKEN_EXPIRACION };
 
     let url = `${baseUrl}Login/Validar`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };

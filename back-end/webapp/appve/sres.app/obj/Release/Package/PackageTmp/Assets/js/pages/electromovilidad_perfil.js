@@ -48,10 +48,12 @@ var actualizarDatos = () => {
     if (genero == 0) message.push("Debe seleccionar su género");
 
     if (idinstitucion > 0) {
-        if (ruc.length < 11) message.push("El ruc debe contener 11 caracteres");
-        if (ruc.substring(0, 2) != '20' && ruc.substring(0, 2) != '10') message.push("El ruc debe iniciar con el número 20 o 10");
+        //if (ruc.length < 11) message.push("El ruc debe contener 11 caracteres");
+        if (!(new RegExp(/[0-9]{11}/).test(ruc))) message.push("El ruc debe contener 11 caracteres");
+        //if (ruc.substring(0, 2) != '20' && ruc.substring(0, 2) != '10') message.push("El ruc debe iniciar con el número 20 o 10");
+        if (!(ruc.startsWith("10") || ruc.startsWith("20"))) message.push("El ruc debe iniciar con el número 20 o 10");
         if (razon_social.trim() == "") message.push("Debe ingresar la razón social");
-        if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($("#txt-user").val()))) message.push("Ingrese un correo electrónico válido de la empresa");
+        if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($("#txt-correo-empresa").val()))) message.push("Ingrese un correo electrónico válido de la empresa");
         if (telefono.trim() == "") message.push("Debe ingresar el número telefónico");
         if (direccion.trim() == "") message.push("Debe ingresar la dirección de la empresa");
     }    

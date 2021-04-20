@@ -3,6 +3,7 @@ var rutas = "";
 var marker;
 var arrTempUbicacion = [], arrUbicacion = [];
 var mapboxgl, map;
+var docprotocolo = "", doccertificado = "";
 $(document).ready(() => {
     $('#aprobar-estacion').on('click', (e) => revisionEstacion(e));
     $('#observar-estacion').on('click', (e) => revisionEstacion(e));
@@ -14,9 +15,14 @@ var inicio = () => {
 }
 
 var cargarEstacion = (id) => {
-    let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${id}`;
+    //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${id}`; 
+    //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${id}`;
+    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionrevision?idestacion=${id}`; //prioridad 31
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
     Promise.all([
-        fetch(urlConsultarEstacion),
+        fetch(urlConsultarEstacion, init),
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarDatos);
@@ -54,7 +60,10 @@ var cargarDatos = ([estacion]) => {
 
                 let tituloDoc = `<label class="estilo-01">Cumplimiento de protocolo:</label>`;
                 let nombreFileDoc = `<input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-protocolo" value="${estacion.LISTA_DOC[i].ARCHIVO_BASE}" readonly>`;
-                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="javascript:void(0)" onClick="mostrarDocumento(1)" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                docprotocolo = `${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}`;
                 let fileDoc = `<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>${nombreFileDoc}${btnDescargaDoc}</div>`;
                 let contenidoFileDoc = `<div class="col-lg-12 col-md-12 col-sm-12">${tituloDoc}${fileDoc}</div>`;
                 $('#protocolo-doc').html(contenidoFileDoc);
@@ -72,7 +81,10 @@ var cargarDatos = ([estacion]) => {
 
                 let tituloDoc = `<label class="estilo-01">Certificado de fabricante:</label>`;
                 let nombreFileDoc = `<input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-certificado" value="${estacion.LISTA_DOC[i].ARCHIVO_BASE}" readonly>`;
-                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                //let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                let btnDescargaDoc = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="javascript:void(0)" onClick="mostrarDocumento(2)" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+                doccertificado = `${baseUrlApi}api/estacioncarga/obtenerdocumento?ruta=${estacion.LISTA_DOC[i].RUTA}`;
                 let fileDoc = `<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>${nombreFileDoc}${btnDescargaDoc}</div>`;
                 let contenidoFileDoc = `<div class="col-lg-12 col-md-12 col-sm-12"><div class="form-group text-left">${tituloDoc}${fileDoc}</div></div>`;
                 $('#certificado-doc').html(contenidoFileDoc);
@@ -87,12 +99,31 @@ var cargarDatos = ([estacion]) => {
         }
         let ruta_imagenes = '';
         for (var i = 0; i < estacion.LISTA_IMAGEN.length; i++) {
-            ruta_imagenes += `<a class="example-image-link" href="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            //ruta_imagenes += `<a class="example-image-link" href="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+            ruta_imagenes += `<a class="example-image-link" href="${baseUrlApi}${estacion.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${estacion.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
         }
         $('#marco-imagenes').html(ruta_imagenes);
         $('.imagen-estacion').removeClass('d-none');
     }
 
+}
+
+var mostrarDocumento = (opc) => {
+    let url = "";
+    if (opc == 1) url = docprotocolo
+    else url = doccertificado
+
+    let init = { method: 'GET', headers: { 'Content-Type':'text/html', 'Authorization': `Bearer ${token}`}};
+    fetch(url, init)
+    .then((r) => r.blob())
+    .then(j => {
+        //console.log(j);
+        let urlBlob = window.URL.createObjectURL(j);
+        window.open(urlBlob, '_blank');
+    })
+    .finally(() => {
+
+    });
 }
 
 var mapa = (lat, lng) => {
@@ -128,18 +159,14 @@ var mapa = (lat, lng) => {
     $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
 
 
-    map.on('click', function (e) {
-        arrTempUbicacion = [];
-        if (marker != undefined) eliminarMarker();
-        let coord = JSON.stringify(e.lngLat);
-        coord = JSON.parse(coord);
-        //let lng = coord["lng"];
-        //let lat = coord["lat"];
-        //agregarMarker(lng, lat);
-        agregarMarker(coord.lng, coord.lat);
-        arrTempUbicacion.push(coord.lng);
-        arrTempUbicacion.push(coord.lat);
-    });   
+    //map.on('click', function (e) {
+    //    arrTempUbicacion = [];
+    //    let coord = JSON.stringify(e.lngLat);
+    //    coord = JSON.parse(coord);
+    //    agregarMarker(coord.lng, coord.lat);
+    //    arrTempUbicacion.push(coord.lng);
+    //    arrTempUbicacion.push(coord.lat);
+    //});   
 
     marker = new mapboxgl.Marker({
         color: "#FF5733",
@@ -150,7 +177,8 @@ var mapa = (lat, lng) => {
 
 var revisionEstacion = (e) => {
     let flg = $(`#${e.target.id}`).data("validar");
-    let url = `${baseUrl}api/estacioncarga/revisionestacion`; //prioridad 24
+    //let url = `${baseUrl}api/estacioncarga/revisionestacion`; //prioridad 24
+    let url = `${baseUrlApi}api/estacioncarga/revisionestacion`;
     let data = { ID_ESTACION: idestacion, FLAG_ESTADO: `${flg}`, ID_USUARIO: idUsuarioLogin, UPD_USUARIO: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(data) };
 

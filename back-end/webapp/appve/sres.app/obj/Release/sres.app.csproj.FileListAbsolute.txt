@@ -15,24 +15,7 @@ D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\roslyn\System.R
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\roslyn\vbc.exe
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\roslyn\VBCSCompiler.exe
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\roslyn\VBCSCompiler.exe.config
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\Criterios\1\Imagen\criterio-11.png
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\Criterios\2\Imagen\criterio-12.png
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\Criterios\3\Imagen\criterio-13.png
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\Criterios\5\Imagen\criterio-10.png
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\Criterios\6\Imagen\criterio-05.png
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\Criterios\LEER.txt
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\Insignias\LEER.txt
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\MedidaMitigacion\LEER.txt
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Files\Reconocimientos\LEER.txt
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Log\LEER.txt
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Assets\documentos\2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI (TCO2).pdf
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Assets\documentos\3° Criterios para alcanzar Categorías y Estrellas de recocnocimiento de energía sostenible.pdf
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Assets\documentos\SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE.pdf
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Assets\documentos\descargar-reconocimiento.pdf
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\App_Data\Reportes\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\App_Data\Reportes\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\App_Data\Reportes\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\App_Data\Reportes\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\sres.app.dll.config
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\sres.app.dll
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\sres.app.pdb
@@ -95,8 +78,6 @@ D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\es\System.Net.H
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\es\System.Web.Http.resources.dll
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\es\System.Web.Http.WebHost.resources.dll
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\obj\Release\sres.app.csprojResolveAssemblyReference.cache
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\obj\Release\RdlCompile.cache
-D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\obj\Release\RdlCompile.compiled
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\obj\Release\sres.app.dll
 D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\obj\Release\sres.app.pdb
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\bin\SqlServerTypes\x64\msvcr120.dll
@@ -191,3 +172,14 @@ D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\obj\Release\RdlCompil
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\obj\Release\RdlCompile.compiled
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\obj\Release\sres.app.dll
 D:\ESCRITORIO\GET NEW APPVE\back-end\webapp\appve\sres.app\obj\Release\sres.app.pdb
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\Microsoft.SqlServer.Types.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\de\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\es\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\fr\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\it\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\ja\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\ko\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\pt\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\ru\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.app\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
