@@ -312,13 +312,26 @@ namespace sres.ln
             return v;
         }
 
-        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat)
+        //public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat)
+        //{
+        //    List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+        //    try
+        //    {
+        //        cn.Open();
+        //        lista = estacionDa.getEstacionAll(minLng, maxLng, minLat, maxLat, cn);
+        //    }
+        //    finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+        //    return lista;
+        //}
+
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, decimal potencia, string modocarga, string tipocargador, string tipoconector)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
             {
                 cn.Open();
-                lista = estacionDa.getEstacionAll(minLng, maxLng, minLat, maxLat, cn);
+                lista = estacionDa.getEstacionAll(minLng, maxLng, minLat, maxLat, potencia, modocarga, tipocargador, tipoconector, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

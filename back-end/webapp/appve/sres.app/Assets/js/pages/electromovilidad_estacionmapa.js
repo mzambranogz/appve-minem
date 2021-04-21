@@ -1,10 +1,36 @@
 ﻿var mapboxgl, map;
 var minLng, minLtd, maxLng, maxLtd;
 var arrMarkers = [];
+var potencia, modo_carga, tipo_cargador, tipo_conector
+var currentMarkers = []
 
 $(document).ready(() => {
+    $('#btn-buscar').on('click', (e) => buscarEstaciones())
     mapa();
 });
+
+var buscarEstaciones = () => {
+
+    if (currentMarkers.length > 0) {
+        for (var i = currentMarkers.length - 1; i >= 0; i--) {
+            currentMarkers[i].remove();
+        }
+    }
+    currentMarkers = []
+
+    potencia = $('#txt-potencia').val().replace(/,/gi, '')
+    potencia = potencia == "" ? 0 : potencia
+    modo_carga = $('#txt-modo-carga').val()
+    tipo_cargador = $('#txt-tipo-cargador').val()
+    tipo_conector = $('#txt-tipo-conector').val()
+
+    var coord = map.getBounds();
+    minLng = coord._sw.lng;
+    minLtd = coord._sw.lat;
+    maxLng = coord._ne.lng;
+    maxLtd = coord._ne.lat;
+    cargarComponentes(minLng, minLtd, maxLng, maxLtd);
+}
 
 var mapa = () => {
     mapboxgl.accessToken = 'pk.eyJ1Ijoia3phcmtsb3oiLCJhIjoiY2tsaDRoenNjMjRjcDJ2cXR4a2FrOHFtMSJ9.IubP7nyb7i-2Rvoyg_bLlA';
@@ -14,6 +40,12 @@ var mapa = () => {
         center: [-77.03101439999999, -12.016025599999999],
         zoom: 7
     });
+
+    potencia = $('#txt-potencia').val().replace(/,/gi, '')
+    potencia = potencia == "" ? 0 : potencia
+    modo_carga = $('#txt-modo-carga').val()
+    tipo_cargador = $('#txt-tipo-cargador').val()
+    tipo_conector = $('#txt-tipo-conector').val()
 
     var coord = map.getBounds();
     minLng = coord._sw.lng;
@@ -154,9 +186,18 @@ var evaluarCoordenadas = (coord) => {
 //};
 //navigator.geolocation.getCurrentPosition(geoSuccess);
 
+//var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
+//    //let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`; //prioridad 26
+//    let url = `${baseUrlApi}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`;
+//    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+//    fetch(url, init)
+//        .then(r => r.json())
+//        .then(cargarMarker);
+//}
+
 var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
-    //let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`; //prioridad 26
-    let url = `${baseUrlApi}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}`;
+    let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipocargador=${tipo_cargador}&tipoconector=${tipo_conector}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)
@@ -227,6 +268,7 @@ var cargarMarker = (data) => {
 
             m.setPopup(popup);
             m.addTo(map);
+            currentMarkers.push(m); //add
             //m.togglePopup();
         });
     }    

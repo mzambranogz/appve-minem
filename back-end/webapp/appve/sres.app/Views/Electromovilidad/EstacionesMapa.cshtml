@@ -14,8 +14,29 @@
     <div class="row mt-3">
         <h4>Encuentra la estación de carga más cerca de ti</h4>
     </div>
+    <div class="row mt-3 mb-2">
+        <div class="col-11">
+            <div class="row">
+                <div class="col-3">
+                    <input type="text" class="form-control decimal-miles-positivo" id="txt-potencia" maxlength="30" placeholder="Potencia" />
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="txt-modo-carga" maxlength="30" placeholder="Modo de carga" />
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="txt-tipo-cargador" maxlength="30" placeholder="Tipo de cargador" />
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="txt-tipo-conector" maxlength="30" placeholder="Tipo de conector" />
+                </div>
+            </div>
+        </div>
+        <div class="col-1">
+            <a class="btn btn-primary" id="btn-buscar" href="javascript:void(0)">Buscar</a>
+        </div>
+    </div>
     <div class="row mb-2">
-        <div id='map' style='width: 100%; height: 600px;'></div>
+        <div id='map' style='width: 100%; height: 600px; border: 2px solid #000'></div>
     </div>
     <div class="row d-none">
         <pre id='coordenadas'></pre>

@@ -98,11 +98,19 @@ namespace sres.app.Controllers.Api
             return v;
         }
 
+        //[Route("obtenerestacionall")]
+        //[HttpGet]
+        //public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat)
+        //{
+        //    List<EstacionCargaBE> lista = estacionLN.getEstacionAll(minLng, maxLng, minLat, maxLat);
+        //    return lista;
+        //}
+
         [Route("obtenerestacionall")]
         [HttpGet]
-        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat)
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, decimal potencia, string modocarga, string tipocargador, string tipoconector)
         {
-            List<EstacionCargaBE> lista = estacionLN.getEstacionAll(minLng, maxLng, minLat, maxLat);
+            List<EstacionCargaBE> lista = estacionLN.getEstacionAll(minLng, maxLng, minLat, maxLat, potencia, modocarga, tipocargador, tipoconector);
             return lista;
         }
 

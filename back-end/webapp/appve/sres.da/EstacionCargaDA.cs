@@ -212,7 +212,29 @@ namespace sres.da
             return v;
         }
 
-        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, OracleConnection db)
+        //public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, OracleConnection db)
+        //{
+        //    List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
+        //    try
+        //    {
+        //        string sp = $"{Package.Calculo}USP_SEL_ALL_ESTACION";
+        //        var p = new OracleDynamicParameters();
+        //        p.Add("PI_MIN_LNG", minLng);
+        //        p.Add("PI_MAX_LNG", maxLng);
+        //        p.Add("PI_MIN_LAT", minLat);
+        //        p.Add("PI_MAX_LAT", maxLat);
+        //        p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+        //        lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex);
+        //    }
+
+        //    return lista;
+        //}
+
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, decimal potencia, string modocarga, string tipocargador, string tipoconector, OracleConnection db)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
@@ -223,6 +245,10 @@ namespace sres.da
                 p.Add("PI_MAX_LNG", maxLng);
                 p.Add("PI_MIN_LAT", minLat);
                 p.Add("PI_MAX_LAT", maxLat);
+                p.Add("PI_POTENCIA", potencia);
+                p.Add("PI_MODO_CARGA", modocarga);
+                p.Add("PI_TIPO_CARGADOR", tipocargador);
+                p.Add("PI_TIPO_CONECTOR", tipoconector);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
