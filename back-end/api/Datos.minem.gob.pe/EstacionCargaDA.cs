@@ -53,8 +53,8 @@ namespace Datos.minem.gob.pe
 
             return seGuardo;
         }
-		
-		public bool GuardarDocumento(DocumentoBE inscripcionDoc, OracleConnection db)
+
+        public bool GuardarDocumento(DocumentoBE inscripcionDoc, OracleConnection db)
         {
             bool seGuardo = false;
             try
@@ -95,7 +95,7 @@ namespace Datos.minem.gob.pe
 
             return seGuardo;
         }
-		
+
         public bool DeshabilitarImagen(int id_estacion, OracleConnection db)
         {
             bool seGuardo = true;
@@ -111,7 +111,7 @@ namespace Datos.minem.gob.pe
             return seGuardo;
         }
 
-        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, OracleConnection db)
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, decimal potencia, string modocarga, string tipocargador, string tipoconector, OracleConnection db)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
@@ -122,6 +122,10 @@ namespace Datos.minem.gob.pe
                 p.Add("PI_MAX_LNG", maxLng);
                 p.Add("PI_MIN_LAT", minLat);
                 p.Add("PI_MAX_LAT", maxLat);
+                p.Add("PI_POTENCIA", potencia);
+                p.Add("PI_MODO_CARGA", modocarga);
+                p.Add("PI_TIPO_CARGADOR", tipocargador);
+                p.Add("PI_TIPO_CONECTOR", tipoconector);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
@@ -154,8 +158,8 @@ namespace Datos.minem.gob.pe
 
             return v;
         }
-		
-		public bool RegistrarInstitucion(InstitucionBE entidad, out int idinstitucion, OracleConnection db)
+
+        public bool RegistrarInstitucion(InstitucionBE entidad, out int idinstitucion, OracleConnection db)
         {
             bool seGuardo = false;
             idinstitucion = -1;
@@ -184,7 +188,7 @@ namespace Datos.minem.gob.pe
 
             return seGuardo;
         }
-		
+
         public List<DocumentoBE> getAllEstacionDocumento(EstacionCargaBE item, OracleConnection db)
         {
             List<DocumentoBE> lista = new List<DocumentoBE>();
@@ -241,8 +245,8 @@ namespace Datos.minem.gob.pe
 
             return obj;
         }
-		
-		public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario, OracleConnection db)
+
+        public List<EstacionCargaBE> getEstacionPorUsuario(int idusuario, OracleConnection db)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
@@ -260,7 +264,7 @@ namespace Datos.minem.gob.pe
 
             return lista;
         }
-		
+
         public UsuarioBE getInstitucion(int idUsuario, OracleConnection db)
         {
             UsuarioBE user = new UsuarioBE();

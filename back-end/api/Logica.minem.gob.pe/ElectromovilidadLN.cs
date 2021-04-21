@@ -1215,12 +1215,12 @@ namespace Logica.minem.gob.pe
                     }
                     else if (tipoveh == 3)
                     {
-                        fe = ((1 / ((80 / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = ((1 / ((Convert.ToDecimal(99) / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
                         fe = (fe - fe * gasohol) / 1000;
                     }
                     else if (tipoveh == 4)
                     {
-                        fe = ((1 / ((120 / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = ((1 / ((Convert.ToDecimal(129.6) / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
                         fe = (fe - fe * gasohol) / 1000;
                     }
                 }
@@ -1249,14 +1249,14 @@ namespace Logica.minem.gob.pe
                     }
                     else if (tipoveh == 3)
                     {
-                        fe = Convert.ToDecimal(0.087);
+                        fe = Convert.ToDecimal(0.07);
                     }
                     else if (tipoveh == 4)
                     {
-                        fe = Convert.ToDecimal(0.058);
+                        fe = Convert.ToDecimal(0.054);
                     }
                 }
-                
+
                 fd.FACTOR = fe;
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

@@ -137,7 +137,8 @@ namespace WebApiElectroMovilidad.Controllers
                 MailAddressCollection mailTo = new MailAddressCollection();
                 mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES}"));
 
-                Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RecuperacionClave, dataBody, fields, fieldsRequire, subject, mailTo));
+                mailing.SendMail(Mailing.Templates.RecuperacionClave, dataBody, fields, fieldsRequire, subject, mailTo);
+                //Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RecuperacionClave, dataBody, fields, fieldsRequire, subject, mailTo));
 
                 return new Dictionary<string, object>
                 {
