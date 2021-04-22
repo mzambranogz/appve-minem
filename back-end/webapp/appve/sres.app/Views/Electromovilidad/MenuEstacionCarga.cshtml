@@ -5,6 +5,7 @@
     ViewBag.SRESDescription = false;
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
 }
+
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
 }
@@ -14,7 +15,7 @@
     <div class="row mt-5">
         <div class="col-3"></div>
         <div class="col-6 text-center" style="padding: 10px;">
-            <a href="@Url.Action("inicio-electromovilidad", "Electromovilidad")">¿Es un usuario de vehículo eléctrico?</a>
+            <a href="@Url.Action("estaciones-mapa", "Electromovilidad")">¿Es un usuario de vehículo eléctrico?</a>
         </div>
         <div class="col-3"></div>
 
@@ -30,7 +31,7 @@
     <div class="row mt-5">
         <div class="col-3"></div>
         <div class="col-6 text-center" style="padding: 10px;">
-            <a href="@Url.Action("menu-estacion-carga", "Electromovilidad")">¿Es un propietario o administrador de carga de estación eléctrica?</a>
+            <a href="@Url.Action("estacion-de-carga", "Electromovilidad")">¿Es un propietario o administrador de carga de estación eléctrica?</a>
         </div>
         <div class="col-3"></div>
 

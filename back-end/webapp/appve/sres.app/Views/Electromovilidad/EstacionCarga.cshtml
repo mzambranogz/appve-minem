@@ -7,6 +7,12 @@
     UsuarioBE usuario_institucion = (UsuarioBE)ViewData["usuario"];
     int idestacion = (int)ViewData["estacion"];
 }
+
+@section scripts_header{
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css" />
+}
+
 @section scripts_footer{
     <script type="text/javascript">
         var idinstitucion = @usuario_institucion.ID_INSTITUCION == null ? 0 :  @usuario_institucion.ID_INSTITUCION;
@@ -56,8 +62,10 @@
                 <div><input type="text" id="txt-direccion-estacion" class="form-control" /></div>
             </div>
             <div class="col-3">
-                <div>&nbsp;</div>
-                <a class="editar-mapa" href="javascript:void(0)" id="btnUbicacion"><i class="fas fa-map-marked mr-1"></i>&nbsp;Situa tu ubicación</a>
+                <label style="display: block">&nbsp;</label>
+                <a class="editar-mapa" href="javascript:void(0)" id="btnUbicacion"><i class="fas fa-map-marked mr-1"></i>&nbsp;Situa tu ubicación</a>&nbsp;
+                <span id="situar-estacion" class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                @*<span class="text-success">Listo&nbsp;<i class="fas fa-check-circle"></i></span>*@
             </div>
         </div>
         <div class="row">

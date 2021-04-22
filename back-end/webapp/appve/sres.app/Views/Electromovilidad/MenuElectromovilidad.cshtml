@@ -115,7 +115,7 @@
                 <div class="col-6"><label>Gasto de mantenimiento anual</label>&nbsp;&nbsp;<small>Soles/año</small></div><div class="col-6"></div>
                 <div class="col-6">
                     @*<input type="range" class="form-range" min="0" max="7000" step="1" value="1000" id="mantenimiento-vc" style="width:100%">*@
-                    <input type="text" class="form-control decimal-miles-positivo" value="3,000.00" id="mantenimiento-vc">
+                    <input type="text" class="form-control decimal-miles-positivo" value="1,000.00" id="mantenimiento-vc">
                 </div>
                 @*<div class="col-2">
                     <small id="valor-mantenimiento-vc">1,000</small>&nbsp;&nbsp;<small>Soles/año</small>
@@ -127,7 +127,7 @@
                 <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(Soles/año)</small></div><div class="col-6"></div>
                 <div class="col-6">
                     @*<input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-vc" style="width:100%">*@
-                    <input type="text" class="form-control decimal-miles-positivo" value="1,000.00" id="seguro-vc">
+                    <input type="text" class="form-control decimal-miles-positivo" value="500.00" id="seguro-vc">
                 </div>
                 @*<div class="col-2">
                     <small id="valor-seguro-vc">500</small>&nbsp;&nbsp;<small>Soles/año</small>
@@ -626,7 +626,7 @@
                 <div class="col-6"><label>Gasto de seguro anual</label>&nbsp;&nbsp;<small>(Soles/año)</small></div><div class="col-6"></div>
                 <div class="col-6">
                     @*<input type="range" class="form-range" min="0" max="2000" step="1" value="500" id="seguro-ve" style="width:100%">*@
-                    <input type="text" class="form-control decimal-miles-positivo" value="500.00" id="seguro-ve">
+                    <input type="text" class="form-control decimal-miles-positivo" value="0" id="seguro-ve">
                 </div>
                 @*<div class="col-2">
                     <small id="valor-seguro-ve">500</small>&nbsp;&nbsp;<small>soles/año</small>
@@ -716,15 +716,15 @@
         @*  Grafico comparativa VC vs VE  *@
         <div class="row mt-5">
             <div class="card col-12">
-                <div class="card-header" id="headingVSVCVE">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseVSVCVE" aria-expanded="true" aria-controls="collapseVSVCVE">
+                        <button class="btn btn-link viewGrafico" type="button" id="headingVSVCVE">
                             Comparativa entre movilidad convencional vs. eléctrico
                         </button>
                     </h2>
                 </div>
 
-                <div id="collapseVSVCVE" class="collapse show" aria-labelledby="headingVSVCVE" data-parent="#accordionVSVCVE">
+                <div id="headingVSVCVE_G">
                     <div class="card-body">
                         <div class="container">
                             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -759,14 +759,14 @@
         @*  Grafico comparacion TCO  *@
         <div class="row mt-2">
             <div class="card col-12">
-                <div class="card-header" id="headingCTCO">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCTCO" aria-expanded="true" aria-controls="collapseCTCO">
+                        <button class="btn btn-link viewGrafico" type="button" id="headingCTCO">
                             Comparación TCO
                         </button>
                     </h2>
                 </div>
-                <div id="collapseCTCO" class="collapse" aria-labelledby="headingCTCO" data-parent="#accordionCTCO">
+                <div id="headingCTCO_G">
                     <div class="card-body">
                         <div class="container">
                             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1041,14 +1041,14 @@
         @*  Grafico emisiones GEI  *@
         <div class="row mt-2">
             <div class="card col-12">
-                <div class="card-header" id="headingEmisionesGEI">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseEmisionesGEI" aria-expanded="true" aria-controls="collapseEmisionesGEI">
+                        <button class="btn btn-link viewGrafico" type="button" id="headingEmisionesGEI">
                             Emisiones GEI totales en kgCO<sub>2</sub>e
                         </button>
                     </h2>
                 </div>
-                <div id="collapseEmisionesGEI" class="collapse" aria-labelledby="headingEmisionesGEI" data-parent="#accordionEmisionesGEI">
+                <div id="headingEmisionesGEI_G">
                     <div class="card-body">
                         <div class="container">
                             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1156,14 +1156,14 @@
         @*  Grafico consumo energetico  *@
         <div class="row mt-2">
             <div class="card col-12">
-                <div class="card-header" id="headingCEGJ1">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCEGJ1" aria-expanded="true" aria-controls="collapseCEGJ1">
+                        <button class="btn btn-link viewGrafico" type="button" id="headingCEGJ1">
                             Consumo energético en GJ
                         </button>
                     </h2>
                 </div>
-                <div id="collapseCEGJ1" class="collapse" aria-labelledby="headingCEGJ1" data-parent="#accordionCEGJ1">
+                <div id="headingCEGJ1_G">
                     <div class="card-body">
                         <div class="container">
                             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1182,14 +1182,14 @@
         @*  Grafico consumo energetico general  *@
         <div class="row mt-2">
             <div class="card col-12">
-                <div class="card-header" id="headingCEGJ2">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCEGJ2" aria-expanded="true" aria-controls="collapseCEGJ2">
+                        <button class="btn btn-link viewGrafico" type="button" id="headingCEGJ2">
                             Consumo energético total en GJ
                         </button>
                     </h2>
                 </div>
-                <div id="collapseCEGJ2" class="collapse" aria-labelledby="headingCEGJ2" data-parent="#accordionCEGJ2">
+                <div id="headingCEGJ2_G">
                     <div class="card-body">
                         <div class="container">
                             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1201,9 +1201,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>                
             </div>
         </div> 
+
+        @*<div class="container" style="border: 2px solid #000">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+                        <div class="logros chart" id="consumo_energetico_total"></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
     
     </div>
 
@@ -1523,5 +1533,7 @@
 
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['line'] });
-    google.charts.load("current", { packages: ['corechart'] });
+    //google.charts.load('current', { 'packages': ['columnchart'] });
+    //google.charts.load("current", { packages: ['corechart'] });
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
 </script>

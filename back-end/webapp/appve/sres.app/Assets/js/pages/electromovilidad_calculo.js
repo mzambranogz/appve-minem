@@ -81,6 +81,7 @@ $(document).ready(() => {
     $('#cerrar-rutas-bd').on('click', (e) => atrasRutaFrecuente())
     $('#rendimiento-vc').on('keyup', (e) => obtenerFactorEmisionVC());
     $('#rendimiento-cvc').on('keyup', (e) => obtenerFactorEmisionCVC());
+
 });
 
 var mapa = () => {
@@ -324,6 +325,8 @@ var siguiente2 = () => {
     if (!(tv && tc && dp && rendimiento && precio_comb && porc_comb && factor_emision && mantenimiento && seguro && gasto_comb && kilometros && meses))  {alert('Debe completar todos los campos'); return;}
 
     $('#kilometro-sem-ve').val($('#kilometro-sem-vc').val())
+    $('#cbo-departamento').val($('#cbo-departamento-vc').val())
+    cambiarDP()
 
     $('#seccion-03').addClass('d-none');
     if ($('#rad-e2-si').prop('checked')) $('#seccion-04').removeClass('d-none');
@@ -364,9 +367,19 @@ var siguiente3 = () => {
         tasa_interes_temp_g = $('#tasa-interes-cvc').val()
         anio_credito_temp_g = $('#anio-credito-cvc').val()
         cuota_inicial_temp_g = $('#cuota-inicial-cvc').val()
-        $('#tipo-compra-ve').val(0)
-        cambiarTipoCompraCVE()
+        $('#tasa-interes-ve').val(tasa_interes_temp_g)
+        $('#anio-credito-ve').val(anio_credito_temp_g)
+        $('#cuota-inicial-ve').val(cuota_inicial_temp_g)
+    } else if ($('#tipo-compra-cvc').val() == 2) {
+        tasa_interes_temp_g = 0
+        anio_credito_temp_g = 0
+        cuota_inicial_temp_g = 0
     }
+    $('#tipo-compra-ve').val($('#tipo-compra-cvc').val())
+    cambiarTipoCompraCVE()
+
+    $('#cbo-departamento').val($('#cbo-departamento-cvc').val())
+    cambiarDP()
 
     $('#seccion-04').addClass('d-none');
     if ($('#rad-e3-si').prop('checked')) $('#seccion-05').removeClass('d-none');
@@ -530,7 +543,7 @@ var cambiarTipoCompraCVC = () => {
 
 var cambiarTipoCompraCVE = () => {
     if ($('#tipo-compra-ve').val() == 0 || $('#tipo-compra-ve').val() == 2) {
-        let tc = $('#tipo-compra-cvc').val() == 1
+        let tc = $('#rad-e2-si').prop('checked') ? $('#tipo-compra-cvc').val() == 1 : false
         $('#financiado-ve').addClass('d-none');
         $('#tasa-interes-ve').val(tc ? tasa_interes_temp_g : tasa_interes_g)
         $('#anio-credito-ve').val(tc ? anio_credito_temp_g : anio_credito_g)
@@ -650,6 +663,7 @@ var cambiarVE = () => {
         $('#modelo-ve').val(0); 
         $('#sec-precio-instalacion-ve').addClass('d-none')
         $('#costo-veh-ve').val('0')
+        $('#seguro-ve').val(0)
         return; 
     }
     if ($('#tipo-vehiculo-ve').val() > 1) {
@@ -657,12 +671,14 @@ var cambiarVE = () => {
         $('#sec-precio-instalacion-ve').addClass('d-none')
         $('#modelo-ve').val(0);
         $('#tipo-cargador').val(0);
+        $('#seguro-ve').val(0)
         cambiarTC()
     }
     else {
         $('#modelo-ve').parent().removeClass('d-none');
         $('#sec-precio-instalacion-ve').removeClass('d-none')
         $('#costo-veh-ve').val('0')
+        $('#seguro-ve').val(formatoMiles(1000))
     }
 
     if ($('#tipo-vehiculo-ve').val() > 1){
@@ -1331,7 +1347,14 @@ var cambiarAnio = () => {
     grafico_emisiones();
     mostrar_contaminante_local();
     $('#seccion-opciones').removeClass('d-none');
+    
 }
+
+//var configuration = () => {
+//    $('#emisiones_totales div div').attr("width","1000")
+//    $('#emisiones_totales svg').attr("width","1000")
+//    $('#emisiones_totales rect').attr("width","1000")
+//}
 
 var valoresDiferenciados = () => {
     let i = $('#anio_evaluacion').val() - 1;
@@ -1386,93 +1409,218 @@ var formatoMiles = (n) => {
 var grafico_costo = () => {
     function drawChart() {
         var data = new google.visualization.DataTable();
-        data.addColumn('number', 'Horizonte de evaluación (en años)');
+        data.addColumn('string', 'Horizonte de evaluación (en años)');
         data.addColumn('number', 'Escenario movilidad eléctrica');
-        data.addColumn('number', 'Escenario línea base');
+        //data.addColumn({ type: 'string', role: 'annotation' });
+        data.addColumn({ type: 'string', role: 'tooltip', p: { html: true } });
+        data.addColumn('number', 'Escenario movilidad convencional');
+        //data.addColumn({ type: 'string', role: 'annotation' });
+        data.addColumn({ type: 'string', role: 'tooltip', p: { html: true } });
+
+        //data.addRows([
+        //  [1, Math.round(Lista_electrico[0].TOTAL * 100)/100, Math.round(Lista_convencional[0].TOTAL * 100)/100],
+        //  [2, Lista_electrico[1].TOTAL, Lista_convencional[1].TOTAL],
+        //  [3, Lista_electrico[2].TOTAL, Lista_convencional[2].TOTAL],
+        //  [4, Lista_electrico[3].TOTAL, Lista_convencional[3].TOTAL],
+        //  [5, Lista_electrico[4].TOTAL, Lista_convencional[4].TOTAL],
+        //  [6, Lista_electrico[5].TOTAL, Lista_convencional[5].TOTAL],
+        //  [7, Lista_electrico[6].TOTAL, Lista_convencional[6].TOTAL],
+        //  [8, Lista_electrico[7].TOTAL, Lista_convencional[7].TOTAL],
+        //  [9, Lista_electrico[8].TOTAL, Lista_convencional[8].TOTAL],
+        //  [10, Lista_electrico[9].TOTAL, Lista_convencional[9].TOTAL],
+        //  [11, Lista_electrico[10].TOTAL, Lista_convencional[10].TOTAL],
+        //  [12, Lista_electrico[11].TOTAL, Lista_convencional[11].TOTAL],
+        //  [13, Lista_electrico[12].TOTAL, Lista_convencional[12].TOTAL],
+        //  [14, Lista_electrico[13].TOTAL, Lista_convencional[13].TOTAL],
+        //  [15, Math.round(Lista_electrico[14].TOTAL * 100)/100, Math.round(Lista_convencional[14].TOTAL * 100)/100]
+        //]);
+
+        let escenario_convencional = 'Escenario movilidad convencional', esceneario_electrico = 'Escenario movilidad eléctrica'
 
         data.addRows([
-          [1, Math.round(Lista_electrico[0].TOTAL * 100)/100, Math.round(Lista_convencional[0].TOTAL * 100)/100],
-          [2, Lista_electrico[1].TOTAL, Lista_convencional[1].TOTAL],
-          [3, Lista_electrico[2].TOTAL, Lista_convencional[2].TOTAL],
-          [4, Lista_electrico[3].TOTAL, Lista_convencional[3].TOTAL],
-          [5, Lista_electrico[4].TOTAL, Lista_convencional[4].TOTAL],
-          [6, Lista_electrico[5].TOTAL, Lista_convencional[5].TOTAL],
-          [7, Lista_electrico[6].TOTAL, Lista_convencional[6].TOTAL],
-          [8, Lista_electrico[7].TOTAL, Lista_convencional[7].TOTAL],
-          [9, Lista_electrico[8].TOTAL, Lista_convencional[8].TOTAL],
-          [10, Lista_electrico[9].TOTAL, Lista_convencional[9].TOTAL],
-          [11, Lista_electrico[10].TOTAL, Lista_convencional[10].TOTAL],
-          [12, Lista_electrico[11].TOTAL, Lista_convencional[11].TOTAL],
-          [13, Lista_electrico[12].TOTAL, Lista_convencional[12].TOTAL],
-          [14, Lista_electrico[13].TOTAL, Lista_convencional[13].TOTAL],
-          [15, Math.round(Lista_electrico[14].TOTAL * 100)/100, Math.round(Lista_convencional[14].TOTAL * 100)/100]
+          ['1', Lista_electrico[0].TOTAL, tooltipTCO('1',esceneario_electrico, Lista_electrico[0].TOTAL), Lista_convencional[0].TOTAL, tooltipTCO('1',escenario_convencional, Lista_convencional[0].TOTAL)],
+          ['2', Lista_electrico[1].TOTAL, tooltipTCO('2',esceneario_electrico, Lista_electrico[1].TOTAL), Lista_convencional[1].TOTAL, tooltipTCO('2',escenario_convencional, Lista_convencional[1].TOTAL)],
+          ['3', Lista_electrico[2].TOTAL, tooltipTCO('3',esceneario_electrico, Lista_electrico[2].TOTAL), Lista_convencional[2].TOTAL, tooltipTCO('3',escenario_convencional, Lista_convencional[2].TOTAL)],
+          ['4', Lista_electrico[3].TOTAL, tooltipTCO('4',esceneario_electrico, Lista_electrico[3].TOTAL), Lista_convencional[3].TOTAL, tooltipTCO('4',escenario_convencional, Lista_convencional[3].TOTAL)],
+          ['5', Lista_electrico[4].TOTAL, tooltipTCO('5',esceneario_electrico, Lista_electrico[4].TOTAL), Lista_convencional[4].TOTAL, tooltipTCO('5',escenario_convencional, Lista_convencional[4].TOTAL)],
+          ['6', Lista_electrico[5].TOTAL, tooltipTCO('6',esceneario_electrico, Lista_electrico[5].TOTAL), Lista_convencional[5].TOTAL, tooltipTCO('6',escenario_convencional, Lista_convencional[5].TOTAL)],
+          ['7', Lista_electrico[6].TOTAL, tooltipTCO('7',esceneario_electrico, Lista_electrico[6].TOTAL), Lista_convencional[6].TOTAL, tooltipTCO('7',escenario_convencional, Lista_convencional[6].TOTAL)],
+          ['8', Lista_electrico[7].TOTAL, tooltipTCO('8',esceneario_electrico, Lista_electrico[7].TOTAL), Lista_convencional[7].TOTAL, tooltipTCO('8',escenario_convencional, Lista_convencional[7].TOTAL)],
+          ['9', Lista_electrico[8].TOTAL, tooltipTCO('9',esceneario_electrico, Lista_electrico[8].TOTAL), Lista_convencional[8].TOTAL, tooltipTCO('9',escenario_convencional, Lista_convencional[8].TOTAL)],
+          ['10', Lista_electrico[9].TOTAL, tooltipTCO('10',esceneario_electrico, Lista_electrico[9].TOTAL), Lista_convencional[9].TOTAL, tooltipTCO('10',escenario_convencional, Lista_convencional[9].TOTAL)],
+          ['11', Lista_electrico[10].TOTAL, tooltipTCO('11',esceneario_electrico, Lista_electrico[10].TOTAL), Lista_convencional[10].TOTAL, tooltipTCO('11',escenario_convencional, Lista_convencional[10].TOTAL)],
+          ['12', Lista_electrico[11].TOTAL, tooltipTCO('12',esceneario_electrico, Lista_electrico[11].TOTAL), Lista_convencional[11].TOTAL, tooltipTCO('12',escenario_convencional, Lista_convencional[11].TOTAL)],
+          ['13', Lista_electrico[12].TOTAL, tooltipTCO('13',esceneario_electrico, Lista_electrico[12].TOTAL), Lista_convencional[12].TOTAL, tooltipTCO('13',escenario_convencional, Lista_convencional[12].TOTAL)],
+          ['14', Lista_electrico[13].TOTAL, tooltipTCO('14',esceneario_electrico, Lista_electrico[13].TOTAL), Lista_convencional[13].TOTAL, tooltipTCO('14',escenario_convencional, Lista_convencional[13].TOTAL)],
+          ['15', Lista_electrico[14].TOTAL, tooltipTCO('15',esceneario_electrico, Lista_electrico[14].TOTAL), Lista_convencional[14].TOTAL, tooltipTCO('15',escenario_convencional, Lista_convencional[14].TOTAL)],
         ]);
 
         var options = {
-            chart: {
-                title: 'Comparativa entre movilidad convencional vs eléctrico',
-                //subtitle: 'in millions of dollars (USD)'
-            },
+            //chart: {
+            //    title: 'Comparativa entre movilidad convencional vs eléctrico',
+            //    //subtitle: 'in millions of dollars (USD)'
+            //},
+            //title: 'Comparativa entre movilidad convencional vs eléctrico',
             width: 900,
             height: 500,
+            tooltip: { isHtml: true },
+            //legend: { position: 'top', maxLines: 3, textStyle: { fontSize: 20} }, //configuracion para el tamaño de letra
             legend: { position: 'top', maxLines: 3 },
-            vAxis: {format: 'decimal'},            
+            lineWidth: 3,
+            pointSize: 5,
+            visibleInLegend: false,
+            //vAxis: {format: 'decimal'},  
+            isStacked: true
         };
 
-        var chart = new google.charts.Line(document.getElementById('linechart_material'));
+        //var chart = new google.charts.Line(document.getElementById('linechart_material'));
+        var chart = new google.visualization.LineChart(document.getElementById('linechart_material'));
         chart.draw(data, google.charts.Line.convertOptions(options));
+        //chart.draw(data, options);
     }
     google.charts.setOnLoadCallback(drawChart);
+}
+
+var tooltipTCO = (anio_n, escenario_n, costo_n) => {
+    let costo = `<span style="display: block; font-size: 1.5rem; color: #3471DD">S/ ${formatoMiles(costo_n)}</span>`
+    let escenario = `<span style="display: block; font-size: 1rem; color: gray"><strong>${escenario_n}</strong></span>`
+    let anio = `<p style="display: block; font-size: 1rem; color: gray"><strong>${anio_n}° año</strong></p>`
+    let html = `<div style="width: 300px; height: 120px;padding: 10px">${anio}${escenario}${costo}</div>`;
+    return html
 }
 
 var grafico_costo_por_anio = () => {   
     let i = $('#anio_evaluacion').val() - 1;
     function drawChartC() {
+        let escenario_convencional = 'Movilidad convencional', esceneario_electrico = 'Movilidad eléctrica'
         var data = google.visualization.arrayToDataTable([
-            ['Genre', 'Mantenimiento extraordinario', 'Otros transportes', 'Reventa vehículo', 'Equipo carga e instalación',
-             'Carga financiera', 'Mantenimiento continuo', 'Energía (electricidad o combustible)', 'Seguro', 'Recambio de batería', 'Incentivo económico', 'Cuota inicial', { role: 'annotation' }],
-            ['Escenario movilidad convencional', Lista_convencional[i].MANTENIMIENTO_EXTRAORDINARIO, Lista_convencional[i].OTROS_TRANSPORTES, Lista_convencional[i].REVENTA_VEHICULO, Lista_convencional[i].CARGA_INSTALACION, Lista_convencional[i].CARGA_FINANCIERA, Lista_convencional[i].MANTENIMIENTO_CONTINUO, Lista_convencional[i].ENERGIA, Lista_convencional[i].SEGURO, Lista_convencional[i].RECAMBIO_BATERIA, Lista_convencional[i].INCENTIVO_ECONOMICO, Lista_convencional[i].CUOTA_INICIAL, ''],
-            ['Escenario electromovilidad', Lista_electrico[i].MANTENIMIENTO_EXTRAORDINARIO, Lista_electrico[i].OTROS_TRANSPORTES, Lista_electrico[i].REVENTA_VEHICULO, Lista_electrico[i].CARGA_INSTALACION, Lista_electrico[i].CARGA_FINANCIERA, Lista_electrico[i].MANTENIMIENTO_CONTINUO, Lista_electrico[i].ENERGIA, Lista_electrico[i].SEGURO, Lista_electrico[i].RECAMBIO_BATERIA, Lista_electrico[i].INCENTIVO_ECONOMICO, Lista_electrico[i].CUOTA_INICIAL, '']
+            ['Genre', 
+             'Mantenimiento extraordinario', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Otros transportes', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Reventa vehículo', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Equipo carga e instalación', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Carga financiera', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Mantenimiento continuo', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Energía', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Seguro', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Recambio de batería', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Incentivo económico', { type: 'string', role: 'tooltip', p: { html: true } },
+             'Cuota inicial', { type: 'string', role: 'tooltip', p: { html: true } },
+             { role: 'annotation' }],
+            ['Movilidad convencional', 
+                Lista_convencional[i].MANTENIMIENTO_EXTRAORDINARIO, tooltipTCOGrafico(i+1, escenario_convencional, 'Mantenimiento extraordinario', Lista_convencional[i].MANTENIMIENTO_EXTRAORDINARIO),
+                Lista_convencional[i].OTROS_TRANSPORTES, tooltipTCOGrafico(i+1, escenario_convencional, 'Otros transportes', Lista_convencional[i].OTROS_TRANSPORTES),
+                Lista_convencional[i].REVENTA_VEHICULO, tooltipTCOGrafico(i+1, escenario_convencional, 'Reventa vehículo', Lista_convencional[i].REVENTA_VEHICULO),
+                Lista_convencional[i].CARGA_INSTALACION, tooltipTCOGrafico(i+1, escenario_convencional, 'Equipo de carga e instalación', Lista_convencional[i].CARGA_INSTALACION),
+                Lista_convencional[i].CARGA_FINANCIERA, tooltipTCOGrafico(i+1, escenario_convencional, 'Carga financiera', Lista_convencional[i].CARGA_FINANCIERA),
+                Lista_convencional[i].MANTENIMIENTO_CONTINUO, tooltipTCOGrafico(i+1, escenario_convencional, 'Mantenimiento continuo', Lista_convencional[i].MANTENIMIENTO_CONTINUO),
+                Lista_convencional[i].ENERGIA, tooltipTCOGrafico(i+1, escenario_convencional, 'Energía (combustible)', Lista_convencional[i].ENERGIA),
+                Lista_convencional[i].SEGURO, tooltipTCOGrafico(i+1, escenario_convencional, 'Seguro', Lista_convencional[i].SEGURO),
+                Lista_convencional[i].RECAMBIO_BATERIA, tooltipTCOGrafico(i+1, escenario_convencional, 'Recambio de batería', Lista_convencional[i].RECAMBIO_BATERIA),
+                Lista_convencional[i].INCENTIVO_ECONOMICO, tooltipTCOGrafico(i+1, escenario_convencional, 'Incentivo económico', Lista_convencional[i].INCENTIVO_ECONOMICO),
+                Lista_convencional[i].CUOTA_INICIAL, tooltipTCOGrafico(i+1, esceneario_electrico, 'Cuota inicial', Lista_convencional[i].CUOTA_INICIAL),
+                ''],
+            ['Movilidad eléctrica', 
+                Lista_electrico[i].MANTENIMIENTO_EXTRAORDINARIO, tooltipTCOGrafico(i+1, esceneario_electrico, 'Mantenimiento extraordinario', Lista_electrico[i].MANTENIMIENTO_EXTRAORDINARIO),
+                Lista_electrico[i].OTROS_TRANSPORTES, tooltipTCOGrafico(i+1, esceneario_electrico, 'Otros transportes', Lista_electrico[i].OTROS_TRANSPORTES),
+                Lista_electrico[i].REVENTA_VEHICULO, tooltipTCOGrafico(i+1, esceneario_electrico, 'Reventa vehículo', Lista_electrico[i].REVENTA_VEHICULO),
+                Lista_electrico[i].CARGA_INSTALACION, tooltipTCOGrafico(i+1, esceneario_electrico, 'Equipo de carga e instalación', Lista_electrico[i].CARGA_INSTALACION),
+                Lista_electrico[i].CARGA_FINANCIERA, tooltipTCOGrafico(i+1, esceneario_electrico, 'Carga financiera', Lista_electrico[i].CARGA_FINANCIERA),
+                Lista_electrico[i].MANTENIMIENTO_CONTINUO, tooltipTCOGrafico(i+1, esceneario_electrico, 'Mantenimiento continuo', Lista_electrico[i].MANTENIMIENTO_CONTINUO),
+                Lista_electrico[i].ENERGIA, tooltipTCOGrafico(i+1, esceneario_electrico, 'Energía (electricidad)', Lista_electrico[i].ENERGIA),
+                Lista_electrico[i].SEGURO, tooltipTCOGrafico(i+1, esceneario_electrico, 'Seguro', Lista_electrico[i].SEGURO),
+                Lista_electrico[i].RECAMBIO_BATERIA, tooltipTCOGrafico(i+1, esceneario_electrico, 'Recambio de batería', Lista_electrico[i].RECAMBIO_BATERIA),
+                Lista_electrico[i].INCENTIVO_ECONOMICO, tooltipTCOGrafico(i+1, esceneario_electrico, 'Incentivo económico', Lista_electrico[i].INCENTIVO_ECONOMICO),
+                Lista_electrico[i].CUOTA_INICIAL, tooltipTCOGrafico(i+1, esceneario_electrico, 'Cuota inicial', Lista_electrico[i].CUOTA_INICIAL),
+                '']
         ]);
 
         var options = {
-            title: 'Comparación – Costo total de propiedad (TCO)',
+            //title: 'Comparación – Costo total de propiedad (TCO)',
             width: 900,
             height: 800,
+            //legend: { position: 'right', maxLines: 12 },
             tooltip: { isHtml: true },
+            vAxis: {
+                title: 'Costo total de propiedad (TCO) en (S/)'
+            },
             bar: { groupWidth: '75%' },
-            isStacked: true,
+            isStacked: true, //junta los valores en una columna una columna 
         };
 
+        //var chart = new google.charts.Bar(document.getElementById("columnchart_values"));
         var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
         chart.draw(data, options);
+        $('#headingCTCO_G').addClass('d-none')
     }
     google.charts.setOnLoadCallback(drawChartC);
 }
 
+var tooltipTCOGrafico = (anio_n, escenario_n, aspecto_n, costo_n) => {
+    let costo = `<span style="display: block; font-size: 1.5rem; color: #3471DD">S/ ${formatoMiles(costo_n)}</span>`
+    let aspecto = `<span style="display: block; font-size: 1rem; color: black"><strong>${aspecto_n}</strong></span>`
+    let escenario = `<span style="display: block; font-size: 1rem; color: gray"><strong>${escenario_n}</strong></span>`
+    let anio = `<p style="display: block; font-size: 1rem; color: gray"><strong>${anio_n}° año</strong></p>`
+    let html = `<div style="width: 300px; height: 150px;padding: 10px">${anio}${escenario}${aspecto}${costo}</div>`;
+    return html
+}
+
+
 var grafico_consumo_energ = () => {   
     let i = $('#anio_evaluacion').val() - 1;
     function drawChartCE() {
+        let escenario_convencional = 'Movilidad convencional', esceneario_electrico = 'Movilidad eléctrica'
         let arrNombre = [], arrConvencional = [], arrElectrico = [];
         let tamanio = Lista_leyenda.length;
         arrNombre.push('Genre');
         for (var j = 0; j < tamanio; j++) {
             arrNombre.push(Lista_leyenda[j].NOMBRE_TRANSPORTE);
+            arrNombre.push({ type: 'string', role: 'tooltip', p: { html: true } });
         }
 
-        arrConvencional.push('Escenario movilidad convencional');
-        if (1 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC);
-        if (2 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_1);
-        if (3 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_2);
-        if (4 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_3);
-        if (5 <= tamanio) arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_4);
+        arrConvencional.push('Movilidad convencional');
+        if (1 <= tamanio) {
+            arrConvencional.push(Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC);
+            arrConvencional.push(tooltipTCOGraficoConsumoE(i+1, escenario_convencional, Lista_leyenda[0].NOMBRE_TRANSPORTE, Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC));
+        } 
+        if (2 <= tamanio) {
+            arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_1);
+            arrConvencional.push(tooltipTCOGraficoConsumoE(i+1, escenario_convencional, Lista_leyenda[1].NOMBRE_TRANSPORTE, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_1));
+        } 
+        if (3 <= tamanio) {
+            arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_2);
+            arrConvencional.push(tooltipTCOGraficoConsumoE(i+1, escenario_convencional, Lista_leyenda[2].NOMBRE_TRANSPORTE, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_2));
+        } 
+        if (4 <= tamanio) {
+            arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_3);
+            arrConvencional.push(tooltipTCOGraficoConsumoE(i+1, escenario_convencional, Lista_leyenda[3].NOMBRE_TRANSPORTE, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_3));
+        } 
+        if (5 <= tamanio) {
+            arrConvencional.push(Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_4);
+            arrConvencional.push(tooltipTCOGraficoConsumoE(i+1, escenario_convencional, Lista_leyenda[4].NOMBRE_TRANSPORTE, Lista_consumo_energ_vc[i].SERVICIO_PUBLICO_4));
+        } 
 
-        arrElectrico.push('Escenario movilidad electromovilidad');
-        if (1 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE);
-        if (2 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_1);
-        if (3 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_2);
-        if (4 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_3);
-        if (5 <= tamanio) arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_4);
+        arrElectrico.push('Movilidad eléctrica');
+        if (1 <= tamanio) {
+            arrElectrico.push(Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE);
+            arrElectrico.push(tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, Lista_leyenda[0].NOMBRE_TRANSPORTE, Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE));
+        }
+        if (2 <= tamanio) {
+            arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_1);
+            arrElectrico.push(tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, Lista_leyenda[1].NOMBRE_TRANSPORTE, Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_1));
+        }
+        if (3 <= tamanio) {
+            arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_2);
+            arrElectrico.push(tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, Lista_leyenda[2].NOMBRE_TRANSPORTE, Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_2));
+        } 
+        if (4 <= tamanio) {
+            arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_3);
+            arrElectrico.push(tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, Lista_leyenda[3].NOMBRE_TRANSPORTE, Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_3));
+        } 
+        if (5 <= tamanio) {
+            arrElectrico.push(Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_4);
+            arrElectrico.push(tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, Lista_leyenda[4].NOMBRE_TRANSPORTE, Lista_consumo_energ_ve[i].SERVICIO_PUBLICO_4));
+        } 
 
         //var data = google.visualization.arrayToDataTable([
         //    ['Genre', Lista_leyenda[0].NOMBRE_TRANSPORTE, Lista_leyenda[1].NOMBRE_TRANSPORTE, Lista_leyenda[2].NOMBRE_TRANSPORTE, Lista_leyenda[3].NOMBRE_TRANSPORTE, Lista_leyenda[4].NOMBRE_TRANSPORTE, { role: 'annotation' }],
@@ -1487,16 +1635,21 @@ var grafico_consumo_energ = () => {
         ]);
 
         var options = {
-            title: 'Consumo energético total en GJ',
+            //title: 'Consumo energético total en GJ',
             width: 900,
-            height: 800,
+            height: 600,            
             tooltip: { isHtml: true },
+            vAxis: {
+                title: 'Consumo energético (GJ)'
+            },
+            //legend: { position: 'right', maxLines: 5 },
             bar: { groupWidth: '75%' },
             isStacked: true,
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById("consumo_energetico"));
         chart.draw(data, options);
+        $('#headingCEGJ1_G').addClass('d-none')
     }
     google.charts.setOnLoadCallback(drawChartCE);
 }
@@ -1504,49 +1657,156 @@ var grafico_consumo_energ = () => {
 var grafico_consumo_energ_total = () => {   
     let i = $('#anio_evaluacion').val() - 1;
     function drawChartCET() {
-        var data = google.visualization.arrayToDataTable([
-            ['Genre', 'Vehículo propio', 'Total servicios de transporte', { role: 'annotation' }],
-            ['Escenario movilidad convencional', Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC, Lista_consumo_energ_vc[i].TOTAL_PUBLICO, ''],
-            ['Escenario electromovilidad', Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE, Lista_consumo_energ_ve[i].TOTAL_PUBLICO, '']
+        //let escenario_convencional = 'Movilidad convencional', esceneario_electrico = 'Movilidad eléctrica'
+        //var data = google.visualization.arrayToDataTable([
+        //    ['Genre', 
+        //        'Vehículo propio', { type: 'string', role: 'tooltip', p: { html: true } },
+        //        'Total serv. de transp', { type: 'string', role: 'tooltip', p: { html: true } },
+        //        { role: 'annotation' }],
+        //    ['Movilidad convencional', 
+        //        Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC, tooltipTCOGraficoConsumoE(i+1, escenario_convencional, 'Vehículo propio', Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC),
+        //        Lista_consumo_energ_vc[i].TOTAL_PUBLICO, tooltipTCOGraficoConsumoE(i+1, escenario_convencional, 'Total servicios de transporte', Lista_consumo_energ_vc[i].TOTAL_PUBLICO),
+        //        ''],
+        //    ['Movilidad eléctrica', 
+        //        Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE, tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, 'Vehículo propio', Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE),
+        //        Lista_consumo_energ_ve[i].TOTAL_PUBLICO, tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, 'Total servicios de transporte', Lista_consumo_energ_ve[i].TOTAL_PUBLICO),
+        //        '']
+        //]);
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Genre');
+        data.addColumn('number', 'Vehículo propio');
+        data.addColumn({ type: 'string', role: 'tooltip', p: { html: true } });
+        data.addColumn('number', 'Total servicios de transporte');
+        data.addColumn({ type: 'string', role: 'tooltip', p: { html: true } });
+
+        let escenario_convencional = 'Escenario movilidad convencional', esceneario_electrico = 'Escenario movilidad eléctrica'
+
+        data.addRows([
+          ['Movilidad convencional', Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC, tooltipTCOGraficoConsumoE(i+1, escenario_convencional, 'Vehículo propio', Lista_consumo_energ_vc[i].VEHICULO_PROPIO_VC), Lista_consumo_energ_vc[i].TOTAL_PUBLICO, tooltipTCOGraficoConsumoE(i+1, escenario_convencional, 'Total servicios de transporte', Lista_consumo_energ_vc[i].TOTAL_PUBLICO)],
+          ['Movilidad eléctrica', Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE, tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, 'Vehículo propio', Lista_consumo_energ_ve[i].VEHICULO_PROPIO_VE), Lista_consumo_energ_ve[i].TOTAL_PUBLICO, tooltipTCOGraficoConsumoE(i+1, esceneario_electrico, 'Total servicios de transporte', Lista_consumo_energ_ve[i].TOTAL_PUBLICO)],
         ]);
 
         var options = {
-            title: 'Consumo energético total en GJ',
+            //title: 'Consumo energético total en GJ',
             width: 900,
-            height: 800,
+            height: 600,            
             tooltip: { isHtml: true },
+            vAxis: {
+                title: 'Consumo energético total (GJ)'
+            },
+            //legend: { position: 'right', maxLines: 3 },
             bar: { groupWidth: '75%' },
             isStacked: true,
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById("consumo_energetico_total"));
         chart.draw(data, options);
+
+        $('#headingCEGJ2_G').addClass('d-none')
+        //var data = new google.visualization.DataTable();
+        //data.addColumn('timeofday', 'Time of Day');
+        //data.addColumn('number', 'Motivation Level');
+        //data.addColumn('number', 'Energy Level');
+
+        //data.addRows([
+        //  [{v: [8, 0, 0], f: '8 am'}, 1, .25],
+        //  [{v: [9, 0, 0], f: '9 am'}, 2, .5],
+        //  [{v: [10, 0, 0], f:'10 am'}, 3, 1],
+        //  [{v: [11, 0, 0], f: '11 am'}, 4, 2.25],
+        //  [{v: [12, 0, 0], f: '12 pm'}, 5, 2.25],
+        //  [{v: [13, 0, 0], f: '1 pm'}, 6, 3],
+        //  [{v: [14, 0, 0], f: '2 pm'}, 7, 4],
+        //  [{v: [15, 0, 0], f: '3 pm'}, 8, 5.25],
+        //  [{v: [16, 0, 0], f: '4 pm'}, 9, 7.5],
+        //  [{v: [17, 0, 0], f: '5 pm'}, 10, 10],
+        //]);
+
+        //var options = {
+        //    title: 'Motivation and Energy Level Throughout the Day',
+        //    colors: ['#9575cd', '#33ac71'],
+        //    hAxis: {
+        //        title: 'Time of Day',
+        //        format: 'h:mm a',
+        //        viewWindow: {
+        //            min: [7, 30, 0],
+        //            max: [17, 30, 0]
+        //        }
+        //    },
+        //    isStacked: true,
+        //    legend: { position: 'top', maxLines: 3 },
+        //    vAxis: {
+        //        title: 'Rating (scale of 1-10)'
+        //    }
+        //};
+
+        //var chart = new google.visualization.ColumnChart(document.getElementById('consumo_energetico_total'));
+        //chart.draw(data, options);
+
     }
     google.charts.setOnLoadCallback(drawChartCET);
+}
+
+var tooltipTCOGraficoConsumoE = (anio_n, escenario_n, aspecto_n, costo_n) => {
+    let costo = `<span style="display: block; font-size: 1.5rem; color: #3471DD">${formatoMiles(costo_n)} GJ</span>`
+    let aspecto = `<span style="display: block; font-size: 1rem; color: black"><strong>${aspecto_n}</strong></span>`
+    let escenario = `<span style="display: block; font-size: 1rem; color: gray"><strong>${escenario_n}</strong></span>`
+    let anio = `<p style="display: block; font-size: 1rem; color: gray"><strong>${anio_n}° año</strong></p>`
+    let html = `<div style="width: 300px; height: 150px;padding: 10px">${anio}${escenario}${aspecto}${costo}</div>`;
+    return html
 }
 
 var grafico_emisiones = () => {   
     let i = $('#anio_evaluacion').val() - 1;
     function drawChartEM() {
+        let escenario_convencional = 'Movilidad convencional', esceneario_electrico = 'Movilidad eléctrica'
         var data = google.visualization.arrayToDataTable([
-            ['Genre', 'Fabricación de baterías', 'Operación del vehículo', 'Fabricación del vehículo', 'Servicios de transporte', { role: 'annotation' }],
-            ['Escenario movilidad convencional', Lista_emision_vc[i].FABRICACION_BATERIA_VC, Lista_emision_vc[i].OPERACION_VEHICULO_VC, Lista_emision_vc[i].FABRICACION_VEHICULO_VC, Lista_emision_vc[i].SERVICIO_TRANSPORTE, ''],
-            ['Escenario electromovilidad', Lista_emision_ve[i].FABRICACION_BATERIA_VE, Lista_emision_ve[i].OPERACION_VEHICULO_VE, Lista_emision_ve[i].FABRICACION_VEHICULO_VE, Lista_emision_ve[i].SERVICIO_TRANSPORTE, '']
+            ['Genre', 
+                'Fabricación de baterías', { type: 'string', role: 'tooltip', p: { html: true } },
+                'Operación del vehículo', { type: 'string', role: 'tooltip', p: { html: true } },
+                'Fabricación del vehículo', { type: 'string', role: 'tooltip', p: { html: true } },
+                'Servicios de transporte', { type: 'string', role: 'tooltip', p: { html: true } },
+                { role: 'annotation' }],
+            ['Movilidad convencional', 
+                Lista_emision_vc[i].FABRICACION_BATERIA_VC, tooltipTCOGraficoEmisiones(i+1, escenario_convencional, 'Fabricación de baterías', Lista_emision_vc[i].FABRICACION_BATERIA_VC),
+                Lista_emision_vc[i].OPERACION_VEHICULO_VC, tooltipTCOGraficoEmisiones(i+1, escenario_convencional, 'Operación del vehículo', Lista_emision_vc[i].OPERACION_VEHICULO_VC),
+                Lista_emision_vc[i].FABRICACION_VEHICULO_VC, tooltipTCOGraficoEmisiones(i+1, escenario_convencional, 'Fabricación del vehículo', Lista_emision_vc[i].FABRICACION_VEHICULO_VC),
+                Lista_emision_vc[i].SERVICIO_TRANSPORTE, tooltipTCOGraficoEmisiones(i+1, escenario_convencional, 'Servicios de transporte', Lista_emision_vc[i].SERVICIO_TRANSPORTE),
+                ''],
+            ['Movilidad eléctrica', 
+                Lista_emision_ve[i].FABRICACION_BATERIA_VE, tooltipTCOGraficoEmisiones(i+1, esceneario_electrico, 'Fabricación de baterías', Lista_emision_ve[i].FABRICACION_BATERIA_VE),
+                Lista_emision_ve[i].OPERACION_VEHICULO_VE, tooltipTCOGraficoEmisiones(i+1, esceneario_electrico, 'Operación del vehículo', Lista_emision_ve[i].OPERACION_VEHICULO_VE),
+                Lista_emision_ve[i].FABRICACION_VEHICULO_VE, tooltipTCOGraficoEmisiones(i+1, esceneario_electrico, 'Fabricación del vehículo', Lista_emision_ve[i].FABRICACION_VEHICULO_VE),
+                Lista_emision_ve[i].SERVICIO_TRANSPORTE, tooltipTCOGraficoEmisiones(i+1, esceneario_electrico, 'Servicios de transporte', Lista_emision_ve[i].SERVICIO_TRANSPORTE),
+                '']
         ]);
 
         var options = {
-            title: 'Emisiones GEI totales en kgCO₂e',
+            //title: 'Emisiones GEI totales en kgCO₂e',
             width: 900,
-            height: 800,
+            height: 600,
             tooltip: { isHtml: true },
+            vAxis: {
+                title: 'Emisiones GEI totales en (kgCO2e)'
+            },
             bar: { groupWidth: '75%' },
             isStacked: true,
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById("emisiones_totales"));
         chart.draw(data, options);
+        $('#headingEmisionesGEI_G').addClass('d-none')
     }
     google.charts.setOnLoadCallback(drawChartEM);
+}
+
+var tooltipTCOGraficoEmisiones = (anio_n, escenario_n, aspecto_n, costo_n) => {
+    let costo = `<span style="display: block; font-size: 1.5rem; color: #3471DD">${formatoMiles(costo_n)} kgCO<sub>2</sub>e</span>`
+    let aspecto = `<span style="display: block; font-size: 1rem; color: black"><strong>${aspecto_n}</strong></span>`
+    let escenario = `<span style="display: block; font-size: 1rem; color: gray"><strong>${escenario_n}</strong></span>`
+    let anio = `<p style="display: block; font-size: 1rem; color: gray"><strong>${anio_n}° año</strong></p>`
+    let html = `<div style="width: 300px; height: 150px;padding: 10px">${anio}${escenario}${aspecto}${costo}</div>`;
+    return html
 }
 
 var mostrar_contaminante_local = () => {
@@ -2618,3 +2878,10 @@ var limpiarVE = () => {
     cambiarTI();
     cambiarFI();
 }
+
+$(document).on('click', '.viewGrafico', (e) => {
+    let id = e.currentTarget.id
+    let grafico = $(`#${id}_G`)[0].className.indexOf("d-none")
+    if (grafico != -1) $(`#${id}_G`).removeClass('d-none')
+    else $(`#${id}_G`).addClass('d-none')
+})

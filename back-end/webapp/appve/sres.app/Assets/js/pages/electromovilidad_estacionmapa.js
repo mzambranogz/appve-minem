@@ -79,9 +79,9 @@ var mapa = () => {
     //    console.log('Error getting location', error);
     //});
 
-    //map.on('mousemove', function (e) {
-    //    document.getElementById('coordenadas').innerHTML = JSON.stringify(e.lngLat);
-    //});
+    map.on('mousemove', function (e) {
+        document.getElementById('coordenadas').innerHTML = JSON.stringify(e.lngLat);
+    });
 
     $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
     $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
@@ -197,7 +197,7 @@ var evaluarCoordenadas = (coord) => {
 //}
 
 var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
-    let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipocargador=${tipo_cargador}&tipoconector=${tipo_conector}`;
+    let url = `${baseUrlApi}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipocargador=${tipo_cargador}&tipoconector=${tipo_conector}`; //prioridad 36
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)

@@ -4,6 +4,7 @@ var marker;
 var arrTempUbicacion = [], arrUbicacion = [];
 var mapboxgl, map;
 var docprotocolo = "", doccertificado = "";
+var geocoder
 //var currentMarkers=[];
 $(document).ready(() => {
     $('#btnGuardar').on('click', (e) => guardar());
@@ -13,14 +14,14 @@ $(document).ready(() => {
     $('#btnUbicacion').on('click', abrirUbicacion);
     $('#btnGuardarU').on('click', guardarUbicacion);
     $('#btnCerrarU').on('click', cerrarUbicacion);
-    mapa();
+    //mapa();
     inicio();
 });
 
 var inicio = () => {
     if (idinstitucion == 0) $('#seccion-empresa').removeClass('d-none');
     else $('#seccion-empresa').addClass('d-none');
-    if (idestacion == 0) return;
+    if (idestacion == 0) { mapa(-77.03101439999999, -12.016025599999999); return;}
     cargarEstacion(idestacion);
 }
 
@@ -40,6 +41,7 @@ var cargarEstacion = (id) => {
 var cargarDatos = ([estacion]) => {
     if (estacion == null) return;
     if (estacion.ID_ESTACION == 0) return;
+    mapa(estacion.LONGITUD, estacion.LATITUD);
     $('#txt-direccion-estacion').val(estacion.DIRECCION);
     $('#txt-descripcion').val(estacion.DESCRIPCION);
     $('#txt-modelo').val(estacion.MODELO);
@@ -103,6 +105,7 @@ var cargarDatos = ([estacion]) => {
 
     arrUbicacion.push(estacion.LONGITUD);
     arrUbicacion.push(estacion.LATITUD);
+    $('#situar-estacion').html('Listo&nbsp;<i class="fas fa-check-circle"></i>').removeClass('text-danger').addClass('text-success')
 }
 
 var fileDocChange = (e) => {
@@ -345,13 +348,13 @@ var redireccionar = () => {
     location.href = `${baseUrl}Electromovilidad`;
 }
 
-var mapa = () => {
+var mapa = (lng, lat) => {
     mapboxgl.accessToken = 'pk.eyJ1Ijoia3phcmtsb3oiLCJhIjoiY2tsaDRoenNjMjRjcDJ2cXR4a2FrOHFtMSJ9.IubP7nyb7i-2Rvoyg_bLlA';
     //var map = new mapboxgl.Map({
     map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-77.03101439999999, -12.016025599999999],
+        center: [lng, lat],
         zoom: 7
     });
 
@@ -360,15 +363,42 @@ var mapa = () => {
         showZoom: true,
         visualizePitch: true
     });
+
+    geocoder = new MapboxGeocoder({
+        // Initialize the geocoder
+        accessToken: mapboxgl.accessToken, // Set the access token
+        mapboxgl: mapboxgl, // Set the mapbox-gl instance
+        marker: false, // Do not use the default marker style
+        placeholder: 'Buscar lugares cercanos', // Placeholder text for the search bar
+        bbox: [-81.33531256420639, -18.35532317840149, -68.64771000999576, -0.03322135965653], // Boundary for Berkeley
+        proximity: {
+            longitude: -77.04013282606473,
+            latitude: -12.0613481350845
+        } // Coordinates of UC Berkeley
+    });
+
+    // Add the geocoder to the map
+    map.addControl(geocoder);
+
+    console.log(geocoder);
+
     map.addControl(nav);
 
     map.addControl(new mapboxgl.FullscreenControl());
-    map.addControl(new mapboxgl.GeolocateControl({
+    //map.addControl(new mapboxgl.GeolocateControl({
+    //    positionOptions: {
+    //        enableHighAccuracy: true
+    //    },
+    //    trackUserLocation: true
+    //}));
+
+    const geolocate = new mapboxgl.GeolocateControl({
         positionOptions: {
             enableHighAccuracy: true
         },
         trackUserLocation: true
-    }));
+    })
+    map.addControl(geolocate)
 
     //map.on('mousemove', function (e) {
     //    document.getElementById('coordenadas').innerHTML = JSON.stringify(e.lngLat);
@@ -377,6 +407,9 @@ var mapa = () => {
     $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
     $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
 
+    var nuevoCSS = { "width": '1500px' };
+    $('.mapboxgl-ctrl-top-right').css(nuevoCSS);
+    $('.mapboxgl-ctrl-geocoder--input').addClass('text-right')
 
     map.on('click', function (e) {
         arrTempUbicacion = [];
@@ -387,7 +420,52 @@ var mapa = () => {
         arrTempUbicacion.push(coord.lng);
         arrTempUbicacion.push(coord.lat);
     });       
-    
+
+    //geolocate.on('geolocate', function()
+    //{
+
+    //    //Get the updated user location, this returns a javascript object.
+    //    var userlocation = geolocate._lastKnownPosition;
+
+    //    //Your work here - Get coordinates like so
+    //    var lat = userlocation.coords.latitude;
+    //    var lng = userlocation.coords.longitude;
+
+    //    console.log(geocoder);
+
+    //});
+
+    // After the map style has loaded on the page,
+    // add a source layer and default styling for a single point
+    map.on('load', function () {
+        map.addSource('single-point', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': []
+            }
+        });
+ 
+        map.addLayer({
+            'id': 'point',
+            'source': 'single-point',
+            'type': 'circle',
+            'paint': {
+                'circle-radius': 10,
+                'circle-color': '#448ee4'
+            }
+        });
+ 
+        // Listen for the `result` event from the Geocoder // `result` event is triggered when a user makes a selection
+        //  Add a marker at the result's coordinates
+        geocoder.on('result', function (e) {
+            map.getSource('single-point').setData(e.result.geometry);
+        });
+    });
+
+    //setTimeout(function() {
+    //    $(".mapboxgl-ctrl-geolocate").click();
+    //},2000);
 }
 
 var agregarMarker = (lng, lat) => {
@@ -436,6 +514,7 @@ var guardarUbicacion = () => {
         arrUbicacion = [];
         arrUbicacion.push(marker._lngLat.lng);
         arrUbicacion.push(marker._lngLat.lat);
+        $('#situar-estacion').html('Listo&nbsp;<i class="fas fa-check-circle"></i>').removeClass('text-danger').addClass('text-success')
         $('#modal-ubicacion').modal("hide");
     } else {
         alert("No ha seleccionado ninguna ubicación");
