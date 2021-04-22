@@ -1234,7 +1234,7 @@ var evaluar = () => {
 
     //Consumo energetivo convencional
     data_ce_vc = {
-        P1: p1, P2: p2, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, MESES_USO_VC: meses_uso_vc, ID_TIPO_COMBUSTIBLE_VC: tipo_combustible_vc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
+        P1: p1, P2: p2, KILOMETRO_SEMANAL_VC: kilometro_semanal_vc, MESES_USO_VC: meses_uso_vc, ID_TIPO_COMBUSTIBLE_VC: tipo_combustible_vc, RENDIMIENTO_VC: rendimiento_vc, LISTA_SERVICIO_PUBLICO: lista_servicio_publico,
     }
     console.log(JSON.stringify('Consumo energetivo convencional:'));
     console.log(JSON.stringify(data_ce_vc));
@@ -1284,8 +1284,8 @@ var evaluar = () => {
     let datal = data_l;
     let initl = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datal) };
 
-    //let urlvcce = `${baseUrl}api/calculo/calcularconsumoenergeticoconvencional`;
-    let urlvcce = `${baseUrlApi}api/calculo/calcularconsumoenergeticoconvencional`;
+    let urlvcce = `${baseUrl}api/calculo/calcularconsumoenergeticoconvencional`;
+    //let urlvcce = `${baseUrlApi}api/calculo/calcularconsumoenergeticoconvencional`;
     let datavcce = data_ce_vc;
     let initvcce = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datavcce) };
 

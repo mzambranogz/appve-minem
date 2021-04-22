@@ -694,7 +694,9 @@ namespace sres.ln
                 decimal vehiculo_ce = 0;
 
                 if (entidad.P2 == "1" || entidad.P1 == "1") {
-                    decimal factor_rendimiento = elecLN.ListaFactor1P(17, 2, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    //decimal factor_rendimiento = elecLN.ListaFactor1P(17, 2, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal factor_podecalorico = elecLN.ListaFactor1P(29, 2, entidad.ID_TIPO_COMBUSTIBLE_VC).FACTOR;
+                    decimal factor_rendimiento = factor_podecalorico == 0 ? 0 : entidad.RENDIMIENTO_VC / factor_podecalorico / 1000;
                     decimal km_anual = (entidad.KILOMETRO_SEMANAL_VC * 52) * (decimal.Parse(entidad.MESES_USO_VC.ToString()) / 12); //actualizar el decimal.Parse
                     vehiculo_ce = factor_rendimiento == 0 ? 0 : km_anual / factor_rendimiento;
                 }                
