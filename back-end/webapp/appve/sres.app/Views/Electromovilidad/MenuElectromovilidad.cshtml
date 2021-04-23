@@ -31,13 +31,43 @@
             <input id="rad-e3-si" type="radio" name="rad-e3" />Si&nbsp;
             <input id="rad-e3-no" type="radio" name="rad-e3" />No
         </div>
-        <div class="row">
+
+        <div id="seccion-02" class="d-none mt-3">
+            <h4>¿Qué tipo de servicio(s) de transporte usas?</h4>
+            <h4>Seleciona hasta 4 tipos:</h4>
+            <div class="container mt-2" id="transporte-publico-chk">
+                <div class="row">
+                    <div class="col-3">
+                        <i class="fas fa-car"></i>&nbsp;
+                        <label for="chk-tp-1">&nbsp;Taxi</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control chk-marcar" type="checkbox" id="chk-tp-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
             <button id="btnMenu" class="btn btn-primary">Comienza</button>
         </div>
     </div>
 
-    <div id="seccion-02" class="d-none">
-        <h3>Seleciona hasta 4 tipos de transporte más utilizados</h3>
+    @*<div id="seccion-02" class="d-none">
+        <h4>¿Qué tipo de servicio(s) de transporte usas?</h4>
+        <h4>Seleciona hasta 4 tipos:</h4>
+        <div class="container mt-2" id="transporte-publico-chk">
+            <div class="row">
+                <div class="col-3">
+                    <i class="fas fa-car"></i>&nbsp;
+                    <label for="chk-tp-1">&nbsp;Taxi</label>
+                </div>
+                <div class="col-3">
+                    <input class="form-control chk-marcar" type="checkbox" id="chk-tp-1">
+                </div>
+            </div>
+        </div>
+        
         <div class="row">
             <div class="col-6">
                 <label>Servicio transporte 01</label>&nbsp;&nbsp;
@@ -68,7 +98,7 @@
                 <button id="btnSig01" class="btn btn-primary">Siguiente</button> 
             </div><div class="col-6"></div>         
         </div>
-    </div>
+    </div>*@
 
     <div id="seccion-03" class="d-none">
         <h3>Características del vehículo propio</h3>
@@ -345,13 +375,13 @@
             <div class="row">
                 <div class="col-6">
                     <label>Costo en movilidad semanal</label>&nbsp;&nbsp;(<small>soles/semana</small>)
-                    <input id="costo-movilidad-01" type="text" class="form-control" />
+                    <input id="costo-movilidad-01" type="text" class="form-control decimal-miles-positivo" />
                 </div><div class="col-6"></div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <label>Kilometraje semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
-                    <input id="kilometros-01" type="text" class="form-control" />
+                    <input id="kilometros-01" type="text" class="form-control decimal-miles-positivo" />
                 </div>
                 <div class="col-6">
                     <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
@@ -376,13 +406,13 @@
             <div class="row">
                 <div class="col-6">
                     <label>Costo en movilidad semanal</label>&nbsp;&nbsp;(<small>soles/semana</small>)
-                    <input id="costo-movilidad-02" type="text" class="form-control" />
+                    <input id="costo-movilidad-02" type="text" class="form-control decimal-miles-positivo" />
                 </div><div class="col-6"></div>                
             </div>
             <div class="row">
                 <div class="col-6">
                     <label>Kilometraje semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
-                    <input id="kilometros-02" type="text" class="form-control" />
+                    <input id="kilometros-02" type="text" class="form-control decimal-miles-positivo" />
                 </div>
                 <div class="col-6">
                     <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
@@ -407,13 +437,13 @@
             <div class="row">
                 <div class="col-6">
                     <label>Costo en movilidad semanal</label>&nbsp;&nbsp;(<small>soles/semana</small>)
-                    <input id="costo-movilidad-03" type="text" class="form-control" />
+                    <input id="costo-movilidad-03" type="text" class="form-control decimal-miles-positivo" />
                 </div><div class="col-6"></div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <label>Kilometraje semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
-                    <input id="kilometros-03" type="text" class="form-control" />
+                    <input id="kilometros-03" type="text" class="form-control decimal-miles-positivo" />
                 </div>
                 <div class="col-6">
                     <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
@@ -438,13 +468,13 @@
             <div class="row">
                 <div class="col-6">
                     <label>Costo en movilidad semanal</label>&nbsp;&nbsp;(<small>Soles/semana</small>)
-                    <input id="costo-movilidad-04" type="text" class="form-control" />
+                    <input id="costo-movilidad-04" type="text" class="form-control decimal-miles-positivo" />
                 </div><div class="col-6"></div>                
             </div>
             <div class="row">
                 <div class="col-6">
                     <label>Kilometraje semanal</label>&nbsp;&nbsp;(<small>km/semana</small>)
-                    <input id="kilometros-04" type="text" class="form-control" />
+                    <input id="kilometros-04" type="text" class="form-control decimal-miles-positivo" />
                 </div>
                 <div class="col-6">
                     <label><i class="fas fa-car"></i></label>&nbsp;&nbsp;<small>Calcula tu kilometraje recorrido</small><br />
@@ -481,12 +511,7 @@
                 <select id="modelo-ve" class="form-control"></select>
             </div><div class="col-6"></div>            
         </div>
-        <div class="row">
-            <div class="col-6">
-                <label>Departamento</label>&nbsp;&nbsp;
-                <select id="cbo-departamento" class="form-control"></select>
-            </div><div class="col-6"></div>            
-        </div>  
+        
         <div id="sec-precio-instalacion-ve" class="d-none">
             <div class="row">
                 <div class="col-6">
@@ -498,22 +523,17 @@
                 <div class="col-6">
                     <label>Potencia instalada</label>&nbsp;&nbsp;(<small>kw</small>)
                     <select id="cbo-potencia" class="form-control"></select>
-                    <input id="txt-potencia" type="text" />  
+                    <input id="txt-potencia" class="form-control decimal-miles-positivo" type="text" />  
                 </div><div class="col-6"></div>                              
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <label>Precio cargador</label>&nbsp;&nbsp;(<small>soles</small>)
-                    <input id="precio-cargador" type="text" class="form-control decimal-miles-positivo" value="0" />
-                </div><div class="col-6"></div>         
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <label>Costo instalación</label>&nbsp;&nbsp;(<small>soles</small>)
-                    <input id="costo-instalacion" type="text" class="form-control decimal-miles-positivo" value="0" />  
-                </div><div class="col-6"></div>                              
-            </div>
-        </div>      
+            </div>            
+        </div>    
+        
+        <div class="row">
+            <div class="col-6">
+                <label>Departamento</label>&nbsp;&nbsp;
+                <select id="cbo-departamento" class="form-control"></select>
+            </div><div class="col-6"></div>
+        </div>    
 
         <div class="row">
             <div class="col-6">
@@ -562,54 +582,7 @@
             </div>
         </div>
 
-        <div class="row mt-2">
-            <div class="col-6">
-                <label>¿Existe un incentivo ecónomico?</label>&nbsp;&nbsp;
-                <input id="rad-inc-si-ve" type="radio" name="rad-inc-ve" value="1" />Si&nbsp;
-                <input id="rad-inc-no-ve" type="radio" name="rad-inc-ve" value="0" />No
-            </div><div class="col-6"></div>            
-        </div>
-
-        <div id="incentivo-ve" class="ml-5">
-            <div class="row">
-                <div class="col-6">
-                    <label>Tipo incentivo</label>&nbsp;&nbsp;
-                    <select id="tipo-incentivo" class="form-control"></select>
-                </div><div class="col-6"></div>                
-            </div>
-
-            <div class="row">
-                <div class="col-6">
-                    <label>Horizonte aplicación</label>&nbsp;&nbsp;
-                    <select id="horizonte" class="form-control"></select>
-                </div><div class="col-6"></div>                
-            </div>
-
-            <div class="row">
-                <div class="col-6">
-                    <label>Cuota incentivo anual</label>&nbsp;&nbsp;(<small>Soles/año</small>)
-                    <input id="cuota-inc-anual" type="text" class="form-control decimal-miles-positivo" value="0" />    
-                </div><div class="col-6"></div>                            
-            </div>
-
-            <div class="row">
-                <div class="col-6">
-                    <label>Forma de incentivo</label>&nbsp;&nbsp;
-                    <select id="forma-incentivo" class="form-control" ></select>
-                </div><div class="col-6"></div>                
-            </div>
-
-            <div class="row">
-                <div class="col-6"></div><div class="col-6"></div>
-                <label>Porcentaje</label>&nbsp;&nbsp;(<small>%</small>)
-                <input id="porcentaje-inc" type="text" class="form-control decimal-miles-positivo" value="0" />                
-            </div>
-            <div class="row">
-                <div class="col-6"></div><div class="col-6"></div>
-                <label>Valor incentivo único</label>&nbsp;&nbsp;(<small>Soles</small>)
-                <input id="valor-inc-unico" type="text" class="form-control decimal-miles-positivo" value="0" />                
-            </div>
-        </div>
+        
 
         <div class="row">
             <div class="col-6">
@@ -676,6 +649,20 @@
 
             <div class="row">
                 <div class="col-6">
+                    <label>Precio cargador</label>&nbsp;&nbsp;(<small>soles</small>)
+                    <input id="precio-cargador" type="text" class="form-control decimal-miles-positivo" value="0" />
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Costo instalación</label>&nbsp;&nbsp;(<small>soles</small>)
+                    <input id="costo-instalacion" type="text" class="form-control decimal-miles-positivo" value="0" />
+                </div><div class="col-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
                     <label>Tarifa eléctrica</label>&nbsp;&nbsp;(<small>Soles/kWh</small>)
                     <input id="tarifa-ve" type="text" class="form-control decimal-miles-positivo" value="0" />
                 </div><div class="col-6"></div>
@@ -686,6 +673,57 @@
                     <label>% aumento anual de electricidad</label>&nbsp;&nbsp;(<small>%</small>)
                     <input id="porc-aual-ve" type="text" class="form-control decimal-miles-positivo" value="0" />
                 </div><div class="col-6"></div>                
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label>¿Existe un incentivo ecónomico?</label>&nbsp;&nbsp;
+                    <input id="rad-inc-si-ve" type="radio" name="rad-inc-ve" value="1" />Si&nbsp;
+                    <input id="rad-inc-no-ve" type="radio" name="rad-inc-ve" value="0" />No
+                </div><div class="col-6"></div>
+            </div>
+
+            <div id="incentivo-ve" class="ml-5">
+                <div class="row">
+                    <div class="col-6">
+                        <label>Tipo incentivo</label>&nbsp;&nbsp;
+                        <select id="tipo-incentivo" class="form-control"></select>
+                    </div><div class="col-6"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label>Horizonte aplicación</label>&nbsp;&nbsp;
+                        <select id="horizonte" class="form-control"></select>
+                    </div><div class="col-6"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label>Cuota incentivo anual</label>&nbsp;&nbsp;(<small>Soles/año</small>)
+                        <input id="cuota-inc-anual" type="text" class="form-control decimal-miles-positivo" value="0" />
+                    </div><div class="col-6"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label>Forma de incentivo</label>&nbsp;&nbsp;
+                        <select id="forma-incentivo" class="form-control"></select>
+                    </div><div class="col-6"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label>Porcentaje</label>&nbsp;&nbsp;(<small>%</small>)
+                        <input id="porcentaje-inc" type="text" class="form-control decimal-miles-positivo" value="0" />
+                    </div><div class="col-6"></div>                    
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Valor incentivo único</label>&nbsp;&nbsp;(<small>Soles</small>)
+                        <input id="valor-inc-unico" type="text" class="form-control decimal-miles-positivo" value="0" />
+                    </div><div class="col-6"></div>                    
+                </div>
             </div>
 
             @*<div class="row">

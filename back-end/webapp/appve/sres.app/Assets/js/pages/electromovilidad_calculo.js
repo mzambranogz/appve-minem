@@ -2,6 +2,7 @@
 var origen_longitud, origen_latitud, destino_longitud, destino_latitud, distancia, nombre_origen, nombre_destino, veces_semana_g; //variable origen (x, y), destino (x,y), distancia, nombre origen, nombre destino
 var directions; //variable mapbox
 var arr_ruta_vc = [], arr_ruta_cvc = [], arr_ruta_ve = [], arr_ruta_t1 = [], arr_ruta_t2 = [], arr_ruta_t3 = [], arr_ruta_t4 = []; // array de rutas VC, CVC, VE, SP
+var arrTransporteMarcar = []
 
 //var arr_ruta_vc_bd = [], arr_ruta_cvc_bd = [], arr_ruta_ve_bd = [], arr_ruta_t1_bd = [], arr_ruta_t2_bd = [], arr_ruta_t3_bd = [], arr_ruta_t4_bd = []; // array de rutas VC, CVC, VE, SP
 var arr_veh_ruta_bd = [];
@@ -35,6 +36,7 @@ $(document).ready(() => {
     $('#btnEva05').on('click', (e) => evaluar5());
     $('input[name="rad-e2"]').on('change', (e) => cambiarPregunta01());
     $('input[name="rad-e1"]').on('change', (e) => cambiarPregunta02());
+    $('input[name="rad-e3"]').on('change', (e) => mostrarTransportes());
     $('input[name="rad-ca-vc"]').on('change', (e) => cambiarCongVC());
     $('input[name="rad-gcs-vc"]').on('change', (e) => cambiarCongGCVC());
     $('input[name="rad-ca-cvc"]').on('change', (e) => cambiarCongCVC());
@@ -257,14 +259,44 @@ $(document).on('change mousedown mousemove', '#seguro-ve', () => {
     $('#valor-seguro-ve').html(formatoMiles($('#seguro-ve').val()));
 });
 
+var mostrarTransportes = () => {
+    if ($('#rad-e3-si').prop('checked')){
+        $('#seccion-02').removeClass('d-none');
+    } else {
+        $('#seccion-02').addClass('d-none');
+        arrTransporteMarcar = []
+        $('[id*="chk-tp-"]').prop('checked', false)
+        $('[id*="tipo-transporte-0"]').val(0)
+        $('[id*="costo-movilidad-0"]').val(0)
+        $('[id*="kilometros-0"]').val(0)
+        $('[id*="meses-0"]').val(0)
+    }
+}
+
 var comenzar = () => {
     let p1 = $('#rad-e1-si').prop('checked') ? true : $('#rad-e1-no').prop('checked') ? true : false; 
     let p2 = $('#rad-e2-si').prop('checked') ? true : $('#rad-e2-no').prop('checked') ? true : false;
     let p3 = $('#rad-e3-si').prop('checked') ? true : $('#rad-e3-no').prop('checked') ? true : false;
     if (!(p1 && p2 && p3)) {alert('Debe seleccionar todas las opciones'); return;}
+
+    if ($('#rad-e3-si').prop('checked')) {
+        let tp = arrTransporteMarcar.length == 0 ? false : true;
+        if (!tp)  {alert('Debe seleccionar al menos un tipo de transporte'); return;}
+        for (var i = 0; i < 4; i++) {
+            if (arrTransporteMarcar.length > i) {
+                $(`#transporte-0${i+1}`).removeClass('d-none');
+                $(`#tipo-transporte-0${i+1}`).val(arrTransporteMarcar[i].ID)
+                $(`#meses-0${i+1}`).val(12)
+            } else {
+                $(`#transporte-0${i+1}`).addClass('d-none');
+                $(`#tipo-transporte-0${i+1}`).val(0)
+            }
+        }
+    }    
+
     $('#seccion-01').addClass('d-none');
-    if ($('#rad-e3-si').prop('checked')) $('#seccion-02').removeClass('d-none');
-    else if ($('#rad-e1-si').prop('checked')) $('#seccion-03').removeClass('d-none');
+    //if ($('#rad-e3-si').prop('checked')) $('#seccion-02').removeClass('d-none');
+    if ($('#rad-e1-si').prop('checked')) $('#seccion-03').removeClass('d-none');
     else if ($('#rad-e2-si').prop('checked')) $('#seccion-04').removeClass('d-none');
     else if ($('#rad-e3-si').prop('checked')) $('#seccion-05').removeClass('d-none');
     else $('#seccion-06').removeClass('d-none');
@@ -276,23 +308,35 @@ var regresar1 = () => {
 }
 
 var siguiente1 = () => {
-    let tp1 = $('#servicio-01').val() == 0 ? false : true;
-    let tp2 = $('#servicio-02').val() == 0 ? false : true;
-    let tp3 = $('#servicio-03').val() == 0 ? false : true;
-    let tp4 = $('#servicio-04').val() == 0 ? false : true;
-    if (!(tp1 || tp2 || tp3 || tp4))  {alert('Debe seleccionar al menos un tipo de transporte'); return;}
-    if ($('#servicio-01').val() > 0) $('#transporte-01').removeClass('d-none');
-    else $('#transporte-01').addClass('d-none');
-    if ($('#servicio-02').val() > 0) $('#transporte-02').removeClass('d-none');
-    else $('#transporte-02').addClass('d-none');
-    if ($('#servicio-03').val() > 0) $('#transporte-03').removeClass('d-none');
-    else $('#transporte-03').addClass('d-none');
-    if ($('#servicio-04').val() > 0) $('#transporte-04').removeClass('d-none');
-    else $('#transporte-04').addClass('d-none');
-    $('#tipo-transporte-01').val($('#servicio-01').val() == null ? 0 : $('#servicio-01').val());
-    $('#tipo-transporte-02').val($('#servicio-02').val() == null ? 0 : $('#servicio-02').val());
-    $('#tipo-transporte-03').val($('#servicio-03').val() == null ? 0 : $('#servicio-03').val());
-    $('#tipo-transporte-04').val($('#servicio-04').val() == null ? 0 : $('#servicio-04').val());
+    //let tp1 = $('#servicio-01').val() == 0 ? false : true;
+    //let tp2 = $('#servicio-02').val() == 0 ? false : true;
+    //let tp3 = $('#servicio-03').val() == 0 ? false : true;
+    //let tp4 = $('#servicio-04').val() == 0 ? false : true;
+    //if (!(tp1 || tp2 || tp3 || tp4))  {alert('Debe seleccionar al menos un tipo de transporte'); return;}
+    //if ($('#servicio-01').val() > 0) $('#transporte-01').removeClass('d-none');
+    //else $('#transporte-01').addClass('d-none');
+    //if ($('#servicio-02').val() > 0) $('#transporte-02').removeClass('d-none');
+    //else $('#transporte-02').addClass('d-none');
+    //if ($('#servicio-03').val() > 0) $('#transporte-03').removeClass('d-none');
+    //else $('#transporte-03').addClass('d-none');
+    //if ($('#servicio-04').val() > 0) $('#transporte-04').removeClass('d-none');
+    //else $('#transporte-04').addClass('d-none');
+    //$('#tipo-transporte-01').val($('#servicio-01').val() == null ? 0 : $('#servicio-01').val());
+    //$('#tipo-transporte-02').val($('#servicio-02').val() == null ? 0 : $('#servicio-02').val());
+    //$('#tipo-transporte-03').val($('#servicio-03').val() == null ? 0 : $('#servicio-03').val());
+    //$('#tipo-transporte-04').val($('#servicio-04').val() == null ? 0 : $('#servicio-04').val());
+
+    let tp = arrTransporteMarcar.length == 0 ? false : true;
+    if (!tp)  {alert('Debe seleccionar al menos un tipo de transporte'); return;}
+    for (var i = 0; i < 4; i++) {
+        if (arrTransporteMarcar.length > i) {
+            $(`#transporte-0${i+1}`).removeClass('d-none');
+            $(`#tipo-transporte-0${i+1}`).val(arrTransporteMarcar[i].ID)
+        } else {
+            $(`#transporte-0${i+1}`).addClass('d-none');
+            $(`#tipo-transporte-0${i+1}`).val(0)
+        }
+    }
 
     $('#seccion-02').addClass('d-none');
     if ($('#rad-e1-si').prop('checked')) $('#seccion-03').removeClass('d-none');
@@ -390,15 +434,21 @@ var regresar4 = () => {
     $('#seccion-05').addClass('d-none');
     if ($('#rad-e2-si').prop('checked')) $('#seccion-04').removeClass('d-none');
     else if ($('#rad-e1-si').prop('checked')) $('#seccion-03').removeClass('d-none');
-    else if ($('#rad-e3-si').prop('checked')) $('#seccion-02').removeClass('d-none');
+    //else if ($('#rad-e3-si').prop('checked')) $('#seccion-02').removeClass('d-none');
+    else if ($('#rad-e3-si').prop('checked')) $('#seccion-01').removeClass('d-none');
     else $('#seccion-01').removeClass('d-none');
 }
 
 var siguiente4 = () => {
-    let tp1 = $('#servicio-01').val() == 0 ? true : validar('#costo-movilidad-01') && validar('#kilometros-01') && $('#meses-01').val() > 0 ? true : false;
-    let tp2 = $('#servicio-02').val() == 0 ? true : validar('#costo-movilidad-02') && validar('#kilometros-02') && $('#meses-02').val() > 0 ? true : false;
-    let tp3 = $('#servicio-03').val() == 0 ? true : validar('#costo-movilidad-03') && validar('#kilometros-03') && $('#meses-03').val() > 0 ? true : false;
-    let tp4 = $('#servicio-04').val() == 0 ? true : validar('#costo-movilidad-04') && validar('#kilometros-04') && $('#meses-04').val() > 0 ? true : false;
+    //let tp1 = $('#servicio-01').val() == 0 ? true : validar('#costo-movilidad-01') && validar('#kilometros-01') && $('#meses-01').val() > 0 ? true : false;
+    //let tp2 = $('#servicio-02').val() == 0 ? true : validar('#costo-movilidad-02') && validar('#kilometros-02') && $('#meses-02').val() > 0 ? true : false;
+    //let tp3 = $('#servicio-03').val() == 0 ? true : validar('#costo-movilidad-03') && validar('#kilometros-03') && $('#meses-03').val() > 0 ? true : false;
+    //let tp4 = $('#servicio-04').val() == 0 ? true : validar('#costo-movilidad-04') && validar('#kilometros-04') && $('#meses-04').val() > 0 ? true : false;
+
+    let tp1 = $('#tipo-transporte-01').val() == 0 ? true : validar('#costo-movilidad-01') && validar('#kilometros-01') && $('#meses-01').val() > 0 ? true : false;
+    let tp2 = $('#tipo-transporte-02').val() == 0 ? true : validar('#costo-movilidad-02') && validar('#kilometros-02') && $('#meses-02').val() > 0 ? true : false;
+    let tp3 = $('#tipo-transporte-03').val() == 0 ? true : validar('#costo-movilidad-03') && validar('#kilometros-03') && $('#meses-03').val() > 0 ? true : false;
+    let tp4 = $('#tipo-transporte-04').val() == 0 ? true : validar('#costo-movilidad-04') && validar('#kilometros-04') && $('#meses-04').val() > 0 ? true : false;
     if (!(tp1 && tp2 && tp3 && tp4)) alert('Debe completar todos los campos');
 
     $('#seccion-05').addClass('d-none');
@@ -755,8 +805,8 @@ var cambiarTC = () => {
         $('#cbo-potencia').removeClass('d-none');
         $('#txt-potencia').addClass('d-none');
     }
-    $('#precio-cargador').val('');
-    $('#costo-instalacion').val('');
+    $('#precio-cargador').val('0');
+    $('#costo-instalacion').val('0');
 }
 
 //end_points //Sexto
@@ -993,11 +1043,20 @@ var cargarComponentes = () => {
 
 var cargarListas = ([listaTipoTransporte, listaTipoCombustible, listaTipoVehiculoConvencional, listaTipoVehiculoElectrico, listaModeloVehiculoElectrico, listaTipoCargador, listaCargadorPotencia, listaDepartamento, listaVehiculoRuta]) => {
     let option = '<option value="0">seleccione</option>';
+    let checktt = listaTipoTransporte.length == 0 ? '' : listaTipoTransporte.map((x, y) => {
+        let col2 = `<div class="col-1"><input class="form-control chk-marcar" type="checkbox" id="chk-tp-${x.ID_TIPO_TRANSPORTE}"></div>`
+        let col1 = `<div class="col-5"><i class="fas fa-car"></i>&nbsp;<label for="chk-tp-${x.ID_TIPO_TRANSPORTE}">&nbsp;${x.NOMBRE}</label></div>`;
+        let row = `<div class="row">${col1}${col2}</div>`
+        return row
+    }).join('');
+    $('#transporte-publico-chk').html(checktt)
+    //let opcionestt = listaTipoTransporte.length == 0 ? '' : listaTipoTransporte.map(x => `<option value="${x.ID_TIPO_TRANSPORTE}">${x.NOMBRE}</option>`).join('');
+    //$(`#servicio-01`).html(`${option}${opcionestt}`);
+    //$(`#servicio-02`).html(`${option}${opcionestt}`);
+    //$(`#servicio-03`).html(`${option}${opcionestt}`);
+    //$(`#servicio-04`).html(`${option}${opcionestt}`);
+
     let opcionestt = listaTipoTransporte.length == 0 ? '' : listaTipoTransporte.map(x => `<option value="${x.ID_TIPO_TRANSPORTE}">${x.NOMBRE}</option>`).join('');
-    $(`#servicio-01`).html(`${option}${opcionestt}`);
-    $(`#servicio-02`).html(`${option}${opcionestt}`);
-    $(`#servicio-03`).html(`${option}${opcionestt}`);
-    $(`#servicio-04`).html(`${option}${opcionestt}`);
     $(`#tipo-transporte-01`).html(`${option}${opcionestt}`);
     $(`#tipo-transporte-02`).html(`${option}${opcionestt}`);
     $(`#tipo-transporte-03`).html(`${option}${opcionestt}`);
@@ -1127,7 +1186,8 @@ var evaluar = () => {
     }
 
     if (p3 == '1'){
-        if ($('#servicio-01').val() > 0){
+        //if ($('#servicio-01').val() > 0){
+        if ($('#tipo-transporte-01').val() > 0){
             let r = {
                 ID_TIPO_TRANSPORTE: $('#tipo-transporte-01').val(),
                 COSTO_MOVILIDAD: $('#costo-movilidad-01').val().replace(/,/gi, ''),
@@ -1136,7 +1196,8 @@ var evaluar = () => {
             }
             lista_servicio_publico.push(r);
         }
-        if ($('#servicio-02').val() > 0){
+        //if ($('#servicio-02').val() > 0){
+        if ($('#tipo-transporte-02').val() > 0){
             let r = {
                 ID_TIPO_TRANSPORTE: $('#tipo-transporte-02').val(),
                 COSTO_MOVILIDAD: $('#costo-movilidad-02').val().replace(/,/gi, ''),
@@ -1145,7 +1206,8 @@ var evaluar = () => {
             }
             lista_servicio_publico.push(r);
         }
-        if ($('#servicio-03').val() > 0){
+        //if ($('#servicio-03').val() > 0){
+        if ($('#tipo-transporte-03').val() > 0){
             let r = {
                 ID_TIPO_TRANSPORTE: $('#tipo-transporte-03').val(),
                 COSTO_MOVILIDAD: $('#costo-movilidad-03').val().replace(/,/gi, ''),
@@ -1154,7 +1216,8 @@ var evaluar = () => {
             }
             lista_servicio_publico.push(r);
         }
-        if ($('#servicio-04').val() > 0){
+        //if ($('#servicio-04').val() > 0){
+        if ($('#tipo-transporte-04').val() > 0){
             let r = {
                 ID_TIPO_TRANSPORTE: $('#tipo-transporte-04').val(),
                 COSTO_MOVILIDAD: $('#costo-movilidad-04').val().replace(/,/gi, ''),
@@ -1284,8 +1347,8 @@ var evaluar = () => {
     let datal = data_l;
     let initl = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datal) };
 
-    let urlvcce = `${baseUrl}api/calculo/calcularconsumoenergeticoconvencional`;
-    //let urlvcce = `${baseUrlApi}api/calculo/calcularconsumoenergeticoconvencional`;
+    //let urlvcce = `${baseUrl}api/calculo/calcularconsumoenergeticoconvencional`;
+    let urlvcce = `${baseUrlApi}api/calculo/calcularconsumoenergeticoconvencional`;
     let datavcce = data_ce_vc;
     let initvcce = { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(datavcce) };
 
@@ -2762,10 +2825,11 @@ var nuevoCalculo = () => {
 }
 
 var limpiarTP = () => {
-    $('#servicio-01').val(0);
-    $('#servicio-02').val(0);
-    $('#servicio-03').val(0);
-    $('#servicio-04').val(0);
+    //$('#servicio-01').val(0);
+    //$('#servicio-02').val(0);
+    //$('#servicio-03').val(0);
+    //$('#servicio-04').val(0);
+    arrTransporteMarcar = []
     $('#tipo-transporte-01').val(0);
     $('#tipo-transporte-02').val(0);
     $('#tipo-transporte-03').val(0);
@@ -2884,4 +2948,32 @@ $(document).on('click', '.viewGrafico', (e) => {
     let grafico = $(`#${id}_G`)[0].className.indexOf("d-none")
     if (grafico != -1) $(`#${id}_G`).removeClass('d-none')
     else $(`#${id}_G`).addClass('d-none')
+})
+
+$(document).on('change', '.chk-marcar', (e) => {
+    //alert('hi')
+
+    let id = e.currentTarget.id.replace('chk-tp-','')
+    let estado = $(`#chk-tp-${id}`).prop('checked')
+
+    if (estado) {
+        if (arrTransporteMarcar.length < 4){
+            arrTransporteMarcar = []
+            $('[id*="chk-tp-"]').each((x, y) => {
+                if ($(y).prop('checked'))
+                    arrTransporteMarcar.push({ ID: $(y).attr("id").replace('chk-tp-','') })
+            })
+        } else
+            $(`#chk-tp-${id}`).prop('checked', false)
+    } else {
+        let v = arrTransporteMarcar.findIndex(x => { return x.ID == id })
+        if (v > -1) {
+            arrTransporteMarcar = []
+            $('[id*="chk-tp-"]').each((x, y) => {
+                if ($(y).prop('checked'))
+                    arrTransporteMarcar.push({ ID: $(y).attr("id").replace('chk-tp-','') })
+            })
+        }
+    }
+    
 })
