@@ -5,6 +5,12 @@
     ViewBag.SRESDescription = false;
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
 }
+
+@section scripts_header{
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css" />
+}
+
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
     <script src="@Url.Content("~/Assets/js/pages/electromovilidad_estacionmapa.js")"></script> 

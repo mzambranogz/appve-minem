@@ -1209,12 +1209,12 @@ namespace sres.ln
                     }
                     else if (tipoveh == 3)
                     {
-                        fe = ((1 / ((Convert.ToDecimal(99) / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = ((1 / ((rendimiento / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
                         fe = (fe - fe * gasohol) / 1000;
                     }
                     else if (tipoveh == 4)
                     {
-                        fe = ((1 / ((Convert.ToDecimal(129.6) / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                        fe = ((1 / ((rendimiento / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
                         fe = (fe - fe * gasohol) / 1000;
                     }
                 }
@@ -1241,13 +1241,17 @@ namespace sres.ln
                         fe = ((1 / ((rendimiento / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
                         fe = fe / 1000;
                     }
-                    else if (tipoveh == 3)
+                    else if (tipoveh == 3 || tipoveh == 4)
                     {
-                        fe = Convert.ToDecimal(0.07);
-                    }
-                    else if (tipoveh == 4)
-                    {
-                        fe = Convert.ToDecimal(0.054);
+                        if (valor1 == 4)
+                        {
+                            fe = ((1 / ((rendimiento / poder_calorico / 1000) * 1000)) * (co2 + ch4 * ch4ar2 + n2o * n2oar2)) * 1000;
+                            fe = fe / 1000;
+                        }
+                        else
+                        {
+                            fe = 0;
+                        }                        
                     }
                 }
 

@@ -41,6 +41,22 @@ var mapa = () => {
         zoom: 7
     });
 
+    geocoder = new MapboxGeocoder({
+        // Initialize the geocoder
+        accessToken: mapboxgl.accessToken, // Set the access token
+        mapboxgl: mapboxgl, // Set the mapbox-gl instance
+        marker: false, // Do not use the default marker style
+        placeholder: 'Buscar ubicación', // Placeholder text for the search bar
+        bbox: [-81.33531256420639, -18.35532317840149, -68.64771000999576, -0.03322135965653], // Boundary for Berkeley
+        proximity: {
+            longitude: -77.04013282606473,
+            latitude: -12.0613481350845
+        } // Coordinates of UC Berkeley
+    });
+
+    // Add the geocoder to the map
+    map.addControl(geocoder);
+
     potencia = $('#txt-potencia').val().replace(/,/gi, '')
     potencia = potencia == "" ? 0 : potencia
     modo_carga = $('#txt-modo-carga').val()
@@ -69,6 +85,35 @@ var mapa = () => {
         trackUserLocation: true
     }));
 
+    var nuevoCSS = { "width": '1500px' };
+    $('.mapboxgl-ctrl-top-right').css(nuevoCSS);
+    $('.mapboxgl-ctrl-geocoder--input').addClass('text-right')
+
+    map.on('load', function () {
+        map.addSource('single-point', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': []
+            }
+        });
+
+        map.addLayer({
+            'id': 'point',
+            'source': 'single-point',
+            'type': 'circle',
+            'paint': {
+                'circle-radius': 10,
+                'circle-color': '#448ee4'
+            }
+        });
+
+        // Listen for the `result` event from the Geocoder // `result` event is triggered when a user makes a selection
+        //  Add a marker at the result's coordinates
+        geocoder.on('result', function (e) {
+            map.getSource('single-point').setData(e.result.geometry);
+        });
+    });
 
     //this.geolocation.getCurrentPosition().then((resp) => {
     //    console.log(resp);
@@ -79,9 +124,9 @@ var mapa = () => {
     //    console.log('Error getting location', error);
     //});
 
-    map.on('mousemove', function (e) {
-        document.getElementById('coordenadas').innerHTML = JSON.stringify(e.lngLat);
-    });
+    //map.on('mousemove', function (e) {
+    //    document.getElementById('coordenadas').innerHTML = JSON.stringify(e.lngLat);
+    //});
 
     $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
     $('.mapboxgl-ctrl-bottom-left').addClass('d-none');

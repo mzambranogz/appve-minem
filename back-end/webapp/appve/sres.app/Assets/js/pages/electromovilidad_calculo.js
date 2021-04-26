@@ -117,7 +117,20 @@ var mapa = () => {
     directions = new MapboxDirections({
         accessToken: mapboxgl.accessToken,
         unit: 'metric',
-        profile: 'mapbox/driving'
+        profile: 'mapbox/driving',
+        //alternatives: true, //aparecen las opciones de llegar al destino
+        compile: function(c){
+            console.log(c)
+        },
+        controls: {
+            profileSwitcher: false
+        },
+        geocoder: {
+            //language: "es",
+            bbox: [-81.33531256420639, -18.35532317840149, -68.64771000999576, -0.03322135965653],
+        },
+        placeholderDestination: "Escoge una ubicación de destino",
+        placeholderOrigin: "Escoge una ubicación de origen"
     });
 
     map.addControl(directions, 'top-left');
@@ -127,11 +140,13 @@ var mapa = () => {
         let tm = e.route[0].legs[0].steps.length == 0 ? 0 : e.route[0].legs[0].steps.length - 1;
         nombre_origen = e.route[0].legs[0].steps[0].name;
         nombre_destino = e.route[0].legs[0].steps[tm].name;
+        $('.mapbox-directions-route-summary').html(`<h1>Distancia:</h1>&nbsp;<h1>${Math.round((parseFloat(distancia)/1000)*100)/100} km</h1>`)
         //console.log(e.route[0].distance); // Logs the current route shown in the interface.
     });
 
     $('.mapboxgl-ctrl-bottom-right').addClass('d-none');
     $('.mapboxgl-ctrl-bottom-left').addClass('d-none');
+    $('#seccion-mapa').addClass('d-none')
 }
 
 var getCoordenadas = () => {
