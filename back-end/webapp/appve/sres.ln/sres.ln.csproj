@@ -57,7 +57,9 @@
     <Compile Include="EstacionCargaLN.cs" />
     <Compile Include="FactorLN.cs" />
     <Compile Include="FormulaLN.cs" />
+    <Compile Include="ModoCargaLN.cs" />
     <Compile Include="ParametroLN.cs" />
+    <Compile Include="PotenciaLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReporteLN.cs" />
     <Compile Include="RolLN.cs" />

@@ -67,7 +67,9 @@
     <Compile Include="FactorDA.cs" />
     <Compile Include="FormulaDA.cs" />
     <Compile Include="InstitucionDA.cs" />
+    <Compile Include="ModoCargaDA.cs" />
     <Compile Include="ParametroDA.cs" />
+    <Compile Include="PotenciaDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReporteDA.cs" />
     <Compile Include="RolDA.cs" />

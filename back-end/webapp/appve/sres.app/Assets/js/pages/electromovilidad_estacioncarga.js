@@ -15,8 +15,39 @@ $(document).ready(() => {
     $('#btnGuardarU').on('click', guardarUbicacion);
     $('#btnCerrarU').on('click', cerrarUbicacion);
     //mapa();
-    inicio();
+    //inicio();
+    cargarComponentes()
 });
+
+//3 end point prioridad 
+var cargarComponentes = () => {
+    let urlConsultarPotencia = `${baseUrl}api/potencia/obtenerallpotencia`; 
+    let urlConsultarTipoConector = `${baseUrl}api/tipoconector/obteneralltipoconector`;
+    let urlConsultarModoCargar = `${baseUrl}api/modocarga/obtenerallmodocarga`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
+
+    Promise.all([
+        fetch(urlConsultarPotencia, init),
+        fetch(urlConsultarTipoConector, init),
+        fetch(urlConsultarModoCargar, init),
+    ])
+    .then(r => Promise.all(r.map(v => v.json())))
+    .then(cargarListas);
+}
+
+var cargarListas = ([listaPotencia, listaTipoConector, listaModoCarga]) => {
+    let option = '<option value="0">seleccione</option>';
+    let opcionesp = listaPotencia.length == 0 ? '' : listaPotencia.map(x => `<option value="${x.ID_POTENCIA}">${x.NOMBRE}</option>`).join('');
+    $(`#cbo-potencia`).html(`${option}${opcionesp}`);
+
+    let opcionestc = listaTipoConector.length == 0 ? '' : listaTipoConector.map(x => `<option value="${x.ID_TIPO_CONECTOR}">${x.NOMBRE}</option>`).join('');
+    $(`#cbo-tipo-conector`).html(`${option}${opcionestc}`);
+
+    let opcionesmc = listaModoCarga.length == 0 ? '' : listaModoCarga.map(x => `<option value="${x.ID_MODO_CARGA}">${x.NOMBRE}</option>`).join('');
+    $(`#cbo-modo-carga`).html(`${option}${opcionesmc}`);
+
+    inicio();
+}
 
 var inicio = () => {
     if (idinstitucion == 0) $('#seccion-empresa').removeClass('d-none');

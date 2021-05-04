@@ -257,84 +257,233 @@ var cargarMarker = (data) => {
             console.log(`nuevo end point estacion: ${x.ID_ESTACION}`);
             color_estado = x.ID_ESTADO == 1 ? "#FF5733" : "#3C53B0";
             var m = new mapboxgl.Marker({
-                //color: "#FF5733",
                 color: color_estado,
                 draggable: false
             })
             m.setLngLat([x.LONGITUD, x.LATITUD]);            
-            
-            let html = `<div class="row mt-2" id="img-${x.ID_ESTACION}"></div>`;
 
-            var popup = new mapboxgl.Popup(
-	            //{ offset: [28,0] }
-            ).setHTML(html);
-
-            popup.on('open', function () {
+            m.getElement().addEventListener('click', () => {
+                //alert("Clicked");
                 $(`#img-${x.ID_ESTACION}`).html(``);
                 let v = arrMarkers.find(z => { return z.ID_ESTACION == x.ID_ESTACION; }) == undefined ? false : true;
                 if (v) {
                     let obj = arrMarkers.find(z => { return z.ID_ESTACION == x.ID_ESTACION; });
                     cargarArrMarker(obj);
                 } else {
-                    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`; //prioridad 27
-                    //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`;
-                    //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionmovil?idestacion=${x.ID_ESTACION}`; //para movil prioridad 29
-                    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`; // para web prioridad 30
+                    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`;
                     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
                     fetch(urlConsultarEstacion, init)
                     .then(v => v.json())
                     .then(x => {
-                        let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
-                        let direccion = `<span>${x.DIRECCION}</span><br />`;
-                        let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
-                        let titulo = `<h4>${x.NOMBRE_INSTITUCION}</h4>`;
-                        let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
+                        let titulo = `<div class="row"><div class="col-sm-12 col-md-12 col-lg-12 text-center"><h3 class="estilo-02 mb-3" style="color: brown;">Descripción de la estación de carga eléctrica</h3></div> </div>`
+
+                        let img = x.ID_ESTADO == 2 ? `icon-marker-estacion-habilitada.svg` : `icon-marker-estacion-deshabilitada.svg`
+                        let img_icono = `<div class="row"><div class="col-12 text-center mb-3"><img src="${baseUrl}Assets/images/${img}")" class="img-fluid" /></div></div>`
+                        
+                        let estado = x.ID_ESTADO == 2 ? 'Estación aprobada' : 'Estación por aprobar'
+                        let estado_estacion = `<div class="row"><div class="col-sm-12 col-md-12 col-lg-12 text-center"><h5 class="estilo-01 mb-3" style="color: blue;">${estado}</h5></div></div>`
+
+                        let seccion_direccion = `<div class="row">`;
+                        seccion_direccion += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Dirección</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DIRECCION}</span></div></div></div>`;                       
+                        seccion_direccion += `<div class="col-12"><hr /></div></div>`;
+
+                        let seccion_modelo_marca = `<div class="row">`;
+                        seccion_modelo_marca += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Marca</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MARCA}</span></div></div></div>`;
+                        seccion_modelo_marca += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modelo</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODELO}</span></div></div></div>`;                        
+                        seccion_modelo_marca += `<div class="col-12"><hr /></div></div>`;
 
                         let imagenes = '';
                         if (x.LISTA_IMAGEN != null) {
                             for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
-                                //imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
                                 imagenes += `<a class="example-image-link" href="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
                             }
                         }
 
-                        let contentImg = `<div class="col-12">${imagenes}</div>`;
+                        let seccion_fotos = `<div class="row">`;
+                        seccion_fotos += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Fotos</span></div></div><div class="row"><div class="col-12"><span style="color: brown;">${imagenes}</span></div></div></div>`;
+                        seccion_fotos += `<div class="col-12"><hr /></div></div>`;
 
-                        $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
+                        let seccion_potencia_modo_carga = `<div class="row">`;
+                        seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
+                        seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+                        seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
+
+                        let seccion_tipo_cargador_conector = `<div class="row">`;
+                        seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de cargador</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CARGADOR}</span></div></div></div>`;
+                        seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+                        seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
+
+                        let seccion_cantidad_tarifa = `<div class="row">`;
+                        seccion_cantidad_tarifa += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_CONECTOR}</span></div></div></div>`;
+                        seccion_cantidad_tarifa += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tarifa de servicio</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TARIFA_SERVICIO}</span></div></div></div>`;
+                        seccion_cantidad_tarifa += `<div class="col-12"><hr /></div></div>`;
+
+                        let hora_desde_hasta = `<div class="row">`;
+                        hora_desde_hasta += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Horario desde</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.HORA_DESDE}</span></div></div></div>`;
+                        hora_desde_hasta += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Horario hasta</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.HORA_HASTA}</span></div></div></div>`;
+                        hora_desde_hasta += `<div class="col-12"><hr /></div></div>`;
+
+                        let seccion_descripcion = `<div class="row">`;
+                        seccion_descripcion += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Descripción</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DESCRIPCION}</span></div></div></div>`;
+                        seccion_descripcion += `</div>`;
+
+                        $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_potencia_modo_carga}${seccion_tipo_cargador_conector}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
                         arrMarkers.push(x);
                     });
-                    
+
                     console.log('popup was opened' + x.ID_ESTACION);
                 }
 
-                
+                $('#modal-estacion').modal('show')
             });
 
-            m.setPopup(popup);
             m.addTo(map);
-            currentMarkers.push(m); //add
-            //m.togglePopup();
+            currentMarkers.push(m);
         });
     }    
 }
 
+//var cargarMarker = (data) => {
+//    if (data == null) return;
+//    if (data.length > 0) {
+//        data.map((x, y) => {
+//            console.log(`nuevo end point estacion: ${x.ID_ESTACION}`);
+//            color_estado = x.ID_ESTADO == 1 ? "#FF5733" : "#3C53B0";
+//            var m = new mapboxgl.Marker({
+//                //color: "#FF5733",
+//                color: color_estado,
+//                draggable: false
+//            })
+//            m.setLngLat([x.LONGITUD, x.LATITUD]);
+
+//            let html = `<div class="row mt-2" id="img-${x.ID_ESTACION}"></div>`;
+
+//            var popup = new mapboxgl.Popup(
+//                //{ offset: [28,0] }
+//            ).setHTML(html);
+
+//            popup.on('open', function () {
+//            $(`#img-${x.ID_ESTACION}`).html(``);
+//            let v = arrMarkers.find(z => { return z.ID_ESTACION == x.ID_ESTACION; }) == undefined ? false : true;
+//            if (v) {
+//                let obj = arrMarkers.find(z => { return z.ID_ESTACION == x.ID_ESTACION; });
+//                cargarArrMarker(obj);
+//            } else {
+//                //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`; //prioridad 27
+//                //let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacion?idestacion=${x.ID_ESTACION}`;
+//                //let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionmovil?idestacion=${x.ID_ESTACION}`; //para movil prioridad 29
+//                let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`; // para web prioridad 30
+//                let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+//                fetch(urlConsultarEstacion, init)
+//                .then(v => v.json())
+//                .then(x => {
+//                    let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
+//                    let direccion = `<span>${x.DIRECCION}</span><br />`;
+//                    let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
+//                    let titulo = `<h4>${x.NOMBRE_INSTITUCION}</h4>`;
+//                    let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
+
+//                    let imagenes = '';
+//                    if (x.LISTA_IMAGEN != null) {
+//                        for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
+//                            imagenes += `<a class="example-image-link" href="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+//                        }
+//                    }
+
+//                    let contentImg = `<div class="col-12">${imagenes}</div>`;
+
+//                    $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
+//                    arrMarkers.push(x);
+//                });
+
+//                console.log('popup was opened' + x.ID_ESTACION);
+//            }
+
+//            });
+
+//            m.setPopup(popup);
+//            m.addTo(map);
+//            currentMarkers.push(m); //add
+//            //m.togglePopup(); //abre el popup al iniciar
+//        });
+//    }
+//}
+
+//var cargarArrMarker = (x) => {
+//    let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
+//    let direccion = `<span>${x.DIRECCION}</span><br />`;
+//    let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
+//    let titulo = `<h4>${x.NOMBRE_INSTITUCION}</h4>`;
+//    let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
+
+//    let imagenes = '';
+//    if (x.LISTA_IMAGEN != null) {
+//        for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
+//            //imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+//            imagenes += `<a class="example-image-link" href="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
+//        }
+//    }
+
+//    let contentImg = `<div class="col-12">${imagenes}</div>`;
+
+//    $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
+//}
+
 var cargarArrMarker = (x) => {
-    let horario = `<span>Abierto desde ${x.HORA_DESDE} a.m. hasta las ${x.HORA_HASTA} p.m.</span>`;
-    let direccion = `<span>${x.DIRECCION}</span><br />`;
-    let descripcion = `<span>${x.DESCRIPCION}</span><br />`;
-    let titulo = `<h4>${x.NOMBRE_INSTITUCION}</h4>`;
-    let content = `<div class="col-12">${titulo}${descripcion}${direccion}${horario}</div>`;
+    let titulo = `<div class="row"><div class="col-sm-12 col-md-12 col-lg-12 text-center"><h3 class="estilo-02 mb-3" style="color: brown;">Descripción de la estación de carga eléctrica</h3></div> </div>`
+
+    let img = x.ID_ESTADO == 2 ? `icon-marker-estacion-habilitada.svg` : `icon-marker-estacion-deshabilitada.svg`
+    let img_icono = `<div class="row"><div class="col-12 text-center mb-3"><img src="${baseUrl}Assets/images/${img}")" class="img-fluid" /></div></div>`
+
+    let estado = x.ID_ESTADO == 2 ? 'Estación aprobada' : 'Estación por aprobar'
+    let estado_estacion = `<div class="row"><div class="col-sm-12 col-md-12 col-lg-12 text-center"><h5 class="estilo-01 mb-3" style="color: blue;">${estado}</h5></div></div>`
+
+    let seccion_direccion = `<div class="row">`;
+    seccion_direccion += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Dirección</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DIRECCION}</span></div></div></div>`;
+    seccion_direccion += `<div class="col-12"><hr /></div></div>`;
+
+    let seccion_modelo_marca = `<div class="row">`;
+    seccion_modelo_marca += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Marca</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MARCA}</span></div></div></div>`;
+    seccion_modelo_marca += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modelo</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODELO}</span></div></div></div>`;
+    seccion_modelo_marca += `<div class="col-12"><hr /></div></div>`;
 
     let imagenes = '';
     if (x.LISTA_IMAGEN != null) {
         for (var i = 0; i < x.LISTA_IMAGEN.length; i++) {
-            //imagenes += `<a class="example-image-link" href="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrl}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
             imagenes += `<a class="example-image-link" href="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" data-lightbox="example-set" data-title=""><img class="example-image img-fluid" width="20%" height="30%" src="${baseUrlApi}${x.LISTA_IMAGEN[i].RUTA}" alt="" /></a>`;
         }
     }
 
-    let contentImg = `<div class="col-12">${imagenes}</div>`;
+    let seccion_fotos = `<div class="row">`;
+    seccion_fotos += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Fotos</span></div></div><div class="row"><div class="col-12"><span style="color: brown;">${imagenes}</span></div></div></div>`;
+    seccion_fotos += `<div class="col-12"><hr /></div></div>`;
 
-    $(`#img-${x.ID_ESTACION}`).html(`${content}${contentImg}`);
+    let seccion_potencia_modo_carga = `<div class="row">`;
+    seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
+    seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+    seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
+
+    let seccion_tipo_cargador_conector = `<div class="row">`;
+    seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de cargador</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CARGADOR}</span></div></div></div>`;
+    seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+    seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
+
+    let seccion_cantidad_tarifa = `<div class="row">`;
+    seccion_cantidad_tarifa += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_CONECTOR}</span></div></div></div>`;
+    seccion_cantidad_tarifa += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tarifa de servicio</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TARIFA_SERVICIO}</span></div></div></div>`;
+    seccion_cantidad_tarifa += `<div class="col-12"><hr /></div></div>`;
+
+    let hora_desde_hasta = `<div class="row">`;
+    hora_desde_hasta += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Horario desde</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.HORA_DESDE}</span></div></div></div>`;
+    hora_desde_hasta += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Horario hasta</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.HORA_HASTA}</span></div></div></div>`;
+    hora_desde_hasta += `<div class="col-12"><hr /></div></div>`;
+
+    let seccion_descripcion = `<div class="row">`;
+    seccion_descripcion += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Descripción</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DESCRIPCION}</span></div></div></div>`;
+    seccion_descripcion += `</div>`;
+
+    $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_potencia_modo_carga}${seccion_tipo_cargador_conector}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
+    $('#modal-estacion').modal('show')
 }

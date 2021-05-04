@@ -204,6 +204,9 @@
     <Content Include="Assets\images\home-icon-carro-inicio.svg" />
     <Content Include="Assets\images\home-icon-estaciones-carga.svg" />
     <Content Include="Assets\images\home-icon-mapa-estaciones.svg" />
+    <Content Include="Assets\images\icon-marker-estacion-deshabilitada.svg" />
+    <Content Include="Assets\images\icon-marker-estacion-habilitada.svg" />
+    <Content Include="Assets\images\icon-tab-manual.svg" />
     <Content Include="Assets\images\img-p1.png" />
     <Content Include="Assets\images\img-p2.png" />
     <Content Include="Assets\images\loading.gif" />
@@ -328,10 +331,13 @@
     <Compile Include="Controllers\Api\EstacionCargaController.cs" />
     <Compile Include="Controllers\Api\FactorController.cs" />
     <Compile Include="Controllers\Api\FormulaController.cs" />
+    <Compile Include="Controllers\Api\ModoCargaController.cs" />
     <Compile Include="Controllers\Api\ParametroController.cs" />
+    <Compile Include="Controllers\Api\PotenciaController.cs" />
     <Compile Include="Controllers\Api\RolController.cs" />
     <Compile Include="Controllers\Api\TipoCargadorController.cs" />
     <Compile Include="Controllers\Api\TipoCombustibleController.cs" />
+    <Compile Include="Controllers\Api\TipoConectorController.cs" />
     <Compile Include="Controllers\Api\TipoTransporteController.cs" />
     <Compile Include="Controllers\Api\TipoVehiculoConvencionalController.cs" />
     <Compile Include="Controllers\Api\TipoVehiculoElectricoController.cs" />

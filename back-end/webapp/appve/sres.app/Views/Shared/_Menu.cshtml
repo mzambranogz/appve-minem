@@ -35,6 +35,7 @@
                             <li class="nav-item btn barra barra-categoria"><a class="nav-link wow slideInUp" href="@Url.Action("mis-consultas-y-resultados", "Electromovilidad")" data-wow-delay=".6s"><i class="fas fa-network-wired fa-lg mr-1"></i>MIS CONSULTAS Y RESULTADOS</a></li>
                         }
                         <li class="nav-item btn barra barra-reconocimiento"><a class="nav-link wow slideInUp" href="javascript:void(0)" data-wow-delay=".7s"><i class="fas fa-trophy fa-lg mr-1"></i>MANUAL</a></li>
+                        @*<li class="nav-item btn barra barra-reconocimiento"><a class="nav-link wow slideInUp" href="javascript:void(0)" data-wow-delay=".7s"><img src="@Url.Content("~/Assets/images/icon-tab-manual.svg")" class="img-fluid" />MANUAL</a></li>*@
                         if (usuario.ID_ROL == (int)EnumsCustom.Roles.PUBLICO || usuario.ID_ROL == (int)EnumsCustom.Roles.PROPIETARIO)
                         {
                             <li class="nav-item btn barra barra-bandeja"><a class="nav-link wow slideInUp" href="@Url.Action("ver-perfil", "Electromovilidad")" data-wow-delay=".5s"><i class="fas fa-inbox fa-lg mr-1"></i>MI PERFIL</a></li>

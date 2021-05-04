@@ -16,7 +16,7 @@
     <script src="@Url.Content("~/Assets/js/pages/electromovilidad_estacionmapa.js")"></script> 
 }
 
-<div class="container">
+<div class="" style="padding:2%">
     <div class="row mt-3">
         <h4>Encuentra la estación de carga más cerca de ti</h4>
     </div>
@@ -54,4 +54,60 @@
             </div>
         </div>
     </div>*@
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-estacion">
+    Launch demo modal
+</button>
+
+<div class="modal fade" id="modal-estacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel"><i class="fas fa-map-marked"></i>&nbsp;&nbsp;Información de la estación de carga</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    @*<div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                            <h3 class="estilo-02 mb-3" style="color: brown;">Descripción de la estación de carga eléctrica</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center mb-3">
+                            <img src="@Url.Content("~/Assets/images/icon-marker-estacion-deshabilitada.svg")" class="img-fluid" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                            <h5 class="estilo-01 mb-3" style="color: blue;">Estación aprobada</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6"><div class="row"><div class="col-12"><span style="color: brown;">Dirección</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">Todos</span></div></div></div>
+                        <div class="col-6"></div>
+                        <div class="col-12"><hr /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modelo</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">Todos</span></div></div></div>
+                        <div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Marca</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">Todos</span></div></div></div>  
+                        <div class="col-12"><hr /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="alert-add"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6"><div class="row"><div class="col-12"><span style="color: brown;">Dirección</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">Todos</span></div></div></div>
+                        <div class="col-6"></div>
+                        <div class="col-12"><hr /></div>
+                    </div>*@
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

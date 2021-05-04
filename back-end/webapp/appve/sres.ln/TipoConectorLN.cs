@@ -68,5 +68,19 @@ namespace sres.ln
 
             return item;
         }
+
+        public List<TipoConectorBE> ListaTipoConector()
+        {
+            List<TipoConectorBE> lista = new List<TipoConectorBE>();
+
+            try
+            {
+                cn.Open();
+                lista = tipoDA.ListaTipoConector(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

@@ -102,5 +102,24 @@ namespace sres.da
 
             return item;
         }
+
+        public List<TipoConectorBE> ListaTipoConector(OracleConnection db)
+        {
+            List<TipoConectorBE> lista = new List<TipoConectorBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LIST_TIPO_CONECTOR";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<TipoConectorBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }
