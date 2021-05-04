@@ -108,9 +108,9 @@ namespace sres.app.Controllers.Api
 
         [Route("obtenerestacionall")]
         [HttpGet]
-        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, decimal potencia, string modocarga, string tipocargador, string tipoconector)
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, int potencia, int modocarga, int tipoconector)
         {
-            List<EstacionCargaBE> lista = estacionLN.getEstacionAll(minLng, maxLng, minLat, maxLat, potencia, modocarga, tipocargador, tipoconector);
+            List<EstacionCargaBE> lista = estacionLN.getEstacionAll(minLng, maxLng, minLat, maxLat, potencia, modocarga, tipoconector);
             return lista;
         }
 

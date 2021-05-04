@@ -1,13 +1,43 @@
 ﻿var mapboxgl, map;
 var minLng, minLtd, maxLng, maxLtd;
 var arrMarkers = [];
-var potencia, modo_carga, tipo_cargador, tipo_conector
+var potencia = 0, modo_carga = 0, tipo_conector = 0
 var currentMarkers = []
 
 $(document).ready(() => {
     $('#btn-buscar').on('click', (e) => buscarEstaciones())
-    mapa();
+    cargar()
+    mapa();    
 });
+
+var cargar = () => {
+    let urlConsultarPotencia = `${baseUrl}api/potencia/obtenerallpotencia`;
+    let urlConsultarTipoConector = `${baseUrl}api/tipoconector/obteneralltipoconector`;
+    let urlConsultarModoCargar = `${baseUrl}api/modocarga/obtenerallmodocarga`;
+    let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+
+    Promise.all([
+        fetch(urlConsultarPotencia, init),
+        fetch(urlConsultarTipoConector, init),
+        fetch(urlConsultarModoCargar, init),
+    ])
+    .then(r => Promise.all(r.map(v => v.json())))
+    .then(cargarListas)
+}
+
+var cargarListas = ([listaPotencia, listaTipoConector, listaModoCarga]) => {
+    let optionp = '<option value="0">seleccione una potencia</option>'
+    let opcionesp = listaPotencia.length == 0 ? '' : listaPotencia.map(x => `<option value="${x.ID_POTENCIA}">${x.NOMBRE}</option>`).join('');
+    $(`#cbo-potencia`).html(`${optionp}${opcionesp}`)
+
+    let optiontc = '<option value="0">seleccione un tipo conector</option>'
+    let opcionestc = listaTipoConector.length == 0 ? '' : listaTipoConector.map(x => `<option value="${x.ID_TIPO_CONECTOR}">${x.NOMBRE}</option>`).join('');
+    $(`#cbo-tipo-conector`).html(`${optiontc}${opcionestc}`)
+
+    let optionmc = '<option value="0">seleccione un modo de carga</option>'
+    let opcionesmc = listaModoCarga.length == 0 ? '' : listaModoCarga.map(x => `<option value="${x.ID_MODO_CARGA}">${x.NOMBRE}</option>`).join('');
+    $(`#cbo-modo-carga`).html(`${optionmc}${opcionesmc}`)
+}
 
 var buscarEstaciones = () => {
 
@@ -18,11 +48,15 @@ var buscarEstaciones = () => {
     }
     currentMarkers = []
 
-    potencia = $('#txt-potencia').val().replace(/,/gi, '')
+    /*potencia = $('#txt-potencia').val().replace(/,/gi, '')
     potencia = potencia == "" ? 0 : potencia
     modo_carga = $('#txt-modo-carga').val()
     tipo_cargador = $('#txt-tipo-cargador').val()
-    tipo_conector = $('#txt-tipo-conector').val()
+    tipo_conector = $('#txt-tipo-conector').val()*/
+
+    potencia = $('#cbo-potencia').val() == null ? 0 : $('#cbo-potencia').val()
+    modo_carga = $('#cbo-modo-carga').val()  == null ? 0 : $('#cbo-modo-carga').val()
+    tipo_conector = $('#cbo-tipo-conector').val()  == null ? 0 : $('#cbo-tipo-conector').val()
 
     var coord = map.getBounds();
     minLng = coord._sw.lng;
@@ -57,11 +91,15 @@ var mapa = () => {
     // Add the geocoder to the map
     map.addControl(geocoder);
 
-    potencia = $('#txt-potencia').val().replace(/,/gi, '')
+    /*potencia = $('#txt-potencia').val().replace(/,/gi, '')
     potencia = potencia == "" ? 0 : potencia
     modo_carga = $('#txt-modo-carga').val()
     tipo_cargador = $('#txt-tipo-cargador').val()
-    tipo_conector = $('#txt-tipo-conector').val()
+    tipo_conector = $('#txt-tipo-conector').val()*/
+
+    potencia = $('#cbo-potencia').val() == null ? 0 : $('#cbo-potencia').val()
+    modo_carga = $('#cbo-modo-carga').val()  == null ? 0 : $('#cbo-modo-carga').val()
+    tipo_conector = $('#cbo-tipo-conector').val()  == null ? 0 : $('#cbo-tipo-conector').val()
 
     var coord = map.getBounds();
     minLng = coord._sw.lng;
@@ -242,7 +280,8 @@ var evaluarCoordenadas = (coord) => {
 //}
 
 var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
-    let url = `${baseUrlApi}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipocargador=${tipo_cargador}&tipoconector=${tipo_conector}`; //prioridad 36
+    //let url = `${baseUrlApi}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipocargador=${tipo_cargador}&tipoconector=${tipo_conector}`; //prioridad 36
+    let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipoconector=${tipo_conector}`; //prioridad 36
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)
@@ -270,7 +309,7 @@ var cargarMarker = (data) => {
                     let obj = arrMarkers.find(z => { return z.ID_ESTACION == x.ID_ESTACION; });
                     cargarArrMarker(obj);
                 } else {
-                    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`;
+                    let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`;
                     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
                     fetch(urlConsultarEstacion, init)

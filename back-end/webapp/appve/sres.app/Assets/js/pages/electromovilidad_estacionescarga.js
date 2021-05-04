@@ -13,7 +13,7 @@ $(document).ready(() => {
 var cargarComponentes = () => {
     //let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`;
     //let urlConsultarTipoTransporte = `${baseUrlApi}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`; //para app movil
-    let urlConsultarTipoTransporte = `${baseUrlApi}api/estacioncarga/obtenerestacionesporusuarioweb?idusuario=${idUsuarioLogin}`; //para web prioridad 28
+    let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerestacionesporusuarioweb?idusuario=${idUsuarioLogin}`; //para web prioridad 28
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
     Promise.all([
         fetch(urlConsultarTipoTransporte, init),

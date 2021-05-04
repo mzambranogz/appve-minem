@@ -16,7 +16,11 @@ namespace sres.be
         public string DESCRIPCION { get; set; }
         public string MODELO { get; set; }
         public string MARCA { get; set; }
-        public decimal POTENCIA { get; set; }
+        public int ID_POTENCIA { get; set; }
+        public int ID_TIPO_CONECTOR { get; set; }
+        public int ID_MODO_CARGA { get; set; }
+        public int CABLE { get; set; }
+        public string POTENCIA { get; set; }
         public string MODO_CARGA { get; set; }
         public string TIPO_CARGADOR { get; set; }
         public string TIPO_CONECTOR { get; set; }

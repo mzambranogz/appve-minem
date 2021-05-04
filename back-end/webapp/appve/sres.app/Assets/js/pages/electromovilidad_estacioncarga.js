@@ -264,10 +264,14 @@ var guardar = () => {
     if ($('#txt-descripcion').val().trim() == "") message.push("Debe ingresar una descripción");
     if ($('#txt-modelo').val().trim() == "") message.push("Debe ingresar el modelo");
     if ($('#txt-marca').val().trim() == "") message.push("Debe ingresar la marca");
-    if ($('#txt-potencia').val().trim() == "") message.push("Debe ingresar la potencia");
-    if ($('#txt-modo-carga').val().trim() == "") message.push("Debe ingresar el modo de carga");
+    //if ($('#txt-potencia').val().trim() == "") message.push("Debe ingresar la potencia");
+    //if ($('#txt-modo-carga').val().trim() == "") message.push("Debe ingresar el modo de carga");
+    if ($('#cbo-potencia').val() == 0) message.push("Debe seleccionar una potencia");
+    if ($('#cbo-modo-carga').val() == 0) message.push("Debe seleccionar un modo de carga");
     if ($('#txt-tipo-cargador').val().trim() == "") message.push("Debe ingresar el tipo de cargador");
-    if ($('#txt-tipo-conector').val().trim() == "") message.push("Debe ingresar el tipo de conector");
+    //if ($('#txt-tipo-conector').val().trim() == "") message.push("Debe ingresar el tipo de conector");
+    if ($('#cbo-tipo-conector').val() == 0) message.push("Debe seleccionar un tipo de conector");
+    if ($('#cbo-cable').val() == 0) message.push("Debe indicar si posee cable o no");
     if ($('#txt-cantidad-conector').val().trim() == "") message.push("Debe ingresar la cantidad de conectores");
     if ($('#txt-hora-desde').val().trim() == "") message.push("Debe ingresar la hora desde la apertura de la estación de carga");
     if ($('#txt-hora-hasta').val().trim() == "") message.push("Debe ingresar la hora hasta el cierre de la estación de carga");
@@ -297,10 +301,14 @@ var guardar = () => {
     let descripcion = $('#txt-descripcion').val();
     let modelo = $('#txt-modelo').val();
     let marca = $('#txt-marca').val();
-    let potencia = $('#txt-potencia').val();
-    let modo_carga = $('#txt-modo-carga').val();
+    //let potencia = $('#txt-potencia').val();
+    //let modo_carga = $('#txt-modo-carga').val();
+    let potencia = $('#cbo-potencia').val();
+    let modo_carga = $('#cbo-modo-carga').val();
     let tipo_cargador = $('#txt-tipo-cargador').val();
-    let tipo_conector = $('#txt-tipo-conector').val();
+    //let tipo_conector = $('#txt-tipo-conector').val();
+    let tipo_conector = $('#cbo-tipo-conector').val();
+    let cable = $('#cbo-cable').val()
     let cantidad = $('#txt-cantidad-conector').val();
     let hora_desde = $('#txt-hora-desde').val();
     let hora_hasta = $('#txt-hora-hasta').val();
@@ -311,9 +319,14 @@ var guardar = () => {
     //prioridad 14
     //let url = `${baseUrl}api/estacioncarga/guardarestacion`;
     let url = `${baseUrlApi}api/estacioncarga/guardarestacion`;
-    let data = { ID_ESTACION: idestacion == 0 ? -1 : idestacion, INSTITUCION: arrEmpresa, LONGITUD: arrUbicacion[0], LATITUD: arrUbicacion[1], DIRECCION: direccion_estacion, DESCRIPCION: descripcion, MODELO: modelo, MARCA: marca, POTENCIA: potencia, MODO_CARGA: modo_carga, 
-                 TIPO_CARGADOR: tipo_cargador, TIPO_CONECTOR: tipo_conector, CANTIDAD_CONECTOR: cantidad, HORA_DESDE: hora_desde, HORA_HASTA: hora_hasta, TARIFA_SERVICIO: tarifa,
-                 ID_USUARIO: idUsuarioLogin, ID_ESTADO: 1, LISTA_IMAGEN: storedFiles, LISTA_DOC: arrDoc, UPD_USUARIO: idUsuarioLogin,
+    let data = { ID_ESTACION: idestacion == 0 ? -1 : idestacion, INSTITUCION: arrEmpresa, LONGITUD: arrUbicacion[0], LATITUD: arrUbicacion[1], DIRECCION: direccion_estacion, DESCRIPCION: descripcion, MODELO: modelo, MARCA: marca, 
+                //POTENCIA: potencia, MODO_CARGA: modo_carga,
+                TIPO_CARGADOR: tipo_cargador,
+                //TIPO_CONECTOR: tipo_conector, 
+                ID_POTENCIA: potencia, ID_TIPO_CONECTOR: tipo_conector, ID_MODO_CARGA: modo_carga,
+                CABLE: cable,
+                CANTIDAD_CONECTOR: cantidad, HORA_DESDE: hora_desde, HORA_HASTA: hora_hasta, TARIFA_SERVICIO: tarifa,
+                ID_USUARIO: idUsuarioLogin, ID_ESTADO: 1, LISTA_IMAGEN: storedFiles, LISTA_DOC: arrDoc, UPD_USUARIO: idUsuarioLogin,
     };
     //console.log(data);
     //console.log(JSON.stringify(data));

@@ -29,10 +29,14 @@ namespace sres.da
                 p.Add("PI_DESCRIPCION", entidad.DESCRIPCION);
                 p.Add("PI_MODELO", entidad.MODELO);
                 p.Add("PI_MARCA", entidad.MARCA);
-                p.Add("PI_POTENCIA", entidad.POTENCIA);
-                p.Add("PI_MODO_CARGA", entidad.MODO_CARGA);
+                //p.Add("PI_POTENCIA", entidad.POTENCIA);
+                //p.Add("PI_MODO_CARGA", entidad.MODO_CARGA);
+                p.Add("PI_ID_POTENCIA", entidad.ID_POTENCIA);
+                p.Add("PI_ID_MODO_CARGA", entidad.ID_MODO_CARGA);
                 p.Add("PI_TIPO_CARGADOR", entidad.TIPO_CARGADOR);
-                p.Add("PI_TIPO_CONECTOR", entidad.TIPO_CONECTOR);
+                //p.Add("PI_TIPO_CONECTOR", entidad.TIPO_CONECTOR);
+                p.Add("PI_ID_TIPO_CONECTOR", entidad.ID_TIPO_CONECTOR);
+                p.Add("PI_CABLE", entidad.CABLE);
                 p.Add("PI_CANTIDAD_CONECTOR", entidad.CANTIDAD_CONECTOR);
                 p.Add("PI_HORA_DESDE", entidad.HORA_DESDE);
                 p.Add("PI_HORA_HASTA", entidad.HORA_HASTA);
@@ -234,7 +238,7 @@ namespace sres.da
         //    return lista;
         //}
 
-        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, decimal potencia, string modocarga, string tipocargador, string tipoconector, OracleConnection db)
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, int potencia, int modocarga, int tipoconector, OracleConnection db)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
@@ -247,7 +251,6 @@ namespace sres.da
                 p.Add("PI_MAX_LAT", maxLat);
                 p.Add("PI_POTENCIA", potencia);
                 p.Add("PI_MODO_CARGA", modocarga);
-                p.Add("PI_TIPO_CARGADOR", tipocargador);
                 p.Add("PI_TIPO_CONECTOR", tipoconector);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
