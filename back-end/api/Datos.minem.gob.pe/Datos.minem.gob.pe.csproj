@@ -58,9 +58,12 @@
     <Compile Include="FactorDA.cs" />
     <Compile Include="InstitucionDA.cs" />
     <Compile Include="ModeloVehiculoElectricoDA.cs" />
+    <Compile Include="ModoCargaDA.cs" />
+    <Compile Include="PotenciaDA.cs" />
     <Compile Include="RolDA.cs" />
     <Compile Include="TipoCargadorDA.cs" />
     <Compile Include="TipoCombustibleDA.cs" />
+    <Compile Include="TipoConectorDA.cs" />
     <Compile Include="TipoTransporteDA.cs" />
     <Compile Include="TipoVehiculoConvencionalDA.cs" />
     <Compile Include="TipoVehiculoElectricoDA.cs" />

@@ -52,9 +52,12 @@
     <Compile Include="EstacionCargaLN.cs" />
     <Compile Include="FactorLN.cs" />
     <Compile Include="ModeloVehiculoElectricoLN.cs" />
+    <Compile Include="ModoCargaLN.cs" />
+    <Compile Include="PotenciaLN.cs" />
     <Compile Include="RolLN.cs" />
     <Compile Include="TipoCargadorLN.cs" />
     <Compile Include="TipoCombustibleLN.cs" />
+    <Compile Include="TipoConectorLN.cs" />
     <Compile Include="TipoTransporteLN.cs" />
     <Compile Include="TipoVehiculoConvencionalLN.cs" />
     <Compile Include="TipoVehiculoElectricoLN.cs" />

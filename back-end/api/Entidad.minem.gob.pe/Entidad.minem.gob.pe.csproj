@@ -68,13 +68,16 @@
     <Compile Include="FactorParametroBE.cs" />
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="ModeloVehiculoElectricoBE.cs" />
+    <Compile Include="ModoCargaBE.cs" />
     <Compile Include="ParametroBE.cs" />
     <Compile Include="ParametroDetalleBE.cs" />
+    <Compile Include="PotenciaBE.cs" />
     <Compile Include="ResultadosBE.cs" />
     <Compile Include="RolBE.cs" />
     <Compile Include="ServicioPublicoBE.cs" />
     <Compile Include="TipoCargadorBE.cs" />
     <Compile Include="TipoCombustibleBE.cs" />
+    <Compile Include="TipoConectorBE.cs" />
     <Compile Include="TipoTransporteBE.cs" />
     <Compile Include="TipoVehiculoConvencionalBE.cs" />
     <Compile Include="TipoVehiculoElectricoBE.cs" />

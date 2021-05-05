@@ -185,6 +185,8 @@
     <Compile Include="Controllers\FactorController.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
     <Compile Include="Controllers\ModeloVehiculoElectricoController.cs" />
+    <Compile Include="Controllers\ModoCargaController.cs" />
+    <Compile Include="Controllers\PotenciaController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\TipoCargadorApiController.cs" />
     <Compile Include="Controllers\TipoCombustibleApiController.cs" />
@@ -199,6 +201,7 @@
     </Compile>
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoConectorController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -202,10 +202,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/23/2021 10:57:51</publishTime>
     </File>
     <File Include="bin/Datos.minem.gob.pe.dll">
-      <publishTime>04/27/2021 12:33:13</publishTime>
+      <publishTime>05/05/2021 04:31:04</publishTime>
     </File>
     <File Include="bin/Entidad.minem.gob.pe.dll">
-      <publishTime>04/27/2021 12:33:12</publishTime>
+      <publishTime>05/05/2021 04:31:04</publishTime>
     </File>
     <File Include="bin/es/System.Net.Http.Formatting.resources.dll">
       <publishTime>04/23/2021 10:57:51</publishTime>
@@ -217,7 +217,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/23/2021 10:57:51</publishTime>
     </File>
     <File Include="bin/Logica.minem.gob.pe.dll">
-      <publishTime>04/27/2021 12:33:13</publishTime>
+      <publishTime>05/05/2021 04:31:04</publishTime>
     </File>
     <File Include="bin/Mailing/RecuperarClave.html">
       <publishTime>04/23/2021 10:57:51</publishTime>
@@ -295,10 +295,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/23/2021 10:57:52</publishTime>
     </File>
     <File Include="bin/Util.minem.gob.pe.dll">
-      <publishTime>04/27/2021 12:33:12</publishTime>
+      <publishTime>05/05/2021 04:31:04</publishTime>
     </File>
     <File Include="bin/WebApiElectroMovilidad.dll">
-      <publishTime>04/27/2021 12:33:19</publishTime>
+      <publishTime>05/05/2021 04:31:10</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>04/23/2021 10:57:52</publishTime>

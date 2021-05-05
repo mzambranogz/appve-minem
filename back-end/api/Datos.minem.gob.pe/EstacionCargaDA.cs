@@ -111,7 +111,7 @@ namespace Datos.minem.gob.pe
             return seGuardo;
         }
 
-        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, decimal potencia, string modocarga, string tipocargador, string tipoconector, OracleConnection db)
+        public List<EstacionCargaBE> getEstacionAll(decimal minLng, decimal maxLng, decimal minLat, decimal maxLat, int potencia, int modocarga, int tipoconector, OracleConnection db)
         {
             List<EstacionCargaBE> lista = new List<EstacionCargaBE>();
             try
@@ -124,7 +124,6 @@ namespace Datos.minem.gob.pe
                 p.Add("PI_MAX_LAT", maxLat);
                 p.Add("PI_POTENCIA", potencia);
                 p.Add("PI_MODO_CARGA", modocarga);
-                p.Add("PI_TIPO_CARGADOR", tipocargador);
                 p.Add("PI_TIPO_CONECTOR", tipoconector);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<EstacionCargaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
