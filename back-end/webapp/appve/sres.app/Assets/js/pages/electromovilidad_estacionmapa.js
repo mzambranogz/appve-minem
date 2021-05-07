@@ -11,9 +11,9 @@ $(document).ready(() => {
 });
 
 var cargar = () => {
-    let urlConsultarPotencia = `${baseUrl}api/potencia/obtenerallpotencia`;
-    let urlConsultarTipoConector = `${baseUrl}api/tipoconector/obteneralltipoconector`;
-    let urlConsultarModoCargar = `${baseUrl}api/modocarga/obtenerallmodocarga`;
+    let urlConsultarPotencia = `${baseUrlApi}api/potencia/obtenerallpotencia`;
+    let urlConsultarTipoConector = `${baseUrlApi}api/tipoconector/obteneralltipoconector`;
+    let urlConsultarModoCargar = `${baseUrlApi}api/modocarga/obtenerallmodocarga`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     Promise.all([
@@ -281,7 +281,7 @@ var evaluarCoordenadas = (coord) => {
 
 var cargarComponentes = (minLongitud, minLatitud, maxLongitud, maxLatitud) => {
     //let url = `${baseUrlApi}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipocargador=${tipo_cargador}&tipoconector=${tipo_conector}`; //prioridad 36
-    let url = `${baseUrl}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipoconector=${tipo_conector}`; //prioridad 36
+    let url = `${baseUrlApi}api/estacioncarga/obtenerestacionall?minLng=${minLongitud}&maxLng=${maxLongitud}&minLat=${minLatitud}&maxLat=${maxLatitud}&potencia=${potencia}&modocarga=${modo_carga}&tipoconector=${tipo_conector}`; //prioridad 36
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
     fetch(url, init)
@@ -309,7 +309,7 @@ var cargarMarker = (data) => {
                     let obj = arrMarkers.find(z => { return z.ID_ESTACION == x.ID_ESTACION; });
                     cargarArrMarker(obj);
                 } else {
-                    let urlConsultarEstacion = `${baseUrl}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`;
+                    let urlConsultarEstacion = `${baseUrlApi}api/estacioncarga/obtenerestacionweb?idestacion=${x.ID_ESTACION}`;
                     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
 
                     fetch(urlConsultarEstacion, init)

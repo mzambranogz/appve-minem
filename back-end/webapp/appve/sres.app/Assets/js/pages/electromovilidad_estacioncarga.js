@@ -21,9 +21,9 @@ $(document).ready(() => {
 
 //3 end point prioridad 
 var cargarComponentes = () => {
-    let urlConsultarPotencia = `${baseUrl}api/potencia/obtenerallpotencia`; 
-    let urlConsultarTipoConector = `${baseUrl}api/tipoconector/obteneralltipoconector`;
-    let urlConsultarModoCargar = `${baseUrl}api/modocarga/obtenerallmodocarga`;
+    let urlConsultarPotencia = `${baseUrlApi}api/potencia/obtenerallpotencia`; 
+    let urlConsultarTipoConector = `${baseUrlApi}api/tipoconector/obteneralltipoconector`;
+    let urlConsultarModoCargar = `${baseUrlApi}api/modocarga/obtenerallmodocarga`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
     Promise.all([
@@ -268,7 +268,7 @@ var guardar = () => {
     //if ($('#txt-modo-carga').val().trim() == "") message.push("Debe ingresar el modo de carga");
     if ($('#cbo-potencia').val() == 0) message.push("Debe seleccionar una potencia");
     if ($('#cbo-modo-carga').val() == 0) message.push("Debe seleccionar un modo de carga");
-    if ($('#txt-tipo-cargador').val().trim() == "") message.push("Debe ingresar el tipo de cargador");
+    //if ($('#txt-tipo-cargador').val().trim() == "") message.push("Debe ingresar el tipo de cargador");
     //if ($('#txt-tipo-conector').val().trim() == "") message.push("Debe ingresar el tipo de conector");
     if ($('#cbo-tipo-conector').val() == 0) message.push("Debe seleccionar un tipo de conector");
     if ($('#cbo-cable').val() == 0) message.push("Debe indicar si posee cable o no");
