@@ -13,7 +13,7 @@ $(document).ready(() => {
 var cargarComponentes = () => {
     //let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`;
     //let urlConsultarTipoTransporte = `${baseUrlApi}api/estacioncarga/obtenerestacionesporusuario?idusuario=${idUsuarioLogin}`; //para app movil
-    let urlConsultarTipoTransporte = `${baseUrl}api/estacioncarga/obtenerestacionesporusuarioweb?idusuario=${idUsuarioLogin}`; //para web prioridad 28
+    let urlConsultarTipoTransporte = `${baseUrlApi}api/estacioncarga/obtenerestacionesporusuarioweb?idusuario=${idUsuarioLogin}`; //para web prioridad 28
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
     Promise.all([
         fetch(urlConsultarTipoTransporte, init),
@@ -55,11 +55,13 @@ var cargarDatos = ([listaDatos]) => {
                         
             let seccion_potencia_modo_carga = `<div class="row">`;
             seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
-            seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+            //seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+            seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
             seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
             
             let seccion_tipo_cargador_cantidad = `<div class="row">`;
-            seccion_tipo_cargador_cantidad += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de cargador</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CARGADOR}</span></div></div></div>`;
+            //seccion_tipo_cargador_cantidad += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de cargador</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CARGADOR}</span></div></div></div>`;
+            seccion_tipo_cargador_cantidad += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
             seccion_tipo_cargador_cantidad += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_CONECTOR}</span></div></div></div>`;
             seccion_tipo_cargador_cantidad += `<div class="col-12"><hr /></div></div>`;
 

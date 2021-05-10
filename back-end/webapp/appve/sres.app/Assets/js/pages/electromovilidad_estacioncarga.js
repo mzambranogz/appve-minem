@@ -14,10 +14,56 @@ $(document).ready(() => {
     $('#btnUbicacion').on('click', abrirUbicacion);
     $('#btnGuardarU').on('click', guardarUbicacion);
     $('#btnCerrarU').on('click', cerrarUbicacion);
+    $('#cbo-tipo-conector').on('change', filtrarModoCarga)
     //mapa();
     //inicio();
     cargarComponentes()
 });
+
+var filtrarModoCarga = () => {
+    let tc = $('#cbo-tipo-conector').val()   
+    $('#cbo-modo-carga').val(0)
+    if (tc == 0){        
+        $('#cbo-modo-carga option').prop('hidden', true)
+    } else if (tc == 1){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+    } else if (tc == 2){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+    } else if (tc == 3){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+    } else if (tc == 4){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    } else if (tc == 5){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+    } else if (tc == 6){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+    }else if (tc == 7){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    }
+}
 
 //3 end point prioridad 
 var cargarComponentes = () => {
@@ -46,6 +92,7 @@ var cargarListas = ([listaPotencia, listaTipoConector, listaModoCarga]) => {
     let opcionesmc = listaModoCarga.length == 0 ? '' : listaModoCarga.map(x => `<option value="${x.ID_MODO_CARGA}">${x.NOMBRE}</option>`).join('');
     $(`#cbo-modo-carga`).html(`${option}${opcionesmc}`);
 
+    filtrarModoCarga()
     inicio();
 }
 
@@ -79,10 +126,15 @@ var cargarDatos = ([estacion]) => {
     $('#txt-marca').val(estacion.MARCA);
     $('#txt-descripcion').val(estacion.DESCRIPCION);
     $('#cantidad-foto').html(estacion.CANTIDAD_IMAGEN);
-    $('#txt-potencia').val(formatoMilesDecimales(estacion.POTENCIA));
-    $('#txt-modo-carga').val(estacion.MODO_CARGA);
-    $('#txt-tipo-cargador').val(estacion.TIPO_CARGADOR);
-    $('#txt-tipo-conector').val(estacion.TIPO_CONECTOR);
+    //$('#txt-potencia').val(formatoMilesDecimales(estacion.POTENCIA));
+    $('#cbo-potencia').val(estacion.ID_POTENCIA);
+    //$('#txt-modo-carga').val(estacion.MODO_CARGA);
+    $('#cbo-modo-carga').val(estacion.ID_MODO_CARGA);
+    //$('#txt-tipo-cargador').val(estacion.TIPO_CARGADOR);
+    $('#CBO-tipo-cargador').val(estacion.ID_TIPO_CARGADOR);
+    //$('#txt-tipo-conector').val(estacion.TIPO_CONECTOR);
+    $('#cbo-tipo-conector').val(estacion.ID_TIPO_CONECTOR);
+    $('#cbo-cable').val(estacion.CABLE);
     $('#txt-cantidad-conector').val(formatoMilesEnteros(estacion.CANTIDAD_CONECTOR));
     $('#txt-hora-desde').val(estacion.HORA_DESDE);
     $('#txt-hora-hasta').val(estacion.HORA_HASTA);

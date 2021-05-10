@@ -6,9 +6,55 @@ var currentMarkers = []
 
 $(document).ready(() => {
     $('#btn-buscar').on('click', (e) => buscarEstaciones())
+    $('#cbo-tipo-conector').on('change', filtrarModoCarga)
     cargar()
     mapa();    
 });
+
+var filtrarModoCarga = () => {
+    let tc = $('#cbo-tipo-conector').val()   
+    $('#cbo-modo-carga').val(0)
+    if (tc == 0){        
+        $('#cbo-modo-carga option').prop('hidden', true)
+    } else if (tc == 1){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+    } else if (tc == 2){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+    } else if (tc == 3){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+    } else if (tc == 4){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    } else if (tc == 5){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+    } else if (tc == 6){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+    }else if (tc == 7){
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    }
+}
 
 var cargar = () => {
     let urlConsultarPotencia = `${baseUrlApi}api/potencia/obtenerallpotencia`;
@@ -37,6 +83,8 @@ var cargarListas = ([listaPotencia, listaTipoConector, listaModoCarga]) => {
     let optionmc = '<option value="0">seleccione un modo de carga</option>'
     let opcionesmc = listaModoCarga.length == 0 ? '' : listaModoCarga.map(x => `<option value="${x.ID_MODO_CARGA}">${x.NOMBRE}</option>`).join('');
     $(`#cbo-modo-carga`).html(`${optionmc}${opcionesmc}`)
+
+    filtrarModoCarga()
 }
 
 var buscarEstaciones = () => {
