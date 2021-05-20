@@ -26,42 +26,137 @@ var filtrarModoCarga = () => {
     if (tc == 0){        
         $('#cbo-modo-carga option').prop('hidden', true)
     } else if (tc == 1){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', false)
-        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+        $('#cbo-modo-carga').val(1)
     } else if (tc == 2){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
     } else if (tc == 3){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
     } else if (tc == 4){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
-        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
-        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
-        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
-        $('#cbo-modo-carga').val(4)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', true)
     } else if (tc == 5){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
     } else if (tc == 6){
-        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
-        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
-        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
-        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
-    }else if (tc == 7){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', true)
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+    } else if (tc == 7){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    } else if (tc == 8){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    } else if (tc == 9){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    }
+    filtrarPotencia()
+}
+
+var filtrarPotencia = () => {
+    let tc = $('#cbo-tipo-conector').val()   
+    $('#cbo-potencia').val(0)
+    if (tc == 0){        
+        $('#cbo-potencia option').prop('hidden', true)
+    } else if (tc == 1){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', true)
+        $('#cbo-potencia option[value=5]').prop('hidden', true)
+        $('#cbo-potencia').val(1)
+    } else if (tc == 2){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', true)
+        $('#cbo-potencia option[value=5]').prop('hidden', true)
+    } else if (tc == 3){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', true)
+    } else if (tc == 4){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 5){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 6){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 7){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 8){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 9){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
     }
 }
 

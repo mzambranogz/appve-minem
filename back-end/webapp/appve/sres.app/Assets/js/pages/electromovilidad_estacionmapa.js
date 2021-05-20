@@ -17,42 +17,137 @@ var filtrarModoCarga = () => {
     if (tc == 0){        
         $('#cbo-modo-carga option').prop('hidden', true)
     } else if (tc == 1){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', false)
-        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+        $('#cbo-modo-carga').val(1)
     } else if (tc == 2){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
     } else if (tc == 3){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
     } else if (tc == 4){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
-        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
-        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
-        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
-        $('#cbo-modo-carga').val(4)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', true)
     } else if (tc == 5){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
     } else if (tc == 6){
-        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
-        $('#cbo-modo-carga option[value=2]').prop('hidden', false)
-        $('#cbo-modo-carga option[value=3]').prop('hidden', false)
-        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
-    }else if (tc == 7){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', true)
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+    } else if (tc == 7){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    } else if (tc == 8){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    } else if (tc == 9){
+        $('#cbo-modo-carga option[value=0]').prop('hidden', false)
+        $('#cbo-modo-carga option[value=1]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=2]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=3]').prop('hidden', true)
+        $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('#cbo-modo-carga').val(4)
+    }
+    filtrarPotencia()
+}
+
+var filtrarPotencia = () => {
+    let tc = $('#cbo-tipo-conector').val()   
+    $('#cbo-potencia').val(0)
+    if (tc == 0){        
+        $('#cbo-potencia option').prop('hidden', true)
+    } else if (tc == 1){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', true)
+        $('#cbo-potencia option[value=5]').prop('hidden', true)
+        $('#cbo-potencia').val(1)
+    } else if (tc == 2){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', true)
+        $('#cbo-potencia option[value=5]').prop('hidden', true)
+    } else if (tc == 3){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', true)
+    } else if (tc == 4){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 5){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 6){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 7){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 8){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
+    } else if (tc == 9){
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+        $('#cbo-potencia option[value=5]').prop('hidden', false)
     }
 }
 
@@ -389,17 +484,21 @@ var cargarMarker = (data) => {
 
                         let seccion_fotos = `<div class="row">`;
                         seccion_fotos += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Fotos</span></div></div><div class="row"><div class="col-12"><span style="color: brown;">${imagenes}</span></div></div></div>`;
-                        seccion_fotos += `<div class="col-12"><hr /></div></div>`;
-
-                        let seccion_potencia_modo_carga = `<div class="row">`;
-                        seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
-                        seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
-                        seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
+                        seccion_fotos += `<div class="col-12"><hr /></div></div>`;                        
 
                         let seccion_tipo_cargador_conector = `<div class="row">`;
-                        seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de cargador</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CARGADOR}</span></div></div></div>`;
-                        seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+                        seccion_tipo_cargador_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
                         seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
+
+                        //let seccion_tipo_cargador_conector = `<div class="row">`;
+                        //seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+                        //seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+                        //seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
+
+                        let seccion_potencia_modo_carga = `<div class="row">`;
+                        seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+                        seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
+                        seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
 
                         let seccion_cantidad_tarifa = `<div class="row">`;
                         seccion_cantidad_tarifa += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_CONECTOR}</span></div></div></div>`;
@@ -415,7 +514,7 @@ var cargarMarker = (data) => {
                         seccion_descripcion += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Descripción</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DESCRIPCION}</span></div></div></div>`;
                         seccion_descripcion += `</div>`;
 
-                        $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_potencia_modo_carga}${seccion_tipo_cargador_conector}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
+                        $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_tipo_cargador_conector}${seccion_potencia_modo_carga}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
                         arrMarkers.push(x);
                     });
 
@@ -547,15 +646,19 @@ var cargarArrMarker = (x) => {
     seccion_fotos += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Fotos</span></div></div><div class="row"><div class="col-12"><span style="color: brown;">${imagenes}</span></div></div></div>`;
     seccion_fotos += `<div class="col-12"><hr /></div></div>`;
 
-    let seccion_potencia_modo_carga = `<div class="row">`;
-    seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
-    seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
-    seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
-
     let seccion_tipo_cargador_conector = `<div class="row">`;
-    seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de cargador</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CARGADOR}</span></div></div></div>`;
-    seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+    seccion_tipo_cargador_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
     seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
+
+    //let seccion_tipo_cargador_conector = `<div class="row">`;
+    //seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de cargador</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CARGADOR}</span></div></div></div>`;
+    //seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+    //seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
+
+    let seccion_potencia_modo_carga = `<div class="row">`;
+    seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+    seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
+    seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
 
     let seccion_cantidad_tarifa = `<div class="row">`;
     seccion_cantidad_tarifa += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_CONECTOR}</span></div></div></div>`;
@@ -571,6 +674,6 @@ var cargarArrMarker = (x) => {
     seccion_descripcion += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Descripción</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DESCRIPCION}</span></div></div></div>`;
     seccion_descripcion += `</div>`;
 
-    $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_potencia_modo_carga}${seccion_tipo_cargador_conector}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
+    $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_tipo_cargador_conector}${seccion_potencia_modo_carga}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
     $('#modal-estacion').modal('show')
 }
