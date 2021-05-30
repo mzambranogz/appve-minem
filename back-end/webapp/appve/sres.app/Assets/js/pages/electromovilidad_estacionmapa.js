@@ -16,6 +16,7 @@ var filtrarModoCarga = () => {
     $('#cbo-modo-carga').val(0)
     if (tc == 0){        
         $('#cbo-modo-carga option').prop('hidden', true)
+        $('.imagen-conector').html('');
     } else if (tc == 1){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', false)
@@ -23,30 +24,35 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
         $('#cbo-modo-carga').val(1)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/SCHUKO.jpeg" style="height: 230px" />`);
     } else if (tc == 2){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/Tipo 1 (SAE J1772).jpg" style="height: 230px" />`);
     } else if (tc == 3){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/Tipo 2 - Mennekes.jpg" style="height: 230px" />`);
     } else if (tc == 4){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/GB-T en CA.jpg" style="height: 230px" />`);
     } else if (tc == 5){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/Tesla.jpg" style="height: 230px" />`);
     } else if (tc == 6){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
@@ -54,6 +60,7 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/CCS 1 - Combo1.jpg" style="height: 230px" />`);
     } else if (tc == 7){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
@@ -61,6 +68,7 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/CCS 2 - Combo 2.jpg" style="height: 230px" />`);
     } else if (tc == 8){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
@@ -68,6 +76,7 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/CHAdeMO.jpg" style="height: 230px" />`);
     } else if (tc == 9){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
@@ -75,6 +84,7 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/GB-T en CC.JPG" style="height: 230px" />`);
     }
     filtrarPotencia()
 }
@@ -486,19 +496,23 @@ var cargarMarker = (data) => {
                         seccion_fotos += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Fotos</span></div></div><div class="row"><div class="col-12"><span style="color: brown;">${imagenes}</span></div></div></div>`;
                         seccion_fotos += `<div class="col-12"><hr /></div></div>`;                        
 
-                        let seccion_tipo_cargador_conector = `<div class="row">`;
-                        seccion_tipo_cargador_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
-                        seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
-
                         //let seccion_tipo_cargador_conector = `<div class="row">`;
-                        //seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
-                        //seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+                        //seccion_tipo_cargador_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
                         //seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
 
+                        let seccion_tipo_cargador_conector = `<div class="row">`;
+                        seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+                        seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+                        seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
+
                         let seccion_potencia_modo_carga = `<div class="row">`;
-                        seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
                         seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
+                        seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cable</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CABLE == 1 ? 'Si' : 'No'}</span></div></div></div>`;
                         seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
+
+                        let seccion_imagen_conector = `<div class="row">`;
+                        seccion_imagen_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;"></span></div></div><div class="row"><div class="col-12"><img class="example-image img-fluid" src="${baseUrl}Assets/images/${filtrar_imagen_conector(x.ID_TIPO_CONECTOR)}" alt="" /></div></div></div>`;
+                        seccion_imagen_conector += `<div class="col-12"><hr /></div></div>`;
 
                         let seccion_cantidad_tarifa = `<div class="row">`;
                         seccion_cantidad_tarifa += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_CONECTOR}</span></div></div></div>`;
@@ -514,7 +528,7 @@ var cargarMarker = (data) => {
                         seccion_descripcion += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Descripción</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DESCRIPCION}</span></div></div></div>`;
                         seccion_descripcion += `</div>`;
 
-                        $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_tipo_cargador_conector}${seccion_potencia_modo_carga}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
+                        $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_tipo_cargador_conector}${seccion_potencia_modo_carga}${seccion_imagen_conector}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
                         arrMarkers.push(x);
                     });
 
@@ -528,6 +542,29 @@ var cargarMarker = (data) => {
             currentMarkers.push(m);
         });
     }    
+}
+
+var filtrar_imagen_conector = (idconector) => {
+    let conector = ''
+    if (idconector == 1)
+        conector = 'SCHUKO.jpeg'
+    else if (idconector == 2)
+        conector = 'Tipo 1 (SAE J1772).jpg'
+    else if (idconector == 3)
+        conector = 'Tipo 2 - Mennekes.jpg'
+    else if (idconector == 4)
+        conector = 'GB-T en CA.jpg'
+    else if (idconector == 5)
+        conector = 'Tesla.jpg'
+    else if (idconector == 6)
+        conector = 'CCS 1 - Combo1.jpg'
+    else if (idconector == 7)
+        conector = 'CCS 2 - Combo 2.jpg'
+    else if (idconector == 8)
+        conector = 'CHAdeMO.jpg'
+    else if (idconector == 9)
+        conector = 'GB-T en CC.JPG'
+    return conector
 }
 
 //var cargarMarker = (data) => {
@@ -646,19 +683,23 @@ var cargarArrMarker = (x) => {
     seccion_fotos += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Fotos</span></div></div><div class="row"><div class="col-12"><span style="color: brown;">${imagenes}</span></div></div></div>`;
     seccion_fotos += `<div class="col-12"><hr /></div></div>`;
 
-    let seccion_tipo_cargador_conector = `<div class="row">`;
-    seccion_tipo_cargador_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
-    seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
-
     //let seccion_tipo_cargador_conector = `<div class="row">`;
-    //seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de cargador</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CARGADOR}</span></div></div></div>`;
-    //seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+    //seccion_tipo_cargador_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
     //seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
 
+    let seccion_tipo_cargador_conector = `<div class="row">`;
+    seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Tipo de conector</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.TIPO_CONECTOR}</span></div></div></div>`;
+    seccion_tipo_cargador_conector += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
+    seccion_tipo_cargador_conector += `<div class="col-12"><hr /></div></div>`;
+
     let seccion_potencia_modo_carga = `<div class="row">`;
-    seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Modo de carga</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.MODO_CARGA}</span></div></div></div>`;
     seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Potencia</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.POTENCIA}</span></div></div></div>`;
+    seccion_potencia_modo_carga += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cable</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CABLE == 1 ? 'Si' : 'No'}</span></div></div></div>`;
     seccion_potencia_modo_carga += `<div class="col-12"><hr /></div></div>`;
+
+    let seccion_imagen_conector = `<div class="row">`;
+    seccion_imagen_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;"></span></div></div><div class="row"><div class="col-12"><img class="example-image img-fluid" src="${baseUrl}Assets/images/${filtrar_imagen_conector(x.ID_TIPO_CONECTOR)}" alt="" /></div></div></div>`;
+    seccion_imagen_conector += `<div class="col-12"><hr /></div></div>`;
 
     let seccion_cantidad_tarifa = `<div class="row">`;
     seccion_cantidad_tarifa += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_CONECTOR}</span></div></div></div>`;
@@ -674,6 +715,6 @@ var cargarArrMarker = (x) => {
     seccion_descripcion += `<div class="col-12"><div class="row"><div class="col-12"><span style="color: brown;">Descripción</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.DESCRIPCION}</span></div></div></div>`;
     seccion_descripcion += `</div>`;
 
-    $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_tipo_cargador_conector}${seccion_potencia_modo_carga}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
+    $(`#modal-estacion .modal-body`).html(`${titulo}${img_icono}${estado_estacion}${seccion_direccion}${seccion_modelo_marca}${seccion_fotos}${seccion_tipo_cargador_conector}${seccion_potencia_modo_carga}${seccion_imagen_conector}${seccion_cantidad_tarifa}${hora_desde_hasta}${seccion_descripcion}`);
     $('#modal-estacion').modal('show')
 }

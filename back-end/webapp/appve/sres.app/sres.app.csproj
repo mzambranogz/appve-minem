@@ -167,6 +167,9 @@
     <Content Include="Assets\images\bg-registro.png" />
     <Content Include="Assets\images\bg-reportes.png" />
     <Content Include="Assets\images\bg_footer.png" />
+    <Content Include="Assets\images\CCS 1 - Combo1.jpg" />
+    <Content Include="Assets\images\CCS 2 - Combo 2.jpg" />
+    <Content Include="Assets\images\CHAdeMO.jpg" />
     <Content Include="Assets\images\clave.png" />
     <Content Include="Assets\images\close.png" />
     <Content Include="Assets\images\faq.png" />
@@ -201,6 +204,8 @@
     <Content Include="Assets\images\favicon\ms-icon-310x310.png" />
     <Content Include="Assets\images\favicon\ms-icon-70x70.png" />
     <Content Include="Assets\images\favicon\site.webmanifest" />
+    <Content Include="Assets\images\GB-T en CA.jpg" />
+    <Content Include="Assets\images\GB-T en CC.JPG" />
     <Content Include="Assets\images\home-icon-carro-inicio.svg" />
     <Content Include="Assets\images\home-icon-estaciones-carga.svg" />
     <Content Include="Assets\images\home-icon-mapa-estaciones.svg" />
@@ -231,7 +236,11 @@
     <Content Include="Assets\images\next.png" />
     <Content Include="Assets\images\password-level-47px.png" />
     <Content Include="Assets\images\prev.png" />
+    <Content Include="Assets\images\SCHUKO.jpeg" />
     <Content Include="Assets\images\sin-foto.png" />
+    <Content Include="Assets\images\Tesla.jpg" />
+    <Content Include="Assets\images\Tipo 1 %28SAE J1772%29.jpg" />
+    <Content Include="Assets\images\Tipo 2 - Mennekes.jpg" />
     <Content Include="Assets\js\lightbox-plus-jquery.min.js" />
     <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
     <Content Include="Assets\js\pages\electromovilidad_calculo.js" />

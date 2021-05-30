@@ -25,6 +25,7 @@ var filtrarModoCarga = () => {
     $('#cbo-modo-carga').val(0)
     if (tc == 0){        
         $('#cbo-modo-carga option').prop('hidden', true)
+        $('.imagen-conector').html('');
     } else if (tc == 1){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', false)
@@ -32,30 +33,35 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
         $('#cbo-modo-carga').val(1)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/SCHUKO.jpeg" />`);
     } else if (tc == 2){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/Tipo 1 (SAE J1772).jpg" />`);
     } else if (tc == 3){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/Tipo 2 - Mennekes.jpg" />`);
     } else if (tc == 4){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', true)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/GB-T en CA.jpg" />`);
     } else if (tc == 5){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
         $('#cbo-modo-carga option[value=2]').prop('hidden', false)
         $('#cbo-modo-carga option[value=3]').prop('hidden', false)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/Tesla.jpg" />`);
     } else if (tc == 6){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
@@ -63,6 +69,7 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/CCS 1 - Combo1.jpg" />`);
     } else if (tc == 7){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
@@ -70,6 +77,7 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/CCS 2 - Combo 2.jpg" />`);
     } else if (tc == 8){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
@@ -77,6 +85,7 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/CHAdeMO.jpg" />`);
     } else if (tc == 9){
         $('#cbo-modo-carga option[value=0]').prop('hidden', false)
         $('#cbo-modo-carga option[value=1]').prop('hidden', true)
@@ -84,6 +93,7 @@ var filtrarModoCarga = () => {
         $('#cbo-modo-carga option[value=3]').prop('hidden', true)
         $('#cbo-modo-carga option[value=4]').prop('hidden', false)
         $('#cbo-modo-carga').val(4)
+        $('.imagen-conector').html(`<img class="img-fluid" src="${baseUrl}Assets/images/GB-T en CC.JPG" />`);
     }
     filtrarPotencia()
 }

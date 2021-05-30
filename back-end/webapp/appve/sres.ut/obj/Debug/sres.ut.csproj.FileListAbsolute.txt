@@ -45,3 +45,4 @@ C:\Users\JK\Desktop\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.ut\bin\Debug
 C:\Users\JK\Desktop\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.csprojResolveAssemblyReference.cache
 C:\Users\JK\Desktop\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.dll
 C:\Users\JK\Desktop\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.pdb
+D:\ESCRITORIO\GIT APP ELECTRO\back-end\webapp\appve\sres.ut\obj\Debug\sres.ut.csprojResolveAssemblyReference.cache

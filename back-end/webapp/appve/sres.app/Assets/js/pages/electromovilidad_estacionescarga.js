@@ -66,6 +66,10 @@ var cargarDatos = ([listaDatos]) => {
             seccion_tipo_cargador_cantidad += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Cantidad de conectores</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.CANTIDAD_CONECTOR}</span></div></div></div>`;
             seccion_tipo_cargador_cantidad += `<div class="col-12"><hr /></div></div>`;
 
+            let seccion_imagen_conector = `<div class="row">`;
+            seccion_imagen_conector += `<div class="col-12 "><div class="row"><div class="col-12"><span style="color: brown;"></span></div></div><div class="row"><div class="col-12"><img class="example-image img-fluid" src="${baseUrl}Assets/images/${filtrar_imagen_conector(x.ID_TIPO_CONECTOR)}" alt="" /></div></div></div>`;
+            seccion_imagen_conector += `<div class="col-12"><hr /></div></div>`;
+
             let hora_desde_hasta = `<div class="row">`;
             hora_desde_hasta += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Horario desde</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.HORA_DESDE}</span></div></div></div>`;
             hora_desde_hasta += `<div class="col-6 "><div class="row"><div class="col-12"><span style="color: brown;">Horario hasta</span></div></div><div class="row"><div class="col-12"><span style="color: blue;">${x.HORA_HASTA}</span></div></div></div>`;
@@ -82,7 +86,7 @@ var cargarDatos = ([listaDatos]) => {
                 LATITUD: x.LATITUD
             });
 
-            return `<div class="col-6 mb-2"><div class="card" style="width: 100%;"><div class="card-body">${seccion_titulo}${seccion_modelo_marca}${seccion_foto_direccion}${seccion_potencia_modo_carga}${seccion_tipo_cargador_cantidad}${hora_desde_hasta}${seccion_tarifa_protocolo}</div></div></div>`;   
+            return `<div class="col-6 mb-2"><div class="card" style="width: 100%;"><div class="card-body">${seccion_titulo}${seccion_modelo_marca}${seccion_foto_direccion}${seccion_potencia_modo_carga}${seccion_tipo_cargador_cantidad}${seccion_imagen_conector}${hora_desde_hasta}${seccion_tarifa_protocolo}</div></div></div>`;   
         }).join('');
         $('#seccion-estacion').html(estaciones);
         $('#sin-estacion').addClass('d-none');
@@ -179,3 +183,26 @@ $(document).on('click', '.EliminarEstacion', (e) => {
         }
     });
 });
+
+var filtrar_imagen_conector = (idconector) => {
+    let conector = ''
+    if (idconector == 1)
+        conector = 'SCHUKO.jpeg'
+    else if (idconector == 2)
+        conector = 'Tipo 1 (SAE J1772).jpg'
+    else if (idconector == 3)
+        conector = 'Tipo 2 - Mennekes.jpg'
+    else if (idconector == 4)
+        conector = 'GB-T en CA.jpg'
+    else if (idconector == 5)
+        conector = 'Tesla.jpg'
+    else if (idconector == 6)
+        conector = 'CCS 1 - Combo1.jpg'
+    else if (idconector == 7)
+        conector = 'CCS 2 - Combo 2.jpg'
+    else if (idconector == 8)
+        conector = 'CHAdeMO.jpg'
+    else if (idconector == 9)
+        conector = 'GB-T en CC.JPG'
+    return conector
+}
