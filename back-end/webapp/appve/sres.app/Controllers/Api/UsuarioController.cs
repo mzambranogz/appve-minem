@@ -112,6 +112,15 @@ namespace sres.app.Controllers.Api
                 ["flagrecuperar"] = 0
             };
 
+            if (usuario.TIPO_REGISTRO == 2 || usuario.TIPO_REGISTRO == 3) return new Dictionary<string, object>
+            {
+                ["tipo"] = 5,
+                ["success"] = false,
+                ["message"] = "No se puede recuperar la contraseña porque esta cuenta esta asociado a una red social (Facebook | Google)",
+                ["usuario"] = 0,
+                ["flagrecuperar"] = 0
+            };
+
             if (usuario.FLAG_RECUPERAR == 1)
             {
                 return new Dictionary<string, object>

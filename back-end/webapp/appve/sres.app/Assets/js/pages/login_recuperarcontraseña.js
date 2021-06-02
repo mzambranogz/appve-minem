@@ -3,8 +3,8 @@
     e.preventDefault();
     let correo = $('#txt-user').val();
 
-    //let url = `${baseUrl}api/usuario/enviarlinkrecuperarcontraseña?correo=${correo}&flagrecuperar=2`; //end point 34
-    let url = `${baseUrlApi}api/usuario/enviarlinkrecuperarcontrasenia?correo=${correo}&flagrecuperar=2`; //end point 34
+    let url = `${baseUrl}api/usuario/enviarlinkrecuperarcontraseña?correo=${correo}&flagrecuperar=2`; //end point 34
+    //let url = `${baseUrlApi}api/usuario/enviarlinkrecuperarcontrasenia?correo=${correo}&flagrecuperar=2`; //end point 34
 
     console.log(url);
 
@@ -22,7 +22,7 @@ var responseEnvioMail = (data) => {
     }
     else {
         $('form > *:last').alert({ type: 'danger', title: 'Error', message });
-        setTimeout(limpiarAlert, 2500);
+        setTimeout(limpiarAlert, 4000);
     } 
 
 };
