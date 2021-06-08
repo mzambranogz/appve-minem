@@ -726,17 +726,29 @@ var cambiarVE = () => {
     if ($('#tipo-vehiculo-ve').val() == 0) { 
         $('#modelo-ve').parent().addClass('d-none'); 
         $('#modelo-ve').val(0); 
-        $('#sec-precio-instalacion-ve').addClass('d-none')
+        //$('#sec-precio-instalacion-ve').addClass('d-none')
+        $('#tipo-cargador').parent().parent().addClass('d-none')
         $('#costo-veh-ve').val('0')
         $('#seguro-ve').val(0)
+        $('#tipo-cargador').val(0)
+        cambiarTC()
         return; 
     }
+
+    $('#tipo-cargador').parent().parent().removeClass('d-none')
     if ($('#tipo-vehiculo-ve').val() > 1) {
         $('#modelo-ve').parent().addClass('d-none'); 
-        $('#sec-precio-instalacion-ve').addClass('d-none')
+        //$('#sec-precio-instalacion-ve').addClass('d-none')
         $('#modelo-ve').val(0);
-        $('#tipo-cargador').val(0);
-        $('#seguro-ve').val(0)
+        //$('#tipo-cargador').val(0);
+        $('#seguro-ve').val(0)        
+
+        $('#tipo-cargador option[value=0]').prop('hidden', false)
+        $('#tipo-cargador option[value=1]').prop('hidden', false)
+        $('#tipo-cargador option[value=2]').prop('hidden', true)
+        $('#tipo-cargador option[value=3]').prop('hidden', true)
+        $('#tipo-cargador option[value=4]').prop('hidden', true)
+        $('#tipo-cargador').val(1)
         cambiarTC()
     }
     else {
@@ -744,6 +756,14 @@ var cambiarVE = () => {
         $('#sec-precio-instalacion-ve').removeClass('d-none')
         $('#costo-veh-ve').val('0')
         $('#seguro-ve').val(formatoMiles(1000))
+        $('#tipo-cargador').val(0)
+        cambiarTC()
+
+        $('#tipo-cargador option[value=0]').prop('hidden', false)
+        $('#tipo-cargador option[value=1]').prop('hidden', true)
+        $('#tipo-cargador option[value=2]').prop('hidden', false)
+        $('#tipo-cargador option[value=3]').prop('hidden', false)
+        $('#tipo-cargador option[value=4]').prop('hidden', false)
     }
 
     if ($('#tipo-vehiculo-ve').val() > 1){
@@ -803,7 +823,7 @@ var cambiarMVE = () => {
 }
 
 var cambiarTC = () => {
-    if ($('#tipo-cargador').val() == 0) { 
+    /*if ($('#tipo-cargador').val() == 0) { 
         $('#cbo-potencia').parent().addClass('d-none'); 
         $('#precio-cargador').val('0');
         $('#costo-instalacion').val('0');
@@ -821,15 +841,58 @@ var cambiarTC = () => {
         $('#txt-potencia').addClass('d-none');
     }
     $('#precio-cargador').val('0');
-    $('#costo-instalacion').val('0');
+    $('#costo-instalacion').val('0');*/
+
+    if ($('#tipo-cargador').val() == 0) { 
+        $('#cbo-potencia').parent().addClass('d-none'); 
+        $('#cbo-potencia').val(0)
+        cambiarCP()
+        //$('#precio-cargador').val('0');
+        //$('#costo-instalacion').val('0');
+        return; 
+    }
+
+    if ($('#tipo-cargador').val() == 1) {
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', true)
+    } else if ($('#tipo-cargador').val() == 2) {
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=4]').prop('hidden', true)
+    } else if ($('#tipo-cargador').val() == 3) {
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', false)
+        $('#cbo-potencia option[value=2]').prop('hidden', false)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+    } else if ($('#tipo-cargador').val() == 4) {
+        $('#cbo-potencia option[value=0]').prop('hidden', false)
+        $('#cbo-potencia option[value=1]').prop('hidden', true)
+        $('#cbo-potencia option[value=2]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
+        $('#cbo-potencia option[value=4]').prop('hidden', false)
+    }
+    $('#cbo-potencia').parent().removeClass('d-none');
+    $('#txt-potencia').addClass('d-none')
+    $('#cbo-potencia').val(0)
+    cambiarCP()
 }
 
 //end_points //Sexto
 var cambiarCP = () => {
-    if ($('#cbo-potencia').val() == 0) return;
+    if ($('#cbo-potencia').val() == 0) {
+        $('#precio-cargador').val(0)
+        $('#costo-instalacion').val(0)
+        return;
+    } 
 
     //let url = `${baseUrl}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
-    let url = `${baseUrlApi}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
+    /*let url = `${baseUrlApi}api/calculo/obtenervalorestccp?valor1=${$('#tipo-cargador').val()}&valor2=${$('#cbo-potencia').val()}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`} };
 
     fetch(url, init).then(r => r.json()).then(j => {
@@ -843,7 +906,41 @@ var cambiarCP = () => {
             $('#costo-instalacion').val(formatoMiles(Math.round(j.COSTO_INSTALACION.FACTOR * 100)/100));
             costo_instalacion_g = parseFloat(j.COSTO_INSTALACION.FACTOR);           
         }
-    });
+    });*/
+    let tc  = $('#tipo-cargador').val()
+    let p   = $('#cbo-potencia').val()
+    if (tc == 1) {
+        $('#precio-cargador').val(formatoMiles(0))
+        $('#costo-instalacion').val(formatoMiles(0*0.2))
+    } else if (tc == 2) {
+        $('#precio-cargador').val(formatoMiles(0))
+        $('#costo-instalacion').val(formatoMiles(0*0.2))
+    } else if (tc == 3){
+        if (p == 1) {
+            $('#precio-cargador').val(formatoMiles(2500))
+            $('#costo-instalacion').val(formatoMiles(2500*0.2))
+        } else if (p == 2) {
+            $('#precio-cargador').val(formatoMiles(3700))
+            $('#costo-instalacion').val(formatoMiles(3700*0.2))
+        } else if (p == 3) {
+            $('#precio-cargador').val(formatoMiles(6000))
+            $('#costo-instalacion').val(formatoMiles(6000*0.2))
+        } else if (p == 4) {
+            $('#precio-cargador').val(formatoMiles(11000))
+            $('#costo-instalacion').val(formatoMiles(11000*0.2))
+        }
+    } else if (tc == 4){
+        if (p == 3) {
+            $('#precio-cargador').val(formatoMiles(16000))
+            $('#costo-instalacion').val(formatoMiles(16000*0.2))
+        } else if (p == 4) {
+            $('#precio-cargador').val(formatoMiles(25000))
+            $('#costo-instalacion').val(formatoMiles(25000*0.2))
+        } else {
+            $('#precio-cargador').val(formatoMiles(0))
+            $('#costo-instalacion').val(formatoMiles(0*0.2))
+        }
+    }
 }
 
 //end_points //Septimo
@@ -1035,8 +1132,10 @@ var cargarComponentes = () => {
     let urlConsultarTipoVehiculoConvencional = `${baseUrlApi}api/TipoVehiculoConvencional/obtenerall`;    
     let urlConsultarTipoVehiculoElectrico = `${baseUrlApi}api/TipovehiculoElectrico/obtenerall`;    
     let urlConsultarModeloVehiculoElectrico = `${baseUrlApi}api/modelovehiculo/obtenerall`;    
-    let urlConsultarTipoCargador = `${baseUrlApi}api/TipoCargador/obteneralltipocargador`;    
-    let urlConsultarCargadorPotencia = `${baseUrlApi}api/TipoCargador/obtenerallcargadorpotencia`;    
+    //let urlConsultarTipoCargador = `${baseUrlApi}api/TipoCargador/obteneralltipocargador`;    
+    //let urlConsultarCargadorPotencia = `${baseUrlApi}api/TipoCargador/obtenerallcargadorpotencia`;   
+    let urlConsultarTipoCargador = `${baseUrlApi}api/modocarga/obtenerallmodocarga`;    
+    let urlConsultarCargadorPotencia = `${baseUrlApi}api/potencia/obtenerallpotencia`;
     let urlConsultarDepartamento = `${baseUrlApi}api/Departamento/obteneralldepartamento`;
     let urlConsultarRutas = `${baseUrlApi}api/calculo/obtenerrutasall?idusuario=${idUsuarioLogin}`;
     let init = { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
@@ -1091,10 +1190,16 @@ var cargarListas = ([listaTipoTransporte, listaTipoCombustible, listaTipoVehicul
     let opcionestm = listaModeloVehiculoElectrico.length == 0 ? '' : listaModeloVehiculoElectrico.map(x => `<option value="${x.ID_MODELO}">${x.NOMBRE}</option>`).join('');
     $(`#modelo-ve`).html(`${option}${opcionestm}`);
 
-    let opcionestpc = listaTipoCargador.length == 0 ? '' : listaTipoCargador.map(x => `<option value="${x.ID_CARGADOR}">${x.NOMBRE}</option>`).join('');
-    $(`#tipo-cargador`).html(`${option}${opcionestpc}<option value="100">Otro</option>`);
+    //let opcionestpc = listaTipoCargador.length == 0 ? '' : listaTipoCargador.map(x => `<option value="${x.ID_CARGADOR}">${x.NOMBRE}</option>`).join('');
+    //$(`#tipo-cargador`).html(`${option}${opcionestpc}<option value="100">Otro</option>`);
+    //$(`#tipo-cargador`).html('<option value="0">seleccione</option><option value="1">Modo 1</option><option value="2">Modo 2 (lenta)</option><option value="3">Modo 3 (semi-rápida)</option><option value="4">Modo 4 (Modo rápida)</option>')
+    let opcionesmc = listaTipoCargador.length == 0 ? '' : listaTipoCargador.map(x => `<option value="${x.ID_MODO_CARGA}">${x.NOMBRE}</option>`).join('');
+    $(`#tipo-cargador`).html(`${option}${opcionesmc}`);
 
-    let opcionescp = listaCargadorPotencia.length == 0 ? '' : listaCargadorPotencia.map(x => `<option value="${x.ID_POTENCIA}" data-idcargador="${x.ID_CARGADOR}">${x.POTENCIA}</option>`).join('');
+    //let opcionescp = listaCargadorPotencia.length == 0 ? '' : listaCargadorPotencia.map(x => `<option value="${x.ID_POTENCIA}" data-idcargador="${x.ID_CARGADOR}">${x.POTENCIA}</option>`).join('');
+    //$(`#cbo-potencia`).html(`${option}${opcionescp}`);
+    //$(`#cbo-potencia`).html('<option value="0">seleccione</option><option value="1">3.7</option><option value="2">7.4</option><option value="3">22</option><option value="4">Mayor a 22</option>')
+    let opcionescp = listaCargadorPotencia.length == 0 ? '' : listaCargadorPotencia.map(x => `<option value="${x.ID_POTENCIA}">${x.NOMBRE}</option>`).join('');
     $(`#cbo-potencia`).html(`${option}${opcionescp}`);
 
     let opcionesdp = listaDepartamento.length == 0 ? '' : listaDepartamento.map(x => `<option value="${x.ID_DEPARTAMENTO}">${x.NOMBRE}</option>`).join('');

@@ -109,7 +109,6 @@ var filtrarPotencia = () => {
         $('#cbo-potencia option[value=2]').prop('hidden', true)
         $('#cbo-potencia option[value=3]').prop('hidden', true)
         $('#cbo-potencia option[value=4]').prop('hidden', true)
-        $('#cbo-potencia option[value=5]').prop('hidden', true)
         $('#cbo-potencia').val(1)
     } else if (tc == 2){
         $('#cbo-potencia option[value=0]').prop('hidden', false)
@@ -117,12 +116,10 @@ var filtrarPotencia = () => {
         $('#cbo-potencia option[value=2]').prop('hidden', false)
         $('#cbo-potencia option[value=3]').prop('hidden', true)
         $('#cbo-potencia option[value=4]').prop('hidden', true)
-        $('#cbo-potencia option[value=5]').prop('hidden', true)
     } else if (tc == 3){
         $('#cbo-potencia option[value=0]').prop('hidden', false)
         $('#cbo-potencia option[value=1]').prop('hidden', false)
         $('#cbo-potencia option[value=2]').prop('hidden', false)
-        $('#cbo-potencia option[value=3]').prop('hidden', false)
         $('#cbo-potencia option[value=4]').prop('hidden', false)
         $('#cbo-potencia option[value=5]').prop('hidden', true)
     } else if (tc == 4){
@@ -131,42 +128,36 @@ var filtrarPotencia = () => {
         $('#cbo-potencia option[value=2]').prop('hidden', false)
         $('#cbo-potencia option[value=3]').prop('hidden', false)
         $('#cbo-potencia option[value=4]').prop('hidden', false)
-        $('#cbo-potencia option[value=5]').prop('hidden', false)
     } else if (tc == 5){
         $('#cbo-potencia option[value=0]').prop('hidden', false)
         $('#cbo-potencia option[value=1]').prop('hidden', false)
         $('#cbo-potencia option[value=2]').prop('hidden', false)
         $('#cbo-potencia option[value=3]').prop('hidden', false)
         $('#cbo-potencia option[value=4]').prop('hidden', false)
-        $('#cbo-potencia option[value=5]').prop('hidden', false)
     } else if (tc == 6){
         $('#cbo-potencia option[value=0]').prop('hidden', false)
         $('#cbo-potencia option[value=1]').prop('hidden', true)
         $('#cbo-potencia option[value=2]').prop('hidden', true)
-        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
         $('#cbo-potencia option[value=4]').prop('hidden', false)
-        $('#cbo-potencia option[value=5]').prop('hidden', false)
     } else if (tc == 7){
         $('#cbo-potencia option[value=0]').prop('hidden', false)
         $('#cbo-potencia option[value=1]').prop('hidden', true)
         $('#cbo-potencia option[value=2]').prop('hidden', true)
-        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
         $('#cbo-potencia option[value=4]').prop('hidden', false)
-        $('#cbo-potencia option[value=5]').prop('hidden', false)
     } else if (tc == 8){
         $('#cbo-potencia option[value=0]').prop('hidden', false)
         $('#cbo-potencia option[value=1]').prop('hidden', true)
         $('#cbo-potencia option[value=2]').prop('hidden', true)
-        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
         $('#cbo-potencia option[value=4]').prop('hidden', false)
-        $('#cbo-potencia option[value=5]').prop('hidden', false)
     } else if (tc == 9){
         $('#cbo-potencia option[value=0]').prop('hidden', false)
         $('#cbo-potencia option[value=1]').prop('hidden', true)
         $('#cbo-potencia option[value=2]').prop('hidden', true)
-        $('#cbo-potencia option[value=3]').prop('hidden', true)
+        $('#cbo-potencia option[value=3]').prop('hidden', false)
         $('#cbo-potencia option[value=4]').prop('hidden', false)
-        $('#cbo-potencia option[value=5]').prop('hidden', false)
     }
 }
 

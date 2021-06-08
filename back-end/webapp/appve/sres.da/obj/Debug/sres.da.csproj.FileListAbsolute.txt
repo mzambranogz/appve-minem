@@ -96,3 +96,17 @@ C:\Users\JK\Desktop\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug
 C:\Users\JK\Desktop\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\obj\Debug\sres.da.csprojResolveAssemblyReference.cache
 C:\Users\JK\Desktop\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\obj\Debug\sres.da.dll
 C:\Users\JK\Desktop\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\obj\Debug\sres.da.pdb
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\sres.da.dll
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\sres.da.pdb
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\Dapper.dll
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\Newtonsoft.Json.dll
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\Oracle.DataAccess.dll
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\sres.be.dll
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\sres.ut.dll
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\sres.be.pdb
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\sres.ut.pdb
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\Dapper.xml
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\bin\Debug\Newtonsoft.Json.xml
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\obj\Debug\sres.da.csprojResolveAssemblyReference.cache
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\obj\Debug\sres.da.dll
+C:\Users\JK\Desktop\Escritorio\GIT ELECTROMOVILIDAD\back-end\webapp\appve\sres.da\obj\Debug\sres.da.pdb
