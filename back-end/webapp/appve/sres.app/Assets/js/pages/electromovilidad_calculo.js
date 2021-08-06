@@ -48,10 +48,10 @@ $(document).ready(() => {
     $('input[name="rad-inc-ve"]').on('change', (e) => cambiarCongINC());
     $('#tipo-compra-cvc').on('change', (e) => cambiarTipoCompraCVC());
     $('#tipo-compra-ve').on('change', (e) => cambiarTipoCompraCVE());
-    $('#tipo-vehiculo-vc').on('change', (e) => evaluarTipoVehTipoCombVC());
-    $('#tipo-combustible-vc').on('change', (e) => evaluarTipoVehTipoCombVC());
-    $('#tipo-vehiculo-cvc').on('change', (e) => evaluarTipoVehTipoCombCVC());
-    $('#tipo-combustible-cvc').on('change', (e) => evaluarTipoVehTipoCombCVC());
+    $('#tipo-vehiculo-vc').on('change', (e) => evaluarTipoVehTipoCombVC(e));
+    $('#tipo-combustible-vc').on('change', (e) => evaluarTipoVehTipoCombVC(e));
+    $('#tipo-vehiculo-cvc').on('change', (e) => evaluarTipoVehTipoCombCVC(e));
+    $('#tipo-combustible-cvc').on('change', (e) => evaluarTipoVehTipoCombCVC(e));
     $('#tipo-vehiculo-ve').on('change', (e) => cambiarVE());
     $('#modelo-ve').on('change', (e) => cambiarMVE());
     $('#tipo-cargador').on('change', (e) => cambiarTC());
@@ -618,8 +618,19 @@ var cambiarTipoCompraCVE = () => {
 }
 
 //end_points //Segundo
-var evaluarTipoVehTipoCombVC = () => {
-    cambiarDepartamentoVC();
+var evaluarTipoVehTipoCombVC = (e) => {
+    let tipocbo = e.target.id    
+    if (tipocbo == 'tipo-vehiculo-vc'){
+        if ($('#tipo-vehiculo-vc').val() == 3 || $('#tipo-vehiculo-vc').val() == 4){
+            $('#tipo-combustible-vc').val(0)
+            $('#tipo-combustible-vc option[value="2"]').prop("hidden", true)
+            $('#tipo-combustible-vc option[value="3"]').prop("hidden", true)
+        } else {
+            $('#tipo-combustible-vc option[value="2"]').prop("hidden", false)
+            $('#tipo-combustible-vc option[value="3"]').prop("hidden", false)
+        }
+    }
+    cambiarDepartamentoVC()
     if ($('#tipo-vehiculo-vc').val() == 0 || $('#tipo-combustible-vc').val() == 0) return;
     let tipovehiculo = $('#tipo-vehiculo-vc').val();
     let tipocombustible = $('#tipo-combustible-vc').val();
@@ -657,7 +668,18 @@ var evaluarTipoVehTipoCombVC = () => {
 }
 
 //end_points igual a 430
-var evaluarTipoVehTipoCombCVC = () => {
+var evaluarTipoVehTipoCombCVC = (e) => {
+    let tipocbo = e.target.id    
+    if (tipocbo == 'tipo-vehiculo-cvc'){
+        if ($('#tipo-vehiculo-cvc').val() == 3 || $('#tipo-vehiculo-cvc').val() == 4){
+            $('#tipo-combustible-cvc').val(0)
+            $('#tipo-combustible-cvc option[value="2"]').prop("hidden", true)
+            $('#tipo-combustible-cvc option[value="3"]').prop("hidden", true)
+        } else {
+            $('#tipo-combustible-cvc option[value="2"]').prop("hidden", false)
+            $('#tipo-combustible-cvc option[value="3"]').prop("hidden", false)
+        }
+    }
     cambiarDepartamentoCVC();
     if ($('#tipo-vehiculo-cvc').val() == 0 || $('#tipo-combustible-cvc').val() == 0) return;
     let tipovehiculo = $('#tipo-vehiculo-cvc').val();
